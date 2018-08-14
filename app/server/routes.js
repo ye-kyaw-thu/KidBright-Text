@@ -551,17 +551,17 @@ module.exports = function(app, Config, Log) {
 
 						// compile
 						var cmd = util.format('"%s/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DARDUINO=10800 -DESP32=1 -DARDUINO_ARCH_ESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H %s -I"%s" -c "%s/user_app.cpp" -o "%s/user_app.o"', toolchain_dir, cflags, user_app_dir, user_app_dir, user_app_dir);
-						exec(ospath(cmd), (err, stdout, stderr) => {
+						exec(ospath(cmd), { cwd: __dirname+'/../..' }, (err, stdout, stderr) => {
 							if (err) throw err;
 
 							// create libmain
 							var cmd = util.format('"%s/xtensa-esp32-elf-ar" cru "%s/libmain.a" "%s/user_app.o"', toolchain_dir, user_app_dir, user_app_dir);
-							exec(ospath(cmd), (err, stdout, stderr) => {
+							exec(ospath(cmd), { cwd: __dirname+'/../..' }, (err, stdout, stderr) => {
 								if (err) throw err;
 
 								// link
 								var cmd = util.format('"%s/xtensa-esp32-elf-gcc" -nostdlib -u call_user_start_cpu0  -Wl,--gc-sections -Wl,-static -Wl,--start-group %s -L"%s" -lgcc -lstdc++ -lgcov -Wl,--end-group -Wl,-EL -o "%s/%s.elf"', toolchain_dir, ldflags, user_app_dir, user_app_dir, board_name);
-								exec(ospath(cmd), (err, stdout, stderr) => {
+								exec(ospath(cmd), { cwd: __dirname+'/../..' }, (err, stdout, stderr) => {
 									if (err) throw err;
 
 									// create bin
@@ -572,7 +572,7 @@ module.exports = function(app, Config, Log) {
 										user_app_dir,
 										board_name
 									);
-									exec(ospath(cmd), (err, stdout, stderr) => {
+									exec(ospath(cmd), { cwd: __dirname+'/../..' }, (err, stdout, stderr) => {
 										if (err) throw err;
 
 										res.setHeader('Content-Type', 'application/json');
@@ -641,7 +641,7 @@ module.exports = function(app, Config, Log) {
 	});
 
 	app.post('/gen_qr', function(req, res) {
-		var path = './app/public/images/qrcode.png';
+		var path = __dirname+'/../public/images/qrcode.png';
 		var mac_addr = req.body['mac_addr'];
 		QRCode.toFile(path, mac_addr, {
 		  color: {
