@@ -1,0 +1,3 @@
+[submodule "release"]
+	path = esp32/lib/release
+	url = https://gitlab.com/kidbright/libesp32

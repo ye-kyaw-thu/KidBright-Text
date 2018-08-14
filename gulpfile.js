@@ -21,8 +21,10 @@ const pathca = path.join(__dirname, 'app', 'node_modules')
 const pathcc = path.join(__dirname, 'node_modules')
 
 gulp.task('install', () => {
-    return gulp.src([patha, pathc])
-        .pipe(install());
+    del([pathz])
+    return gulp.src(__dirname)
+        .pipe(exec("npm install --prefix " + __dirname))
+        .pipe(exec("npm install --prefix ./app"))
 })
 
 gulp.task('download_xtensa', ['install'], () => {
@@ -52,27 +54,31 @@ gulp.task('download_xtensa', ['install'], () => {
 
 gulp.task('download_esptool', ['download_xtensa'], () => {
     return download(pathe)
-        .pipe(gulp.dest(__dirname))
+            .pipe(gulp.dest(__dirname))
 })
 
 gulp.task('decompress', ['download_esptool'], () => {
-    if (fs.existsSync(pathl)) {
-        return
-    }
-    else {
+    if (fs.existsSync(pathx)) {
         if (process.platform == 'darwin') {
             return gulp.src(__dirname)
-                .pipe(exec('gunzip *.gz'))
-                .pipe(exec('tar xvf ' + pathnlt))
-                .pipe(exec('tar xvf ' + pathnet))
-        } else if (process.platform == 'linux') {
-            return gulp.src(__dirname)
-                .pipe(exec('gunzip *.gz'))
-                .pipe(exec('tar xvf ' + pathnlt))
+                .pipe(exec('tar xvzf ' + pathne))
         } else if (process.platform == 'win32') {
             return gulp.src(__dirname)
-                .pipe(exec("powershell.exe -NoP -NonI -Command " + "Expand-Archive '"+ pathnl + "' '.'"))
-                .pipe(exec("powershell.exe -NoP -NonI -Command " + "Expand-Archive '"+ pathne + "' '.'"))
+                .pipe(exec("powershell.exe -NoP -NonI -Command " + "Expand-Archive '" + pathne + "' '.'"))
+        }
+        return
+    } else {
+        if (process.platform == 'darwin') {
+            return gulp.src(__dirname)
+                .pipe(exec('tar xvzf ' + pathnl))
+                .pipe(exec('tar xvzf ' + pathne))
+        } else if (process.platform == 'linux') {
+            return gulp.src(__dirname)
+                .pipe(exec('tar xvzf ' + pathnl))
+        } else if (process.platform == 'win32') {
+            return gulp.src(__dirname)
+                .pipe(exec("powershell.exe -NoP -NonI -Command " + "Expand-Archive '" + pathnl + "' '.'"))
+                .pipe(exec("powershell.exe -NoP -NonI -Command " + "Expand-Archive '" + pathne + "' '.'"))
         }
     }
 })

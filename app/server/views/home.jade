@@ -23,6 +23,8 @@ block content
 
 			ul.nav.navbar-nav.navbar-right(style="padding-right:1%")
 				li
+					//- button#btn-export.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h3.svg)")
+				li
 					button#btn-open.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h3.svg)")
 				li
 					button#btn-save.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h4.svg)") Save Files
@@ -81,5 +83,7 @@ block scripts
 	script(src='blockly/kidbright/generators.js')
 	script(src='blockly/kidbright/generators-iot.js')
 	script(src='blockly/kidbright/app.js')
+	srcipt(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/FileSaver.js")
+
 
 
