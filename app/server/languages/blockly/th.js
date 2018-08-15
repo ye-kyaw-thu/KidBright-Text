@@ -419,10 +419,19 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LISTS_INDEX_OF_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 /** @export */ Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT = Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT;
 
-/** @export */ Blockly.Msg.MATH_HUE = "230";
-/** @export */ Blockly.Msg.LOOPS_HUE = "120";
+/** @export */ Blockly.Msg.BASIC_HUE = "#32D496";
+/** @export */ Blockly.Msg.MATH_HUE = "#7F94F8";
+/** @export */ Blockly.Msg.LOGIC_HUE = "#3597F6";
+/** @export */ Blockly.Msg.LOOPS_HUE = "#1DC020";
+/** @export */ Blockly.Msg.WAIT_HUE = "#74B735";
+/** @export */ Blockly.Msg.MUSIC_HUE = "#FB8CC3";
+/** @export */ Blockly.Msg.SENSOR_HUE = "#CAC745";
+/** @export */ Blockly.Msg.RTC_HUE = "#F38C5D";
+/** @export */ Blockly.Msg.IO_HUE = "#F66563";
+/** @export */ Blockly.Msg.ADVANCE_HUE = "#D75DEF";
+/** @export */ Blockly.Msg.GAUGE_HUE = "#5BC2E2";
+/** @export */ Blockly.Msg.FEED_HUE = "#D1AF49";
 /** @export */ Blockly.Msg.LISTS_HUE = "260";
-/** @export */ Blockly.Msg.LOGIC_HUE = "210";
 /** @export */ Blockly.Msg.VARIABLES_HUE = "330";
 /** @export */ Blockly.Msg.TEXTS_HUE = "160";
 /** @export */ Blockly.Msg.PROCEDURES_HUE = "290";
@@ -787,7 +796,7 @@ Blockly.Msg.CATEGORY_ADVANCE = "ขั้นสูง";
 /** @export */ Blockly.Msg.FEED_UNIT_HELPURL = "";
 
 // config feed color
-/** @export */ Blockly.Msg.FEED_COLOR_TITLE = "ตั้งต่าสี";
+/** @export */ Blockly.Msg.FEED_COLOR_TITLE = "ตั้งค่าสี";
 /** @export */ Blockly.Msg.FEED_COLOR_TOOLTIP = "ส่งข้อมูลไปตั้งค่าตั้งต่าสีของฟิว";
 /** @export */ Blockly.Msg.FEED_COLOR_HELPURL = "";
 

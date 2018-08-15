@@ -1,7 +1,8 @@
 // =============================================================================
 // publish data to gauge
 // =============================================================================
-var gauge_colour = 195;
+var gauge_colour =  Blockly.Msg.GAUGE_HUE;
+// var gauge_colour = "#5BC2E2";
 Blockly.Blocks["gauge_iot"] = {
 	init: function() {
 		this.jsonInit({
@@ -202,7 +203,9 @@ Blockly.Blocks["gauge_minmax"] = {
 // =============================================================================
 // feed iot
 // =============================================================================
-var feed_colour = 45;
+var feed_colour = Blockly.Msg.FEED_HUE;
+// var feed_colour = "#D1AF49";
+
 Blockly.Blocks["feed_iot"] = {
 	init: function() {
 		this.jsonInit({

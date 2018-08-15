@@ -226,6 +226,12 @@ function HomeController() {
 			}
 		});
 	}
+	$("#btn-export").click(function () {
+		var anchor2 = document.getElementById("hello");
+		var container = "aaaaaaaaa";
+		anchor2.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(container);
+		anchor2.download = 'export';
+	});
 
 	$('#btn-save').click(function() {
 		// save file browser modal form
@@ -533,11 +539,14 @@ function HomeController() {
 		$('.modal-set-clock .modal-header h4').text(LANG_SETCLOCK);
 		$('.modal-set-clock .modal-footer #btn-ok').text(LANG_OK);
 		$('.modal-set-clock .modal-footer #btn-cancel').text(LANG_CANCEL);
+		$('.modal-set-clock .modal-footer #button-zero').text(LANG_SETCLOCK);
+		$('.modal-set-clock .modal-footer #button-sub7').text(LANG_SETCLOCK);
 
 		// sub7 available only on KidBrightOS version
 		if (!standalone) {
 			var dttm_sub7 = moment().subtract(7, 'hours');
-			$('.modal-set-clock #button-sub7').text(dttm_sub7.format('DD/MM/YYYY HH:mm:ss'));
+			// $('.modal-set-clock #button-sub7').text(dttm_sub7.format('DD/MM/YYYY HH:mm:ss'));
+			$('.modal-set-clock #time-sub7').text(dttm_sub7.format('DD/MM/YYYY HH:mm:ss'));
 			$('#div-sub7').css('display', 'block');
 		}
 		else {
@@ -545,7 +554,8 @@ function HomeController() {
 		}
 
 		var dttm_zero = moment();
-		$('.modal-set-clock #button-zero').text(dttm_zero.format('DD/MM/YYYY HH:mm:ss'));
+		// $('.modal-set-clock #button-zero').text(dttm_zero.format('DD/MM/YYYY HH:mm:ss'));
+		$('.modal-set-clock #time-zero').text(dttm_zero.format('DD/MM/YYYY HH:mm:ss'));
 
 		// show set-clock modal
 		$('.modal-set-clock').modal({

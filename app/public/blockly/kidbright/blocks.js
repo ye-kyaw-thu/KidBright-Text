@@ -3,7 +3,8 @@
 // =============================================================================
 // basic
 // =============================================================================
-var basic_colour = "160";
+var basic_colour = Blockly.Msg.BASIC_HUE;
+// var basic_colour = "#32D496";
 Blockly.Blocks["basic_led16x8"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -180,6 +181,7 @@ Blockly.Blocks["basic_string"] = {
 // math
 // =============================================================================
 var math_colour = Blockly.Msg.MATH_HUE;
+// var math_colour = "#7F94F8";
 Blockly.Blocks["math_number"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -252,6 +254,7 @@ Blockly.Blocks['math_variables_get'] = {
 // logic
 // =============================================================================
 var logic_colour = Blockly.Msg.LOGIC_HUE;
+// var logic_colour = "#3597F6";
 Blockly.Blocks['logic_led16x8_scroll_ready'] = {
 	init: function() {
 		this.appendDummyInput()
@@ -324,7 +327,8 @@ Blockly.Blocks['logic_sw2_released'] = {
 // =============================================================================
 // loop
 // =============================================================================
-var loop_colour = 120;
+var loop_colour = Blockly.Msg.LOOPS_HUE;;
+// var loop_colour = "#1DC020";
 Blockly.Blocks["loop_break"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -352,7 +356,8 @@ Blockly.Blocks["loop_continue"] = {
 // =============================================================================
 // wait
 // =============================================================================
-var wait_colour = 90;
+var wait_colour = Blockly.Msg.WAIT_HUE;;
+// var wait_colour = "#74B735";
 Blockly.Blocks["wait_led_matrix_ready"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -420,7 +425,8 @@ Blockly.Blocks["wait_sw2_released"] = {
 // =============================================================================
 // music
 // =============================================================================
-var music_colour=330;
+var music_colour=Blockly.Msg.MUSIC_HUE ;
+// var music_colour="#FB8CC3";
 Blockly.Blocks["music_duration_opt"] = [
 	[{
 		'src': '/icons/notes/whole.svg',
@@ -1201,7 +1207,8 @@ Blockly.Blocks["music_get_volume"] = {
 // =============================================================================
 // sensor
 // =============================================================================
-var sensor_colour=58;
+var sensor_colour= Blockly.Msg.SENSOR_HUE ;
+// var sensor_colour="#CAC745";
 Blockly.Blocks["sensor_lm73"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -1261,7 +1268,8 @@ Blockly.Blocks["sensor_switch2"] = {
 // =============================================================================
 // rtc
 // =============================================================================
-var rtc_colour = 19;
+var rtc_colour =Blockly.Msg.RTC_HUE;
+// var rtc_colour = "#F38C5D";
 Blockly.Blocks["rtc_get"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -1421,7 +1429,8 @@ Blockly.Blocks["comm_uart_writeln"] = {
 // =============================================================================
 // I/O
 // =============================================================================
-var io_colour = 1;
+var io_colour = Blockly.Msg.IO_HUE;
+// var io_colour = "#F66563";
 Blockly.Blocks["output_write"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -1555,6 +1564,7 @@ Blockly.Blocks["input_read"] = {
 // =============================================================================
 // advance
 // =============================================================================
+var advance_colour = Blockly.Msg.ADVANCE_HUE;
 Blockly.Blocks["advance_task"] = {
 	init: function() {
 		this.jsonInit({
@@ -1571,7 +1581,8 @@ Blockly.Blocks["advance_task"] = {
 				"name": "STACK"
 			}],
 			"inputsInline": false,
-			"colour": 290,
+			// "colour": Blockly.Msg.ADVANCE_HUE,
+			"colour": "#D75DEF",
 			"tooltip": Blockly.Msg.ADVANCE_TASK_TOOLTIP,
 			"helpUrl": Blockly.Msg.ADVANCE_TASK_HELPURL
 		});
