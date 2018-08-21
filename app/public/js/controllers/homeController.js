@@ -244,6 +244,9 @@ function HomeController() {
 		}
 		$('.modal-open-file-browser #btn-ok').prop('disabled', !open_flag);
 	}
+	$('#btn-new').click(function() {
+		Blockly.mainWorkspace.clear();
+	   });
 
 	$('#btn-open').click(function() {
 		// open file browser modal form

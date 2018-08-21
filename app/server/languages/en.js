@@ -76,6 +76,8 @@ const LANG_USER_INFO_ARR = [{
 
 const LANG_OPEN_FILE = 'Open File';
 const LANG_OPEN_FILE_TITLE = 'Open file from local storage';
+const LANG_NEW_FILE = 'New File';
+const LANG_NEW_FILE_TITLE = 'New file';
 const LANG_SAVE_FILE = 'Save File';
 const LANG_SAVE_FILE_TITLE = 'Save file to local storage';
 const LANG_DELETE_FILE = 'Delete File';
