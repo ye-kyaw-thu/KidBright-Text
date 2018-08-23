@@ -4,9 +4,10 @@ function HomeController() {
 	var standalone = false;
 	// console.log(localStorage.lang);
 	var state_lang;
-	if(localStorage.lang=="en"){
+	if(localStorage.lang=="th"){
 		document.getElementById("toggle-lang").setAttribute('checked',"");
 	}
+	
 	state_lang = document.getElementById("toggle-lang").checked;
 	var ver = document.getElementsByClassName("lang-container")[0];
 	ver.style.backgroundColor=localStorage.verColor;
@@ -25,16 +26,16 @@ function HomeController() {
 		console.log(state_lang);
 		if(state_lang!=undefined){
 			if(state_lang==true){
-				localStorage.lang = "en";
-				 homeSetLanguage('en');
-				 localStorage.verColor="#55C613";
-				 ver.style.backgroundColor="#55C613";
-			}
-			else{
 				localStorage.lang = "th";
 				 homeSetLanguage('th');
 				 localStorage.verColor="#7F94F8";
 				 ver.style.backgroundColor="#7F94F8";
+			}
+			else{
+				localStorage.lang = "en";
+				 homeSetLanguage('en');
+				 localStorage.verColor="#55C613";
+				 ver.style.backgroundColor="#55C613";
 			}
 		}
 	

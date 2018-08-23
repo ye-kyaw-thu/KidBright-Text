@@ -285,7 +285,7 @@ h6 {
 
 .lang-container {
   display: table;
-  background-color: #7F94F8;
+  background-color: #55C613;
   border-radius: 3px;
   margin-top: 20px;
   margin-bottom: 8px;
@@ -411,12 +411,12 @@ h6 {
   outline: none;
   border: none;
   cursor: pointer;
-  background-color: #7F94F8;
+  background-color: #55C613;
   transition: background-color ease 0.3s;
 }
 
 .toggle:before {
-  content: "EN TH";
+  content: "TH EN";
   display: block;
   position: absolute;
   z-index: 2;
@@ -439,7 +439,7 @@ h6 {
 }
 
 .toggle:checked {
-  background-color: #55C613;
+  background-color: #7F94F8;
 }
 
 .toggle:checked:before {
@@ -481,12 +481,12 @@ h6 {
   outline: none;
   border: none;
   cursor: pointer;
-  background-color: #7F94F8;
+  background-color: #55C613;
   transition: background-color ease 0.3s;
 }
 
 .toggle:before {
-  content: "EN TH";
+  content: "TH EN";
   display: block;
   position: absolute;
   z-index: 2;
@@ -509,7 +509,7 @@ h6 {
 }
 
 .toggle:checked {
-  background-color: #55C613;
+  background-color: #7F94F8;
 }
 
 .toggle:checked:before {
@@ -519,7 +519,7 @@ h6 {
 
 .lang-container {
   display: table;
-  background-color: #7F94F8;
+  background-color: #55C613;
   border-radius: 3px;
   margin-top: 23px;
   margin-bottom: 8px;

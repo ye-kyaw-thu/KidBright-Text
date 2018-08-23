@@ -442,8 +442,8 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.RTC_HUE = "#A5725B";
 /** @export */ Blockly.Msg.IO_HUE = "#A55C5B";
 /** @export */ Blockly.Msg.ADVANCE_HUE = "#995BA5";
-/** @export */ Blockly.Msg.GAUGE_HUE = "195";
-/** @export */ Blockly.Msg.FEED_HUE = "45";
+/** @export */ Blockly.Msg.GAUGE_HUE = "#93A01E";
+/** @export */ Blockly.Msg.FEED_HUE = "#93A01E";
 /** @export */ Blockly.Msg.LISTS_HUE = "260";
 /** @export */ Blockly.Msg.VARIABLES_HUE = "330";
 /** @export */ Blockly.Msg.TEXTS_HUE = "160";
@@ -787,8 +787,8 @@ Blockly.Msg.CATEGORY_ADVANCE = "ขั้นสูง";
 
 // publish feed_iot blocks
 /** @export */ Blockly.Msg.FEED_IOT_TITLE = "ส่งข้อมูลไปยัง";
-/** @export */ Blockly.Msg.FEED_CONFIG_TITLE = "ส่งข้อมูลขึ้นฟีดไอโอที";
-/** @export */ Blockly.Msg.FEED_CONFIG_TOOLTIP = "รับข้อมูลแล้วทำการส่งขึ้นฟีดไอโอที";
+/** @export */ Blockly.Msg.FEED_CONFIG_TITLE = "ส่งข้อมูลขึ้นกราฟไอโอที";
+/** @export */ Blockly.Msg.FEED_CONFIG_TOOLTIP = "รับข้อมูลแล้วทำการส่งขึ้นกราฟไอโอที";
 /** @export */ Blockly.Msg.FEED_CONFIG_HELPURL = "";
 
 // config feed title
@@ -799,8 +799,8 @@ Blockly.Msg.CATEGORY_ADVANCE = "ขั้นสูง";
 /** @export */ Blockly.Msg.FIELD2 = "กราฟ2";
 
 // config feed main title
-/** @export */ Blockly.Msg.FEED_MAIN_TITLE = "ตั้งค่าชื่อฟีด";
-/** @export */ Blockly.Msg.FEED_MAIN_TITLE_TOOLTIP = "ส่งข้อมูลไปตั้งชื่อฟีด";
+/** @export */ Blockly.Msg.FEED_MAIN_TITLE = "ตั้งค่าชื่อกราฟ";
+/** @export */ Blockly.Msg.FEED_MAIN_TITLE_TOOLTIP = "ส่งข้อมูลไปตั้งชื่อกราฟ";
 /** @export */ Blockly.Msg.FEED_MAIN_TITLE_HELPURL = "";
 
 // config feed unit
