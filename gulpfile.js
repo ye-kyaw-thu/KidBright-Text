@@ -1,10 +1,9 @@
 const gulp = require('gulp')
 const path = require('path')
+const fs = require('fs')
 const download = require("gulp-download")
 const del = require('del')
-const install = require("gulp-install")
 const exec = require('gulp-exec');
-const fs = require('fs')
 
 // build
 const pathx = path.join(__dirname, '/xtensa-esp32-elf')
