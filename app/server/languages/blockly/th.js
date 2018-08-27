@@ -502,8 +502,8 @@ goog.require('Blockly.Msg');
 
 // logic blocks
 // led 16x8 scroll ready
-/** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_TITLE = "แอลอีดีเมตริกส์พร้อม";
-/** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_TOOLTIP = "ให้ค่าจริงเมื่อแอลอีดีเมตริกส์พร้อมแสดงผล (ตัวอักษรของเดิมเลื่อนจนหมดประโยคแล้ว)";
+/** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_TITLE = "แอลอีดีเมตริกซ์พร้อม";
+/** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_TOOLTIP = "ให้ค่าจริงเมื่อแอลอีดีเมตริกซ์พร้อมแสดงผล (ตัวอักษรของเดิมเลื่อนจนหมดประโยคแล้ว)";
 /** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_HELPURL = "";
 // sw1 pressed
 /** @export */ Blockly.Msg.LOGIC_SW1_PRESSED_TITLE = "สวิทช์ 1 กด";
