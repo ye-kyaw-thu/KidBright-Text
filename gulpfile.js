@@ -23,8 +23,8 @@ const pathcc = path.join(__dirname, 'node_modules')
 gulp.task('install', () => {
     del([pathz])
     return gulp.src(__dirname)
-        .pipe(exec("npm install --prefix " + __dirname))
-        .pipe(exec("npm install --prefix ./app"))
+        .pipe(exec("npm install " + __dirname))
+        .pipe(exec("npm install ./app"))
 })
 
 gulp.task('download_xtensa', ['install'], () => {
