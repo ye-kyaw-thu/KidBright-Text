@@ -608,6 +608,8 @@ function HomeController() {
 	});
 	$('#btn-wifi-config').click(function() {
 		$('.modal-wifi-config #wifi-iot-text').text(LANG_IOT_MODE);
+		$('.modal-wifi-config .modal-footer #wifi-build-ok').text(LANG_OK);
+		$('.modal-wifi-config .modal-footer #btn-cancel').text(LANG_CANCEL);
 		$('.modal-wifi-config input#sta-ssid').val(sessionStorage.getItem('wifi-ssid'));
 		$('.modal-wifi-config input#sta-password').val(sessionStorage.getItem('wifi-password'));
 		if (sessionStorage.getItem('enable-iot') == false){
