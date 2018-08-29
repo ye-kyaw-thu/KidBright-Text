@@ -11,6 +11,8 @@ function HomeController() {
 	var ver = document.getElementsByClassName("lang-container")[0];
 	ver.style.backgroundColor=localStorage.verColor;
 	// console.log(ver);
+	var files;
+	var workspaceData;
 	
 	$('#home-lang-en').click(function() {
 		homeSetLanguage('en');
@@ -81,28 +83,34 @@ function HomeController() {
 
 	$('.modal-save-file-browser #btn-ok').click(function() {
 		var fn = $('.modal-save-file-browser #file-text').val();
-		if (fn == '') return;
-		// check file exists
-		var dup_flag = false;
-		var list_items = $('.modal-save-file-browser .modal-body .list-group .list-group-item');
-		for (var i = 0; i < list_items.length; i++) {
-			if (list_items[i].text == fn) {
-				dup_flag = true;
-			}
+		// if (fn == '') return;
+		if (fn == ''){
+			fn="untitle.txt"	
 		}
+		document.getElementById( "file-text" ).value = '';
+		saveFile(fn);
 
-		if (dup_flag) {
-			$('.modal-save-overwrite-confirm .modal-header h4').text(LANG_FILE_OVERWRITE);
-			$('.modal-save-overwrite-confirm .modal-footer #btn-ok').text(LANG_OK);
-			$('.modal-save-overwrite-confirm .modal-footer #btn-cancel').text(LANG_CANCEL);
-			$('.modal-save-overwrite-confirm').modal({
-				show: true,
-				keyboard: false,
-				backdrop: 'static'
-			});
-		} else {
-			saveFile(fn);
-		}
+		// check file exists
+		// var dup_flag = false;
+		// var list_items = $('.modal-save-file-browser .modal-body .list-group .list-group-item');
+		// for (var i = 0; i < list_items.length; i++) {
+		// 	if (list_items[i].text == fn) {
+		// 		dup_flag = true;
+		// 	}
+		// }
+
+		// if (dup_flag) {
+		// 	$('.modal-save-overwrite-confirm .modal-header h4').text(LANG_FILE_OVERWRITE);
+		// 	$('.modal-save-overwrite-confirm .modal-footer #btn-ok').text(LANG_OK);
+		// 	$('.modal-save-overwrite-confirm .modal-footer #btn-cancel').text(LANG_CANCEL);
+		// 	$('.modal-save-overwrite-confirm').modal({
+		// 		show: true,
+		// 		keyboard: false,
+		// 		backdrop: 'static'
+		// 	});
+		// } else {
+		// 	saveFile(fn);
+		// }
 	});
 
 	$('.modal-save-overwrite-confirm #btn-ok').click(function() {
@@ -114,42 +122,57 @@ function HomeController() {
 	// open file browser modal form
 	// =========================================================================
 	$('.modal-open-file-browser #btn-ok').click(function() {
-		var fn = null;
-		var items = $('.modal-open-file-browser .modal-body .list-group .list-group-item');
-		for (var i = 0; i < items.length; i++) {
-			if ($(items[i]).hasClass('active')) {
-				fn = $(items[i]).text();
-			}
+		// if not insert mode
+		if (!($('.modal-open-file-browser #insert-checkbox').is(":checked"))) {
+			// clear old workspace
+			Blockly.mainWorkspace.clear();
 		}
 
-		if (fn) {
-			$.ajax({
-				type: 'POST',
-				url: '/openfile',
-				data: {
-					filename: fn
-				},
-				dataType: 'json',
-				error: function(e) {
-					alertError(e);
-					$('.modal-open-file-browser').modal('hide');
-				},
-				success: function(msg) {
-					// if not insert mode
-					if (!($('.modal-open-file-browser #insert-checkbox').is(":checked"))) {
-						// clear old workspace
-						Blockly.mainWorkspace.clear();
-					}
+		// load with new file
+		$('.modal-open-file-browser').modal('hide');
+		var xml = Blockly.Xml.textToDom(b64DecodeUnicode(workspaceData));
+		Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);
+		$('input').val("");
 
-					// load with new file
-					$('.modal-open-file-browser').modal('hide');
-					var xml = Blockly.Xml.textToDom(b64DecodeUnicode(msg));
-					Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);
-				}
-			});
-		}
+
+		// var fn = null;
+		// var items = $('.modal-open-file-browser .modal-body .list-group .list-group-item');
+		// for (var i = 0; i < items.length; i++) {
+		// 	if ($(items[i]).hasClass('active')) {
+		// 		fn = $(items[i]).text();
+		// 	}
+		// }
+
+		// if (fn) {
+		// 	$.ajax({
+		// 		type: 'POST',
+		// 		url: '/openfile',
+		// 		data: {
+		// 			filename: fn
+		// 		},
+		// 		dataType: 'json',
+		// 		error: function(e) {
+		// 			alertError(e);
+		// 			$('.modal-open-file-browser').modal('hide');
+		// 		},
+		// 		success: function(msg) {
+		// 			// if not insert mode
+		// 			if (!($('.modal-open-file-browser #insert-checkbox').is(":checked"))) {
+		// 				// clear old workspace
+		// 				Blockly.mainWorkspace.clear();
+		// 			}
+
+		// 			// load with new file
+		// 			$('.modal-open-file-browser').modal('hide');
+		// 			var xml = Blockly.Xml.textToDom(b64DecodeUnicode(msg));
+		// 			Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);
+		// 		}
+		// 	});
+		// }
 	});
-
+	$('.modal-open-file-browser #btn-cancel').click(function() {
+		$('input').val("");
+	});
 	// =========================================================================
 	// delete file browser modal form
 	// =========================================================================
@@ -185,26 +208,35 @@ function HomeController() {
 	$('.modal').on('shown.bs.modal', function() {
 		$(this).find('[autofocus]').focus();
 	});
-
+	
 	function saveFile(fn) {
+		let  download = document.querySelector( "a[ download ]" );
+		download.setAttribute("download",fn);
 		var dom = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace));
-		$.ajax({
-			type: 'POST',
-			url: '/savefile',
-			data: {
-				filename: fn,
-				content: b64EncodeUnicode(dom)
-			},
-			dataType: 'json',
-			error: function(e) {
-				if (e.status != 200) {
-					alertError(e);
-				}
-			},
-			success: function(file_list) {
-				$('.modal-save-file-browser').modal('hide');
-			}
-		});
+		var data = b64EncodeUnicode(dom);
+		download.setAttribute(
+			"href",
+			( "data:text/plain;charset=utf-8," + encodeURIComponent( data ) )
+		);
+		$('.modal-save-file-browser').modal('hide');
+
+		// $.ajax({
+		// 	type: 'POST',
+		// 	url: '/savefile',
+		// 	data: {
+		// 		filename: fn,
+		// 		content: b64EncodeUnicode(dom)
+		// 	},
+		// 	dataType: 'json',
+		// 	error: function(e) {
+		// 		if (e.status != 200) {
+		// 			alertError(e);
+		// 		}
+		// 	},
+		// 	success: function(file_list) {
+		// 		$('.modal-save-file-browser').modal('hide');
+		// 	}
+		// });
 	}
 
 	function deleteFile(fn) {
@@ -226,12 +258,6 @@ function HomeController() {
 			}
 		});
 	}
-	$("#btn-export").click(function () {
-		var anchor2 = document.getElementById("hello");
-		var container = "aaaaaaaaa";
-		anchor2.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(container);
-		anchor2.download = 'export';
-	});
 
 	$('#btn-save').click(function() {
 		// save file browser modal form
@@ -282,6 +308,30 @@ function HomeController() {
 		$('.modal-open-file-browser #btn-ok').prop('disabled', !open_flag);
 	}
 
+	function handleFileSelect(evt) {
+		files = evt.target.files; // FileList object
+		// use the 1st file from the list
+		console.log(evt);
+		f = files[0];
+		if (f==null) {
+			// disable ok button
+			$('.modal-open-file-browser #btn-ok').prop('disabled', true);
+		} else {
+			// enable ok button
+			$('.modal-open-file-browser #btn-ok').prop('disabled', false);
+		}
+		var reader = new FileReader();
+		// Closure to capture the file information.
+		reader.onload = (function(theFile) {
+			return function(e) {
+				console.log(e.target.result);
+				workspaceData = e.target.result;
+			};
+		  })(f);
+	
+		  // Read in the image file as a data URL.
+		  reader.readAsText(f);
+	  }
 	$('#btn-open').click(function() {
 		// open file browser modal form
 		$('.modal-open-file-browser .modal-header h4').text(LANG_OPEN_FILE);
@@ -290,42 +340,49 @@ function HomeController() {
 		$('.modal-open-file-browser #insert-text').text(LANG_INSERT_MODE);
 		$('.modal-open-file-browser #insert-checkbox').prop('checked', false);
 
-		$('.modal-open-file-browser #file-list').empty();
-		$.ajax({
-			type: 'POST',
-			url: '/listfile',
-			error: function(e) {
-				if (e.status != 200) {
-					alertError(e);
-				}
-			},
-			success: function(file_list) {
-				// render file list
-				for (var i in file_list) {
-					var item = file_list[i];
-					$('.modal-open-file-browser #file-list').append('<a class="list-group-item">' + item.filename + '</a>');
-				}
-
-				$('.modal-open-file-browser .modal-body .list-group .list-group-item').click(function(e) {
-					if ($(e.target).hasClass('disabled')) {
-						// disable ok button
-						$('.modal-open-file-browser #btn-ok').prop('disabled', true);
-					} else {
-						// enable ok button
-						$('.modal-open-file-browser #btn-ok').prop('disabled', false);
-					}
-					$('.modal-open-file-browser .modal-body .list-group .list-group-item').removeClass('active');
-					$(e.target).addClass('active');
-				});
-
-				updateOpenFileButtons();
-				$('.modal-open-file-browser').modal({
-					show: true,
-					keyboard: false,
-					backdrop: 'static'
-				});
-			}
+		document.getElementById('customFile').addEventListener('change', handleFileSelect, false);
+		$('.modal-open-file-browser').modal({
+			show: true,
+			keyboard: false,
+			backdrop: 'static'
 		});
+
+		// $('.modal-open-file-browser #file-list').empty();
+		// $.ajax({
+		// 	type: 'POST',
+		// 	url: '/listfile',
+		// 	error: function(e) {
+		// 		if (e.status != 200) {
+		// 			alertError(e);
+		// 		}
+		// 	},
+		// 	success: function(file_list) {
+		// 		// render file list
+		// 		for (var i in file_list) {
+		// 			var item = file_list[i];
+		// 			$('.modal-open-file-browser #file-list').append('<a class="list-group-item">' + item.filename + '</a>');
+		// 		}
+
+		// 		$('.modal-open-file-browser .modal-body .list-group .list-group-item').click(function(e) {
+		// 			if ($(e.target).hasClass('disabled')) {
+		// 				// disable ok button
+		// 				$('.modal-open-file-browser #btn-ok').prop('disabled', true);
+		// 			} else {
+		// 				// enable ok button
+		// 				$('.modal-open-file-browser #btn-ok').prop('disabled', false);
+		// 			}
+		// 			$('.modal-open-file-browser .modal-body .list-group .list-group-item').removeClass('active');
+		// 			$(e.target).addClass('active');
+		// 		});
+
+		// 		updateOpenFileButtons();
+		// 		$('.modal-open-file-browser').modal({
+		// 			show: true,
+		// 			keyboard: false,
+		// 			backdrop: 'static'
+		// 		});
+		// 	}
+		// });
 	});
 
 	$('#btn-delete').click(function() {
