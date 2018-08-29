@@ -99,5 +99,7 @@ gulp.task('build', ['del'], () => {
 })
 
 gulp.task('clean', () => {
-    return del([pathx, pathca, pathcc])
+    return del([pathx, pathca, pathcc]).then(() => {
+        
+    })
 })
