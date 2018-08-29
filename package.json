@@ -14,6 +14,7 @@
   "scripts": {
     "build": "npm install gulp && gulp build",
     "rebuild": "gulp clean && npm install gulp && gulp build",
+    "clean": "gulp clean",
     "start": "node index.js"
   },
   "repository": {
