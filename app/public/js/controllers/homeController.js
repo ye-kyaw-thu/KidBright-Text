@@ -539,13 +539,13 @@ function HomeController() {
 		$('.modal-set-clock .modal-header h4').text(LANG_SETCLOCK);
 		$('.modal-set-clock .modal-footer #btn-ok').text(LANG_OK);
 		$('.modal-set-clock .modal-footer #btn-cancel').text(LANG_CANCEL);
-		$('.modal-set-clock .modal-footer #button-zero').text(LANG_SETCLOCK);
-		$('.modal-set-clock .modal-footer #button-sub7').text(LANG_SETCLOCK);
+		$('.modal-set-clock .modal-footer #button-zero-new').text(LANG_OK);
+		$('.modal-set-clock .modal-footer #button-sub7-new').text(LANG_OK);
 
 		// sub7 available only on KidBrightOS version
 		if (!standalone) {
 			var dttm_sub7 = moment().subtract(7, 'hours');
-			// $('.modal-set-clock #button-sub7').text(dttm_sub7.format('DD/MM/YYYY HH:mm:ss'));
+			$('.modal-set-clock #button-sub7').text(dttm_sub7.format('DD/MM/YYYY HH:mm:ss'));
 			$('.modal-set-clock #time-sub7').text(dttm_sub7.format('DD/MM/YYYY HH:mm:ss'));
 			$('#div-sub7').css('display', 'block');
 		}
@@ -554,7 +554,7 @@ function HomeController() {
 		}
 
 		var dttm_zero = moment();
-		// $('.modal-set-clock #button-zero').text(dttm_zero.format('DD/MM/YYYY HH:mm:ss'));
+		$('.modal-set-clock #button-zero').text(dttm_zero.format('DD/MM/YYYY HH:mm:ss'));
 		$('.modal-set-clock #time-zero').text(dttm_zero.format('DD/MM/YYYY HH:mm:ss'));
 
 		// show set-clock modal
@@ -572,6 +572,17 @@ function HomeController() {
 	});
 
 	$('.modal-set-clock #button-zero').click(function() {
+		var dttm_zero = moment($('.modal-set-clock #button-zero').text(), 'DD/MM/YYYY HH:mm:ss');
+		var dttm_zero_serial = dttm_zero.format('YYMMDD0eHHmmss');
+		setting_clock(dttm_zero_serial);
+	});
+	$('.modal-set-clock #button-sub7-new').click(function() {
+		var dttm_sub7 = moment($('.modal-set-clock #button-sub7').text(), 'DD/MM/YYYY HH:mm:ss');
+		var dttm_sub7_serial = dttm_sub7.format('YYMMDD0eHHmmss');
+		setting_clock(dttm_sub7_serial);
+	});
+
+	$('.modal-set-clock #button-zero-new').click(function() {
 		var dttm_zero = moment($('.modal-set-clock #button-zero').text(), 'DD/MM/YYYY HH:mm:ss');
 		var dttm_zero_serial = dttm_zero.format('YYMMDD0eHHmmss');
 		setting_clock(dttm_zero_serial);

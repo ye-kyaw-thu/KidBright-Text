@@ -388,6 +388,13 @@ h6 {
   background-color:#C1EBFE;
 }
 /*---------*/
+
+.time-btn{
+  background-color: #ffffff;
+  border-radius: 7px;
+  border-color: #69C7E9;
+  font-size: 1.7rem;
+}
 .divtog{
   margin-top:12px;
   vertical-align: middle;
