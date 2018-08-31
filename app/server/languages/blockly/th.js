@@ -591,7 +591,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.MUSIC_NOTE_F6 = "ฟา6";
 /** @export */ Blockly.Msg.MUSIC_NOTE_FS6 = "ฟาชาร์ป6";
 /** @export */ Blockly.Msg.MUSIC_NOTE_G6 = "ซอล6";
-/** @export */ Blockly.Msg.MUSIC_NOTE_GS6 = "ซอล#6";
+/** @export */ Blockly.Msg.MUSIC_NOTE_GS6 = "ซอลชาร์ป6";
 /** @export */ Blockly.Msg.MUSIC_NOTE_A6 = "ลา6";
 /** @export */ Blockly.Msg.MUSIC_NOTE_BB6 = "ทีแฟลต6";
 /** @export */ Blockly.Msg.MUSIC_NOTE_B6 = "ที6";
