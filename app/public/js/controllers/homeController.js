@@ -12,6 +12,7 @@ function HomeController() {
 	ver.style.backgroundColor=localStorage.verColor;
 	// console.log(ver);
 	var files;
+	var filename="";
 	var workspaceData;
 	
 	$('#home-lang-en').click(function() {
@@ -132,6 +133,7 @@ function HomeController() {
 		$('.modal-open-file-browser').modal('hide');
 		var xml = Blockly.Xml.textToDom(b64DecodeUnicode(workspaceData));
 		Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);
+		filename = files[0].name;
 		$('input').val("");
 
 
@@ -266,7 +268,8 @@ function HomeController() {
 		$('.modal-save-file-browser .modal-footer #btn-cancel').text(LANG_CANCEL);
 
 		$('.modal-save-file-browser #file-list').empty();
-		$('.modal-save-file-browser #file-text').text('');
+		document.getElementById( "file-text" ).value = filename;
+		// $('.modal-save-file-browser #file-text').text('');
 
 		$.ajax({
 			type: 'POST',
@@ -311,7 +314,6 @@ function HomeController() {
 	function handleFileSelect(evt) {
 		files = evt.target.files; // FileList object
 		// use the 1st file from the list
-		console.log(evt);
 		f = files[0];
 		if (f==null) {
 			// disable ok button
@@ -324,7 +326,7 @@ function HomeController() {
 		// Closure to capture the file information.
 		reader.onload = (function(theFile) {
 			return function(e) {
-				console.log(e.target.result);
+				// console.log(e.target.result);
 				workspaceData = e.target.result;
 			};
 		  })(f);
@@ -339,6 +341,7 @@ function HomeController() {
 		$('.modal-open-file-browser .modal-footer #btn-cancel').text(LANG_CANCEL);
 		$('.modal-open-file-browser #insert-text').text(LANG_INSERT_MODE);
 		$('.modal-open-file-browser #insert-checkbox').prop('checked', false);
+		$('.modal-open-file-browser .modal-footer #btn-ok').prop('disabled', true);
 
 		document.getElementById('customFile').addEventListener('change', handleFileSelect, false);
 		$('.modal-open-file-browser').modal({
