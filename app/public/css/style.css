@@ -447,7 +447,7 @@ h6 {
 }
 /* end toggle */
 
-@media (max-width: 991px) { 
+@media (max-width: 1006px) { 
   .navbar-btn {
     min-width: 35px;
     min-height: 35px;
