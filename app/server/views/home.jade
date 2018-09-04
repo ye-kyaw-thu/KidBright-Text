@@ -2,7 +2,7 @@ extends layout
 
 block content
 	nav.navbar-default(style="padding-left:0px;").header
-		.container
+		.container-fluid(style="margin:0vh 1vw 0vh 1vw;")
 			ul.nav.navbar-nav
 				img(src="/images/SVG/Logo.svg", height="60").kb_logo_top
 			ul.nav.navbar-nav.navbar-right
@@ -28,17 +28,19 @@ block content
 				//- li
 				//- 	button#btn-export.navbar-btn.btn-icon(style="background-image: url(/images/SVG/export.svg)")
 				li
+					button#btn-new.navbar-btn.btn-icon(style="background-image: url(/images/SVG/new-file.svg)")
+				li
 					button#btn-open.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h3.svg)")
 				li
-					button#btn-save.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h4.svg)") Save Files
+					button#btn-save.navbar-btn.btn-icon(style="background-image: url(/images/SVG/save-file.svg)") Save Files
 				li
-					button#btn-delete.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h2.svg)") Delete File
+					button#btn-delete.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h2.svg); margin-right:25px;") Delete File
 				li
 					button#btn-build.navbar-btn.btn-icon(disabled="true" style="background-image: url(/images/SVG/h1.svg)") Program Build
 				li
 					button#btn-setclock.setclock-btn.navbar-btn.btn-icon(disabled="true" style="background-image: url(/images/SVG/h6.svg)") Set Clock
 				li
-					button#btn-wifi-config.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h5.svg)") WIFI Configss
+					button#btn-wifi-config.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h5.svg); margin-left:15px;") WIFI Configss
 				li
 					button#btn-qrcode.btn.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h7.svg)") QRsss Codes
 				//- li
