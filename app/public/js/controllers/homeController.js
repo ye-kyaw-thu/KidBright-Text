@@ -4,43 +4,49 @@ function HomeController() {
 	var standalone = false;
 	// console.log(localStorage.lang);
 	var state_lang;
-	if(localStorage.lang=="en"){
-		document.getElementById("toggle-lang").setAttribute('checked',"");
+	if (localStorage.lang == "en") {
+		document.getElementById("toggle-lang").setAttribute('checked', "");
 	}
 	state_lang = document.getElementById("toggle-lang").checked;
 	var ver = document.getElementsByClassName("lang-container")[0];
-	ver.style.backgroundColor=localStorage.verColor;
+	ver.style.backgroundColor = localStorage.verColor;
 	// console.log(ver);
 	var files;
-	var filename="";
+	var filename = "";
 	var workspaceData;
-	
-	$('#home-lang-en').click(function() {
+	var isElecrton = false;
+	var userAgent = navigator.userAgent.toLowerCase();
+	if (userAgent.indexOf(' electron/') > -1) {
+		console.log("detect electron");
+		isElecrton = true;
+	}
+
+
+	$('#home-lang-en').click(function () {
 		homeSetLanguage('en');
 	});
 
-	$('#home-lang-th').click(function() {
+	$('#home-lang-th').click(function () {
 		homeSetLanguage('th');
 	});
-	$('#toggle-lang').click(function(){
+	$('#toggle-lang').click(function () {
 
 		state_lang = !state_lang;
 		console.log(state_lang);
-		if(state_lang!=undefined){
-			if(state_lang==true){
+		if (state_lang != undefined) {
+			if (state_lang == true) {
 				localStorage.lang = "en";
-				 homeSetLanguage('en');
-				 localStorage.verColor="#55C613";
-				 ver.style.backgroundColor="#55C613";
-			}
-			else{
+				homeSetLanguage('en');
+				localStorage.verColor = "#55C613";
+				ver.style.backgroundColor = "#55C613";
+			} else {
 				localStorage.lang = "th";
-				 homeSetLanguage('th');
-				 localStorage.verColor="#7F94F8";
-				 ver.style.backgroundColor="#7F94F8";
+				homeSetLanguage('th');
+				localStorage.verColor = "#7F94F8";
+				ver.style.backgroundColor = "#7F94F8";
 			}
 		}
-	
+
 		// console.log("local str "+localStorage.lang);
 
 	});
@@ -55,10 +61,10 @@ function HomeController() {
 	$.ajax({
 		url: '/standalone',
 		type: 'POST',
-		error: function(e) {
+		error: function (e) {
 			//
 		},
-		success: function(reply) {
+		success: function (reply) {
 			standalone = reply.standalone;
 		}
 	});
@@ -67,35 +73,38 @@ function HomeController() {
 	$.ajax({
 		type: 'POST',
 		url: '/version',
-		error: function(e) {
+		error: function (e) {
 			//
 		},
-		success: function(res) {
+		success: function (res) {
 			$('#version-text').html('ver. ' + res.version);
 		}
 	});
-	
+
 	// =========================================================================
 	// new file
 	// =========================================================================
-	$('#btn-new').click(function() {
+	$('#btn-new').click(function () {
 		Blockly.mainWorkspace.clear();
-	   });
+		filename="";
+
+	});
 
 	// =========================================================================
 	// save file browser modal form
 	// =========================================================================
-	$('.modal-save-file-browser').on('shown.bs.modal', function() {
+	$('.modal-save-file-browser').on('shown.bs.modal', function () {
 		$(this).find('[autofocus]').focus();
 	});
 
-	$('.modal-save-file-browser #btn-ok').click(function() {
+	$('.modal-save-file-browser #btn-ok').click(function () {
+
 		var fn = $('.modal-save-file-browser #file-text').val();
 		// if (fn == '') return;
-		if (fn == ''){
-			fn="untitle.txt"	
+		if (fn == '') {
+			fn = "untitle.txt"
 		}
-		document.getElementById( "file-text" ).value = '';
+		document.getElementById("file-text").value = '';
 		saveFile(fn);
 
 		// check file exists
@@ -121,7 +130,7 @@ function HomeController() {
 		// }
 	});
 
-	$('.modal-save-overwrite-confirm #btn-ok').click(function() {
+	$('.modal-save-overwrite-confirm #btn-ok').click(function () {
 		saveFile($('.modal-save-file-browser #file-text').val());
 		$('.modal-save-overwrite-confirm').modal('hide');
 	});
@@ -129,7 +138,7 @@ function HomeController() {
 	// =========================================================================
 	// open file browser modal form
 	// =========================================================================
-	$('.modal-open-file-browser #btn-ok').click(function() {
+	$('.modal-open-file-browser #btn-ok').click(function () {
 		// if not insert mode
 		if (!($('.modal-open-file-browser #insert-checkbox').is(":checked"))) {
 			// clear old workspace
@@ -179,17 +188,17 @@ function HomeController() {
 		// 	});
 		// }
 	});
-	$('.modal-open-file-browser #btn-cancel').click(function() {
+	$('.modal-open-file-browser #btn-cancel').click(function () {
 		$('input').val("");
 	});
 	// =========================================================================
 	// delete file browser modal form
 	// =========================================================================
-	$('.modal-delete-file-browser').on('shown.bs.modal', function() {
+	$('.modal-delete-file-browser').on('shown.bs.modal', function () {
 		$(this).find('[autofocus]').focus();
 	});
 
-	$('.modal-delete-file-browser #btn-ok').click(function() {
+	$('.modal-delete-file-browser #btn-ok').click(function () {
 		var fn = $('.modal-delete-file-browser #file-text').val();
 		if (fn == '') return;
 
@@ -201,7 +210,7 @@ function HomeController() {
 		});
 	});
 
-	$('.modal-delete-confirm #btn-ok').click(function() {
+	$('.modal-delete-confirm #btn-ok').click(function () {
 		deleteFile($('.modal-delete-file-browser #file-text').val());
 	});
 
@@ -214,38 +223,35 @@ function HomeController() {
 	}
 
 	// helper for modal autofocus (jade autofocus works only on first time opens)
-	$('.modal').on('shown.bs.modal', function() {
+	$('.modal').on('shown.bs.modal', function () {
 		$(this).find('[autofocus]').focus();
 	});
-	
+
 	function saveFile(fn) {
-		let  download = document.querySelector( "a[ download ]" );
-		download.setAttribute("download",fn);
+		let download = document.querySelector("a#btn-ok[download]");	
+		download.setAttribute("download", fn);
 		var dom = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace));
 		var data = b64EncodeUnicode(dom);
 		download.setAttribute(
 			"href",
-			( "data:text/plain;charset=utf-8," + encodeURIComponent( data ) )
+			("data:text/plain;charset=utf-8," + encodeURIComponent(data))
 		);
+
 		$('.modal-save-file-browser').modal('hide');
 
-		// $.ajax({
-		// 	type: 'POST',
-		// 	url: '/savefile',
-		// 	data: {
-		// 		filename: fn,
-		// 		content: b64EncodeUnicode(dom)
-		// 	},
-		// 	dataType: 'json',
-		// 	error: function(e) {
-		// 		if (e.status != 200) {
-		// 			alertError(e);
-		// 		}
-		// 	},
-		// 	success: function(file_list) {
-		// 		$('.modal-save-file-browser').modal('hide');
-		// 	}
-		// });
+	}
+	function saveFile2(fn) {
+		let download = document.querySelector("a#btn-save[download]");	
+		download.setAttribute("download", fn);
+		var dom = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace));
+		var data = b64EncodeUnicode(dom);
+		download.setAttribute(
+			"href",
+			("data:text/plain;charset=utf-8," + encodeURIComponent(data))
+		);
+
+		$('.modal-save-file-browser').modal('hide');
+
 	}
 
 	function deleteFile(fn) {
@@ -256,19 +262,31 @@ function HomeController() {
 				filename: fn
 			},
 			dataType: 'json',
-			error: function(e) {
+			error: function (e) {
 				if (e.status != 200) {
 					alertError(e);
 				}
 			},
-			success: function() {
+			success: function () {
 				$('.modal-delete-confirm').modal('hide');
 				$('.modal-delete-file-browser').modal('hide');
 			}
 		});
 	}
 
-	$('#btn-save').click(function() {
+	$('#btn-save').click(function () {
+
+		if (isElecrton == true) {
+			console.log("click save");
+			var fn = filename;
+			console.log(filename);
+			if (fn == '') {
+				fn = "untitle.txt"
+			}
+			saveFile2(fn);
+			document.getElementById( "file-text" ).value = filename;
+			return;
+		}
 		// save file browser modal form
 		$('.modal-save-file-browser .modal-header h4').text(LANG_SAVE_FILE);
 		$('.modal-save-file-browser .modal-footer #btn-ok').text(LANG_OK);
@@ -322,7 +340,7 @@ function HomeController() {
 		files = evt.target.files; // FileList object
 		// use the 1st file from the list
 		f = files[0];
-		if (f==null) {
+		if (f == null) {
 			// disable ok button
 			$('.modal-open-file-browser #btn-ok').prop('disabled', true);
 		} else {
@@ -331,17 +349,17 @@ function HomeController() {
 		}
 		var reader = new FileReader();
 		// Closure to capture the file information.
-		reader.onload = (function(theFile) {
-			return function(e) {
+		reader.onload = (function (theFile) {
+			return function (e) {
 				// console.log(e.target.result);
 				workspaceData = e.target.result;
 			};
-		  })(f);
-	
-		  // Read in the image file as a data URL.
-		  reader.readAsText(f);
-	  }
-	$('#btn-open').click(function() {
+		})(f);
+
+		// Read in the image file as a data URL.
+		reader.readAsText(f);
+	}
+	$('#btn-open').click(function () {
 		// open file browser modal form
 		$('.modal-open-file-browser .modal-header h4').text(LANG_OPEN_FILE);
 		$('.modal-open-file-browser .modal-footer #btn-ok').text(LANG_OK);
@@ -395,7 +413,7 @@ function HomeController() {
 		// });
 	});
 
-	$('#btn-delete').click(function() {
+	$('#btn-delete').click(function () {
 		$('.modal-delete-file-browser .modal-header h4').text(LANG_DELETE_FILE);
 		$('.modal-delete-file-browser .modal-footer #btn-ok').text(LANG_OK);
 		$('.modal-delete-file-browser .modal-footer #btn-cancel').text(LANG_CANCEL);
@@ -406,19 +424,19 @@ function HomeController() {
 		$.ajax({
 			type: 'POST',
 			url: '/listfile',
-			error: function(e) {
+			error: function (e) {
 				if (e.status != 200) {
 					alertError(e);
 				}
 			},
-			success: function(file_list) {
+			success: function (file_list) {
 				// render file list
 				for (var i in file_list) {
 					var item = file_list[i];
 					$('.modal-delete-file-browser #file-list').append('<a class="list-group-item">' + item.filename + '</a>');
 				}
 
-				$('.modal-delete-file-browser .modal-body .list-group .list-group-item').click(function(e) {
+				$('.modal-delete-file-browser .modal-body .list-group .list-group-item').click(function (e) {
 					$('.modal-delete-file-browser #file-text').val($(e.target).text());
 				});
 
@@ -432,7 +450,7 @@ function HomeController() {
 		});
 	});
 
-	$('#btn-build').click(function() {
+	$('#btn-build').click(function () {
 		$('.modal-build .modal-header h4').text(LANG_BUILD);
 		$('#build-ok').text(LANG_OK);
 		$('.modal-build .modal-body ul').text('');
@@ -457,17 +475,16 @@ function HomeController() {
 		$.ajax({
 			url: '/port_list',
 			type: 'POST',
-			error: function(e) {
+			error: function (e) {
 				$('#port_checking_li').text(LANG_PORT_CHECKING + '... ' + LANG_FAILED);
 				$('#build-ok').prop('disabled', false);
 			},
-			success: function(reply) {
+			success: function (reply) {
 				// check port list
 				if (reply.result.length <= 0) {
 					$('#port_checking_li').text(LANG_PORT_CHECKING + '... ' + LANG_FAILED);
 					$('#build-ok').prop('disabled', false);
-				}
-				else {
+				} else {
 					var port_name = reply.result[0];
 					$('#port_checking_li').text(LANG_PORT_CHECKING + '... ' + LANG_PASSED + ' (' + port_name + ')');
 					$('.modal-build .modal-body ul').append('<li id="board_checking_li">' + LANG_BOARD_CHECKING + '...</li>');
@@ -485,11 +502,11 @@ function HomeController() {
 						data: {
 							port_name: port_name
 						},
-						error: function(e) {
+						error: function (e) {
 							$('#board_checking_li').text(LANG_BOARD_CHECKING + '... ' + LANG_FAILED);
 							$('#build-ok').prop('disabled', false);
 						},
-						success: function(reply) {
+						success: function (reply) {
 							var board_id = reply.board_id;
 							var mac_addr = reply.mac_addr;
 							$('#board_checking_li').text(LANG_BOARD_CHECKING + '... ' + LANG_PASSED + ' (' + mac_addr + ')');
@@ -507,11 +524,11 @@ function HomeController() {
 									enable_iot: enable_iot,
 								},
 								dataType: 'json',
-								error: function(e) {
+								error: function (e) {
 									$('#build_li').text(LANG_BUILD + '... ' + LANG_FAILED);
 									$('#build-ok').prop('disabled', false);
 								},
-								success: function(reply) {
+								success: function (reply) {
 									$('#build_li').text(LANG_BUILD + '... ' + LANG_PASSED);
 									$('.modal-build .modal-body ul').append('<li id="program_li">' + LANG_BOARD_FLASHING + '...</li>');
 
@@ -524,11 +541,11 @@ function HomeController() {
 											port_name: port_name
 										},
 										dataType: 'json',
-										error: function(e) {
+										error: function (e) {
 											$('#program_li').text(LANG_BOARD_FLASHING + '... ' + LANG_FAILED);
 											$('#build-ok').prop('disabled', false);
 										},
-										success: function(reply) {
+										success: function (reply) {
 											$('#program_li').text(LANG_BOARD_FLASHING + '... ' + LANG_PASSED);
 											$('#build-ok').prop('disabled', false);
 										}
@@ -561,17 +578,16 @@ function HomeController() {
 		$.ajax({
 			url: '/port_list',
 			type: 'POST',
-			error: function(e) {
+			error: function (e) {
 				$('.modal-setting-clock #port_checking_li').text(LANG_PORT_CHECKING + '... ' + LANG_FAILED);
 				$('.modal-setting-clock #setting-clock-ok').prop('disabled', false);
 			},
-			success: function(reply) {
+			success: function (reply) {
 				// check port list
 				if (reply.result.length <= 0) {
 					$('.modal-setting-clock #port_checking_li').text(LANG_PORT_CHECKING + '... ' + LANG_FAILED);
 					$('.modal-setting-clock #setting-clock-ok').prop('disabled', false);
-				}
-				else {
+				} else {
 					var port_name = reply.result[0];
 					$('.modal-setting-clock #port_checking_li').text(LANG_PORT_CHECKING + '... ' + LANG_PASSED + ' (' + port_name + ')');
 					$('.modal-setting-clock .modal-body ul').append('<li id="setting_clock_li">' + LANG_SETTING_CLOCK + '...</li>');
@@ -584,12 +600,12 @@ function HomeController() {
 							datetime: clock_str
 						},
 						dataType: 'json',
-						error: function(e) {
+						error: function (e) {
 							$('.modal-setting-clock #setting_clock_li').text(LANG_SETTING_CLOCK + '... ' + LANG_FAILED);
 							$('.modal-setting-clock #setting-clock-ok').prop('disabled', false);
 							$('.modal-set-clock').modal('hide');
 						},
-						success: function(reply) {
+						success: function (reply) {
 							$('.modal-setting-clock #setting_clock_li').text(LANG_SETTING_CLOCK + '... ' + LANG_PASSED);
 							$('.modal-setting-clock #setting-clock-ok').prop('disabled', false);
 							$('.modal-set-clock').modal('hide');
@@ -601,7 +617,7 @@ function HomeController() {
 		});
 	}
 
-	$('#btn-setclock').click(function() {
+	$('#btn-setclock').click(function () {
 		// open file browser modal form
 		$('.modal-set-clock .modal-header h4').text(LANG_SETCLOCK);
 		$('.modal-set-clock .modal-footer #btn-ok').text(LANG_OK);
@@ -615,8 +631,7 @@ function HomeController() {
 			$('.modal-set-clock #button-sub7').text(dttm_sub7.format('DD/MM/YYYY HH:mm:ss'));
 			$('.modal-set-clock #time-sub7').text(dttm_sub7.format('DD/MM/YYYY HH:mm:ss'));
 			$('#div-sub7').css('display', 'block');
-		}
-		else {
+		} else {
 			$('#div-sub7').css('display', 'none');
 		}
 
@@ -632,24 +647,24 @@ function HomeController() {
 		});
 	});
 
-	$('.modal-set-clock #button-sub7').click(function() {
+	$('.modal-set-clock #button-sub7').click(function () {
 		var dttm_sub7 = moment($('.modal-set-clock #button-sub7').text(), 'DD/MM/YYYY HH:mm:ss');
 		var dttm_sub7_serial = dttm_sub7.format('YYMMDD0eHHmmss');
 		setting_clock(dttm_sub7_serial);
 	});
 
-	$('.modal-set-clock #button-zero').click(function() {
+	$('.modal-set-clock #button-zero').click(function () {
 		var dttm_zero = moment($('.modal-set-clock #button-zero').text(), 'DD/MM/YYYY HH:mm:ss');
 		var dttm_zero_serial = dttm_zero.format('YYMMDD0eHHmmss');
 		setting_clock(dttm_zero_serial);
 	});
-	$('.modal-set-clock #button-sub7-new').click(function() {
+	$('.modal-set-clock #button-sub7-new').click(function () {
 		var dttm_sub7 = moment($('.modal-set-clock #button-sub7').text(), 'DD/MM/YYYY HH:mm:ss');
 		var dttm_sub7_serial = dttm_sub7.format('YYMMDD0eHHmmss');
 		setting_clock(dttm_sub7_serial);
 	});
 
-	$('.modal-set-clock #button-zero-new').click(function() {
+	$('.modal-set-clock #button-zero-new').click(function () {
 		var dttm_zero = moment($('.modal-set-clock #button-zero').text(), 'DD/MM/YYYY HH:mm:ss');
 		var dttm_zero_serial = dttm_zero.format('YYMMDD0eHHmmss');
 		setting_clock(dttm_zero_serial);
@@ -657,32 +672,30 @@ function HomeController() {
 	// =========================================================================
 	// set wifi connection modal form
 	// =========================================================================
-	$('#wifi-build-ok').click(function(){
-		if (typeof(sessionStorage.getItem('wifi-ssid')) !== 'undefined'){
+	$('#wifi-build-ok').click(function () {
+		if (typeof (sessionStorage.getItem('wifi-ssid')) !== 'undefined') {
 			sessionStorage.setItem('wifi-ssid', $('.modal-wifi-config input#sta-ssid').val());
 		}
-		if (typeof(sessionStorage.getItem('wifi-password')) !== 'undefined'){
+		if (typeof (sessionStorage.getItem('wifi-password')) !== 'undefined') {
 			sessionStorage.setItem('wifi-password', $('.modal-wifi-config input#sta-password').val());
 		}
-		if (typeof(sessionStorage.getItem('enable-iot')) !== 'undefined'){
-			if ($('.modal-wifi-config #wifi-iot-checkbox').prop('checked') == false){
+		if (typeof (sessionStorage.getItem('enable-iot')) !== 'undefined') {
+			if ($('.modal-wifi-config #wifi-iot-checkbox').prop('checked') == false) {
 				sessionStorage.setItem('enable-iot', false);
-			}
-			else{
+			} else {
 				sessionStorage.setItem('enable-iot', true);
 			}
 		}
 	});
-	$('#btn-wifi-config').click(function() {
+	$('#btn-wifi-config').click(function () {
 		$('.modal-wifi-config #wifi-iot-text').text(LANG_IOT_MODE);
 		$('.modal-wifi-config .modal-footer #wifi-build-ok').text(LANG_OK);
 		$('.modal-wifi-config .modal-footer #btn-cancel').text(LANG_CANCEL);
 		$('.modal-wifi-config input#sta-ssid').val(sessionStorage.getItem('wifi-ssid'));
 		$('.modal-wifi-config input#sta-password').val(sessionStorage.getItem('wifi-password'));
-		if (sessionStorage.getItem('enable-iot') == false){
+		if (sessionStorage.getItem('enable-iot') == false) {
 			$('.modal-wifi-config #wifi-iot-checkbox').prop('checked', false);
-		}
-		else{
+		} else {
 			$('.modal-wifi-config #wifi-iot-checkbox').prop('checked', true);
 		}
 		$('.modal-wifi-config.modal').modal({
@@ -694,7 +707,7 @@ function HomeController() {
 	// =========================================================================
 	// read serial to generate QR code modal form
 	// =========================================================================
-	$('#btn-qrcode').click(function(){
+	$('#btn-qrcode').click(function () {
 		Blockly.JavaScript.resetTaskNumber();
 		$('.modal-qrcode .modal-body').text('');
 		$('img #qrcode-img').remove();
@@ -702,15 +715,14 @@ function HomeController() {
 		$.ajax({
 			url: '/port_list',
 			type: 'POST',
-			error: function(e) {
+			error: function (e) {
 				$('#board_checking_li').text(LANG_PORT_CHECKING + '... ' + LANG_FAILED);
 			},
-			success: function(reply) {
+			success: function (reply) {
 				// check port list
 				if (reply.result.length <= 0) {
 					$('#board_checking_li').text(LANG_PORT_CHECKING + '... ' + LANG_FAILED);
-				}
-				else {
+				} else {
 					var port_name = reply.result[0];
 					var request = $.ajax({
 						url: '/read_mac',
@@ -718,10 +730,10 @@ function HomeController() {
 						data: {
 							port_name: port_name
 						},
-						error: function(e) {
+						error: function (e) {
 							$('#board_checking_li').text(LANG_BOARD_CHECKING + '... ' + LANG_FAILED);
 						},
-						success: function(reply) {
+						success: function (reply) {
 							var mac_addr = reply.mac_addr.replace(/[:]/g, '-');
 
 							var request = $.ajax({
@@ -731,10 +743,10 @@ function HomeController() {
 									mac_addr: mac_addr,
 								},
 								dataType: 'json',
-								error: function(e) {
+								error: function (e) {
 									$('#board_checking_li').text(LANG_BOARD_CHECKING + '... ' + LANG_FAILED);
 								},
-								success: function(reply) {
+								success: function (reply) {
 									// $('#board_checking_li').text(LANG_BOARD_CHECKING + '... ' + LANG_PASSED + ' (' + mac_addr + ')');
 									$('.modal-qrcode .modal-body').append('<img id="qrcode-img" src="/images/qrcode.png" style="display: block;margin-left: auto;margin-right: auto;width: 50%;">');
 								}
@@ -749,7 +761,7 @@ function HomeController() {
 
 }
 
-HomeController.prototype.onUpdateSuccess = function() {
+HomeController.prototype.onUpdateSuccess = function () {
 	$('.modal-alert').modal({
 		show: false,
 		keyboard: true,
@@ -765,10 +777,10 @@ function homeSetLanguage(lang) {
 	$.ajax({
 		type: 'GET',
 		url: '/lang?set=' + lang,
-		error: function(e) {
+		error: function (e) {
 			window.location.href = '/home';
 		},
-		success: function() {
+		success: function () {
 			window.location.href = '/home';
 		},
 	});
@@ -776,13 +788,13 @@ function homeSetLanguage(lang) {
 
 // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings#answer-30106551
 function b64EncodeUnicode(str) {
-	return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+	return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
 		return String.fromCharCode(parseInt(p1, 16))
 	}))
 }
 
 function b64DecodeUnicode(str) {
-	return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
+	return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
 		return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
 	}).join(''))
 }
