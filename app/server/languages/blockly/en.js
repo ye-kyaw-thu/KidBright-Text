@@ -430,8 +430,8 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.RTC_HUE = "#A5725B";
 /** @export */ Blockly.Msg.IO_HUE = "#A55C5B";
 /** @export */ Blockly.Msg.ADVANCE_HUE = "#995BA5";
-/** @export */ Blockly.Msg.GAUGE_HUE = "195";
-/** @export */ Blockly.Msg.FEED_HUE = "45";
+/** @export */ Blockly.Msg.GAUGE_HUE = "#93A01E";
+/** @export */ Blockly.Msg.FEED_HUE = "#93A01E";
 /** @export */ Blockly.Msg.LISTS_HUE = "260";
 /** @export */ Blockly.Msg.VARIABLES_HUE = "330";
 /** @export */ Blockly.Msg.TEXTS_HUE = "160";
@@ -779,7 +779,7 @@ goog.require('Blockly.Msg');
 
 // publish feed_iot blocks
 /** @export */ Blockly.Msg.FEED_IOT_TITLE = "Send data to";
-/** @export */ Blockly.Msg.FEED_IOT_TOOLTIP = "Get data then publish to feed IOT";
+/** @export */ Blockly.Msg.FEED_IOT_TOOLTIP = "Get data then publish to graph IOT";
 /** @export */ Blockly.Msg.FEED_IOT_HELPURL = "";
 
 // config feed title
@@ -788,11 +788,11 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.FEED_TITLE_HELPURL = "";
 
 // config feed main title
-/** @export */ Blockly.Msg.FEED_MAIN_TITLE = "Config feed title ";
-/** @export */ Blockly.Msg.FEED_MAIN_TITLE_TOOLTIP = "Send data to config feed title";
+/** @export */ Blockly.Msg.FEED_MAIN_TITLE = "Config graph title ";
+/** @export */ Blockly.Msg.FEED_MAIN_TITLE_TOOLTIP = "Send data to config graph title";
 /** @export */ Blockly.Msg.FEED_MAIN_TITLE_HELPURL = "";
-/** @export */ Blockly.Msg.FIELD2 = "Field1";
-/** @export */ Blockly.Msg.FIELD1 = "Field2";
+/** @export */ Blockly.Msg.FIELD1 = "Graph1";
+/** @export */ Blockly.Msg.FIELD2 = "Graph2";
 
 // config feed unit
 /** @export */ Blockly.Msg.FEED_UNIT_TITLE = "Config unit";
