@@ -281,6 +281,17 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.MATH_TRIG_TOOLTIP_COS = "Return the cosine of a degree (not radian).";
 /** @export */ Blockly.Msg.MATH_TRIG_TOOLTIP_SIN = "Return the sine of a degree (not radian).";
 /** @export */ Blockly.Msg.MATH_TRIG_TOOLTIP_TAN = "Return the tangent of a degree (not radian).";
+/** @export */ Blockly.Msg.MATH_MIN_MAX_TOOLTIP = "Return min or max number";
+/** @export */ Blockly.Msg.MATH_MIN = "min";
+/** @export */ Blockly.Msg.MATH_MAX = "max";
+/** @export */ Blockly.Msg.MATH_CONVERT_RA_DE = "radians to degrees";
+/** @export */ Blockly.Msg.MATH_CONVERT_DE_RA = "degrees to radians";
+/** @export */ Blockly.Msg.MATH_CONVERT_RA_DE_TOOLTIP="Convert between radians and degrees.";
+/** @export */ Blockly.Msg.MATH_CONVERT_RA_DE_TITLE="Convert";
+/** @export */ Blockly.Msg.MATH_FLOOR="floor";
+/** @export */ Blockly.Msg.MATH_CEILING="ceiling";
+/** @export */ Blockly.Msg.MATH_FLOOR_CEILING_TOOLTIP="Return floor or ceiling number.";
+
 /** @export */ Blockly.Msg.NEW_COLOUR_VARIABLE = "Create colour variable...";
 /** @export */ Blockly.Msg.NEW_NUMBER_VARIABLE = "Create number variable...";
 /** @export */ Blockly.Msg.NEW_STRING_VARIABLE = "Create string variable...";
@@ -419,10 +430,20 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LISTS_INDEX_OF_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 /** @export */ Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT = Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT;
 
-/** @export */ Blockly.Msg.MATH_HUE = "230";
-/** @export */ Blockly.Msg.LOOPS_HUE = "120";
+
+/** @export */ Blockly.Msg.BASIC_HUE = "#5BA58C";
+/** @export */ Blockly.Msg.MATH_HUE = "#5A67A5";
+/** @export */ Blockly.Msg.LOGIC_HUE = "#5A80A5";
+/** @export */ Blockly.Msg.LOOPS_HUE = "#5AA45B";
+/** @export */ Blockly.Msg.WAIT_HUE = "#7FA55B";
+/** @export */ Blockly.Msg.MUSIC_HUE = "#A55B7F";
+/** @export */ Blockly.Msg.SENSOR_HUE = "#A5A35A";
+/** @export */ Blockly.Msg.RTC_HUE = "#A5725B";
+/** @export */ Blockly.Msg.IO_HUE = "#A55C5B";
+/** @export */ Blockly.Msg.ADVANCE_HUE = "#995BA5";
+/** @export */ Blockly.Msg.GAUGE_HUE = "#93A01E";
+/** @export */ Blockly.Msg.FEED_HUE = "#93A01E";
 /** @export */ Blockly.Msg.LISTS_HUE = "260";
-/** @export */ Blockly.Msg.LOGIC_HUE = "210";
 /** @export */ Blockly.Msg.VARIABLES_HUE = "330";
 /** @export */ Blockly.Msg.TEXTS_HUE = "160";
 /** @export */ Blockly.Msg.PROCEDURES_HUE = "290";
@@ -769,7 +790,7 @@ goog.require('Blockly.Msg');
 
 // publish feed_iot blocks
 /** @export */ Blockly.Msg.FEED_IOT_TITLE = "Send data to";
-/** @export */ Blockly.Msg.FEED_IOT_TOOLTIP = "Get data then publish to feed IOT";
+/** @export */ Blockly.Msg.FEED_IOT_TOOLTIP = "Get data then publish to graph IOT";
 /** @export */ Blockly.Msg.FEED_IOT_HELPURL = "";
 
 // config feed title
@@ -778,11 +799,11 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.FEED_TITLE_HELPURL = "";
 
 // config feed main title
-/** @export */ Blockly.Msg.FEED_MAIN_TITLE = "Config feed title ";
-/** @export */ Blockly.Msg.FEED_MAIN_TITLE_TOOLTIP = "Send data to config feed title";
+/** @export */ Blockly.Msg.FEED_MAIN_TITLE = "Config graph title ";
+/** @export */ Blockly.Msg.FEED_MAIN_TITLE_TOOLTIP = "Send data to config graph title";
 /** @export */ Blockly.Msg.FEED_MAIN_TITLE_HELPURL = "";
-/** @export */ Blockly.Msg.FIELD2 = "Field1";
-/** @export */ Blockly.Msg.FIELD1 = "Field2";
+/** @export */ Blockly.Msg.FIELD1 = "Graph1";
+/** @export */ Blockly.Msg.FIELD2 = "Graph2";
 
 // config feed unit
 /** @export */ Blockly.Msg.FEED_UNIT_TITLE = "Config unit";
@@ -800,3 +821,8 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.FEED_MAX_TITLE = "Max :";
 /** @export */ Blockly.Msg.FEED_MINMAX_TOOLTIP = "Send data to config minimum and maximum value of field";
 /** @export */ Blockly.Msg.FEED_MINMAX_HELPURL = "";
+
+// math pow additional
+/** @export */ Blockly.Msg.MATH_POW_TITLE = "^";
+/** @export */ Blockly.Msg.MATH_POW_TOOLTIP = "math pow";
+/** @export */ Blockly.Msg.MATH_POW_HELPURL = "";

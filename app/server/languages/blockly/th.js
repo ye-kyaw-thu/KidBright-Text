@@ -281,6 +281,17 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.MATH_TRIG_TOOLTIP_COS = "คืนค่า cosine ขององศา (ไม่ใช่เรเดียน)";
 /** @export */ Blockly.Msg.MATH_TRIG_TOOLTIP_SIN = "คืนค่า sine ขององศา (ไม่ใช่เรเดียน)";
 /** @export */ Blockly.Msg.MATH_TRIG_TOOLTIP_TAN = "คืนค่า tangent ขององศา (ไม่ใช่เรเดียน)";
+/** @export */ Blockly.Msg.MATH_MIN_MAX_TOOLTIP = "คืนค่า จำนวนน้อย หรือ จำนวนมาก";
+/** @export */ Blockly.Msg.MATH_MIN = "ค่าน้อย";
+/** @export */ Blockly.Msg.MATH_MAX = "ค่ามาก";
+/** @export */ Blockly.Msg.MATH_CONVERT_RA_DE = "เรเดียน เป็น องศา";
+/** @export */ Blockly.Msg.MATH_CONVERT_DE_RA = "องศา เป็น เรเดียน";
+/** @export */ Blockly.Msg.MATH_CONVERT_RA_DE_TOOLTIP="แปลงค่าระหว่างเรเดียนกับองศา";
+/** @export */ Blockly.Msg.MATH_CONVERT_RA_DE_TITLE="แปลงค่า";
+/** @export */ Blockly.Msg.MATH_FLOOR="ปัดลง";
+/** @export */ Blockly.Msg.MATH_CEILING="ปัดขึ้น";
+/** @export */ Blockly.Msg.MATH_FLOOR_CEILING_TOOLTIP="คืนค่าจำนวนนับที่ปัดขึ้นหรือจะนวนนับที่ปัดลง";
+
 /** @export */ Blockly.Msg.NEW_COLOUR_VARIABLE = "สร้างตัวแปรสี";
 /** @export */ Blockly.Msg.NEW_NUMBER_VARIABLE = "สร้างตัวแปรจำนวน";
 /** @export */ Blockly.Msg.NEW_STRING_VARIABLE = "สร้างตัวแปร string";
@@ -419,10 +430,32 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LISTS_INDEX_OF_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 /** @export */ Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT = Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT;
 
-/** @export */ Blockly.Msg.MATH_HUE = "230";
-/** @export */ Blockly.Msg.LOOPS_HUE = "120";
+// /** @export */ Blockly.Msg.BASIC_HUE = "#32D496";
+// /** @export */ Blockly.Msg.MATH_HUE = "#7F94F8";
+// /** @export */ Blockly.Msg.LOGIC_HUE = "#3597F6";
+// /** @export */ Blockly.Msg.LOOPS_HUE = "#1DC020";
+// /** @export */ Blockly.Msg.WAIT_HUE = "#74B735";
+// /** @export */ Blockly.Msg.MUSIC_HUE = "#FB8CC3";
+// /** @export */ Blockly.Msg.SENSOR_HUE = "#CAC745";
+// /** @export */ Blockly.Msg.RTC_HUE = "#F38C5D";
+// /** @export */ Blockly.Msg.IO_HUE = "#F66563";
+// /** @export */ Blockly.Msg.ADVANCE_HUE = "#D75DEF";
+// /** @export */ Blockly.Msg.GAUGE_HUE = "#5BC2E2";
+// /** @export */ Blockly.Msg.FEED_HUE = "#D1AF49";
+
+/** @export */ Blockly.Msg.BASIC_HUE = "#5BA58C";
+/** @export */ Blockly.Msg.MATH_HUE = "#5A67A5";
+/** @export */ Blockly.Msg.LOGIC_HUE = "#5A80A5";
+/** @export */ Blockly.Msg.LOOPS_HUE = "#5AA45B";
+/** @export */ Blockly.Msg.WAIT_HUE = "#7FA55B";
+/** @export */ Blockly.Msg.MUSIC_HUE = "#A55B7F";
+/** @export */ Blockly.Msg.SENSOR_HUE = "#A5A35A";
+/** @export */ Blockly.Msg.RTC_HUE = "#A5725B";
+/** @export */ Blockly.Msg.IO_HUE = "#A55C5B";
+/** @export */ Blockly.Msg.ADVANCE_HUE = "#995BA5";
+/** @export */ Blockly.Msg.GAUGE_HUE = "#93A01E";
+/** @export */ Blockly.Msg.FEED_HUE = "#93A01E";
 /** @export */ Blockly.Msg.LISTS_HUE = "260";
-/** @export */ Blockly.Msg.LOGIC_HUE = "210";
 /** @export */ Blockly.Msg.VARIABLES_HUE = "330";
 /** @export */ Blockly.Msg.TEXTS_HUE = "160";
 /** @export */ Blockly.Msg.PROCEDURES_HUE = "290";
@@ -480,8 +513,8 @@ goog.require('Blockly.Msg');
 
 // logic blocks
 // led 16x8 scroll ready
-/** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_TITLE = "แอลอีดีเมตริกส์พร้อม";
-/** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_TOOLTIP = "ให้ค่าจริงเมื่อแอลอีดีเมตริกส์พร้อมแสดงผล (ตัวอักษรของเดิมเลื่อนจนหมดประโยคแล้ว)";
+/** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_TITLE = "แอลอีดีเมตริกซ์พร้อม";
+/** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_TOOLTIP = "ให้ค่าจริงเมื่อแอลอีดีเมตริกซ์พร้อมแสดงผล (ตัวอักษรของเดิมเลื่อนจนหมดประโยคแล้ว)";
 /** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_HELPURL = "";
 // sw1 pressed
 /** @export */ Blockly.Msg.LOGIC_SW1_PRESSED_TITLE = "สวิทช์ 1 กด";
@@ -569,7 +602,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.MUSIC_NOTE_F6 = "ฟา6";
 /** @export */ Blockly.Msg.MUSIC_NOTE_FS6 = "ฟาชาร์ป6";
 /** @export */ Blockly.Msg.MUSIC_NOTE_G6 = "ซอล6";
-/** @export */ Blockly.Msg.MUSIC_NOTE_GS6 = "ซอล#6";
+/** @export */ Blockly.Msg.MUSIC_NOTE_GS6 = "ซอลชาร์ป6";
 /** @export */ Blockly.Msg.MUSIC_NOTE_A6 = "ลา6";
 /** @export */ Blockly.Msg.MUSIC_NOTE_BB6 = "ทีแฟลต6";
 /** @export */ Blockly.Msg.MUSIC_NOTE_B6 = "ที6";
@@ -765,8 +798,8 @@ Blockly.Msg.CATEGORY_ADVANCE = "ขั้นสูง";
 
 // publish feed_iot blocks
 /** @export */ Blockly.Msg.FEED_IOT_TITLE = "ส่งข้อมูลไปยัง";
-/** @export */ Blockly.Msg.FEED_CONFIG_TITLE = "ส่งข้อมูลขึ้นฟีดไอโอที";
-/** @export */ Blockly.Msg.FEED_CONFIG_TOOLTIP = "รับข้อมูลแล้วทำการส่งขึ้นฟีดไอโอที";
+/** @export */ Blockly.Msg.FEED_CONFIG_TITLE = "ส่งข้อมูลขึ้นกราฟไอโอที";
+/** @export */ Blockly.Msg.FEED_CONFIG_TOOLTIP = "รับข้อมูลแล้วทำการส่งขึ้นกราฟไอโอที";
 /** @export */ Blockly.Msg.FEED_CONFIG_HELPURL = "";
 
 // config feed title
@@ -777,8 +810,8 @@ Blockly.Msg.CATEGORY_ADVANCE = "ขั้นสูง";
 /** @export */ Blockly.Msg.FIELD2 = "กราฟ2";
 
 // config feed main title
-/** @export */ Blockly.Msg.FEED_MAIN_TITLE = "ตั้งค่าชื่อฟีด";
-/** @export */ Blockly.Msg.FEED_MAIN_TITLE_TOOLTIP = "ส่งข้อมูลไปตั้งชื่อฟีด";
+/** @export */ Blockly.Msg.FEED_MAIN_TITLE = "ตั้งค่าชื่อกราฟ";
+/** @export */ Blockly.Msg.FEED_MAIN_TITLE_TOOLTIP = "ส่งข้อมูลไปตั้งชื่อกราฟ";
 /** @export */ Blockly.Msg.FEED_MAIN_TITLE_HELPURL = "";
 
 // config feed unit
@@ -787,7 +820,7 @@ Blockly.Msg.CATEGORY_ADVANCE = "ขั้นสูง";
 /** @export */ Blockly.Msg.FEED_UNIT_HELPURL = "";
 
 // config feed color
-/** @export */ Blockly.Msg.FEED_COLOR_TITLE = "ตั้งต่าสี";
+/** @export */ Blockly.Msg.FEED_COLOR_TITLE = "ตั้งค่าสี";
 /** @export */ Blockly.Msg.FEED_COLOR_TOOLTIP = "ส่งข้อมูลไปตั้งค่าตั้งต่าสีของฟิว";
 /** @export */ Blockly.Msg.FEED_COLOR_HELPURL = "";
 
@@ -797,3 +830,8 @@ Blockly.Msg.CATEGORY_ADVANCE = "ขั้นสูง";
 /** @export */ Blockly.Msg.FEED_MAX_TITLE = "สูงสุด :";
 /** @export */ Blockly.Msg.FEED_MINMAX_TOOLTIP = "ส่งข้อมูลไปตั้งค่าต่ำสุดและค่าสูงสุดของฟิว";
 /** @export */ Blockly.Msg.FEED_MINMAX_HELPURL = "";
+
+// math pow additional
+/** @export */ Blockly.Msg.MATH_POW_TITLE = "^";
+/** @export */ Blockly.Msg.MATH_POW_TOOLTIP = "ยกกำลัง";
+/** @export */ Blockly.Msg.MATH_POW_HELPURL = "";
