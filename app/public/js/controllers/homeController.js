@@ -337,6 +337,9 @@ function HomeController() {
 		}
 		$('.modal-open-file-browser #btn-ok').prop('disabled', !open_flag);
 	}
+	$('#btn-new').click(function() {
+		Blockly.mainWorkspace.clear();
+	   });
 
 	function handleFileSelect(evt) {
 		files = evt.target.files; // FileList object

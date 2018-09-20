@@ -17,3 +17,18 @@ npm run build
 ```
 npm start
 ```
+
+
+การอัพเดต submodule libnetpie ใช้คำสั่ง
+
+```
+git submodule update --recursive --remote
+```
+
+หลังจากนั้น
+
+```
+git add *
+git commit -m "xxxxxx"
+git push
+```

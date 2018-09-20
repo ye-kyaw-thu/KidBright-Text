@@ -18,6 +18,7 @@ $(document).ready(function() {
 	$('#btn-qrcode').text("");
 	// add title
 	$('#btn-open').prop('title', LANG_OPEN_FILE_TITLE);
+	$('#btn-new').prop('title', LANG_NEW_FILE_TITLE);
 	$('#btn-save').prop('title', LANG_SAVE_FILE_TITLE);
 	$('#btn-delete').prop('title', LANG_DELETE_FILE_TITLE);
 	$('#btn-build').prop('title', LANG_BUILD_TITLE);

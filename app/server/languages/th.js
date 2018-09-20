@@ -72,6 +72,8 @@ const LANG_USER_INFO_ARR = [{
 
 const LANG_OPEN_FILE = 'เปิดไฟล์';
 const LANG_OPEN_FILE_TITLE = 'เปิดไฟล์จากพื้นที่เก็บภายในเครื่อง';
+const LANG_NEW_FILE = 'ไฟล์ใหม่';
+const LANG_NEW_FILE_TITLE = 'ไฟล์ใหม่';
 const LANG_SAVE_FILE = 'บันทึกไฟล์';
 const LANG_SAVE_FILE_TITLE = 'บันทึกไฟล์ไปยังพื้นที่เก็บภายในเครื่อง';
 const LANG_DELETE_FILE = 'ลบไฟล์';
