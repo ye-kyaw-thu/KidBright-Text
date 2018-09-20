@@ -1,6 +1,8 @@
 // =============================================================================
 // publish data to gauge
 // =============================================================================
+var gauge_colour =  Blockly.Msg.GAUGE_HUE;
+// var gauge_colour = "#5BC2E2";
 Blockly.Blocks["gauge_iot"] = {
 	init: function() {
 		this.jsonInit({
@@ -32,7 +34,7 @@ Blockly.Blocks["gauge_iot"] = {
 			],
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 195,
+			"colour": gauge_colour,
 			"tooltip": Blockly.Msg.GAUGE_IOT_TOOLTIP,
   			"helpUrl": Blockly.Msg.GAUGE_IOT_HELPURL
 		});
@@ -70,7 +72,7 @@ Blockly.Blocks["gauge_title"] = {
 			"inputsInline": true,
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 195,
+			"colour": gauge_colour,
 			"tooltip": Blockly.Msg.GAUGE_TITLE_TOOLTIP,
   			"helpUrl": Blockly.Msg.GAUGE_TITLE_HELPURL
 		});
@@ -108,7 +110,7 @@ Blockly.Blocks["gauge_unit"] = {
 			"inputsInline": true,
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 195,
+			"colour": gauge_colour,
 			"tooltip": Blockly.Msg.GAUGE_UNIT_TOOLTIP,
   			"helpUrl": Blockly.Msg.GAUGE_UNIT_HELPURL
 		});
@@ -143,7 +145,7 @@ Blockly.Blocks['gauge_color'] = {
 			"inputsInline": true,
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 195,
+			"colour": gauge_colour,
 			"tooltip": Blockly.Msg.GAUGE_COLOR_TOOLTIP,
   			"helpUrl": Blockly.Msg.GAUGE_COLOR_HELPURL
 		});
@@ -192,7 +194,7 @@ Blockly.Blocks["gauge_minmax"] = {
 			],
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 195,
+			"colour": gauge_colour,
 			"tooltip": Blockly.Msg.GAUGE_MINMAX_TOOLTIP,
 			"helpUrl": Blockly.Msg.GAUGE_MINMAX_HELPURL
 		});
@@ -201,6 +203,9 @@ Blockly.Blocks["gauge_minmax"] = {
 // =============================================================================
 // feed iot
 // =============================================================================
+var feed_colour = Blockly.Msg.FEED_HUE;
+// var feed_colour = "#D1AF49";
+
 Blockly.Blocks["feed_iot"] = {
 	init: function() {
 		this.jsonInit({
@@ -232,7 +237,7 @@ Blockly.Blocks["feed_iot"] = {
 			],
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 45,
+			"colour": feed_colour,
 			"tooltip": Blockly.Msg.FEED_IOT_TOOLTIP,
   			"helpUrl": Blockly.Msg.FEED_IOT_HELPURL
 		});
@@ -270,7 +275,7 @@ Blockly.Blocks["feed_title"] = {
 			"inputsInline": true,
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 45,
+			"colour": feed_colour,
 			"tooltip": Blockly.Msg.FEED_TITLE_TOOLTIP,
   			"helpUrl": Blockly.Msg.FEED_TITLE_HELPURL
 		});
@@ -294,7 +299,7 @@ Blockly.Blocks["feed_main_title"] = {
 			"inputsInline": true,
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 45,
+			"colour": feed_colour,
 			"tooltip": Blockly.Msg.FEED_MAIN_TITLE_TOOLTIP,
   			"helpUrl": Blockly.Msg.FEED_MAIN_TITLE_HELPURL
 		});
@@ -332,7 +337,7 @@ Blockly.Blocks["feed_unit"] = {
 			"inputsInline": true,
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 45,
+			"colour": feed_colour,
 			"tooltip": Blockly.Msg.FEED_UNIT_TOOLTIP,
   			"helpUrl": Blockly.Msg.FEED_UNIT_HELPURL
 		});
@@ -370,7 +375,7 @@ Blockly.Blocks['feed_color'] = {
 			"inputsInline": true,
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 45,
+			"colour": feed_colour,
 			"tooltip": Blockly.Msg.FEED_COLOR_TOOLTIP,
 			"helpUrl": Blockly.Msg.FEED_COLOR_HELPURL
 		});
@@ -419,7 +424,7 @@ Blockly.Blocks["feed_minmax"] = {
 			],
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 45,
+			"colour": feed_colour,
 			"tooltip": Blockly.Msg.GAUGE_MINMAX_TOOLTIP,
 			"helpUrl": Blockly.Msg.GAUGE_MINMAX_HELPURL
 		});
