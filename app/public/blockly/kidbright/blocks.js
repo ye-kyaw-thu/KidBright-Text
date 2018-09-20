@@ -3,8 +3,6 @@
 // =============================================================================
 // basic
 // =============================================================================
-var basic_colour = Blockly.Msg.BASIC_HUE;
-// var basic_colour = "#32D496";
 Blockly.Blocks["basic_led16x8"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -67,7 +65,7 @@ Blockly.Blocks["basic_led16x8"] = {
 		}
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(basic_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.BASIC_LED16X8_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.BASIC_LED16X8_HELPURL);
 	}
@@ -79,7 +77,7 @@ Blockly.Blocks["basic_led16x8_clr"] = {
 			.appendField(Blockly.Msg.BASIC_LED16X8_CLR_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(basic_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.BASIC_LED16X8_CLR_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.BASIC_LED16X8_CLR_HELPURL);
 	}
@@ -105,7 +103,7 @@ Blockly.Blocks["basic_led16x8_2chars"] = {
 			.appendField(Blockly.Msg.BASIC_LED16X8_2CHARS_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(basic_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.BASIC_LED16X8_2CHARS_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.BASIC_LED16X8_2CHARS_HELPURL);
 	}
@@ -117,7 +115,7 @@ Blockly.Blocks["basic_led16x8_scroll"] = {
 			.appendField(Blockly.Msg.BASIC_LED16X8_SCROLL_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(basic_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.BASIC_LED16X8_SCROLL_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.BASIC_LED16X8_SCROLL_HELPURL);
 	}
@@ -129,7 +127,7 @@ Blockly.Blocks["basic_led16x8_scroll_when_ready"] = {
 			.appendField(Blockly.Msg.BASIC_LED16X8_SCROLL_WHEN_READY_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(basic_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.BASIC_LED16X8_SCROLL_WHEN_READY_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.BASIC_LED16X8_SCROLL_WHEN_READY_HELPURL);
 	}
@@ -143,7 +141,7 @@ Blockly.Blocks["basic_delay"] = {
 			.appendField(new Blockly.FieldNumber(0.5, 0.1, 86400, 0.1), 'VALUE');
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(basic_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.BASIC_DELAY_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.BASIC_DELAY_HELPURL);
 	}
@@ -156,7 +154,7 @@ Blockly.Blocks["basic_forever"] = {
 		this.appendStatementInput('HANDLER');
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(basic_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.BASIC_FOREVER_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.BASIC_FOREVER_HELPURL);
 	}
@@ -171,7 +169,7 @@ Blockly.Blocks["basic_string"] = {
 		this.setOutput(true, 'String');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(basic_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.BASIC_STRING_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.BASIC_STRING_HELPURL);
 	}
@@ -180,8 +178,6 @@ Blockly.Blocks["basic_string"] = {
 // =============================================================================
 // math
 // =============================================================================
-var math_colour = Blockly.Msg.MATH_HUE;
-// var math_colour = "#7F94F8";
 Blockly.Blocks["math_number"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -189,7 +185,7 @@ Blockly.Blocks["math_number"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(math_colour);
+		this.setColour(Blockly.Msg.MATH_HUE);
 		this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
 	}
@@ -214,7 +210,7 @@ Blockly.Blocks['math_arithmetic'] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(math_colour);
+		this.setColour(Blockly.Msg.MATH_HUE);
 		this.setTooltip(Blockly.Msg.MATH_ARITHMETIC_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.MATH_ARITHMETIC_HELPURL);
 	}
@@ -231,7 +227,7 @@ Blockly.Blocks['math_variables_set'] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(math_colour);
+		this.setColour(Blockly.Msg.MATH_HUE);
 		this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.VARIABLES_SET_HELPURL);
 	}
@@ -244,7 +240,7 @@ Blockly.Blocks['math_variables_get'] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(math_colour);
+		this.setColour(Blockly.Msg.MATH_HUE);
 		this.setTooltip(Blockly.Msg.VARIABLES_GET_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);
 	}
@@ -253,8 +249,6 @@ Blockly.Blocks['math_variables_get'] = {
 // =============================================================================
 // logic
 // =============================================================================
-var logic_colour = Blockly.Msg.LOGIC_HUE;
-// var logic_colour = "#3597F6";
 Blockly.Blocks['logic_led16x8_scroll_ready'] = {
 	init: function() {
 		this.appendDummyInput()
@@ -262,7 +256,7 @@ Blockly.Blocks['logic_led16x8_scroll_ready'] = {
 		this.setOutput(true, 'Boolean');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(logic_colour);
+		this.setColour(Blockly.Msg.LOGIC_HUE);
 		this.setTooltip(Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_HELPURL);
 	}
@@ -276,7 +270,7 @@ Blockly.Blocks['logic_sw1_pressed'] = {
 		this.setOutput(true, 'Boolean');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(logic_colour);
+		this.setColour(Blockly.Msg.LOGIC_HUE);
 		this.setTooltip(Blockly.Msg.LOGIC_SW1_PRESSED_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LOGIC_SW1_PRESSED_HELPURL);
 	}
@@ -290,7 +284,7 @@ Blockly.Blocks['logic_sw1_released'] = {
 		this.setOutput(true, 'Boolean');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(logic_colour);
+		this.setColour(Blockly.Msg.LOGIC_HUE);
 		this.setTooltip(Blockly.Msg.LOGIC_SW1_RELEASED_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LOGIC_SW1_RELEASED_HELPURL);
 	}
@@ -304,7 +298,7 @@ Blockly.Blocks['logic_sw2_pressed'] = {
 		this.setOutput(true, 'Boolean');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(logic_colour);
+		this.setColour(Blockly.Msg.LOGIC_HUE);
 		this.setTooltip(Blockly.Msg.LOGIC_SW2_PRESSED_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LOGIC_SW2_PRESSED_HELPURL);
 	}
@@ -318,7 +312,7 @@ Blockly.Blocks['logic_sw2_released'] = {
 		this.setOutput(true, 'Boolean');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(logic_colour);
+		this.setColour(Blockly.Msg.LOGIC_HUE);
 		this.setTooltip(Blockly.Msg.LOGIC_SW2_RELEASED_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LOGIC_SW2_RELEASED_HELPURL);
 	}
@@ -327,15 +321,13 @@ Blockly.Blocks['logic_sw2_released'] = {
 // =============================================================================
 // loop
 // =============================================================================
-var loop_colour = Blockly.Msg.LOOPS_HUE;;
-// var loop_colour = "#1DC020";
 Blockly.Blocks["loop_break"] = {
 	init: function() {
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.LOOP_BREAK_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(loop_colour);
+		this.setColour(120);
 		this.setTooltip(Blockly.Msg.LOOP_BREAK_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LOOP_BREAK_HELPURL);
 	}
@@ -347,7 +339,7 @@ Blockly.Blocks["loop_continue"] = {
 			.appendField(Blockly.Msg.LOOP_CONTINUE_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(loop_colour);
+		this.setColour(120);
 		this.setTooltip(Blockly.Msg.LOOP_CONTINUE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LOOP_CONTINUE_HELPURL);
 	}
@@ -356,15 +348,13 @@ Blockly.Blocks["loop_continue"] = {
 // =============================================================================
 // wait
 // =============================================================================
-var wait_colour = Blockly.Msg.WAIT_HUE;;
-// var wait_colour = "#74B735";
 Blockly.Blocks["wait_led_matrix_ready"] = {
 	init: function() {
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.WAIT_LED_MATRIX_READY_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(wait_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.WAIT_LED_MATRIX_READY_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.WAIT_LED_MATRIX_READY_HELPURL);
 	}
@@ -377,7 +367,7 @@ Blockly.Blocks["wait_sw1_pressed"] = {
 			.appendField(Blockly.Msg.WAIT_SW1_PRESSED_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(wait_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.WAIT_SW1_PRESSED_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.WAIT_SW1_PRESSED_HELPURL);
 	}
@@ -390,7 +380,7 @@ Blockly.Blocks["wait_sw1_released"] = {
 			.appendField(Blockly.Msg.WAIT_SW1_RELEASED_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(wait_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.WAIT_SW1_RELEASED_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.WAIT_SW1_RELEASED_HELPURL);
 	}
@@ -403,7 +393,7 @@ Blockly.Blocks["wait_sw2_pressed"] = {
 			.appendField(Blockly.Msg.WAIT_SW2_PRESSED_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(wait_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.WAIT_SW2_PRESSED_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.WAIT_SW2_PRESSED_HELPURL);
 	}
@@ -416,7 +406,7 @@ Blockly.Blocks["wait_sw2_released"] = {
 			.appendField(Blockly.Msg.WAIT_SW2_RELEASED_TITLE);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(wait_colour);
+		this.setColour(160);
 		this.setTooltip(Blockly.Msg.WAIT_SW2_RELEASED_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.WAIT_SW2_RELEASED_HELPURL);
 	}
@@ -425,8 +415,6 @@ Blockly.Blocks["wait_sw2_released"] = {
 // =============================================================================
 // music
 // =============================================================================
-var music_colour=Blockly.Msg.MUSIC_HUE ;
-// var music_colour="#FB8CC3";
 Blockly.Blocks["music_duration_opt"] = [
 	[{
 		'src': '/icons/notes/whole.svg',
@@ -513,7 +501,7 @@ Blockly.Blocks["music_note"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(music_colour);
+		this.setColour(330);
 		this.setTooltip(Blockly.Msg.MUSIC_NOTE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.MUSIC_NOTE_HELPURL);
 	}
@@ -531,7 +519,7 @@ Blockly.Blocks["music_rest"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(music_colour);
+		this.setColour(330);
 		this.setTooltip(Blockly.Msg.MUSIC_NOTE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.MUSIC_NOTE_HELPURL);
 	}
@@ -1168,7 +1156,7 @@ Blockly.Blocks["music_scale"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(music_colour);
+		this.setColour(330);
 		this.setTooltip(Blockly.Msg.MUSIC_SCALE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.MUSIC_SCALE_HELPURL);
 	}
@@ -1184,7 +1172,7 @@ Blockly.Blocks["music_set_volume"] = {
 			.appendField("%");
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(music_colour);
+		this.setColour(330);
 		this.setTooltip(Blockly.Msg.MUSIC_SET_VOLUME_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.MUSIC_SET_VOLUME_HELPURL);
 	}
@@ -1198,7 +1186,7 @@ Blockly.Blocks["music_get_volume"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(music_colour);
+		this.setColour(330);
 		this.setTooltip(Blockly.Msg.MUSIC_GET_VOLUME_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.MUSIC_GET_VOLUME_HELPURL);
 	}
@@ -1207,8 +1195,6 @@ Blockly.Blocks["music_get_volume"] = {
 // =============================================================================
 // sensor
 // =============================================================================
-var sensor_colour= Blockly.Msg.SENSOR_HUE ;
-// var sensor_colour="#CAC745";
 Blockly.Blocks["sensor_lm73"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -1217,7 +1203,7 @@ Blockly.Blocks["sensor_lm73"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(sensor_colour);
+		this.setColour(58);
 		this.setTooltip(Blockly.Msg.SENSOR_LM73_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.SENSOR_LM73_HELPURL);
 	}
@@ -1231,7 +1217,7 @@ Blockly.Blocks["sensor_ldr"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(sensor_colour);
+		this.setColour(58);
 		this.setTooltip(Blockly.Msg.SENSOR_LDR_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.SENSOR_LDR_HELPURL);
 	}
@@ -1245,7 +1231,7 @@ Blockly.Blocks["sensor_switch1"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(sensor_colour);
+		this.setColour(58);
 		this.setTooltip(Blockly.Msg.SENSOR_SWITCH1_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.SENSOR_SWITCH1_HELPURL);
 	}
@@ -1259,7 +1245,7 @@ Blockly.Blocks["sensor_switch2"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(sensor_colour);
+		this.setColour(58);
 		this.setTooltip(Blockly.Msg.SENSOR_SWITCH2_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.SENSOR_SWITCH2_HELPURL);
 	}
@@ -1268,8 +1254,6 @@ Blockly.Blocks["sensor_switch2"] = {
 // =============================================================================
 // rtc
 // =============================================================================
-var rtc_colour =Blockly.Msg.RTC_HUE;
-// var rtc_colour = "#F38C5D";
 Blockly.Blocks["rtc_get"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -1277,7 +1261,7 @@ Blockly.Blocks["rtc_get"] = {
 		this.setOutput(true, 'String');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(rtc_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.RTC_GET_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RTC_GET_HELPURL);
 	}
@@ -1290,7 +1274,7 @@ Blockly.Blocks["rtc_get_date"] = {
 		this.setOutput(true, 'String');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(rtc_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.RTC_GETDATE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RTC_GETDATE_HELPURL);
 	}
@@ -1303,7 +1287,7 @@ Blockly.Blocks["rtc_get_time"] = {
 		this.setOutput(true, 'String');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(rtc_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.RTC_GETTIME_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RTC_GETTIME_HELPURL);
 	}
@@ -1316,7 +1300,7 @@ Blockly.Blocks["rtc_get_year"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(rtc_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.RTC_GETYEAR_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RTC_GETYEAR_HELPURL);
 	}
@@ -1329,7 +1313,7 @@ Blockly.Blocks["rtc_get_month"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(rtc_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.RTC_GETMONTH_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RTC_GETMONTH_HELPURL);
 	}
@@ -1342,7 +1326,7 @@ Blockly.Blocks["rtc_get_day"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(rtc_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.RTC_GETDAY_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RTC_GETDAY_HELPURL);
 	}
@@ -1355,7 +1339,7 @@ Blockly.Blocks["rtc_get_hour"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(rtc_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.RTC_GETHOUR_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RTC_GETHOUR_HELPURL);
 	}
@@ -1368,7 +1352,7 @@ Blockly.Blocks["rtc_get_minute"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(rtc_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.RTC_GETMINUTE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RTC_GETMINUTE_HELPURL);
 	}
@@ -1381,7 +1365,7 @@ Blockly.Blocks["rtc_get_second"] = {
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(rtc_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.RTC_GETSECOND_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RTC_GETSECOND_HELPURL);
 	}
@@ -1429,8 +1413,6 @@ Blockly.Blocks["comm_uart_writeln"] = {
 // =============================================================================
 // I/O
 // =============================================================================
-var io_colour = Blockly.Msg.IO_HUE;
-// var io_colour = "#F66563";
 Blockly.Blocks["output_write"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -1448,7 +1430,7 @@ Blockly.Blocks["output_write"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(io_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.OUTPUT_WRITE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.OUTPUT_WRITE_HELPURL);
 	}
@@ -1467,7 +1449,7 @@ Blockly.Blocks["output_toggle"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(io_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.OUTPUT_TOGGLE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.OUTPUT_TOGGLE_HELPURL);
 	}
@@ -1486,7 +1468,7 @@ Blockly.Blocks["output_read"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(null);
 		this.setNextStatement(null);
-		this.setColour(io_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.OUTPUT_READ_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.OUTPUT_READ_HELPURL);
 	}
@@ -1505,7 +1487,7 @@ Blockly.Blocks["usbsw_write"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(io_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.USBSW_WRITE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.USBSW_WRITE_HELPURL);
 	}
@@ -1519,7 +1501,7 @@ Blockly.Blocks["usbsw_toggle"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(io_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.USBSW_TOGGLE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.USBSW_TOGGLE_HELPURL);
 	}
@@ -1534,7 +1516,7 @@ Blockly.Blocks["usbsw_read"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(null);
 		this.setNextStatement(null);
-		this.setColour(io_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.USBSW_READ_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.USBSW_READ_HELPURL);
 	}
@@ -1555,7 +1537,7 @@ Blockly.Blocks["input_read"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(null);
 		this.setNextStatement(null);
-		this.setColour(io_colour);
+		this.setColour(19);
 		this.setTooltip(Blockly.Msg.INPUT_READ_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.INPUT_READ_HELPURL);
 	}
@@ -1564,7 +1546,6 @@ Blockly.Blocks["input_read"] = {
 // =============================================================================
 // advance
 // =============================================================================
-var advance_colour = Blockly.Msg.ADVANCE_HUE;
 Blockly.Blocks["advance_task"] = {
 	init: function() {
 		this.jsonInit({
@@ -1581,8 +1562,7 @@ Blockly.Blocks["advance_task"] = {
 				"name": "STACK"
 			}],
 			"inputsInline": false,
-			// "colour": Blockly.Msg.ADVANCE_HUE,
-			"colour": "#D75DEF",
+			"colour": 290,
 			"tooltip": Blockly.Msg.ADVANCE_TASK_TOOLTIP,
 			"helpUrl": Blockly.Msg.ADVANCE_TASK_HELPURL
 		});

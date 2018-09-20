@@ -1,25 +1,13 @@
-
 .modal-set-clock.modal.fade
-	.modal-dialog
+	.modal-dialog(style="width:25%; height:200; margin: auto")
 		.modal-content
-			.modal-header.modal-h
-				img(src="/images/SVG/modalicon/m5.svg", style="height:40px; display:inline;")
-				h4(style="display:inline; vertical-align:middle;")
-			.modal-body.modal-b(style="text-align: center")
-				//- div#div-sub7(style="display: none;")
-				//- 	P#time-sub7
-				//- div(style="vertical-align: middle;")
-				//- 	P#time-zero
+			.modal-header
+				//button.close(data-dismiss='modal') x
+				h4
+			.modal-body(style="text-align: center")
 				div#div-sub7(style="display: none")
-					button#button-sub7.time-btn -7
-				div(style="padding-top: 10px;")
-					button#button-zero.time-btn 0
-			.modal-footer.modal-f
-				button#btn-cancel(data-dismiss="modal").cancel.btn.btn-danger(style="display:inline;") Cancel
-
-				div#div-sub7(style="display: none;")
-					button#button-sub7-new.btn.btn-success -7
-				div(style="display:inline;")
-					button#button-zero-new.btn.btn-success Set Clock
-					
-				
+					button#button-sub7 -7
+				div(style="padding-top: 10px")
+					button#button-zero 0
+			.modal-footer
+				button#btn-cancel(data-dismiss="modal").cancel.btn.btn-default Cancel

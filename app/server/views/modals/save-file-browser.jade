@@ -1,14 +1,13 @@
-
 .modal-save-file-browser.modal.fade
-	.modal-dialog
+	.modal-dialog(style="width:50%; margin: auto")
 		.modal-content
-			.modal-header.modal-h
-				img(src="/images/SVG/modalicon/m2.svg", style="height:40px; display:inline;")
-				h4(style="display:inline; vertical-align:middle;")
-			.modal-body.modal-b
-				input.form-control#file-text(type='text', autofocus,placeholder="untitle.txt",value="")
-				//- hr
-				//- .list-group#file-list
-			.modal-footer.modal-f
-				button#btn-cancel(data-dismiss="modal").cancel.btn.btn-danger Cancel
-				a#btn-ok.btn.btn-success(style="width:80px" href="javascript:void(0)" download="data.txt" ) OK
+			.modal-header
+				//button.close(data-dismiss='modal') x
+				h4
+			.modal-body
+				input.form-control#file-text(type='text', autofocus)
+				hr
+				.list-group#file-list
+			.modal-footer
+				button#btn-cancel(data-dismiss="modal").cancel.btn.btn-default Cancel
+				button#btn-ok.btn.btn-primary OK
