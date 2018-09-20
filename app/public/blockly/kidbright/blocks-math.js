@@ -94,16 +94,23 @@ Blockly.Blocks['math_random_int'] = {
 		this.jsonInit({
 			"type": "math_random_int",
 			"message0": "%{BKY_MATH_RANDOM_INT_TITLE}",
-			"args0": [{
-					"type": "input_value",
-					"name": "FROM",
-					"check": "Number"
-				},
+			"args0": [
 				{
-					"type": "input_value",
+					"type": "field_number",
+					"name": "FROM",
+					"value": 0,
+					"min": -9999999,
+					"max": 9999999,
+					"precision": 1
+				  },
+				{
+					"type": "field_number",
 					"name": "TO",
-					"check": "Number"
-				}
+					"value": 100,
+					"min": -9999999,
+					"max": 9999999,
+					"precision": 1
+				  }
 			],
 			"inputsInline": true,
 			"output": "Number",

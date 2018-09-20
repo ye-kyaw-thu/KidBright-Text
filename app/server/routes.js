@@ -470,7 +470,7 @@ module.exports = function(app, Config, Log) {
 				prime_func_code = 
 					'bool check_is_prime(int num){\n' +
 					'	bool isPrime = true; \n' +
-					'	for(int i = 2; i <= num / 2; ++i)\n' +
+					'	for(int i = 2; i <= int(sqrt(num)); ++i)\n' +
 					'	{\n' +
 					'		if(num % i == 0){\n' +
 					'			isPrime = false;\n' +
@@ -480,7 +480,7 @@ module.exports = function(app, Config, Log) {
 					'	return isPrime;\n' +
 					'  }\n';
 			}
-			console.log('>>>\n', prime_func_code);
+			
 			var user_app_code =
 				'#include <stdio.h>\n' +
 				'#include <math.h>\n' + 

@@ -1,12 +1,13 @@
 Blockly.JavaScript['math_random_int'] = function(block) {
-    var num1 = Math.round( (Blockly.JavaScript.valueToCode(block, 'FROM', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0').split('(double)')[1]) ;
-    var num2 = Math.round( (Blockly.JavaScript.valueToCode(block, 'TO', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0').split('(double)')[1]) ;
-
+    var num1 = block.getFieldValue('FROM') || '0';//.split('(double)')[1]) ;
+    var num2 = block.getFieldValue('TO') || '0';//.split('(double)')[1]) ;
+	// TODO: let user type number instead
+	console.log(num1, num2)
 	if (num2 > num1){
         var code = 'rand() % ' + num2 + ' + ' + num1;
     }
     else{
-        var code = '0\n';
+        var code = '0';
 	}
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -43,8 +44,8 @@ Blockly.JavaScript['math_single'] = function(block) {
         case 'POW10':
           code = 'pow(10,' + arg + ')';
           break;
-        case 'NEG':
-          code = '(-' + arg + ')';
+		case 'NEG':
+		  code = '(-' + arg + ')';
           break;
       }
 
@@ -86,7 +87,7 @@ Blockly.JavaScript['math_round'] = function(block) {
 	var operator = block.getFieldValue('OP');
     var code;
 	var arg = Blockly.JavaScript.valueToCode(block, 'NUM', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
-	console.log(arg);
+	
 	switch (operator) {
 		case 'ROUND':
 			code = '(double)round(' + arg + ')';
@@ -105,17 +106,17 @@ Blockly.JavaScript['math_number_property'] = function(block) {
 	// Math operators with single operand.
 	var operator = block.getFieldValue('PROPERTY');
 	var code;
-	var arg = Math.round( (Blockly.JavaScript.valueToCode(block, 'NUMBER_TO_CHECK', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0').split('(double)')[1]) ;
-	// TODO:
+	var arg = Blockly.JavaScript.valueToCode(block, 'NUMBER_TO_CHECK', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0' ;
+
 	switch (operator) {
 		case 'EVEN':
-			code = '( ' + arg + ' % 2 == 0 )';
+			code = '( (int)' + arg + ' % 2 == 0 )';
 			break;
 		case 'ODD':
-			code = '( ' + arg + ' % 2 != 0)';
+			code = '( (int)' + arg + ' % 2 != 0)';
 			break;
 		case 'PRIME':
-			code = 'check_is_prime(' + arg + ')';
+			code = 'check_is_prime( (int)' + arg + ')';
 			break;
 		case 'POSITIVE':
 			code = '( ' + arg + ' > 0)';
