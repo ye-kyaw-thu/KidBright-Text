@@ -30,8 +30,8 @@ Blockly.JavaScript['gauge_color'] = function(block) {
 };
 
 Blockly.JavaScript['gauge_minmax'] = function(block) {
-  var number_min_value = 0; //block.getFieldValue('MIN_VALUE');
-  var number_max_value = block.getFieldValue('MAX_VALUE');
+  var number_min_value = 0; //block.getFieldValue('MIN_VALUE') || '0';
+  var number_max_value = block.getFieldValue('MAX_VALUE') || '0';
   var dropdown_gauge_selection = block.getFieldValue('GAUGE_SELECTION');
 
   var code = 'IOT_CONFIG{"topic":"'+ dropdown_gauge_selection +'","data":"' + '\\"min\\":\\"' + number_min_value + '\\",\\"max\\":\\"' + number_max_value  +'\\""}\n';

@@ -357,6 +357,13 @@ module.exports = function(app, Config, Log) {
 		return setup_code;
 	}
 
+	function check_use_prime_func(code, flag){
+		if (flag === false){
+			return code.includes('check_is_prime');
+		}
+		return flag;
+	}
+
 	app.post('/build', function(req, res) {
 		var board_id = req.body['board_id'];
 		var mac_addr = req.body['mac_addr'];
@@ -371,6 +378,8 @@ module.exports = function(app, Config, Log) {
 		var enable_iot = req.body['enable_iot'];
 		var start_wifi_code = '';
 		var start_iot_code = '';
+		var prime_func_code = '';
+		var use_prime_func = false;
 
 		if (sta_ssid !== '') {
 			if (sta_password !== '') {
@@ -430,6 +439,7 @@ module.exports = function(app, Config, Log) {
 
 				if (in_func_flag) {
 					task_code = gen_iot_code(task_code, line); + '\n'; // generate iot code
+					use_prime_func = check_use_prime_func(line, use_prime_func);
 					// task_code += (line + '\n');
 					if (braces_cnt == 0) {
 						in_func_flag = false;
@@ -443,6 +453,7 @@ module.exports = function(app, Config, Log) {
 			var setup_code_list = setup_code.split('\n');
 			setup_code = '';
 			for (var setup_code_index in setup_code_list) {
+				use_prime_func = check_use_prime_func(setup_code_list[setup_code_index], use_prime_func);
 				setup_code = gen_iot_code(setup_code, setup_code_list[setup_code_index]); // generate iot code
 				// setup_code += '  ' + setup_code_list[setup_code_index] + '\n';
 			}
@@ -455,8 +466,24 @@ module.exports = function(app, Config, Log) {
 				task_fn_code += '  xTaskCreatePinnedToCore(' + task_fn + ', "' + task_fn + '", USERAPP_STACK_SIZE_MIN, NULL, USERAPP_TASK_PRIORITY, NULL, ARDUINO_RUNNING_CORE);\n';
 			}
 
+			if (use_prime_func === true) {
+				prime_func_code = 
+					'bool check_is_prime(int num){\n' +
+					'	bool isPrime = true; \n' +
+					'	for(int i = 2; i <= int(sqrt(num)); ++i)\n' +
+					'	{\n' +
+					'		if(num % i == 0){\n' +
+					'			isPrime = false;\n' +
+					'			break;\n' +
+					'		}\n' +
+					'	}\n' +
+					'	return isPrime;\n' +
+					'  }\n';
+			}
+			
 			var user_app_code =
 				'#include <stdio.h>\n' +
+				'#include <math.h>\n' + 
 				'#include "freertos/FreeRTOS.h"\n' +
 				'#include "freertos/task.h"\n' +
 				'#include "esp_system.h"\n' +
@@ -480,6 +507,7 @@ module.exports = function(app, Config, Log) {
 				'#define PASSWORD ""\n' +
 				'#define CONFIG_WIFI_SSID "' + sta_ssid + '"\n' +
 				'#define CONFIG_WIFI_PASSWORD "' + sta_password + '"\n\n' +
+				'#define PI 3.14159265' + '\n' + 
 				// ===
 				'extern PORTS ports;\n' +
 				'extern BUTTON12 button12;\n' +
@@ -490,6 +518,7 @@ module.exports = function(app, Config, Log) {
 				'extern LM73 lm73_1;\n' +
 				'extern MCP7940N mcp7940n;\n\n' +
 				var_str +
+				prime_func_code +
 				task_code + '\n' +
 				'void user_app(void) {\n' +
 				start_wifi_code +

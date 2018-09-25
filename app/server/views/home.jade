@@ -1,40 +1,59 @@
 extends layout
 
 block content
-	nav.navbar-default.header
-		.container
+	nav.navbar-default(style="padding-left:0px;").header
+		.container-fluid(style="margin:0vh 1vw 0vh 1vw;")
 			ul.nav.navbar-nav
-				img(src="/images/kidbright-logo_text_top.png", height="24").kb_logo_top
-			ul.nav.navbar-nav(style="padding-left: 10px")
-				li
-					button#btn-new.btn.btn-default.navbar-btn New File
-				li
-					button#btn-open.btn.btn-default.navbar-btn Open File
-				li
-					button#btn-save.btn.btn-default.navbar-btn Save File
-				li
-					button#btn-delete.btn.btn-default.navbar-btn Delete File
-				li
-					button#btn-build.btn.btn-default.navbar-btn(disabled="true",style="margin-left: 20px") Program Build
-				li
-					button#btn-setclock.btn.btn-default.navbar-btn(disabled="true",style="margin-left: 20px") Set Clock
-				li
-					button#btn-wifi-config.btn.btn-default.navbar-btn WIFI Config
-				li
-					button#btn-qrcode.btn.btn-default.navbar-btn QR Code
+				img(src="/images/SVG/Logo.svg", height="60").kb_logo_top
 			ul.nav.navbar-nav.navbar-right
 				li
-					.lang-container
-						.lang-text
-							a#home-lang-en(href="#",title="Switch to english language").link-url Eng
-						.lang-space.link-url
-							| |
-						.lang-text
-							a#home-lang-th(href="#",title="สลับไปใช้ภาษาไทย").link-url ไทย
+					.divtog
+						input#toggle-lang.toggle(type='checkbox' checked=false)
+				//- li
+				//- 	.lang-container
+				//- 		.lang-text
+				//- 			a#home-lang-en(href="#",title="Switch to english language").link-url Eng
+				//- 		.lang-space.link-url
+				//- 			| |
+				//- 		.lang-text
+				//- 			a#home-lang-th(href="#",title="สลับไปใช้ภาษาไทย").link-url ไทย
 				li(style="padding-left: 10px")
 					.lang-container
-						.lang-text(style="color: #a0a0a0")#version-text
+						.lang-text(style="color: #fff")#version-text
 							| version
+
+			ul.nav.navbar-nav.navbar-right(style="padding-right:1%")
+				
+				li
+					button#btn-new.navbar-btn.btn-icon(style="background-image: url(/images/SVG/new-file.svg)")
+				li
+					button#btn-open.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h3.svg)")
+				li
+					a#btn-save.navbar-btn.btn-icon(style="background-image: url(/images/SVG/save-file.svg); margin-right:25px;" href="javascript:void(0)" download="data.txt") 
+				//- li
+					//- button#btn-delete.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h2.svg); margin-right:25px;") Delete File
+				li
+					button#btn-build.navbar-btn.btn-icon(disabled="true" style="background-image: url(/images/SVG/h1.svg)") Program Build
+				li
+					button#btn-setclock.setclock-btn.navbar-btn.btn-icon(disabled="true" style="background-image: url(/images/SVG/h6.svg)") Set Clock
+				li
+					button#btn-wifi-config.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h5.svg); margin-left:15px;") WIFI Configss
+				li
+					button#btn-qrcode.btn.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h7.svg)") QRsss Codes
+				
+				//- li
+				//- 	#accordionExample.accordion
+				//- 		div
+				//- 			button.navbar-btn.btn-icon(data-target='#collapseOne', data-toggle='collapse', type='button', aria-controls='collapseOne', aria-expanded='true', style="background-image: url(/images/SVG/export.svg)")
+				//- 			#collapseOne.collapse(data-parent='#accordionExample', aria-labelledby='headingOne')
+				//- 				div(style="background-color:#0000;")
+				//- 					button.btn-success(style='display:flex; border-radius: 5px; margin-top: 5px; ')
+				//- 						| export
+				//- 					button.btn-success(style='display: flex; border-radius: 5px; margin-top: 5px;')
+				//- 						| import
+
+
+
 	// blockly category language
 	- if (ulang == 'th')
 		include blockly-th
@@ -56,6 +75,7 @@ block content
 	include modals/qrcode
 
 block scripts
+
 	script(src='/vendor/jquery-2.2.3.min.js')
 	script(src='/vendor/jquery.form.min.js')
 	script(src='/vendor/bootstrap.min.js')
@@ -72,6 +92,12 @@ block scripts
 	script(src='blockly/lang.js')
 	script(src='blockly/kidbright/blocks.js')
 	script(src='blockly/kidbright/blocks-iot.js')
+	script(src='blockly/kidbright/blocks-math.js')
 	script(src='blockly/kidbright/generators.js')
 	script(src='blockly/kidbright/generators-iot.js')
+	script(src='blockly/kidbright/generators-math.js')
 	script(src='blockly/kidbright/app.js')
+	srcipt(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/FileSaver.js")
+
+
+
