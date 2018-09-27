@@ -87,9 +87,21 @@ function HomeController() {
 	// new file
 	// =========================================================================
 	$('#btn-new').click(function () {
+		$('.modal-newfile-confirm .modal-header h4').text(LANG_NEW_FILE);
+		$('.modal-newfile-confirm .modal-footer #btn-ok').text(LANG_OK);
+		$('.modal-newfile-confirm .modal-footer #btn-cancel').text(LANG_CANCEL);
+		$('.modal-newfile-confirm .modal-body p').text(LANG_NEW_FILE_CONFIRM);
+		$('.modal-newfile-confirm').modal({
+			show: true,
+			keyboard: false,
+			backdrop: 'static'
+		});
+
+	});
+	$('.modal-newfile-confirm #btn-ok').click(function () {
 		Blockly.mainWorkspace.clear();
 		filename="";
-
+		$('.modal-newfile-confirm').modal('hide');
 	});
 
 	// =========================================================================
@@ -337,9 +349,6 @@ function HomeController() {
 		}
 		$('.modal-open-file-browser #btn-ok').prop('disabled', !open_flag);
 	}
-	$('#btn-new').click(function() {
-		Blockly.mainWorkspace.clear();
-	   });
 
 	function handleFileSelect(evt) {
 		files = evt.target.files; // FileList object

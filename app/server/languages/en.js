@@ -113,6 +113,8 @@ const LANG_FILE_OVERWRITE = 'File exists, Would you like to overwrite it?';
 const LANG_FILE_DELETE_CONFIRM = 'Confirm to delete file?';
 const LANG_BUILD_SUCCESS = 'Build Success';
 
+const LANG_NEW_FILE_CONFIRM = "Are you sure to new file?";
+
 const LANG_ERROR_CODE_DEFAULT = 'Error';
 const LANG_ERROR_CODE = [
 	'Error',

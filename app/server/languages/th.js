@@ -109,6 +109,8 @@ const LANG_FILE_OVERWRITE = 'ไฟล์มีอยู่แล้ว, ต้�
 const LANG_FILE_DELETE_CONFIRM = 'ยืนยันลบไฟล์?';
 const LANG_BUILD_SUCCESS = 'สร้างโปรแกรมสำเร็จ';
 
+const LANG_NEW_FILE_CONFIRM = "ต้องการเริ่มไฟล์ใหม่ใช่หรือไม่?";
+
 const LANG_ERROR_CODE_DEFAULT = 'พบความผิดพลาด';
 const LANG_ERROR_CODE = [
 	'พบความผิดพลาด',
