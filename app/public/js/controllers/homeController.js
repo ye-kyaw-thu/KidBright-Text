@@ -540,10 +540,12 @@ function HomeController() {
 								dataType: 'json',
 								error: function (e) {
 									$('#build_li').text(LANG_BUILD + '... ' + LANG_FAILED);
+									send_event_to_googleAnalytics(mac_addr,'build_failed','btn_build');
 									$('#build-ok').prop('disabled', false);
 								},
 								success: function (reply) {
 									$('#build_li').text(LANG_BUILD + '... ' + LANG_PASSED);
+									send_event_to_googleAnalytics(mac_addr,'build_passed','btn_build');
 									$('.modal-build .modal-body ul').append('<li id="program_li">' + LANG_BOARD_FLASHING + '...</li>');
 
 									$.ajax({
@@ -558,10 +560,12 @@ function HomeController() {
 										error: function (e) {
 											$('#program_li').text(LANG_BOARD_FLASHING + '... ' + LANG_FAILED);
 											$('#build-ok').prop('disabled', false);
+											send_event_to_googleAnalytics(mac_addr,'flash_failed','btn_build');
 										},
 										success: function (reply) {
 											$('#program_li').text(LANG_BOARD_FLASHING + '... ' + LANG_PASSED);
 											$('#build-ok').prop('disabled', false);
+											send_event_to_googleAnalytics(mac_addr,'flash_passed','btn_build');
 										}
 									});
 
@@ -772,6 +776,31 @@ function HomeController() {
 		});
 		$('.modal-qrcode.modal').modal('show');
 	});
+
+
+	       (function (i, s, o, g, r, a, m) {
+		        i['GoogleAnalyticsObject'] = r;
+		        i[r] = i[r] || function () {
+		            (i[r].q = i[r].q || []).push(arguments)
+		        }, i[r].l = 1 * new Date();
+		        a = s.createElement(o),
+		            m = s.getElementsByTagName(o)[0];
+		        a.async = 1;
+		        a.src = g;
+		        m.parentNode.insertBefore(a, m)
+		    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		    ga('create', 'UA-127073589-2', 'auto');
+		
+		    function send_event_to_googleAnalytics(mac_addr, action,category) {
+		        ga('send', {
+		            hitType: 'event',
+		            eventCategory: category,
+		            eventAction: action,
+		            eventLabel: mac_addr
+		        });
+		
+		    }
+		
 
 }
 
