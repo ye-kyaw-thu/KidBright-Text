@@ -789,7 +789,7 @@ function HomeController() {
 		        a.src = g;
 		        m.parentNode.insertBefore(a, m)
 		    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-		    ga('create', 'UA-127073589-2', 'auto');
+		    ga('create', 'UA-127108360-1', 'auto');
 		
 		    function send_event_to_googleAnalytics(mac_addr, action,category) {
 		        ga('send', {
