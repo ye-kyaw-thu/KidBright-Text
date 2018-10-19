@@ -1582,7 +1582,7 @@ Blockly.Blocks["advance_task"] = {
 			}],
 			"inputsInline": false,
 			// "colour": Blockly.Msg.ADVANCE_HUE,
-			"colour": "#D75DEF",
+			"colour": advance_colour,
 			"tooltip": Blockly.Msg.ADVANCE_TASK_TOOLTIP,
 			"helpUrl": Blockly.Msg.ADVANCE_TASK_HELPURL
 		});

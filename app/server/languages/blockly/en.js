@@ -432,15 +432,15 @@ goog.require('Blockly.Msg');
 
 
 /** @export */ Blockly.Msg.BASIC_HUE = "#5BA58C";
-/** @export */ Blockly.Msg.MATH_HUE = "#5A67A5";
-/** @export */ Blockly.Msg.LOGIC_HUE = "#5A80A5";
-/** @export */ Blockly.Msg.LOOPS_HUE = "#5AA45B";
-/** @export */ Blockly.Msg.WAIT_HUE = "#7FA55B";
-/** @export */ Blockly.Msg.MUSIC_HUE = "#A55B7F";
-/** @export */ Blockly.Msg.SENSOR_HUE = "#A5A35A";
-/** @export */ Blockly.Msg.RTC_HUE = "#A5725B";
-/** @export */ Blockly.Msg.IO_HUE = "#A55C5B";
-/** @export */ Blockly.Msg.ADVANCE_HUE = "#995BA5";
+/** @export */ Blockly.Msg.MATH_HUE = "#3A4F8B";
+/** @export */ Blockly.Msg.LOGIC_HUE = "#617E95";
+/** @export */ Blockly.Msg.LOOPS_HUE = "#56A668";
+/** @export */ Blockly.Msg.WAIT_HUE = "#759D61";
+/** @export */ Blockly.Msg.MUSIC_HUE = "#A15873";
+/** @export */ Blockly.Msg.SENSOR_HUE = "#9DA169";
+/** @export */ Blockly.Msg.RTC_HUE = "#B9926C";
+/** @export */ Blockly.Msg.IO_HUE = "#9E6E5E";
+/** @export */ Blockly.Msg.ADVANCE_HUE = "#92568E";
 /** @export */ Blockly.Msg.GAUGE_HUE = "#93A01E";
 /** @export */ Blockly.Msg.FEED_HUE = "#93A01E";
 /** @export */ Blockly.Msg.LISTS_HUE = "260";
