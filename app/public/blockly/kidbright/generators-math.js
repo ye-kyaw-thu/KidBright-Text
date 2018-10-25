@@ -1,7 +1,7 @@
 Blockly.JavaScript['math_random_int'] = function(block) {
-    var num1 = block.getFieldValue('FROM') || '0';//.split('(double)')[1]) ;
-    var num2 = block.getFieldValue('TO') || '0';//.split('(double)')[1]) ;
-	// TODO: let user type number instead
+    var num1 = block.getFieldValue('FROM') || '0';
+    var num2 = block.getFieldValue('TO') || '0';
+	
 	console.log(num1, num2)
 	if (num2 > num1){
         var code = 'rand() % ' + num2 + ' + ' + num1;

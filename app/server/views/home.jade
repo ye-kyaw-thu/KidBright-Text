@@ -23,13 +23,13 @@ block content
 							| version
 
 			ul.nav.navbar-nav.navbar-right(style="padding-right:1%")
-				
+
 				li
 					button#btn-new.navbar-btn.btn-icon(style="background-image: url(/images/SVG/new-file.svg)")
 				li
 					button#btn-open.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h3.svg)")
 				li
-					a#btn-save.navbar-btn.btn-icon(style="background-image: url(/images/SVG/save-file.svg); margin-right:25px;" href="javascript:void(0)" download="data.txt") 
+					a#btn-save.navbar-btn.btn-icon(style="background-image: url(/images/SVG/save-file.svg); margin-right:25px;" href="javascript:void(0)" download="data.txt")
 				//- li
 					//- button#btn-delete.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h2.svg); margin-right:25px;") Delete File
 				li
@@ -40,7 +40,7 @@ block content
 					button#btn-wifi-config.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h5.svg); margin-left:15px;") WIFI Configss
 				li
 					button#btn-qrcode.btn.navbar-btn.btn-icon(style="background-image: url(/images/SVG/h7.svg)") QRsss Codes
-				
+
 				//- li
 				//- 	#accordionExample.accordion
 				//- 		div
@@ -97,8 +97,6 @@ block scripts
 	script(src='blockly/kidbright/generators.js')
 	script(src='blockly/kidbright/generators-iot.js')
 	script(src='blockly/kidbright/generators-math.js')
+	script(src='plugins.js')
 	script(src='blockly/kidbright/app.js')
 	srcipt(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/FileSaver.js")
-
-
-

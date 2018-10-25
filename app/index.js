@@ -26,7 +26,7 @@ module.exports = {
 		}
 
 		// check and create data directory
-		var data_dir = process_dir + '/data';
+		var data_dir = Config.process_dir + '/' + Config.ide.directories.data;
 		if (!fs.existsSync(data_dir)) {
 			fs.mkdirSync(data_dir);
 		}

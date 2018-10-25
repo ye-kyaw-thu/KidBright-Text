@@ -1,3 +1,8 @@
+function saveWorkspaceLocal(){
+	var xml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace));
+	localStorage.setItem('KidBrightLastWorkspace', xml);
+}
+
 function HomeController() {
 	var that = this;
 	var deletingBoardId = null;
@@ -22,12 +27,13 @@ function HomeController() {
 		isElecrton = true;
 	}
 
-
-	$('#home-lang-en').click(function () {
+	$('#home-lang-en').click(function() {
+		saveWorkspaceLocal();
 		homeSetLanguage('en');
 	});
 
-	$('#home-lang-th').click(function () {
+	$('#home-lang-th').click(function() {
+		saveWorkspaceLocal();
 		homeSetLanguage('th');
 	});
 	$('#toggle-lang').click(function () {
@@ -63,10 +69,10 @@ function HomeController() {
 	$.ajax({
 		url: '/standalone',
 		type: 'POST',
-		error: function (e) {
+		error: function(e) {
 			//
 		},
-		success: function (reply) {
+		success: function(reply) {
 			standalone = reply.standalone;
 		}
 	});
@@ -75,10 +81,10 @@ function HomeController() {
 	$.ajax({
 		type: 'POST',
 		url: '/version',
-		error: function (e) {
+		error: function(e) {
 			//
 		},
-		success: function (res) {
+		success: function(res) {
 			$('#version-text').html('ver. ' + res.version);
 		}
 	});
