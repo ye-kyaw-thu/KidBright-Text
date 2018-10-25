@@ -668,12 +668,12 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.SENSOR_LDR_TOOLTIP = "อ่านระดับแสงสว่าง";
 /** @export */ Blockly.Msg.SENSOR_LDR_HELPURL = "";
 // switch 1
-/** @export */ Blockly.Msg.SENSOR_SWITCH1_TITLE = "สวิทช์ 1";
-/** @export */ Blockly.Msg.SENSOR_SWITCH1_TOOLTIP = "อ่านสวิทช์ 1";
+/** @export */ Blockly.Msg.SENSOR_SWITCH1_TITLE = "สวิตช์ 1";
+/** @export */ Blockly.Msg.SENSOR_SWITCH1_TOOLTIP = "อ่านสวิตช์ 1";
 /** @export */ Blockly.Msg.SENSOR_SWITCH1_HELPURL = "";
 // switch 2
-/** @export */ Blockly.Msg.SENSOR_SWITCH2_TITLE = "สวิทช์ 2";
-/** @export */ Blockly.Msg.SENSOR_SWITCH2_TOOLTIP = "อ่านสวิทช์ 2";
+/** @export */ Blockly.Msg.SENSOR_SWITCH2_TITLE = "สวิตช์ 2";
+/** @export */ Blockly.Msg.SENSOR_SWITCH2_TOOLTIP = "อ่านสวิตช์ 2";
 /** @export */ Blockly.Msg.SENSOR_SWITCH2_HELPURL = "";
 
 // rtc blocks

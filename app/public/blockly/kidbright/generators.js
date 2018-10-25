@@ -348,10 +348,10 @@ Blockly.JavaScript['music_set_tempo'] = function(block) {
 // sensor
 // =============================================================================
 Blockly.JavaScript['sensor_lm73'] = function(block) {
-	return [
-		'(lm73_0.error() ? lm73_1.get() : lm73_0.get())',
-		Blockly.JavaScript.ORDER_ATOMIC
-	];
+ return [
+  '(lm73_0.is_error() ? lm73_1.get() : lm73_0.get())',
+  Blockly.JavaScript.ORDER_ATOMIC
+ ];
 };
 
 Blockly.JavaScript['sensor_ldr'] = function(block) {
