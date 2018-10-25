@@ -517,20 +517,20 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_TOOLTIP = "ให้ค่าจริงเมื่อแอลอีดีเมตริกซ์พร้อมแสดงผล (ตัวอักษรของเดิมเลื่อนจนหมดประโยคแล้ว)";
 /** @export */ Blockly.Msg.LOGIC_LED16X8_SCROLL_READY_HELPURL = "";
 // sw1 pressed
-/** @export */ Blockly.Msg.LOGIC_SW1_PRESSED_TITLE = "สวิทช์ 1 กด";
-/** @export */ Blockly.Msg.LOGIC_SW1_PRESSED_TOOLTIP = "ให้ค่าจริงเมื่อสวิทช์ 1 ถูกกด";
+/** @export */ Blockly.Msg.LOGIC_SW1_PRESSED_TITLE = "สวิตช์ 1 กด";
+/** @export */ Blockly.Msg.LOGIC_SW1_PRESSED_TOOLTIP = "ให้ค่าจริงเมื่อสวิตช์ 1 ถูกกด";
 /** @export */ Blockly.Msg.LOGIC_SW1_PRESSED_HELPURL = "";
 // sw1 released
-/** @export */ Blockly.Msg.LOGIC_SW1_RELEASED_TITLE = "สวิทช์ 1 ปล่อย";
-/** @export */ Blockly.Msg.LOGIC_SW1_RELEASED_TOOLTIP = "ให้ค่าจริงเมื่อสวิทช์ 1 ถูกปล่อย";
+/** @export */ Blockly.Msg.LOGIC_SW1_RELEASED_TITLE = "สวิตช์ 1 ปล่อย";
+/** @export */ Blockly.Msg.LOGIC_SW1_RELEASED_TOOLTIP = "ให้ค่าจริงเมื่อสวิตช์ 1 ถูกปล่อย";
 /** @export */ Blockly.Msg.LOGIC_SW1_RELEASED_HELPURL = "";
 // sw2 pressed
-/** @export */ Blockly.Msg.LOGIC_SW2_PRESSED_TITLE = "สวิทช์ 2 กด";
-/** @export */ Blockly.Msg.LOGIC_SW2_PRESSED_TOOLTIP = "ให้ค่าจริงเมื่อสวิทช์ 2 ถูกกด";
+/** @export */ Blockly.Msg.LOGIC_SW2_PRESSED_TITLE = "สวิตช์ 2 กด";
+/** @export */ Blockly.Msg.LOGIC_SW2_PRESSED_TOOLTIP = "ให้ค่าจริงเมื่อสวิตช์ 2 ถูกกด";
 /** @export */ Blockly.Msg.LOGIC_SW2_PRESSED_HELPURL = "";
 // sw2 released
-/** @export */ Blockly.Msg.LOGIC_SW2_RELEASED_TITLE = "สวิทช์ 2 ปล่อย";
-/** @export */ Blockly.Msg.LOGIC_SW2_RELEASED_TOOLTIP = "ให้ค่าจริงเมื่อสวิทช์ 2 ถูกปล่อย";
+/** @export */ Blockly.Msg.LOGIC_SW2_RELEASED_TITLE = "สวิตช์ 2 ปล่อย";
+/** @export */ Blockly.Msg.LOGIC_SW2_RELEASED_TOOLTIP = "ให้ค่าจริงเมื่อสวิตช์ 2 ถูกปล่อย";
 /** @export */ Blockly.Msg.LOGIC_SW2_RELEASED_HELPURL = "";
 
 // loop blocks
@@ -549,20 +549,20 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.WAIT_LED_MATRIX_READY_TOOLTIP = "รอแอลอีดี 16x8 พร้อมแสดงผล (ตัวอักษรของเดิมเลื่อนจนหมดประโยคแล้ว)";
 /** @export */ Blockly.Msg.WAIT_LED_MATRIX_READY_HELPURL = "";
 // wait sw1 pressed
-/** @export */ Blockly.Msg.WAIT_SW1_PRESSED_TITLE = "รอสวิทช์ 1 กด";
-/** @export */ Blockly.Msg.WAIT_SW1_PRESSED_TOOLTIP = "รอสวิทช์ 1 ถูกกด";
+/** @export */ Blockly.Msg.WAIT_SW1_PRESSED_TITLE = "รอสวิตช์ 1 กด";
+/** @export */ Blockly.Msg.WAIT_SW1_PRESSED_TOOLTIP = "รอสวิตช์ 1 ถูกกด";
 /** @export */ Blockly.Msg.WAIT_SW1_PRESSED_HELPURL = "";
 // wait sw1 released
-/** @export */ Blockly.Msg.WAIT_SW1_RELEASED_TITLE = "รอสวิทช์ 1 ปล่อย";
-/** @export */ Blockly.Msg.WAIT_SW1_RELEASED_TOOLTIP = "รอสวิทช์ 1 ถูกปล่อย";
+/** @export */ Blockly.Msg.WAIT_SW1_RELEASED_TITLE = "รอสวิตช์ 1 ปล่อย";
+/** @export */ Blockly.Msg.WAIT_SW1_RELEASED_TOOLTIP = "รอสวิตช์ 1 ถูกปล่อย";
 /** @export */ Blockly.Msg.WAIT_SW1_RELEASED_HELPURL = "";
 // wait sw2 pressed
-/** @export */ Blockly.Msg.WAIT_SW2_PRESSED_TITLE = "รอสวิทช์ 2 กด";
-/** @export */ Blockly.Msg.WAIT_SW2_PRESSED_TOOLTIP = "รอสวิทช์ 2 ถูกกด";
+/** @export */ Blockly.Msg.WAIT_SW2_PRESSED_TITLE = "รอสวิตช์ 2 กด";
+/** @export */ Blockly.Msg.WAIT_SW2_PRESSED_TOOLTIP = "รอสวิตช์ 2 ถูกกด";
 /** @export */ Blockly.Msg.WAIT_SW2_PRESSED_HELPURL = "";
 // wait sw2 released
-/** @export */ Blockly.Msg.WAIT_SW2_RELEASED_TITLE = "รอสวิทช์ 2 ปล่อย";
-/** @export */ Blockly.Msg.WAIT_SW2_RELEASED_TOOLTIP = "รอสวิทช์ 2 ถูกปล่อย";
+/** @export */ Blockly.Msg.WAIT_SW2_RELEASED_TITLE = "รอสวิตช์ 2 ปล่อย";
+/** @export */ Blockly.Msg.WAIT_SW2_RELEASED_TOOLTIP = "รอสวิตช์ 2 ถูกปล่อย";
 /** @export */ Blockly.Msg.WAIT_SW2_RELEASED_HELPURL = "";
 
 // music blocks
