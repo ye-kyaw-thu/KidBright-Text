@@ -7,7 +7,7 @@ const SerialPort = require('serialport');
 const QRCode = require('qrcode');
 const md5 = require('md5');
 
-module.exports = function(app, Config, Log) {
+module.exports = function (app, Config, Log) {
 	const server_dir = __dirname;
 	const data_dir = Config.process_dir + '/' + Config.ide.directories.data;
 	const toolchain_dir = Config.process_dir + '/xtensa-esp32-elf/bin';
@@ -15,20 +15,20 @@ module.exports = function(app, Config, Log) {
 	var pluginsInfo = [];
 
 	function is_null(val) {
-		return ((val == null) || (typeof(val) == 'undefined'));
+		return ((val == null) || (typeof (val) == 'undefined'));
 	}
 
 	function is_not_null(val) {
-		return (!((val == null) || (typeof(val) == 'undefined')));
+		return (!((val == null) || (typeof (val) == 'undefined')));
 	}
 
 	function esptool() {
 		if (process.platform == 'win32') {
 			return Config.process_dir + '/esptool.exe';
 		} else
-		if (process.platform == 'darwin') {
-			return Config.process_dir + '/esptool';
-		}
+			if (process.platform == 'darwin') {
+				return Config.process_dir + '/esptool';
+			}
 
 		return Config.process_dir + '/esptool.py';
 	}
@@ -54,11 +54,11 @@ module.exports = function(app, Config, Log) {
 	}
 
 	// main login page
-	app.get('/', function(req, res) {
+	app.get('/', function (req, res) {
 		res.redirect('/home');
 	});
 
-	app.get('/home', function(req, res) {
+	app.get('/home', function (req, res) {
 		// render home
 		res.render('home', {
 			title: 'Control Panel',
@@ -68,7 +68,7 @@ module.exports = function(app, Config, Log) {
 		});
 	});
 
-	app.get('/lang', function(req, res) {
+	app.get('/lang', function (req, res) {
 		if (req.query.set) {
 			res.cookie('lang', req.query.set, {
 				expires: new Date(253402300000000)
@@ -79,13 +79,13 @@ module.exports = function(app, Config, Log) {
 	});
 
 	// web page language file
-	app.get('/js/lang.js', function(req, res) {
+	app.get('/js/lang.js', function (req, res) {
 		var lang_fn = 'en.js';
 		if (req.cookies.lang == 'th') {
 			lang_fn = 'th.js';
 		}
 		lang_fn = server_dir + '/languages/' + lang_fn;
-		res.download(lang_fn, function(err) {
+		res.download(lang_fn, function (err) {
 			if (err) {
 				res.status(404).send('Not Found');
 			}
@@ -93,20 +93,20 @@ module.exports = function(app, Config, Log) {
 	});
 
 	// blockly language file
-	app.get('/blockly/lang.js', function(req, res) {
+	app.get('/blockly/lang.js', function (req, res) {
 		var lang_fn = 'en.js';
 		if (req.cookies.lang == 'th') {
 			lang_fn = 'th.js';
 		}
 		lang_fn = server_dir + '/languages/blockly/' + lang_fn;
-		res.download(lang_fn, function(err) {
+		res.download(lang_fn, function (err) {
 			if (err) {
 				res.status(404).send('Not Found');
 			}
 		});
 	});
 
-	app.post('/listfile', function(req, res) {
+	app.post('/listfile', function (req, res) {
 		var dir = data_dir;
 		var filelist = [];
 		try {
@@ -128,7 +128,7 @@ module.exports = function(app, Config, Log) {
 		}
 	});
 
-	app.post('/savefile', function(req, res) {
+	app.post('/savefile', function (req, res) {
 		try {
 			fs.writeFileSync(data_dir + '/' + req.body['filename'], req.body['content'], 'utf8');
 			res.setHeader('Content-Type', 'application/json');
@@ -139,9 +139,9 @@ module.exports = function(app, Config, Log) {
 		}
 	});
 
-	app.post('/openfile', function(req, res) {
+	app.post('/openfile', function (req, res) {
 		try {
-			fs.readFile(data_dir + '/' + req.body['filename'], 'utf8', function(err, contents) {
+			fs.readFile(data_dir + '/' + req.body['filename'], 'utf8', function (err, contents) {
 				//res.status(200).send(o);
 				res.setHeader('Content-Type', 'application/json');
 				res.send(JSON.stringify(contents));
@@ -152,7 +152,7 @@ module.exports = function(app, Config, Log) {
 		}
 	});
 
-	app.post('/deletefile', function(req, res) {
+	app.post('/deletefile', function (req, res) {
 		try {
 			fs.unlinkSync(data_dir + '/' + req.body['filename']);
 			res.setHeader('Content-Type', 'application/json');
@@ -163,7 +163,7 @@ module.exports = function(app, Config, Log) {
 		}
 	});
 
-	app.post('/setclock', function(req, res) {
+	app.post('/setclock', function (req, res) {
 		Log.i('setting board real time clock...');
 		try {
 			var port_name = req.body['port_name'];
@@ -180,10 +180,10 @@ module.exports = function(app, Config, Log) {
 				autoOpen: false
 			});
 
-			serialport.open(function(err) {
+			serialport.open(function (err) {
 				if (err) throw err;
 
-				serialport.write('rtc set ' + tx_str + '\n', function(err) {
+				serialport.write('rtc set ' + tx_str + '\n', function (err) {
 					if (err) {
 						console.log('Error on write: ', err.message);
 					}
@@ -208,23 +208,23 @@ module.exports = function(app, Config, Log) {
 		}
 	});
 
-	app.post('/standalone', function(req, res) {
+	app.post('/standalone', function (req, res) {
 		res.setHeader('Content-Type', 'application/json');
 		res.send(JSON.stringify({
 			standalone: Config.standalone
 		}));
 	});
 
-	app.post('/version', function(req, res) {
+	app.post('/version', function (req, res) {
 		res.setHeader('Content-Type', 'application/json');
 		res.send(JSON.stringify({
 			version: Config.version
 		}));
 	});
 
-	app.post('/port_list', function(req, res) {
+	app.post('/port_list', function (req, res) {
 		try {
-			require('serialport').list(function(err, ports) {
+			require('serialport').list(function (err, ports) {
 				if (err) throw err;
 
 				var port_list_str = 'none';
@@ -262,7 +262,7 @@ module.exports = function(app, Config, Log) {
 		}
 	});
 
-	app.post('/read_mac', function(req, res) {
+	app.post('/read_mac', function (req, res) {
 		var port_name = req.body['port_name'];
 		try {
 			var cmd = util.format(
@@ -310,9 +310,9 @@ module.exports = function(app, Config, Log) {
 	var topics = [];
 	var config_flag = false;
 	var iot_code = '';
-	function gen_iot_code(setup_code, current_setup_code){
+	function gen_iot_code(setup_code, current_setup_code) {
 		var trim_code = current_setup_code.trim();
-		if (trim_code.substring(0, 10) == 'IOT_CONFIG'){
+		if (trim_code.substring(0, 10) == 'IOT_CONFIG') {
 			config_flag = true;
 			var current_line = JSON.parse(
 				trim_code.substring(10, trim_code.length));
@@ -325,40 +325,40 @@ module.exports = function(app, Config, Log) {
 		else {
 			config_flag = false;
 		}
-		if ((config_flag == false) && (iot_config.length != 0)){
-			for (topics_index in topics){
-				var filtered_data = iot_config.filter(a=>a.topic==topics[topics_index]);
-				if (topics_index == 0){
+		if ((config_flag == false) && (iot_config.length != 0)) {
+			for (topics_index in topics) {
+				var filtered_data = iot_config.filter(a => a.topic == topics[topics_index]);
+				if (topics_index == 0) {
 					iot_code += '{\\"' + topics[topics_index] + '\\":{';
 				}
 				else {
 					iot_code += '},\\"' + topics[topics_index] + '\\":{';
 				}
-				for (data_index in filtered_data){
-					if (data_index != 0){
+				for (data_index in filtered_data) {
+					if (data_index != 0) {
 						iot_code += ',';
 					}
 					iot_code += filtered_data[data_index]['data'].replace(/"/g, '\\"');
 				}
-				if (topics_index == topics.length-1){
+				if (topics_index == topics.length - 1) {
 					iot_code += '}';
 				}
 			}
 			iot_code += '}'
-			setup_code += '  ' + 'kbiot_setConfig("CFG", "'+ iot_code +'");\n';
+			setup_code += '  ' + 'kbiot_setConfig("CFG", "' + iot_code + '");\n';
 			setup_code += '  ' + current_setup_code + '\n';
 			topics = [];
 			iot_config = [];
 			iot_code = '';
 		}
-		else if (config_flag == false){
+		else if (config_flag == false) {
 			setup_code += '  ' + current_setup_code + '\n';
 		}
 		return setup_code;
 	}
 
-	function check_use_prime_func(code, flag){
-		if (flag === false){
+	function check_use_prime_func(code, flag) {
+		if (flag === false) {
 			return code.includes('check_is_prime');
 		}
 		return flag;
@@ -370,7 +370,7 @@ module.exports = function(app, Config, Log) {
 
 		Log.i('compiling... ' + path.basename(fn));
 		var cmd = util.format('"%s/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H -Iesp32/lib/release/netpie/include %s %s -c "%s" -o "%s"', toolchain_dir, cflags, plugins_includes_switch, fn, fn_obj);
-		exec(ospath(cmd), (err, stdout, stderr) => {
+		exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
 			if (err) {
 				// compile error
 				if (cb) {
@@ -390,11 +390,11 @@ module.exports = function(app, Config, Log) {
 		});
 	}
 
-	app.post('/build', function(req, res) {
+	app.post('/build', function (req, res) {
 		var board_id = req.body['board_id'];
 		var mac_addr = req.body['mac_addr'];
 		var kbmac_addr = (mac_addr.replace(/:/g, "")).toUpperCase();
-		var md5_mac_addr = md5('K:'+kbmac_addr);
+		var md5_mac_addr = md5('K:' + kbmac_addr);
 
 		// console.log('=== ' + kbmac_addr);
 		// console.log(md5_mac_addr);
@@ -602,11 +602,11 @@ module.exports = function(app, Config, Log) {
 		}
 
 		var iot_task = 'void iotTask(void *pvParameters) {\n' +
-						start_wifi_code +
-						start_iot_code +
-						'vTaskDelay(500 / portTICK_RATE_MS);\n' +
-						'    vTaskDelete(NULL);\n' +
-						'}\n';
+			start_wifi_code +
+			start_iot_code +
+			'vTaskDelay(500 / portTICK_RATE_MS);\n' +
+			'    vTaskDelete(NULL);\n' +
+			'}\n';
 
 		var user_app_code =
 			'#include <stdio.h>\n' +
@@ -666,7 +666,7 @@ module.exports = function(app, Config, Log) {
 			'srand(mcp7940n.get(5));\n' + // random seed
 			setup_code +
 			task_fn_code +
-			'}\n'  +
+			'}\n' +
 			'\n' +
 			'void vUserAppTask(void *pvParameters) {\n' +
 			'  // init device manager\n' +
@@ -787,7 +787,7 @@ module.exports = function(app, Config, Log) {
 							// create libmain
 							Log.i('archiving... libmain.a');
 							var cmd = util.format('"%s/xtensa-esp32-elf-ar" cru "%s/libmain.a" %s', toolchain_dir, user_app_dir, obj_files);
-							exec(ospath(cmd), (err, stdout, stderr) => {
+							exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
 								if (err) {
 									console.log(err);
 									// response with json format (ajax post dataType is json)
@@ -801,7 +801,7 @@ module.exports = function(app, Config, Log) {
 									// link
 									Log.i('linking... ' + board_name + '.elf');
 									var cmd = util.format('"%s/xtensa-esp32-elf-gcc" -nostdlib -u call_user_start_cpu0  -Wl,--gc-sections -Wl,-static -Wl,--start-group %s -L"%s" -lgcc -lstdc++ -lgcov -Wl,--end-group -Wl,-EL -o "%s/%s.elf"', toolchain_dir, ldflags, user_app_dir, user_app_dir, board_name);
-									exec(ospath(cmd), (err, stdout, stderr) => {
+									exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
 										if (err) {
 											console.log(err);
 											// response with json format (ajax post dataType is json)
@@ -821,7 +821,7 @@ module.exports = function(app, Config, Log) {
 												user_app_dir,
 												board_name
 											);
-											exec(ospath(cmd), (err, stdout, stderr) => {
+											exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
 												if (err) {
 													console.log(err);
 													// response with json format (ajax post dataType is json)
@@ -859,7 +859,7 @@ module.exports = function(app, Config, Log) {
 		}
 	});
 
-	app.post('/program', function(req, res) {
+	app.post('/program', function (req, res) {
 		var board_id = req.body['board_id'];
 		var mac_addr = req.body['mac_addr'];
 		var port_name = req.body['port_name'];
@@ -879,7 +879,7 @@ module.exports = function(app, Config, Log) {
 				release_dir + '/partitions_singleapp.bin',
 				user_app_dir + '/' + board_name + '.bin'
 			);
-			exec(ospath(cmd), (err, stdout, stderr) => {
+			exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
 				if (err) throw err;
 
 				res.setHeader('Content-Type', 'application/json');
@@ -899,22 +899,22 @@ module.exports = function(app, Config, Log) {
 		}
 	});
 
-	app.post('/gen_qr', function(req, res) {
-		var path = __dirname+'/../public/images/qrcode.png';
+	app.post('/gen_qr', function (req, res) {
+		var path = __dirname + '/../public/images/qrcode.png';
 		var mac_addr = req.body['mac_addr'];
 		QRCode.toFile(path, mac_addr, {
-		  color: {
-		    dark: '#000', // Blue modules
-		    light: '#0000' // Transparent background
-		  }
+			color: {
+				dark: '#000', // Blue modules
+				light: '#0000' // Transparent background
+			}
 		}, function (err) {
-		  if (err) throw err;
-		  res.setHeader('Content-Type', 'application/json');
-		  res.status(200);
-		  res.send(JSON.stringify({
-			  result: 'ok'
-		  }));
-	  });
+			if (err) throw err;
+			res.setHeader('Content-Type', 'application/json');
+			res.status(200);
+			res.send(JSON.stringify({
+				result: 'ok'
+			}));
+		});
 	});
 
 	function createCategory(cats, index, cb) {
@@ -1021,7 +1021,7 @@ module.exports = function(app, Config, Log) {
 		});
 	}
 
-	app.post('/plugins', function(req, res) {
+	app.post('/plugins', function (req, res) {
 		Log.i('loading plugins...');
 		fs.readdir(ospath(plugins_dir), (err, categories) => {
 			if (err) {
@@ -1097,7 +1097,7 @@ module.exports = function(app, Config, Log) {
 		});
 	}
 
-	app.get('/plugins.js', function(req, res) {
+	app.get('/plugins.js', function (req, res) {
 		// creating plugins.js
 		fs.readdir(ospath(plugins_dir), (err, categories) => {
 			if (err) {
@@ -1111,7 +1111,7 @@ module.exports = function(app, Config, Log) {
 		});
 	});
 
-	app.get('*', function(req, res) {
+	app.get('*', function (req, res) {
 		res.render('404', {
 			title: 'Page Not Found'
 		});
