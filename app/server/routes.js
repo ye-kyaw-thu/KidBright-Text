@@ -662,7 +662,7 @@ module.exports = function (app, Config, Log) {
 			iot_task +
 			task_code + '\n' +
 			'void user_app(void) {\n' +
-			'xTaskCreatePinnedToCore(iotTask, "iotTask", USERAPP_STACK_SIZE_MIN, NULL, USERAPP_TASK_PRIORITY, NULL, KIDBRIGHT_RUNNING_CORE);\n' +
+			'xTaskCreatePinnedToCore(iotTask, "iotTask", 4096, NULL, USERAPP_TASK_PRIORITY, NULL, KIDBRIGHT_RUNNING_CORE);\n' +
 			'srand(mcp7940n.get(5));\n' + // random seed
 			setup_code +
 			task_fn_code +
