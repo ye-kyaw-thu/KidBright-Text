@@ -12,7 +12,7 @@ function HomeController() {
 	if(localStorage.lang=="th"){
 		document.getElementById("toggle-lang").setAttribute('checked',"");
 	}
-	
+
 	state_lang = document.getElementById("toggle-lang").checked;
 	var ver = document.getElementsByClassName("lang-container")[0];
 	ver.style.backgroundColor = localStorage.verColor;
@@ -248,7 +248,7 @@ function HomeController() {
 	});
 
 	function saveFile(fn) {
-		let download = document.querySelector("a#btn-ok[download]");	
+		let download = document.querySelector("a#btn-ok[download]");
 		download.setAttribute("download", fn);
 		var dom = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace));
 		var data = b64EncodeUnicode(dom);
@@ -261,7 +261,7 @@ function HomeController() {
 
 	}
 	function saveFile2(fn) {
-		let download = document.querySelector("a#btn-save[download]");	
+		let download = document.querySelector("a#btn-save[download]");
 		download.setAttribute("download", fn);
 		var dom = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace));
 		var data = b64EncodeUnicode(dom);
@@ -717,11 +717,7 @@ function HomeController() {
 		$('.modal-wifi-config .modal-footer #btn-cancel').text(LANG_CANCEL);
 		$('.modal-wifi-config input#sta-ssid').val(sessionStorage.getItem('wifi-ssid'));
 		$('.modal-wifi-config input#sta-password').val(sessionStorage.getItem('wifi-password'));
-		if (sessionStorage.getItem('enable-iot') == false) {
-			$('.modal-wifi-config #wifi-iot-checkbox').prop('checked', false);
-		} else {
-			$('.modal-wifi-config #wifi-iot-checkbox').prop('checked', true);
-		}
+		$('.modal-wifi-config #wifi-iot-checkbox').val(sessionStorage.getItem('enable-iot'));
 		$('.modal-wifi-config.modal').modal({
 			show: true,
 			keyboard: false,
@@ -796,7 +792,7 @@ function HomeController() {
 		        m.parentNode.insertBefore(a, m)
 		    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 		    ga('create', 'UA-127108360-1', 'auto');
-		
+
 		    function send_event_to_googleAnalytics(mac_addr, action,category) {
 		        ga('send', {
 		            hitType: 'event',
@@ -804,9 +800,9 @@ function HomeController() {
 		            eventAction: action,
 		            eventLabel: mac_addr
 		        });
-		
+
 		    }
-		
+
 
 }
 

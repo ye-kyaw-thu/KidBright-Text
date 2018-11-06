@@ -72,7 +72,6 @@ function renderToolbox(res) {
 		}
 
 		// append plug-ins xml node
-		$(toolboxXml).append(sep_node);
 		$(toolboxXml).append(plugin_node);
 	}
 
