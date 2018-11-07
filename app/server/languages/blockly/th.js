@@ -835,3 +835,9 @@ Blockly.Msg.CATEGORY_ADVANCE = "ขั้นสูง";
 /** @export */ Blockly.Msg.MATH_POW_TITLE = "^";
 /** @export */ Blockly.Msg.MATH_POW_TOOLTIP = "ยกกำลัง";
 /** @export */ Blockly.Msg.MATH_POW_HELPURL = "";
+
+// push notification
+/** @export */ Blockly.Msg.PUSH_NOTIFICATION_TITLE = "แจ้งเตือน  หัวข้อ:";
+/** @export */ Blockly.Msg.PUSH_NOTIFICATION_MSG = " ข้อความ: ";
+/** @export */ Blockly.Msg.PUSH_NOTIFICATION_TOOLTIP = "ตั้งค่าหัวข้อและส่งข้อความไปยังแอป kidbright IOT";
+/** @export */ Blockly.Msg.PUSH_NOTIFICATION_HELPURL = "";

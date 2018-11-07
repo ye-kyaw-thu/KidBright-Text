@@ -430,3 +430,31 @@ Blockly.Blocks["feed_minmax"] = {
 		});
 	}
 };
+// =============================================================================
+// publish data notification
+// =============================================================================
+Blockly.Blocks["push_notification"] = {
+	init: function() {
+		this.jsonInit({
+			  "type": "push_notification",
+			  "message0": Blockly.Msg.PUSH_NOTIFICATION_TITLE +"%1" + Blockly.Msg.PUSH_NOTIFICATION_MSG +"%2",
+			  "args0": [
+			    {
+			      "type": "field_input",
+			      "name": "topic_msg",
+			      "text": "default"
+			    },
+			    {
+			      "type": "field_input",
+			      "name": "message_msg",
+			      "text": "default"
+			    }
+			  ],
+			  "previousStatement": null,
+  			  "nextStatement": null,
+  			  "colour": gauge_colour,
+  			  "tooltip": Blockly.Msg.PUSH_NOTIFICATION_TOOLTIP,
+    		  "helpUrl": Blockly.Msg.PUSH_NOTIFICATION_HELPURL
+		});
+	}
+};
