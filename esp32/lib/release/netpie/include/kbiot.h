@@ -5,19 +5,7 @@ extern "C" {
 #ifndef kbiot_h
 #define kbiot_h
 
-#include "microgear.h"
-#include "esp_log.h"
 #include "esp_system.h"
-
-#define TAG "KBIOT"
-
-// token bucket parameters
-#define FEED_BUCKETSIZE 4
-#define FEED_FILLRATE   0.2
-#define PUB_BUCKETSIZE 6
-#define PUB_FILLRATE   2
-
-#define KBIOT_DEBUG 0
 
 typedef enum {
     KBIOT_BUTTON_RELEASED = 0,
@@ -28,11 +16,10 @@ typedef enum {
 void kbiot_init(char* kbserial, char *clientid, char *username, char *password);
 void kbiot_setValue_int(char *target, int value);
 void kbiot_setValue_str(char *target, char *value);
+void kbiot_push(char *title, char *message);
 void kbiot_writeFeed(char *feedid, char *key, float value);
 void kbiot_setValue_float(char *target, float value);
 void kbiot_setConfig(char *target, char *data);
-bool toPublish(Microgear *mg, char *topic, char *payload, int len, int qos, int retain);
-void toWriteFeed(Microgear *mg, char *topic, char *payload, int len, int qos, int retain);
 void set_B1release();
 void set_B2release();
 uint8_t get_B1state();

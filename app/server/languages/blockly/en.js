@@ -826,3 +826,9 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.MATH_POW_TITLE = "^";
 /** @export */ Blockly.Msg.MATH_POW_TOOLTIP = "math pow";
 /** @export */ Blockly.Msg.MATH_POW_HELPURL = "";
+
+// push notification
+/** @export */ Blockly.Msg.PUSH_NOTIFICATION_TITLE = "push message  topic:";
+/** @export */ Blockly.Msg.PUSH_NOTIFICATION_MSG = " message: ";
+/** @export */ Blockly.Msg.PUSH_NOTIFICATION_TOOLTIP = "Set topic and send message to kidbright IOT app.";
+/** @export */ Blockly.Msg.PUSH_NOTIFICATION_HELPURL = "";

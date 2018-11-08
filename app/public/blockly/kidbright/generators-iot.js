@@ -84,3 +84,10 @@ Blockly.JavaScript['feed_minmax'] = function(block) {
   var code = 'IOT_CONFIG{"topic":"'+ dropdown_feed_selection +'","data":"' + '\\"min\\":\\"' + number_min_value + '\\",\\"max\\":\\"' + number_max_value  +'\\""}\n';
   return code;
 };
+
+Blockly.JavaScript['push_notification'] = function(block) {
+  var text_topic_msg = block.getFieldValue('topic_msg');
+  var text_message_msg = block.getFieldValue('message_msg');
+  var code = 'kbiot_push("'+ text_topic_msg +'", "' + text_message_msg + '");\n';
+  return code;
+};
