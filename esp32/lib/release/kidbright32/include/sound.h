@@ -18,6 +18,12 @@ class SOUND : public Device {
 		// override
 		void init(void);
 		void process(Driver *drv);
+		int prop_count(void);
+		bool prop_name(int index, char *name);
+		bool prop_unit(int index, char *unit);
+		bool prop_attr(int index, char *attr);
+		bool prop_read(int index, char *value);
+		bool prop_write(int index, char *value);
 		// method
 		void on(uint32_t freq, uint8_t duty_in_percent);
 		void off(void);

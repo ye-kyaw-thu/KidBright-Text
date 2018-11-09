@@ -480,6 +480,16 @@ function HomeController() {
 		Blockly.JavaScript.resetTaskNumber();
 		var code_str = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
 
+		// log code on console for debugging
+		console.log(
+			'=========================================================================================\n' +
+			'code generated on ' + moment().format('DD/MM/YYYY HH:mm:ss') + '\n' +
+			'=========================================================================================\n' +
+			code_str +
+			'=========================================================================================\n\n'
+		);
+		//return;
+
 		//$('.modal-build.modal').modal('show'); // $('.modal-build.modal').modal('hide');
 		$('.modal-build.modal').modal({
 			backdrop: 'static', // protect background click
@@ -487,10 +497,6 @@ function HomeController() {
 			show: true
 		});
 		$('#build-ok').prop('disabled', true);
-
-		//testbug
-		console.log(code_str);
-		//return;
 
 		$.ajax({
 			url: '/port_list',

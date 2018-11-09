@@ -1,12 +1,13 @@
-# kbide 
+# kbide
 
 node application สำหรับ kidbright ide
 
 ความต้องการ
 - node.js 8
+- python
+- pyserial
 
 วิธีติดตั้ง
-
 ```
 git clone https://gitlab.com/kidbright/kbide --recursive
 cd kbide
@@ -16,19 +17,4 @@ npm run build
 การรันโปรแกรมใช้คำสั่ง
 ```
 npm start
-```
-
-
-การอัพเดต submodule libnetpie ใช้คำสั่ง
-
-```
-git submodule update --recursive --remote
-```
-
-หลังจากนั้น
-
-```
-git add *
-git commit -m "xxxxxx"
-git push
 ```

@@ -21,6 +21,70 @@ void SI7021::init(void) {
 	state = s_detect;
 }
 
+int SI7021::prop_count(void) {
+	return 2;
+}
+
+bool SI7021::prop_name(int index, char *name) {
+	if (index == 0) {
+		snprintf(name, DEVICE_PROP_NAME_LEN_MAX, "%s", "temperature");
+		return true;
+	}
+	else
+	if (index == 1) {
+		snprintf(name, DEVICE_PROP_NAME_LEN_MAX, "%s", "humidity");
+		return true;
+	}
+
+	// not supported
+	return false;
+}
+
+bool SI7021::prop_unit(int index, char *unit) {
+	if (index == 0) {
+		snprintf(unit, DEVICE_PROP_UNIT_LEN_MAX, "%sC", "\xc2\xb0");
+		return true;
+	}
+	else
+	if (index == 1) {
+		snprintf(unit, DEVICE_PROP_UNIT_LEN_MAX, "%s", "%RH");
+		return true;
+	}
+
+	// not supported
+	return false;
+}
+
+bool SI7021::prop_attr(int index, char *attr) {
+	if ((index == 0) || (index == 1)) {
+		get_attr_str(attr, PROP_ATTR_READ_FLAG | PROP_ATTR_TYPE_NUMBER_FLAG); // read only, number
+		return true;
+	}
+
+	// not supported
+	return false;
+}
+
+bool SI7021::prop_read(int index, char *value) {
+	if (index == 0) {
+		snprintf(value, DEVICE_PROP_VALUE_LEN_MAX, "%f", temperature);
+		return true;
+	}
+	else
+	if (index == 1) {
+		snprintf(value, DEVICE_PROP_VALUE_LEN_MAX, "%f", humidity);
+		return true;
+	}
+
+	// not supported
+	return false;
+}
+
+bool SI7021::prop_write(int index, char *value) {
+	// not supported
+	return false;
+}
+
 void SI7021::process(Driver *drv) {
 	I2CDev *i2c = (I2CDev *)drv;
 	uint8_t byte, data[6];

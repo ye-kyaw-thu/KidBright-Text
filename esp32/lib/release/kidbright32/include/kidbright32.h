@@ -22,14 +22,14 @@
 #define SOUND_PWM_GPIO					13
 #define SOUND_DUTY_CYCLE_PERCENT_MAX	50
 
-#define DISPLAY_I2CBUS_SPEED			300000
+#define DISPLAY_I2CBUS_SPEED			400000
 #define DISPLAY_SDA_GPIO				GPIO_NUM_21
 #define DISPLAY_SCL_GPIO				GPIO_NUM_22
-#define CHAIN_I2CBUS_SPEED				300000
+#define CHAIN_I2CBUS_SPEED				400000
 #define CHAIN_SDA_GPIO					GPIO_NUM_4
 #define CHAIN_SCL_GPIO					GPIO_NUM_5
 
-#define SPIBUS_SPEED					1000000
+#define SPIBUS_SPEED					4000000
 #define SPIBUS_MISO_GPIO				GPIO_NUM_19
 #define SPIBUS_MOSI_GPIO				GPIO_NUM_23
 #define SPIBUS_CLK_GPIO					GPIO_NUM_18
@@ -44,16 +44,18 @@
 #define KIDBRIGHT_RUNNING_CORE			1
 #endif
 
+// =============================================================================
 // device manager
 // =============================================================================
-// task using ESP_LOG*, should set stack size >= 2048
+// xTaskCreatePinnedToCore stack size
+// task using ESP_LOG*, should set stack size >= 2048,
 // or "CORRUPT HEAP: multi_heap.c" will occur
 #define IO_DEV_STACK_SIZE_MIN			2048
 #define I2C0_DEV_STACK_SIZE_MIN			2048
-#define I2C1_DEV_STACK_SIZE_MIN			16384
-#define SPI_DEV_STACK_SIZE_MIN			16384
+#define I2C1_DEV_STACK_SIZE_MIN			8192
+#define SPI_DEV_STACK_SIZE_MIN			8192
 #define UART_STACK_SIZE_MIN				4096
-#define USERAPP_STACK_SIZE_MIN			8192
+#define USERAPP_STACK_SIZE_MIN			4096
 
 #ifdef SMALL_TEST
 // configMAX_PRIORITIES = 7
@@ -113,9 +115,8 @@
 
 #define MCP7940N_DEFAULT_DATETIME       "18043001000000"
 
-#define MAX_UART_LINE_CHAR_COUNT		32
-
-#define __DEBUG__
+#define MAX_UART_LINE_CHAR_COUNT		64
+#define MAX_UART_SPLIT_COUNT			4
 
 void StrSplit(char *cmd, char list[][MAX_UART_LINE_CHAR_COUNT], int *cnt, int max_split_cnt);
 

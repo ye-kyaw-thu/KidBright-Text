@@ -10,10 +10,11 @@ typedef enum {
 	DEV_SPI
 } driver_t;
 
-int devman_add(driver_t drv, Device *dev);
+int devman_add(char *dev_name, driver_t drv, Device *dev);
 int devman_count(driver_t drv);
 void devman_start(void);
 bool devman_ready(void);
+bool devman_cli(char *line, char list[][MAX_UART_LINE_CHAR_COUNT], int len);
 void devman_init(void);
 
 #endif

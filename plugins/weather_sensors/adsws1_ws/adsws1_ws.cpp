@@ -20,13 +20,62 @@ static void IRAM_ATTR adsws1_ws_gpio_isr_handler(void* arg) {
 
 ADSWS1_WS::ADSWS1_WS(int dev_addr) {
 	address = dev_addr;
-	sensor_gpio = GPIO_NUM_32;//(gpio_num_t)dev_addr;
+	sensor_gpio = (gpio_num_t)dev_addr;
 }
 
 void ADSWS1_WS::init(void) {
 	last_wind_speed_ts = 0;
 	wind_speed = 0;
 	state = s_detect;
+}
+
+int ADSWS1_WS::prop_count(void) {
+	return 1;
+}
+
+bool ADSWS1_WS::prop_name(int index, char *name) {
+	if (index == 0) {
+		snprintf(name, DEVICE_PROP_NAME_LEN_MAX, "%s", "wind_speed");
+		return true;
+	}
+
+	// not supported
+	return false;
+}
+
+bool ADSWS1_WS::prop_unit(int index, char *unit) {
+	if (index == 0) {
+		snprintf(unit, DEVICE_PROP_UNIT_LEN_MAX, "%s", "km/h");
+		return true;
+	}
+
+	// not supported
+	return false;
+}
+
+bool ADSWS1_WS::prop_attr(int index, char *attr) {
+	if (index == 0) {
+		get_attr_str(attr, PROP_ATTR_READ_FLAG | PROP_ATTR_TYPE_NUMBER_FLAG); // read only, number
+		return true;
+	}
+
+	// not supported
+	return false;
+}
+
+bool ADSWS1_WS::prop_read(int index, char *value) {
+	if (index == 0) {
+		snprintf(value, DEVICE_PROP_VALUE_LEN_MAX, "%f", wind_speed);
+		return true;
+	}
+
+	// not supported
+	return false;
+}
+
+bool ADSWS1_WS::prop_write(int index, char *value) {
+	// not supported
+	return false;
 }
 
 void ADSWS1_WS::process(Driver *drv) {

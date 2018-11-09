@@ -750,21 +750,25 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.ADVANCE_CURRENT_DRAIN_HELPURL = "";
 
 // menu
-Blockly.Msg.BUTTON_RUN = "เริ่มทำงาน";
-Blockly.Msg.BUTTON_SAVE = "บันทึก";
-Blockly.Msg.BUTTON_OPEN = "เปิด";
+/** @export */ Blockly.Msg.BUTTON_RUN = "เริ่มทำงาน";
+/** @export */ Blockly.Msg.BUTTON_SAVE = "บันทึก";
+/** @export */ Blockly.Msg.BUTTON_OPEN = "เปิด";
 
 // category
-Blockly.Msg.CATEGORY_BASIC = "พื้นฐาน";
-Blockly.Msg.CATEGORY_WAIT = "รอ";
-Blockly.Msg.CATEGORY_MATH = "คณิตฯ";
-Blockly.Msg.CATEGORY_LOGIC = "เงื่อนไข";
-Blockly.Msg.CATEGORY_LOOP = "วนรอบ";
-Blockly.Msg.CATEGORY_MUSIC = "ดนตรี";
-Blockly.Msg.CATEGORY_SENSOR = "หัววัด";
-Blockly.Msg.CATEGORY_RTC = "วันที่/เวลา";
-Blockly.Msg.CATEGORY_COMM = "สื่อสาร";
-Blockly.Msg.CATEGORY_ADVANCE = "ขั้นสูง";
+/** @export */ Blockly.Msg.CATEGORY_BASIC = "พื้นฐาน";
+/** @export */ Blockly.Msg.CATEGORY_WAIT = "รอ";
+/** @export */ Blockly.Msg.CATEGORY_MATH = "คณิตฯ";
+/** @export */ Blockly.Msg.CATEGORY_LOGIC = "เงื่อนไข";
+/** @export */ Blockly.Msg.CATEGORY_LOOP = "วนรอบ";
+/** @export */ Blockly.Msg.CATEGORY_MUSIC = "ดนตรี";
+/** @export */ Blockly.Msg.CATEGORY_SENSOR = "หัววัด";
+/** @export */ Blockly.Msg.CATEGORY_RTC = "วันที่/เวลา";
+/** @export */ Blockly.Msg.CATEGORY_ADVANCE = "ขั้นสูง";
+
+/** @export */ Blockly.Msg.INPUT = "อินพุต";
+/** @export */ Blockly.Msg.OUTPUT = "เอาต์พุต";
+/** @export */ Blockly.Msg.CHANNEL = "ช่อง";
+/** @export */ Blockly.Msg.ADDRESS = "หมายเลข";
 
 // publish gauge_iot blocks
 /** @export */ Blockly.Msg.GAUGE_IOT_TITLE = "ส่งข้อมูลไปยัง";

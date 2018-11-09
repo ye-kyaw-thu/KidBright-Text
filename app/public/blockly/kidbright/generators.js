@@ -349,7 +349,7 @@ Blockly.JavaScript['music_set_tempo'] = function(block) {
 // =============================================================================
 Blockly.JavaScript['sensor_lm73'] = function(block) {
  return [
-  '(lm73_0.is_error() ? lm73_1.get() : lm73_0.get())',
+  'lm73.get()',
   Blockly.JavaScript.ORDER_ATOMIC
  ];
 };
@@ -492,9 +492,6 @@ Blockly.JavaScript['advance_task'] = function(block) {
 			'\'' + block.id + '\'') + branch;
 	}
 
-//void vUserAppTask(void *pvParameters) {
-//xTaskCreatePinnedToCore(vUserAppTask, "User App Task", USERAPP_STACK_SIZE_MIN, NULL, USERAPP_TASK_PRIORITY, NULL, ARDUINO_RUNNING_CORE);
-
 	var code = 'void ' + funcName + '(void *pvParameters) {\n' +
 		branch +
 		'  // kill itself\n' +
@@ -506,9 +503,3 @@ Blockly.JavaScript['advance_task'] = function(block) {
 
 	return null;
 };
-/*
-Blockly.JavaScript['advance_current_drain_write'] = function(block) {
-	var ret = 'current_drain_write(' + block.getFieldValue('STATUS') + ');\n';
-	return ret;
-};
-*/

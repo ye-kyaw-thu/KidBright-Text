@@ -1664,3 +1664,31 @@ Blockly.Blocks["rtc_cal_coarse"] = {
 		});
 	}
 };
+
+// =============================================================================
+// utilities
+// =============================================================================
+Blockly.spi_slave_address_dropdown_menu = function(spi_channel) {
+	if (parseInt(spi_channel) == 0) {
+		// channel 0, available address = 0 to 3
+		return [
+			["0", "0"],
+			["1", "1"],
+			["2", "2"],
+			["3", "3"]
+		];
+	}
+	else {
+		// channel 1 to 64, available address = 0 to 7
+		return [
+			["0", "0"],
+			["1", "1"],
+			["2", "2"],
+			["3", "3"],
+			["4", "4"],
+			["5", "5"],
+			["6", "6"],
+			["7", "7"]
+		];
+	}
+};

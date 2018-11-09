@@ -755,8 +755,12 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.CATEGORY_SENSOR = "Sensor";
 /** @export */ Blockly.Msg.CATEGORY_RTC = "Date/Time";
 /** @export */ Blockly.Msg.CATEGORY_IO = "I/O";
-///** @export */ Blockly.Msg.CATEGORY_COMM = "Comm";
 /** @export */ Blockly.Msg.CATEGORY_ADVANCE = "Advance";
+
+/** @export */ Blockly.Msg.INPUT = "Input";
+/** @export */ Blockly.Msg.OUTPUT = "Output";
+/** @export */ Blockly.Msg.CHANNEL = "Channel";
+/** @export */ Blockly.Msg.ADDRESS = "Address";
 
 // publish gauge_iot blocks
 /** @export */ Blockly.Msg.GAUGE_IOT_TITLE = "Send data to";

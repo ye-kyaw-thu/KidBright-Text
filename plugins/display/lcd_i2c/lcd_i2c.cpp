@@ -45,6 +45,36 @@ void LCD_I2C::init(void) {
 	state = s_detect;
 }
 
+int LCD_I2C::prop_count(void) {
+	// not supported
+	return 0;
+}
+
+bool LCD_I2C::prop_name(int index, char *name) {
+	// not supported
+	return false;
+}
+
+bool LCD_I2C::prop_unit(int index, char *unit) {
+	// not supported
+	return false;
+}
+
+bool LCD_I2C::prop_attr(int index, char *attr) {
+	// not supported
+	return false;
+}
+
+bool LCD_I2C::prop_read(int index, char *value) {
+	// not supported
+	return false;
+}
+
+bool LCD_I2C::prop_write(int index, char *value) {
+	// not supported
+	return false;
+}
+
 uint8_t LCD_I2C::backlight_mask(void) {
 	if (backlight_status) {
 		return 0x02;

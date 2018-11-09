@@ -558,15 +558,15 @@ module.exports = function (app, Config, Log) {
 			plugins_includes_switch += ' -I"' + pluginsInfo[obj_inst_tab[inst_index].dir].rel_dir + '"';
 		}
 
-		// plug-ins object instantiate code, ex: SHT31 sht31 = SHT31(64, 0x44, 1000);
+		// plug-ins object instantiate code, ex: SHT31 sht31_0 = SHT31(64, 0x44, 1000);
 		var plugins_obj_inst_code = '';
 		for (var inst_index in obj_inst_tab) {
 			plugins_obj_inst_code += obj_inst_tab[inst_index].class + ' ' + obj_inst_tab[inst_index].declare + ' = ' + inst_index + ';\n';
 		}
-		// plug-ins object registration, ex: devman_add(DEV_I2C1, &sht31);
+		// plug-ins object registration, ex: devman_add("sht31_0", DEV_I2C1, &sht31_0);
 		var plugins_obj_reg_code = '';
 		for (var inst_index in obj_inst_tab) {
-			plugins_obj_reg_code += '  devman_add(' + obj_inst_tab[inst_index].driver + ',' + ' &' + obj_inst_tab[inst_index].declare + ');\n';
+			plugins_obj_reg_code += '  devman_add((char *)"' + obj_inst_tab[inst_index].declare + '", ' + obj_inst_tab[inst_index].driver + ',' + ' &' + obj_inst_tab[inst_index].declare + ');\n';
 		}
 
 		// add setup code indent
@@ -581,8 +581,6 @@ module.exports = function (app, Config, Log) {
 		var task_fn_code = '  // create tasks\n';
 		for (var task_fn_index in task_fn_name) {
 			var task_fn = task_fn_name[task_fn_index];
-			//xTaskCreatePinnedToCore(vUserAppTask, "User App Task", USERAPP_STACK_SIZE_MIN, NULL, USERAPP_TASK_PRIORITY, NULL, ARDUINO_RUNNING_CORE);
-			//task_fn_code += '  xTaskCreate(' + task_fn + ', "' + task_fn + '", USERAPP_STACK_SIZE_MIN, NULL, USERAPP_TASK_PRIORITY, NULL);\n'
 			task_fn_code += '  xTaskCreatePinnedToCore(' + task_fn + ', "' + task_fn + '", USERAPP_STACK_SIZE_MIN, NULL, USERAPP_TASK_PRIORITY, NULL, KIDBRIGHT_RUNNING_CORE);\n';
 		}
 
@@ -648,8 +646,7 @@ module.exports = function (app, Config, Log) {
 			'SOUND sound = SOUND();\n' +
 			'// i2c devices\n' +
 			'HT16K33 ht16k33 = HT16K33(0, HT16K33_ONBOARD_ADDR);\n' +
-			'LM73 lm73_0 = LM73(0, LM73_0_ONBOARD_ADDR); // hardware rev 1.0\n' +
-			'LM73 lm73_1 = LM73(0, LM73_1_ONBOARD_ADDR); // hardware from rev 1.1\n' +
+			'LM73 lm73 = LM73(0, LM73_1_ONBOARD_ADDR);\n' +
 			'MCP7940N mcp7940n = MCP7940N(0, MCP7940N_ONBOARD_ADDR);\n' +
 			'\n' +
 			'// ==================================================================================\n' +
@@ -676,16 +673,15 @@ module.exports = function (app, Config, Log) {
 			'  // add on-board devices\n' +
 			'  // ================================================================================\n' +
 			'  // i/o devices\n' +
-			'  devman_add(DEV_IO, &ports);\n' +
-			'  devman_add(DEV_IO, &button12);\n' +
-			'  devman_add(DEV_IO, &ldr);\n' +
-			'  devman_add(DEV_IO, &sound);\n' +
+			'  devman_add((char *)"ports", DEV_IO, &ports);\n' +
+			'  devman_add((char *)"button12", DEV_IO, &button12);\n' +
+			'  devman_add((char *)"ldr", DEV_IO, &ldr);\n' +
+			'  devman_add((char *)"sound", DEV_IO, &sound);\n' +
 			'  // i2c0 devices\n' +
-			'  devman_add(DEV_I2C0, &ht16k33);\n' +
+			'  devman_add((char *)"ht16k33", DEV_I2C0, &ht16k33);\n' +
 			'  // i2c1 devices\n' +
-			'  devman_add(DEV_I2C1, &lm73_0);\n' +
-			'  devman_add(DEV_I2C1, &lm73_1);\n' +
-			'  devman_add(DEV_I2C1, &mcp7940n);\n' +
+			'  devman_add((char *)"lm73", DEV_I2C1, &lm73);\n' +
+			'  devman_add((char *)"mcp7940n", DEV_I2C1, &mcp7940n);\n' +
 			'\n' +
 			'  // ================================================================================\n' +
 			'  // add plug-ins devices\n' +
