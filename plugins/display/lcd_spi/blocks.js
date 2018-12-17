@@ -12,10 +12,10 @@ Blockly.Blocks["lcd_spi_20x4.clear"] = {
 			.appendField(Blockly.Msg.CHANNEL)
 			.appendField(
 				new Blockly.FieldDropdown(channel_array, function(selectedIndex) {
-					// if address > 3 for selected index 0, set address to 0
+					// if address item index > 3 for selected index 0, set address item index to 0
 					if (selectedIndex == 0) {
-						if (this.sourceBlock_.inputList[2].fieldRow[1].value_ > 3) {
-							this.sourceBlock_.inputList[2].fieldRow[1].setValue(0);
+						if (Blockly.mcp23s17_get_address_item_index(selectedIndex, this.sourceBlock_.inputList[2].fieldRow[1].value_) > 3) {
+							this.sourceBlock_.inputList[2].fieldRow[1].setValue(Blockly.mcp23s17_address_dropdown_menu(0)[0][1]);
 						}
 					}
 					return selectedIndex;
@@ -23,20 +23,20 @@ Blockly.Blocks["lcd_spi_20x4.clear"] = {
 				'CHANNEL'
 			);
 
-		// device addess 0 to 3 for channel 0, addess 0 to 7 for channel 1 to 64
+		// device addess 0x20 to 0x23 for channel 0, addess 0x20 to 0x27 for channel 1 to 64
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.ADDRESS)
 			.appendField(new Blockly.FieldDropdown(function() {
 				try {
 					if ((typeof(this.sourceBlock_) != "undefined") && (typeof(this.sourceBlock_.inputList) != "undefined")) {
 						var selected_channel = parseInt(this.sourceBlock_.inputList[1].fieldRow[1].value_);
-						return Blockly.spi_slave_address_dropdown_menu(selected_channel);
+						return Blockly.mcp23s17_address_dropdown_menu(selected_channel);
 					}
 				} catch (e) {
 
 				}
 				// default
-				return Blockly.spi_slave_address_dropdown_menu(0);
+				return Blockly.mcp23s17_address_dropdown_menu(0);
 			}), 'ADDRESS');
 
 		this.appendDummyInput()
@@ -65,10 +65,10 @@ Blockly.Blocks["lcd_spi_20x4.backlight"] = {
 			.appendField(Blockly.Msg.CHANNEL)
 			.appendField(
 				new Blockly.FieldDropdown(channel_array, function(selectedIndex) {
-					// if address > 3 for selected index 0, set address to 0
+					// if address item index > 3 for selected index 0, set address item index to 0
 					if (selectedIndex == 0) {
-						if (this.sourceBlock_.inputList[2].fieldRow[1].value_ > 3) {
-							this.sourceBlock_.inputList[2].fieldRow[1].setValue(0);
+						if (Blockly.mcp23s17_get_address_item_index(selectedIndex, this.sourceBlock_.inputList[2].fieldRow[1].value_) > 3) {
+							this.sourceBlock_.inputList[2].fieldRow[1].setValue(Blockly.mcp23s17_address_dropdown_menu(0)[0][1]);
 						}
 					}
 					return selectedIndex;
@@ -76,20 +76,20 @@ Blockly.Blocks["lcd_spi_20x4.backlight"] = {
 				'CHANNEL'
 			);
 
-		// device addess 0 to 3 for channel 0, addess 0 to 7 for channel 1 to 64
+		// device addess 0x20 to 0x23 for channel 0, addess 0x20 to 0x27 for channel 1 to 64
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.ADDRESS)
 			.appendField(new Blockly.FieldDropdown(function() {
 				try {
 					if ((typeof(this.sourceBlock_) != "undefined") && (typeof(this.sourceBlock_.inputList) != "undefined")) {
 						var selected_channel = parseInt(this.sourceBlock_.inputList[1].fieldRow[1].value_);
-						return Blockly.spi_slave_address_dropdown_menu(selected_channel);
+						return Blockly.mcp23s17_address_dropdown_menu(selected_channel);
 					}
 				} catch (e) {
 
 				}
 				// default
-				return Blockly.spi_slave_address_dropdown_menu(0);
+				return Blockly.mcp23s17_address_dropdown_menu(0);
 			}), 'ADDRESS');
 
 		this.appendDummyInput()
@@ -122,10 +122,10 @@ Blockly.Blocks["lcd_spi_20x4.print"] = {
 			.appendField(Blockly.Msg.CHANNEL)
 			.appendField(
 				new Blockly.FieldDropdown(channel_array, function(selectedIndex) {
-					// if address > 3 for selected index 0, set address to 0
+					// if address item index > 3 for selected index 0, set address item index to 0
 					if (selectedIndex == 0) {
-						if (this.sourceBlock_.inputList[2].fieldRow[1].value_ > 3) {
-							this.sourceBlock_.inputList[2].fieldRow[1].setValue(0);
+						if (Blockly.mcp23s17_get_address_item_index(selectedIndex, this.sourceBlock_.inputList[2].fieldRow[1].value_) > 3) {
+							this.sourceBlock_.inputList[2].fieldRow[1].setValue(Blockly.mcp23s17_address_dropdown_menu(0)[0][1]);
 						}
 					}
 					return selectedIndex;
@@ -133,20 +133,20 @@ Blockly.Blocks["lcd_spi_20x4.print"] = {
 				'CHANNEL'
 			);
 
-		// device addess 0 to 3 for channel 0, addess 0 to 7 for channel 1 to 64
+		// device addess 0x20 to 0x23 for channel 0, addess 0x20 to 0x27 for channel 1 to 64
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.ADDRESS)
 			.appendField(new Blockly.FieldDropdown(function() {
 				try {
 					if ((typeof(this.sourceBlock_) != "undefined") && (typeof(this.sourceBlock_.inputList) != "undefined")) {
 						var selected_channel = parseInt(this.sourceBlock_.inputList[1].fieldRow[1].value_);
-						return Blockly.spi_slave_address_dropdown_menu(selected_channel);
+						return Blockly.mcp23s17_address_dropdown_menu(selected_channel);
 					}
 				} catch (e) {
 
 				}
 				// default
-				return Blockly.spi_slave_address_dropdown_menu(0);
+				return Blockly.mcp23s17_address_dropdown_menu(0);
 			}), 'ADDRESS');
 
 		this.appendValueInput('VALUE')
@@ -180,10 +180,10 @@ Blockly.Blocks["lcd_spi_20x4.print_prec"] = {
 			.appendField(Blockly.Msg.CHANNEL)
 			.appendField(
 				new Blockly.FieldDropdown(channel_array, function(selectedIndex) {
-					// if address > 3 for selected index 0, set address to 0
+					// if address item index > 3 for selected index 0, set address item index to 0
 					if (selectedIndex == 0) {
-						if (this.sourceBlock_.inputList[2].fieldRow[1].value_ > 3) {
-							this.sourceBlock_.inputList[2].fieldRow[1].setValue(0);
+						if (Blockly.mcp23s17_get_address_item_index(selectedIndex, this.sourceBlock_.inputList[2].fieldRow[1].value_) > 3) {
+							this.sourceBlock_.inputList[2].fieldRow[1].setValue(Blockly.mcp23s17_address_dropdown_menu(0)[0][1]);
 						}
 					}
 					return selectedIndex;
@@ -191,20 +191,20 @@ Blockly.Blocks["lcd_spi_20x4.print_prec"] = {
 				'CHANNEL'
 			);
 
-		// device addess 0 to 3 for channel 0, addess 0 to 7 for channel 1 to 64
+		// device addess 0x20 to 0x23 for channel 0, addess 0x20 to 0x27 for channel 1 to 64
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.ADDRESS)
 			.appendField(new Blockly.FieldDropdown(function() {
 				try {
 					if ((typeof(this.sourceBlock_) != "undefined") && (typeof(this.sourceBlock_.inputList) != "undefined")) {
 						var selected_channel = parseInt(this.sourceBlock_.inputList[1].fieldRow[1].value_);
-						return Blockly.spi_slave_address_dropdown_menu(selected_channel);
+						return Blockly.mcp23s17_address_dropdown_menu(selected_channel);
 					}
 				} catch (e) {
 
 				}
 				// default
-				return Blockly.spi_slave_address_dropdown_menu(0);
+				return Blockly.mcp23s17_address_dropdown_menu(0);
 			}), 'ADDRESS');
 
 		this.appendValueInput('VALUE')

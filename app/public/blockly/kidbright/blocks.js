@@ -1668,27 +1668,39 @@ Blockly.Blocks["rtc_cal_coarse"] = {
 // =============================================================================
 // utilities
 // =============================================================================
-Blockly.spi_slave_address_dropdown_menu = function(spi_channel) {
+Blockly.mcp23s17_address_dropdown_menu = function(spi_channel) {
 	if (parseInt(spi_channel) == 0) {
-		// channel 0, available address = 0 to 3
+		// spi channel 0, available mcp23s17 address = 0x20 to 0x23
 		return [
-			["0", "0"],
-			["1", "1"],
-			["2", "2"],
-			["3", "3"]
+			["0x20", "32"],
+			["0x21", "33"],
+			["0x22", "34"],
+			["0x23", "35"]
 		];
 	}
 	else {
-		// channel 1 to 64, available address = 0 to 7
+		// spi channel 1 to 64, available mcp23s17 address = 0x20 to 0x27
 		return [
-			["0", "0"],
-			["1", "1"],
-			["2", "2"],
-			["3", "3"],
-			["4", "4"],
-			["5", "5"],
-			["6", "6"],
-			["7", "7"]
+			["0x20", "32"],
+			["0x21", "33"],
+			["0x22", "34"],
+			["0x23", "35"],
+			["0x24", "36"],
+			["0x25", "37"],
+			["0x26", "38"],
+			["0x27", "39"]
 		];
 	}
 };
+
+// get address item index
+Blockly.mcp23s17_get_address_item_index = function(spi_channel, address_value) {
+	var address_dropdown_menu = Blockly.mcp23s17_address_dropdown_menu(spi_channel);
+	for (var i = 0; i < address_dropdown_menu.length; i++) {
+		if (address_dropdown_menu[i][1] == address_value) {
+			break;
+		}
+	}
+
+	return i;
+}

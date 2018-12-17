@@ -108,12 +108,12 @@ esp_err_t LCD_SPI::lcd_write(SPIDev *spi, bool instruction, uint8_t val) {
 	esp_err_t ret;
 	uint8_t data[3];
 
-	data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+	data[0] = address << 1; // opcode write
 	data[1] = MCP23S17_REG_GPIOB;
 	data[2] = val;
 	ret = spi->write(channel, address, data, 3);
 	if (ret == ESP_OK) {
-		data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+		data[0] = address << 1; // opcode write
 		data[1] = MCP23S17_REG_GPIOA;
 		data[2] = 0xa0 | backlight_mask(); // RS(PA7) = 1 (data), RW(PA6) = 0, E(PA5) = 1
 		if (instruction) {
@@ -121,7 +121,7 @@ esp_err_t LCD_SPI::lcd_write(SPIDev *spi, bool instruction, uint8_t val) {
 		}
 		ret = spi->write(channel, address, data, 3);
 		if (ret == ESP_OK) {
-			data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+			data[0] = address << 1; // opcode write
 			data[1] = MCP23S17_REG_GPIOA;
 			data[2] = 0x00  | backlight_mask() ; // E(PA5) = 0
 			ret = spi->write(channel, address, data, 3);
@@ -152,12 +152,12 @@ void LCD_SPI::process(Driver *drv) {
 			// detect spi device
 			if (spi->detect(channel, address) == ESP_OK) {
 				// init MCP23S17
-				data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+				data[0] = address << 1; // opcode write
 				data[1] = MCP23S17_REG_GPIOA;
 				data[2] = 0x00 | backlight_mask(); // PA = 0000 0000 (PA7=RS, PA6=RW, PA5=E, PA1=BL)
 				data[3] = 0xff; // PB = 1111 1111
 				if (spi->write(channel, address, data, 4) == ESP_OK) {
-					data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+					data[0] = address << 1; // opcode write
 					data[1] = MCP23S17_REG_IODIRA;
 					data[2] = 0x1d; // IODIRA = 0001 1101 (PA1,PA5,PA6,PA7 = output)
 					data[3] = 0x00; // IODIRB = 0000 0000 (output)
@@ -236,7 +236,7 @@ void LCD_SPI::process(Driver *drv) {
 			break;
 
 		case s_backlight:
-			data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+			data[0] = address << 1; // opcode write
 			data[1] = MCP23S17_REG_GPIOA;
 			data[2] = 0x00 | backlight_mask(); // update backlight status
 			if ((spi->write(channel, address, data, 3)) == ESP_OK) {
