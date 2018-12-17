@@ -91,19 +91,19 @@ void MCP23S17_16OUT::process(Driver *drv) {
 			// detect spi device
 			if (spi->detect(channel, address) == ESP_OK) {
 				// // enable hardware address
-				data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+				data[0] = address << 1; // opcode write
 				data[1] = MCP23S17_REG_IOCON;
 				data[2] = 0x08; // enable HAEN bit
 				data[3] = 0x08; // enable HAEN bit
 				if (spi->write(channel, address, data, 4) == ESP_OK) {
 					// initial gpio
-					data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+					data[0] = address << 1; // opcode write
 					data[1] = MCP23S17_REG_GPIOA;
 					data[2] = gpa_value; // GPIOA
 					data[3] = gpb_value; // GPIOB
 					if (spi->write(channel, address, data, 4) == ESP_OK) {
 						// set io direction to output
-						data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+						data[0] = address << 1; // opcode write
 						data[1] = MCP23S17_REG_IODIRA;
 						data[2] = 0x00; // IODIRA = 0000 0000 (output)
 						data[3] = 0x00; // IODIRB = 0000 0000 (output)
@@ -133,7 +133,7 @@ void MCP23S17_16OUT::process(Driver *drv) {
 
 		case s_write:
 			// initial gpio
-			data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+			data[0] = address << 1; // opcode write
 			data[1] = MCP23S17_REG_GPIOA;
 			data[2] = gpa_write_value; // GPIOA
 			data[3] = gpb_write_value; // GPIOB

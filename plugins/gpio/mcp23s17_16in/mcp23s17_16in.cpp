@@ -77,19 +77,19 @@ void MCP23S17_16IN::process(Driver *drv) {
 			// detect spi device
 			if (spi->detect(channel, address) == ESP_OK) {
 				// // enable hardware address
-				data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+				data[0] = address << 1; // opcode write
 				data[1] = MCP23S17_REG_IOCON;
 				data[2] = 0x08; // enable HAEN bit
 				data[3] = 0x08; // enable HAEN bit
 				if (spi->write(channel, address, data, 4) == ESP_OK) {
 					// enable pull-up
-					data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+					data[0] = address << 1; // opcode write
 					data[1] = MCP23S17_REG_GPPUA;
 					data[2] = 0xff; // GPPUA = 1111 1111 (all pull-up)
 					data[3] = 0xff; // GPPUB = 1111 1111 (all pull-up)
 					if (spi->write(channel, address, data, 4) == ESP_OK) {
 						// set io direction to input
-						data[0] = 0x40 | ((address << 1) & 0x0f); // opcode write
+						data[0] = address << 1; // opcode write
 						data[1] = MCP23S17_REG_IODIRA;
 						data[2] = 0xff; // IODIRA = 1111 1111 (input)
 						data[3] = 0xff; // IODIRB = 1111 1111 (input)
@@ -117,7 +117,7 @@ void MCP23S17_16IN::process(Driver *drv) {
 
 		case s_read:
 			// init MCP23S17
-			data[0] = 0x41 | ((address << 1) & 0x0f); // opcode read
+			data[0] = (address << 1) | 0x01; // opcode read
 			data[1] = MCP23S17_REG_GPIOA;
 			if (spi->read(channel, address, data, 2, &data[2], 2) == ESP_OK) {
 				gpa_value = data[2];
