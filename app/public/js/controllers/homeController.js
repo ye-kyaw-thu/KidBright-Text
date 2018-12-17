@@ -118,13 +118,12 @@ function HomeController() {
 	});
 
 	$('.modal-save-file-browser #btn-ok').click(function () {
-
-		var fn = $('.modal-save-file-browser #file-text').val();
+		var fn = $('.modal-save-file-browser #save-file-text').val();
 		// if (fn == '') return;
 		if (fn == '') {
 			fn = "untitle.txt"
 		}
-		document.getElementById("file-text").value = '';
+		document.getElementById("save-file-text").value = '';
 		saveFile(fn);
 
 		// check file exists
@@ -151,7 +150,7 @@ function HomeController() {
 	});
 
 	$('.modal-save-overwrite-confirm #btn-ok').click(function () {
-		saveFile($('.modal-save-file-browser #file-text').val());
+		saveFile($('.modal-save-file-browser #save-file-text').val());
 		$('.modal-save-overwrite-confirm').modal('hide');
 	});
 
@@ -219,7 +218,7 @@ function HomeController() {
 	});
 
 	$('.modal-delete-file-browser #btn-ok').click(function () {
-		var fn = $('.modal-delete-file-browser #file-text').val();
+		var fn = $('.modal-delete-file-browser #delete-file-text').val();
 		if (fn == '') return;
 
 		$('.modal-delete-confirm .modal-header h4').text(LANG_FILE_DELETE_CONFIRM);
@@ -231,7 +230,7 @@ function HomeController() {
 	});
 
 	$('.modal-delete-confirm #btn-ok').click(function () {
-		deleteFile($('.modal-delete-file-browser #file-text').val());
+		deleteFile($('.modal-delete-file-browser #delete-file-text').val());
 	});
 
 	function alertError(e) {
@@ -295,7 +294,6 @@ function HomeController() {
 	}
 
 	$('#btn-save').click(function () {
-
 		if (isElecrton == true) {
 			console.log("click save");
 			var fn = filename;
@@ -304,7 +302,7 @@ function HomeController() {
 				fn = "untitle.txt"
 			}
 			saveFile2(fn);
-			document.getElementById( "file-text" ).value = filename;
+			document.getElementById( "save-file-text" ).value = filename;
 			return;
 		}
 		// save file browser modal form
@@ -313,8 +311,8 @@ function HomeController() {
 		$('.modal-save-file-browser .modal-footer #btn-cancel').text(LANG_CANCEL);
 
 		$('.modal-save-file-browser #file-list').empty();
-		document.getElementById( "file-text" ).value = filename;
-		// $('.modal-save-file-browser #file-text').text('');
+		document.getElementById( "save-file-text" ).value = filename;
+		// $('.modal-save-file-browser #save-file-text').text('');
 
 		$.ajax({
 			type: 'POST',
@@ -332,7 +330,7 @@ function HomeController() {
 				}
 
 				$('.modal-save-file-browser .modal-body .list-group .list-group-item').click(function(e) {
-					$('.modal-save-file-browser #file-text').val($(e.target).text());
+					$('.modal-save-file-browser #save-file-text').val($(e.target).text());
 				});
 
 				$('.modal-save-file-browser').modal({
@@ -439,7 +437,7 @@ function HomeController() {
 		$('.modal-delete-file-browser .modal-footer #btn-cancel').text(LANG_CANCEL);
 
 		$('.modal-delete-file-browser #file-list').empty();
-		$('.modal-delete-file-browser #file-text').text('');
+		$('.modal-delete-file-browser #delete-file-text').text('');
 
 		$.ajax({
 			type: 'POST',
@@ -457,7 +455,7 @@ function HomeController() {
 				}
 
 				$('.modal-delete-file-browser .modal-body .list-group .list-group-item').click(function (e) {
-					$('.modal-delete-file-browser #file-text').val($(e.target).text());
+					$('.modal-delete-file-browser #delete-file-text').val($(e.target).text());
 				});
 
 				// show modal
