@@ -2,25 +2,31 @@
 
 ### แพลตฟอร์ม windows
 - ติดตั้ง KidBright IDE (NEW UI, 64 bits)
-- เปิดโปรแกรม KidBright IDE
+- เปิดโปรแกรม KidBright IDE และ Minimize ไว้
+- การพัฒนา plugins จะทดสอบผ่านโปรแกรม Google Chrome
 - ใช้ Google Chrome พิมพ์ http://localhost:8000
 
 ### ตรวจสอบ plugins ที่ติดตั้งมากับโปรแกรม KidBright IDE
 ![GitHub Logo](images/installed_plugins.png)
 
+### โครงสร้างโฟลเดอร์สำหรับ blink plugin
+![GitHub Logo](images/blink_directory_tree.png)
+
 ### ตำแหน่งที่อยู่ของโฟลเดอร์ plugins
 ```
 C:\Users\user\AppData\Local\KidBright\app-1.0.0\resources\app\kbide\plugins
+
+*** หมายเหตุ: "C:\Users\user" เป็นโฟลเดอร์ของ windows user account ที่เข้าใช้งานอยู่ แต่ละเครื่องจะไม่เหมือนกัน
 ```
 
-### สร้าง examples category
-- สร้างโฟลเดอร์
+### สร้างหมวด examples
+- สร้างโฟลเดอร์ examples
 
 ```
 C:\Users\user\AppData\Local\KidBright\app-1.0.0\resources\app\kbide\plugins\examples
 ```
 
-- สร้างไฟล์
+- สร้างไฟล์ examples.json
 
 ```
 C:\Users\user\AppData\Local\KidBright\app-1.0.0\resources\app\kbide\plugins\examples\examples.json
@@ -47,14 +53,14 @@ C:\Users\user\AppData\Local\KidBright\app-1.0.0\resources\app\kbide\plugins\exam
 C:\Users\user\AppData\Local\KidBright\app-1.0.0\resources\app\kbide\plugins\examples\blink
 ```
 
-### สร้างโฟลเดอร์เก็บไฟล์ภาษา
+### สร้างโฟลเดอร์เก็บไฟล์ภาษาสำหรับบล๊อก
 
 ```
 C:\Users\user\AppData\Local\KidBright\app-1.0.0\resources\app\kbide\plugins\examples\blink\msg
 ```
 
 ### สร้างไฟล์ภาษา
-- สร้างไฟล์สำหรับภาษาอังกฤษ
+- สร้างไฟล์ en.js สำหรับภาษาอังกฤษ
 
 ```
 C:\Users\user\AppData\Local\KidBright\app-1.0.0\resources\app\kbide\plugins\examples\blink\msg\en.js
@@ -71,7 +77,7 @@ Blockly.Msg.BLINK_STOP_TOOLTIP = "Stop Blinking LED";
 Blockly.Msg.BLINK_STOP_HELPURL = "";
 ```
 
-- สร้างไฟล์สำหรับภาษาไทย
+- สร้างไฟล์ th.js สำหรับภาษาไทย
 
 ```
 C:\Users\user\AppData\Local\KidBright\app-1.0.0\resources\app\kbide\plugins\examples\blink\msg\th.js
@@ -88,8 +94,8 @@ Blockly.Msg.BLINK_STOP_TOOLTIP = "หยุดกระพริบแอลอ�
 Blockly.Msg.BLINK_STOP_HELPURL = "";
 ```
 
-### สร้างไฟล์สำหรับ blockly
-- สร้าง blockly ไฟล์ชื่อ blocks.js
+### สร้างไฟล์สำหรับการสร้างบล๊อก
+- สร้างไฟล์ blocks.js
 
 ```
 C:\Users\user\AppData\Local\KidBright\app-1.0.0\resources\app\kbide\plugins\examples\blink\blocks.js
@@ -125,6 +131,9 @@ Blockly.Blocks["blink.stop"] = {
 };
 ```
 
+- blink.start เป็นบล๊อกสั่งให้ LED เริ่มกระพริบ
+- blink.stop เป็นบล๊อกสั่งให้ LED หยุดกระพริบ
+
 ### สร้างไฟล์ generators สำหรับแปลงบล๊อกเป็นโค๊ด
 - สร้างไฟล์ generators.js
 
@@ -144,10 +153,14 @@ Blockly.JavaScript['blink.stop'] = function(block) {
 };
 ```
 
+- DEV_IO.BLINK() กำหนดให้ขั้นตอนการแปลงในเฟส 2 สร้าง Object ชนิด BLINK และเลือกใช้ชนิด Device เป็น DEV_IO (Device ชนิด I/O)
+
 ### กด F5 ที่โปรแกรม Google Chrome เพื่อรีเฟรช plugins ที่แก้ไข
 ![GitHub Logo](images/examples_blink.png)
 
-### สร้างไฟล์โค๊ดภาษา C++
+- จะได้บล๊อก Start Blinkg LED และ Stop Blinking LED อยู่ในหมวด Examples
+
+### สร้างไฟล์ header ภาษา C++
 - สร้างไฟล์ blink.h
 
 ```
@@ -192,6 +205,23 @@ class BLINK : public Device {
 
 #endif
 ```
+
+- รายละเอียดไฟล์ blink.h
+  - สร้างคลาส BLINK สืบทอดจากคลาส Device
+  - ตัวแปรแบบ private
+    - state ใช้ในเม็ด-ธ็อด process ซี่งทำงานแบบ state machine
+	- blink_status เก็บสถานะ LED
+	- blink_flag กำหนดสถานะให้กระพริบ หรือหยุดกระพริบ
+  - ตัวแปรแบบ public
+    - tickcnt ใช้เก็บค่าเวลาครั้งก่อน เพื่อนำมาคำนวณเวลาที่ผ่านไป ว่าได้ระยะเวลาที่ต้องการหรือยัง ด้วยฟังก์ชั่น is_tickcnt_elapsed()
+  - เม็ด-ธ็อดแบบ public
+    - init ใช้สำหรับใส่โค๊ดสำหรับกำหนดค่าต่างๆ
+    - process ใช้สำหรับใส่โค๊ดซี่งทำงานแบบ state machine และจะถูกเรียกให้ทำงานเป็นระยะๆ ด้วย Device Manager
+	- เม็ด-ธ็อดที่ขึ้นต้นด้วย prop_ ใช้สำหรับใส่โค๊ดเพื่อรองรับ Command Line Interface (CLI)
+	- start ใช้เขียนโค๊ดให้ LED เริ่มกระพริบ
+	- stop ใช้เขียนโค๊ดให้ LED หยุดกระพริบ
+
+### สร้างไฟล์โค๊ดภาษา C++
 
 - สร้างไฟล์ blink.cpp
 
@@ -297,6 +327,14 @@ void BLINK::stop(void) {
 }
 ```
 
+- เม็ด-ธ็อด process เป็น state machine มีการทำงานดังนี้
+  - s_detect เป็น state สำหรับตรวจสอบ Device ในกรณีไม่ใช้งานให้กำหนด error เป็น false เพื่อแสดงสถานของ Device ไม่มี error และกำหนดให้ initialized เป็น true เพื่อแสดงสถานะของ Device ว่าพร้อมใช้งาน หลังจากนั้นกำหนด state ไปที่ s_blink
+  - s_blink ใน state นี้จะตรวจสอบ blink_flag ว่าต้องการให้ LED กระพริบหรือไม่ ถ้าต้องการให้กระพริบ จะคำนวณค่าเวลาที่ผ่านไปด้วยฟังก์ชั่น is_tickcnt_elapsed โดยเปรียบเทียบกับค่า tickcnt ล่าสุด กับค่า 500 ms ถ้าเวลาผ่านไปได้ตามกำหนดนี้แล้ว ให้ทำการกระพริบ LED แล้วบันทึกค่า tickcnt ปัจจุบันด้วยฟังก์ชั่น get_tickcnt() เพื่อใช้ในการคำนวณในรอบต่อไป
+- เม็ด-ธ็อด start จะสั่งให้ LED ติด บันทึกค่า tickcnt ปัจจุบัน แล้วตั้งค่า blink_flag เป็น true เพื่อให้เม็ด-ธ็อด process ทำการกระพริบ LED
+- เม็ด-ธ็อด start จะตั้งค่า blink_flag เป็น false เพื่อหยุดการกระพริบ LED ในเม็ด-ธ็อด process แล้วสั่งดับ LED
+
+![GitHub Logo](images/blink_fsm.png)
+
 ### ทดสอบ Build โปรแกรมบล๊อกดังนี้
 
 ![GitHub Logo](images/blink_test.png)
@@ -346,7 +384,7 @@ void user_app(void) {
 
 ### ขบวนการแปลงบล๊อกเป็นโค๊ดเฟส 2
 
-- ขบวนการนี้ จะตรวจสอบว่ามีการใช้งาน device ใดบ้าง หลังจากนั้นทำ Object Instantiation แล้วแทนที่ชื่อ Device ที่อ้างถึงด้วยชื่อ Object
+- ขบวนการนี้ จะตรวจสอบว่ามีการใช้งาน Device ใดบ้าง หลังจากนั้นทำ Object Instantiation แล้วแทนที่ชื่อ Device ที่อ้างถึงด้วยชื่อ Object
 
 - สร้าง Object ขี้นมา (Object Instantiation)
 	```c
@@ -360,6 +398,16 @@ void user_app(void) {
 	จะถูกเปลี่ยนเป็น
 	```c
 	blink_0.start();
+	```
+
+	และ
+
+	```c
+	DEV_IO.BLINK().stop();
+	```
+	จะถูกเปลี่ยนเป็น
+	```c
+	blink_0.stop();
 	```
 
 ### ข้อกำหนดชนิดของ Device ที่รองรับ ในการแปลงบล๊อกเป็นโค๊ดในเฟส 2
