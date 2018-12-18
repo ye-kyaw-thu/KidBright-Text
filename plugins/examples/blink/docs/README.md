@@ -153,12 +153,12 @@ Blockly.JavaScript['blink.stop'] = function(block) {
 };
 ```
 
-- DEV_IO.BLINK() กำหนดให้ขั้นตอนการแปลงในเฟส 2 สร้าง Object ชนิด BLINK และเลือกใช้ชนิด Device เป็น DEV_IO (Device ชนิด I/O)
+- DEV_IO.BLINK() กำหนดให้ขั้นตอนการแปลงบล๊อกเป็นโค๊ดในเฟส 2 สร้าง Object คลาส BLINK และเลือกใช้ชนิด Device เป็น DEV_IO (Device ชนิด I/O)
 
 ### กด F5 ที่โปรแกรม Google Chrome เพื่อรีเฟรช plugins ที่แก้ไข
 ![GitHub Logo](images/examples_blink.png)
 
-- จะได้บล๊อก Start Blinkg LED และ Stop Blinking LED อยู่ในหมวด Examples
+- จะได้บล๊อก Start Blinking LED และ Stop Blinking LED อยู่ในหมวด Examples
 
 ### สร้างไฟล์ header ภาษา C++
 - สร้างไฟล์ blink.h
@@ -215,7 +215,7 @@ class BLINK : public Device {
   - ตัวแปรแบบ public
     - tickcnt ใช้เก็บค่าเวลาครั้งก่อน เพื่อนำมาคำนวณเวลาที่ผ่านไป ว่าได้ระยะเวลาที่ต้องการหรือยัง ด้วยฟังก์ชั่น is_tickcnt_elapsed()
   - เม็ด-ธ็อดแบบ public
-    - init ใช้สำหรับใส่โค๊ดสำหรับกำหนดค่าเริ่มต้นต่างๆ เม็ด-ธ็อดนี้จะถูกเรียกโดย Device Manager ก่อนเข้าสู่การทำงาน state machine ของเม็ด-ธ็อด process
+    - init ใช้ใส่โค๊ดสำหรับกำหนดค่าเริ่มต้นต่างๆ เม็ด-ธ็อดนี้จะถูกเรียกโดย Device Manager ก่อนเข้าสู่การทำงาน state machine ของเม็ด-ธ็อด process
     - process ใช้สำหรับใส่โค๊ดซี่งทำงานแบบ state machine และจะถูกเรียกให้ทำงานเป็นระยะๆ ด้วย Device Manager
 	- เม็ด-ธ็อดที่ขึ้นต้นด้วย prop_ ใช้สำหรับใส่โค๊ดเพื่อรองรับ Command Line Interface (CLI)
 	- start ใช้เขียนโค๊ดให้ LED เริ่มกระพริบ
@@ -331,7 +331,7 @@ void BLINK::stop(void) {
   - s_detect เป็น state สำหรับตรวจสอบ Device ในกรณีไม่ใช้งานให้กำหนด error เป็น false เพื่อแสดงสถานของ Device ไม่มี error และกำหนดให้ initialized เป็น true เพื่อแสดงสถานะของ Device ว่าพร้อมใช้งาน หลังจากนั้นกำหนด state ไปที่ s_blink
   - s_blink ใน state นี้จะตรวจสอบ blink_flag ว่าต้องการให้ LED กระพริบหรือไม่ ถ้าต้องการให้กระพริบ จะคำนวณค่าเวลาที่ผ่านไปด้วยฟังก์ชั่น is_tickcnt_elapsed โดยเปรียบเทียบกับค่า tickcnt ล่าสุด กับค่า 500 ms ถ้าเวลาผ่านไปได้ตามกำหนดนี้แล้ว ให้ทำการกระพริบ LED แล้วบันทึกค่า tickcnt ปัจจุบันด้วยฟังก์ชั่น get_tickcnt() เพื่อใช้ในการคำนวณในรอบต่อไป
 - เม็ด-ธ็อด start จะสั่งให้ LED ติด บันทึกค่า tickcnt ปัจจุบัน แล้วตั้งค่า blink_flag เป็น true เพื่อให้เม็ด-ธ็อด process ทำการกระพริบ LED
-- เม็ด-ธ็อด start จะตั้งค่า blink_flag เป็น false เพื่อหยุดการกระพริบ LED ในเม็ด-ธ็อด process แล้วสั่งดับ LED
+- เม็ด-ธ็อด stop จะตั้งค่า blink_flag เป็น false เพื่อหยุดการกระพริบ LED ในเม็ด-ธ็อด process แล้วสั่งดับ LED
 
 ![GitHub Logo](images/blink_fsm.png)
 
