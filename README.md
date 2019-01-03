@@ -19,6 +19,12 @@ npm run build
 npm start
 ```
 
+### KidBright Engine
+
+- รายละเอียดวงจร การต่อขยายฮาร์ดแวร์ การออกแบบซอฟท์แวร์ ของ KidBright
+
+	https://gitlab.com/kidbright/kbide/tree/master/docs
+
 ### KidBright Plug-ins
 
 - ตัวอย่างพร้อมคำอธิบายการสร้าง KidBright Plug-ins
