@@ -47,13 +47,13 @@
 ![GitHub Logo](images/i2c_spi_device_driver.png)
 
 ### Device Platform C++ Class
-device class สำหรับพัฒนาอุปกรณ์ชนิดใหม่ๆ ออกแบบบนพื้นฐาน Non-Blocking I/O Model  
+device class สำหรับพัฒนาอุปกรณ์ชนิดใหม่ๆ ออกแบบบนพื้นฐาน Non-Blocking I/O Model
+
 Virtual Methods ที่ต้องเตรียมไว้
 - Initialize สำหรับกำหนดค่าเริ่มต้นต่างๆ
 - State Machine (process) สำหรับให้ถูกเรียกทำงานในแบบ Non-Blocking
 - Properties สำหรับ CLI เป็นตัวเลือก สามารถเพิ่มเติมให้สมบูรณ์ภายหลังได้
-
-มีสถานะการทำงานของอุปกรณ์ และฟังก์ชั่นคำนวณเวลาที่ผ่านไปเพื่อนำไปคำนวณการทำงานตามเวลาได้
+- มีสถานะการทำงานของอุปกรณ์ และฟังก์ชั่นคำนวณเวลาที่ผ่านไปเพื่อนำไปคำนวณการทำงานตามเวลาได้
 
 ![GitHub Logo](images/device_platform.png)
 
@@ -65,3 +65,24 @@ Virtual Methods ที่ต้องเตรียมไว้
 - ให้บริการคำสั่ง CLI เพื่อสอบถามสถานะของอุปกรณ์
 
 ![GitHub Logo](images/device_manager.png)
+
+### Device Manager tasks
+device manager จะสร้าง task จำนวน 4 tasks โดยแต่ละ task จะมี list เก็บรายการอุปกรณ์ (device) ที่อยู่ใน task ซึ่งเพิ่มเข้ามาจากขั้นตอนการลงทะเบียน เพื่อบริหารจัดการต่อไป ดังนี้
+- DEV_IO task
+- DEV_I2C0 task
+- DEV_I2C1 task
+- DEV_SPI task
+
+โดย task priority ทั้งหมดที่อยู่ในระบบ device manager จะสูงกว่าของ user application ที่สร้างตอนเขียนโปรแกรมแบบบล๊อก
+
+![GitHub Logo](images/device_manager_tasks.png)
+
+### vDevListTask State Machine
+ขั้นตอนการทำงานของแต่ละ task ใน device manager มีดังนี้
+- s_init เป็น state ที่ device manager เรียกเม็ด-ธ็อด init ของแต่ละ device ที่อยู่ใน list เพื่อให้แต่ละ device ทำการกำหนดค่าเริ่มต้นต่างๆ
+- s_wait เป็น state device manager เรียกเม็ด-ธ็อด process ของแต่ละ device ที่อยู่ใน list แล้วรอจนกว่า initialized หรือ error flag เป็น true เพื่อรอให้ device อยู่ในสถานะพร้อมใช้งาน
+- s_proc เป็น state device manager เรียกเม็ด-ธ็อด process ของแต่ละ device ที่อยู่ใน list เพื่อให้ device ทำงานอย่างต่อเนื่อง
+
+state machine นี้ทำงานโดยมี idle ในแต่ละ state ตามค่า task_idle_ms ของ device list แต่ละชุดที่ device manager สร้างขึ้น
+
+![GitHub Logo](images/vDevListTask_state_machine.png)
