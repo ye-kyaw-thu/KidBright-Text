@@ -14,7 +14,7 @@
 - ขยายความสามารถในด้านการขับอุปกรณ์จำนวนมาก
 - กรณีต้องการแปลงแรงดันไปใช้กับอุปกรณ์แบบ 5 โวลท์
 
-[วงจร Channel Expander](https://gitlab.com/kidbright/kbide/blob/master/docs/schematics/kidbright_expansion_rev10.pdf)
+[วงจร Channel Expander](https://gitlab.com/kidbright/kbide/blob/master/docs/schematics/kidbright_expansion_rev11.pdf)
 
 ![GitHub Logo](images/i2c_spi_channel_expander.png)
 
