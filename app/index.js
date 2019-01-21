@@ -7,10 +7,11 @@ const bodyParser = require('body-parser');
 const jade = require('jade');
 const Log = require('./log');
 const Config = require('./config.json');
-const version = '1.23';
+const version = require('../package.json').version;
+const port = global.gPort || Config.webserver.port;
 
 module.exports = {
-	init: function(process_dir, snapshot_flag) {
+	init: function (process_dir, snapshot_flag) {
 		Config.version = version;
 		Config.process_dir = process_dir;
 		Config.snapshot_flag = snapshot_flag;
@@ -50,8 +51,8 @@ module.exports = {
 
 		require(__dirname + '/server/routes.js')(app, Config, Log);
 
-		http.createServer(app).listen(Config.webserver.port, function() {
-			Log.i('webserver listening on port ' + Config.webserver.port);
+		http.createServer(app).listen(port, function () {
+			Log.i('webserver listening on port ' + port);
 		});
 	}
 };
