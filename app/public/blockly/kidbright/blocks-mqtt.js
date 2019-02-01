@@ -115,3 +115,16 @@ Blockly.Blocks["mqtt_start"] = {
         });
 	}
 };
+
+Blockly.Blocks["mqtt_get_topic_data"] = {
+	init: function(){
+		this.jsonInit({
+            "type": "get_topic_data",
+            "message0": Blockly.Msg.MQTT_GET_TOPIC_DATA,
+            "output": null,
+            "colour": 180,
+            "tooltip": Blockly.Msg.MQTT_GET_TOPIC_DATA_TOOLTIP,
+            "helpUrl": ""
+          });
+	}
+};

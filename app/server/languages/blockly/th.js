@@ -867,3 +867,7 @@ goog.require('Blockly.Msg');
 // mqtt start
 /** @export */ Blockly.Msg.MQTT_START = "mqtt start";
 /** @export */ Blockly.Msg.MQTT_START_TOOLTIP = "เริ่มการทำงาน mqtt protocal";
+
+// mqtt get topic data
+/** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA = "get topic data";
+/** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA_TOOLTIP = "get topic data";
