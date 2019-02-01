@@ -845,3 +845,25 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.PUSH_NOTIFICATION_MSG = " ข้อความ: ";
 /** @export */ Blockly.Msg.PUSH_NOTIFICATION_TOOLTIP = "ตั้งค่าหัวข้อและส่งข้อความไปยังแอป kidbright IOT";
 /** @export */ Blockly.Msg.PUSH_NOTIFICATION_HELPURL = "";
+
+// mqtt setting
+/** @export */ Blockly.Msg.MQTT_SET_CLIENT_ID = "client id";
+/** @export */ Blockly.Msg.MQTT_SERVER = "server";
+/** @export */ Blockly.Msg.MQTT_PORT = "port";
+/** @export */ Blockly.Msg.MQTT_USER = "user";
+/** @export */ Blockly.Msg.MQTT_PASSWORD = "password";
+/** @export */ Blockly.Msg.MQTT_KEEP_ALIVE = "keep alive";
+/** @export */ Blockly.Msg.MQTT_SET_TOOLTIP = "ตั้งค่าเพื่อใช้งาน mqtt";
+
+// mqtt subscribe
+/** @export */ Blockly.Msg.MQTT_SUBSCRIBE = "subscribe with topic ";
+/** @export */ Blockly.Msg.MQTT_SUBSCRIBE_TOOLTIP = "subscribe";
+
+// mqtt publish
+/** @export */ Blockly.Msg.MQTT_PUBLISH_INIT = "publish data ";
+/** @export */ Blockly.Msg.MQTT_PUBLISH_TOPIC = "to topic";
+/** @export */ Blockly.Msg.MQTT_PUBLISH_TOOLTOP = "ส่งข้อมูลไปยัง topic";
+
+// mqtt start
+/** @export */ Blockly.Msg.MQTT_START = "mqtt start";
+/** @export */ Blockly.Msg.MQTT_START_TOOLTIP = "เริ่มการทำงาน mqtt protocal";
