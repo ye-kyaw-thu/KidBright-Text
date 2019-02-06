@@ -140,7 +140,7 @@ Blockly.Blocks["basic_delay"] = {
 		// max 1 day delay = 86400 sec.
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.BASIC_DELAY_TITLE)
-			.appendField(new Blockly.FieldNumber(0.5, 0.1, 86400, 0.1), 'VALUE');
+			.appendField(new Blockly.FieldNumber(0.5, 0.02, 86400, 0.01), 'VALUE'); // default, min, max, step
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
 		this.setColour(basic_colour);
