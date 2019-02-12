@@ -808,6 +808,13 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.FEED_MAIN_TITLE_HELPURL = "";
 /** @export */ Blockly.Msg.FIELD1 = "Graph1";
 /** @export */ Blockly.Msg.FIELD2 = "Graph2";
+/** @export */ Blockly.Msg.FIELD3 = "Graph3";
+/** @export */ Blockly.Msg.FIELD4 = "Graph4";
+/** @export */ Blockly.Msg.FIELD5 = "Graph5";
+/** @export */ Blockly.Msg.FIELD6 = "Graph6";
+/** @export */ Blockly.Msg.FIELD7 = "Graph7";
+/** @export */ Blockly.Msg.FIELD8 = "Graph8";
+/** @export */ Blockly.Msg.FIELD9 = "Graph9";
 
 // config feed unit
 /** @export */ Blockly.Msg.FEED_UNIT_TITLE = "Config unit";

@@ -812,6 +812,13 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.FEED_TITLE_HELPURL = "";
 /** @export */ Blockly.Msg.FIELD1 = "กราฟ1";
 /** @export */ Blockly.Msg.FIELD2 = "กราฟ2";
+/** @export */ Blockly.Msg.FIELD3 = "กราฟ3";
+/** @export */ Blockly.Msg.FIELD4 = "กราฟ4";
+/** @export */ Blockly.Msg.FIELD5 = "กราฟ5";
+/** @export */ Blockly.Msg.FIELD6 = "กราฟ6";
+/** @export */ Blockly.Msg.FIELD7 = "กราฟ7";
+/** @export */ Blockly.Msg.FIELD8 = "กราฟ8";
+/** @export */ Blockly.Msg.FIELD9 = "กราฟ9";
 
 // config feed main title
 /** @export */ Blockly.Msg.FEED_MAIN_TITLE = "ตั้งค่าชื่อกราฟ";

@@ -215,7 +215,7 @@ Blockly.Blocks["feed_iot"] = {
 			  {
 			    "type": "field_dropdown",
 			    "name": "FEED_SELECTION",
-			    "options": [
+			    "options": [ 
 			      [
 			        Blockly.Msg.FIELD1,
 			        "F1"
@@ -223,6 +223,34 @@ Blockly.Blocks["feed_iot"] = {
 			      [
 			        Blockly.Msg.FIELD2,
 			        "F2"
+						],
+						[
+			        Blockly.Msg.FIELD3,
+			        "F3"
+						],
+						[
+			        Blockly.Msg.FIELD4,
+			        "F4"
+						],
+						[
+			        Blockly.Msg.FIELD5,
+			        "F5"
+						],
+						[
+			        Blockly.Msg.FIELD6,
+			        "F6"
+						],
+						[
+			        Blockly.Msg.FIELD7,
+			        "F7"
+						],
+						[
+			        Blockly.Msg.FIELD8,
+			        "F8"
+						],
+						[
+			        Blockly.Msg.FIELD9,
+			        "F9"
 			      ]
 			    ]
 			  },
@@ -268,6 +296,34 @@ Blockly.Blocks["feed_title"] = {
 			      [
 			        Blockly.Msg.FIELD2,
 			        "F2"
+						],
+						[
+			        Blockly.Msg.FIELD3,
+			        "F3"
+						],
+						[
+			        Blockly.Msg.FIELD4,
+			        "F4"
+						],
+						[
+			        Blockly.Msg.FIELD5,
+			        "F5"
+						],
+						[
+			        Blockly.Msg.FIELD6,
+			        "F6"
+						],
+						[
+			        Blockly.Msg.FIELD7,
+			        "F7"
+						],
+						[
+			        Blockly.Msg.FIELD8,
+			        "F8"
+						],
+						[
+			        Blockly.Msg.FIELD9,
+			        "F9"
 			      ]
 			    ]
 			  }
@@ -324,12 +380,40 @@ Blockly.Blocks["feed_unit"] = {
 			    "name": "FEED_SELECTION",
 			    "options": [
 			      [
-			        "field1",
+			        Blockly.Msg.FIELD1,
 			        "F1"
 			      ],
 			      [
-			        "field2",
+			        Blockly.Msg.FIELD2,
 			        "F2"
+						],
+						[
+			        Blockly.Msg.FIELD3,
+			        "F3"
+						],
+						[
+			        Blockly.Msg.FIELD4,
+			        "F4"
+						],
+						[
+			        Blockly.Msg.FIELD5,
+			        "F5"
+						],
+						[
+			        Blockly.Msg.FIELD6,
+			        "F6"
+						],
+						[
+			        Blockly.Msg.FIELD7,
+			        "F7"
+						],
+						[
+			        Blockly.Msg.FIELD8,
+			        "F8"
+						],
+						[
+			        Blockly.Msg.FIELD9,
+			        "F9"
 			      ]
 			    ]
 			  }
@@ -368,6 +452,34 @@ Blockly.Blocks['feed_color'] = {
 			      [
 			        Blockly.Msg.FIELD2,
 			        "F2"
+						],
+						[
+			        Blockly.Msg.FIELD3,
+			        "F3"
+						],
+						[
+			        Blockly.Msg.FIELD4,
+			        "F4"
+						],
+						[
+			        Blockly.Msg.FIELD5,
+			        "F5"
+						],
+						[
+			        Blockly.Msg.FIELD6,
+			        "F6"
+						],
+						[
+			        Blockly.Msg.FIELD7,
+			        "F7"
+						],
+						[
+			        Blockly.Msg.FIELD8,
+			        "F8"
+						],
+						[
+			        Blockly.Msg.FIELD9,
+			        "F9"
 			      ]
 			    ]
 			  }
@@ -403,6 +515,34 @@ Blockly.Blocks["feed_minmax"] = {
 			      [
 			        Blockly.Msg.FIELD2,
 			        "F2"
+						],
+						[
+			        Blockly.Msg.FIELD3,
+			        "F3"
+						],
+						[
+			        Blockly.Msg.FIELD4,
+			        "F4"
+						],
+						[
+			        Blockly.Msg.FIELD5,
+			        "F5"
+						],
+						[
+			        Blockly.Msg.FIELD6,
+			        "F6"
+						],
+						[
+			        Blockly.Msg.FIELD7,
+			        "F7"
+						],
+						[
+			        Blockly.Msg.FIELD8,
+			        "F8"
+						],
+						[
+			        Blockly.Msg.FIELD9,
+			        "F9"
 			      ]
 			    ]
 			  },
