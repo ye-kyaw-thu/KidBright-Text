@@ -812,6 +812,13 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.FEED_TITLE_HELPURL = "";
 /** @export */ Blockly.Msg.FIELD1 = "กราฟ1";
 /** @export */ Blockly.Msg.FIELD2 = "กราฟ2";
+/** @export */ Blockly.Msg.FIELD3 = "กราฟ3";
+/** @export */ Blockly.Msg.FIELD4 = "กราฟ4";
+/** @export */ Blockly.Msg.FIELD5 = "กราฟ5";
+/** @export */ Blockly.Msg.FIELD6 = "กราฟ6";
+/** @export */ Blockly.Msg.FIELD7 = "กราฟ7";
+/** @export */ Blockly.Msg.FIELD8 = "กราฟ8";
+/** @export */ Blockly.Msg.FIELD9 = "กราฟ9";
 
 // config feed main title
 /** @export */ Blockly.Msg.FEED_MAIN_TITLE = "ตั้งค่าชื่อกราฟ";
@@ -845,3 +852,29 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.PUSH_NOTIFICATION_MSG = " ข้อความ: ";
 /** @export */ Blockly.Msg.PUSH_NOTIFICATION_TOOLTIP = "ตั้งค่าหัวข้อและส่งข้อความไปยังแอป kidbright IOT";
 /** @export */ Blockly.Msg.PUSH_NOTIFICATION_HELPURL = "";
+
+// mqtt setting
+/** @export */ Blockly.Msg.MQTT_SET_CLIENT_ID = "client id";
+/** @export */ Blockly.Msg.MQTT_SERVER = "server";
+/** @export */ Blockly.Msg.MQTT_PORT = "port";
+/** @export */ Blockly.Msg.MQTT_USER = "user";
+/** @export */ Blockly.Msg.MQTT_PASSWORD = "password";
+/** @export */ Blockly.Msg.MQTT_KEEP_ALIVE = "keep alive";
+/** @export */ Blockly.Msg.MQTT_SET_TOOLTIP = "ตั้งค่าเพื่อใช้งาน mqtt";
+
+// mqtt subscribe
+/** @export */ Blockly.Msg.MQTT_SUBSCRIBE = "subscribe with topic ";
+/** @export */ Blockly.Msg.MQTT_SUBSCRIBE_TOOLTIP = "subscribe";
+
+// mqtt publish
+/** @export */ Blockly.Msg.MQTT_PUBLISH_INIT = "publish data ";
+/** @export */ Blockly.Msg.MQTT_PUBLISH_TOPIC = "to topic";
+/** @export */ Blockly.Msg.MQTT_PUBLISH_TOOLTOP = "ส่งข้อมูลไปยัง topic";
+
+// mqtt start
+/** @export */ Blockly.Msg.MQTT_START = "mqtt start";
+/** @export */ Blockly.Msg.MQTT_START_TOOLTIP = "เริ่มการทำงาน mqtt protocal";
+
+// mqtt get topic data
+/** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA = "get topic data";
+/** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA_TOOLTIP = "get topic data";

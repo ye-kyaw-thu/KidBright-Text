@@ -808,6 +808,13 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.FEED_MAIN_TITLE_HELPURL = "";
 /** @export */ Blockly.Msg.FIELD1 = "Graph1";
 /** @export */ Blockly.Msg.FIELD2 = "Graph2";
+/** @export */ Blockly.Msg.FIELD3 = "Graph3";
+/** @export */ Blockly.Msg.FIELD4 = "Graph4";
+/** @export */ Blockly.Msg.FIELD5 = "Graph5";
+/** @export */ Blockly.Msg.FIELD6 = "Graph6";
+/** @export */ Blockly.Msg.FIELD7 = "Graph7";
+/** @export */ Blockly.Msg.FIELD8 = "Graph8";
+/** @export */ Blockly.Msg.FIELD9 = "Graph9";
 
 // config feed unit
 /** @export */ Blockly.Msg.FEED_UNIT_TITLE = "Config unit";
@@ -836,3 +843,29 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.PUSH_NOTIFICATION_MSG = " message: ";
 /** @export */ Blockly.Msg.PUSH_NOTIFICATION_TOOLTIP = "Set topic and send message to kidbright IOT app.";
 /** @export */ Blockly.Msg.PUSH_NOTIFICATION_HELPURL = "";
+
+// mqtt setting
+/** @export */ Blockly.Msg.MQTT_SET_CLIENT_ID = "client id";
+/** @export */ Blockly.Msg.MQTT_SERVER = "server";
+/** @export */ Blockly.Msg.MQTT_PORT = "port";
+/** @export */ Blockly.Msg.MQTT_USER = "user";
+/** @export */ Blockly.Msg.MQTT_PASSWORD = "password";
+/** @export */ Blockly.Msg.MQTT_KEEP_ALIVE = "keep alive";
+/** @export */ Blockly.Msg.MQTT_SET_TOOLTIP = "config setting mqtt";
+
+// mqtt subscribe
+/** @export */ Blockly.Msg.MQTT_SUBSCRIBE = "subscribe with topic ";
+/** @export */ Blockly.Msg.MQTT_SUBSCRIBE_TOOLTIP = "subscribe task";
+
+// mqtt publish
+/** @export */ Blockly.Msg.MQTT_PUBLISH_INIT = "publish data ";
+/** @export */ Blockly.Msg.MQTT_PUBLISH_TOPIC = "to topic";
+/** @export */ Blockly.Msg.MQTT_PUBLISH_TOOLTOP = "publish data to topic";
+
+// mqtt start
+/** @export */ Blockly.Msg.MQTT_START = "mqtt start";
+/** @export */ Blockly.Msg.MQTT_START_TOOLTIP = "start working with mqtt protocal";
+
+// mqtt get topic data
+/** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA = "get topic data";
+/** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA_TOOLTIP = "get topic data";
