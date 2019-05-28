@@ -1704,3 +1704,51 @@ Blockly.mcp23s17_get_address_item_index = function(spi_channel, address_value) {
 
 	return i;
 }
+
+//---------------------------------------------------------------------
+Blockly.Blocks["function"] = {
+	init: function () {
+		this.jsonInit({
+			"type": "function",
+			"message0": Blockly.Msg.FUNCTION_TITLE + " %1 %2 %3",
+			"args0": [{
+					"type": "field_input",
+					"name": "NAME",
+					"text": "foo"
+				},
+				{
+					"type": "input_dummy"
+				},
+				{
+					"type": "input_statement",
+					"name": "NAME"
+				}
+			],
+			"colour": 30,
+			"tooltip": "",
+			"helpUrl": ""
+		});
+	}
+};
+
+Blockly.Blocks["call_function"] = {
+	init: function () {
+		this.jsonInit({
+			"type": "call_function",
+			"message0": Blockly.Msg.CALL_FUNCTION_TITLE + " %1",
+			"args0": [{
+				"type": "field_input",
+				"name": "NAME",
+				"text": "foo"
+			}],
+			"inputsInline": true,
+			"previousStatement": null,
+			"nextStatement": null,
+			"colour": 30,
+			"tooltip": "",
+			"helpUrl": ""
+		});
+	}
+};
+
+

@@ -869,3 +869,8 @@ goog.require('Blockly.Msg');
 // mqtt get topic data
 /** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA = "get topic data";
 /** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA_TOOLTIP = "get topic data";
+
+// function
+/** @export */ Blockly.Msg.FUNCTION_TITLE = "function";
+/** @export */ Blockly.Msg.CALL_FUNCTION_TITLE = "call function";
+

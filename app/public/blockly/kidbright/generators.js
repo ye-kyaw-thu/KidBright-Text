@@ -503,3 +503,21 @@ Blockly.JavaScript['advance_task'] = function(block) {
 
 	return null;
 };
+
+//---------------------------------------------------------------------
+Blockly.JavaScript['function'] = function (block) {
+	var text_name = block.getFieldValue('NAME');
+	var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+	// TODO: Assemble JavaScript into code variable.
+	var code = '...;\n';
+	return code;
+};
+
+Blockly.JavaScript['call_function'] = function (block) {
+	var text_name = block.getFieldValue('NAME');
+	// TODO: Assemble JavaScript into code variable.
+	var code = '...;\n';
+	return code;
+};
+
+
