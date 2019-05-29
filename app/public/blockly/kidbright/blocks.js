@@ -1721,10 +1721,10 @@ Blockly.Blocks["function"] = {
 				},
 				{
 					"type": "input_statement",
-					"name": "NAME"
+					"name": "STACK"
 				}
 			],
-			"colour": 30,
+			"colour": advance_colour,
 			"tooltip": "",
 			"helpUrl": ""
 		});
@@ -1744,7 +1744,7 @@ Blockly.Blocks["call_function"] = {
 			"inputsInline": true,
 			"previousStatement": null,
 			"nextStatement": null,
-			"colour": 30,
+			"colour": advance_colour,
 			"tooltip": "",
 			"helpUrl": ""
 		});

@@ -517,10 +517,10 @@ module.exports = function (app, Config, Log) {
 			}
 
 			// task function
-			if (line.substring(0, 10) == 'void vTask') {
+			if ((line.substring(0, 10) == 'void vTask') || (line.substring(0, 10) == 'void func_')) {
 				var tmp_line = line.replace('(', ' ');
 				var tmp_linelst = tmp_line.split(' ');
-				task_fn_name.push(tmp_linelst[1]);
+				if (line.substring(0, 10) !== 'void func_') task_fn_name.push(tmp_linelst[1]);
 				task_code += '\n';
 				in_func_flag = true;
 			}

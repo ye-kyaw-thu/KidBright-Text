@@ -506,17 +506,31 @@ Blockly.JavaScript['advance_task'] = function(block) {
 
 //---------------------------------------------------------------------
 Blockly.JavaScript['function'] = function (block) {
-	var text_name = block.getFieldValue('NAME');
-	var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
-	// TODO: Assemble JavaScript into code variable.
-	var code = '...;\n';
-	return code;
+	let funcName = block.getFieldValue('NAME');
+
+	// generate unique function name
+	let branch = Blockly.JavaScript.statementToCode(block, 'STACK');
+	if (Blockly.JavaScript.STATEMENT_PREFIX) {
+		branch = Blockly.JavaScript.prefixLines(
+			Blockly.JavaScript.STATEMENT_PREFIX.replace(/%1/g,
+				'\'' + block.id + '\''), Blockly.JavaScript.INDENT) + branch;
+	}
+	if (Blockly.JavaScript.INFINITE_LOOP_TRAP) {
+		branch = Blockly.JavaScript.INFINITE_LOOP_TRAP.replace(/%1/g,
+			'\'' + block.id + '\'') + branch;
+	}
+	let code = 'void func_' + funcName + '(void) {\n' + branch + '\n}';
+	code = Blockly.JavaScript.scrub_(block, code);
+	// Add % so as not to collide with helper functions in definitions list.
+	Blockly.JavaScript.definitions_['%' + funcName] = code;
+	return null;
 };
 
 Blockly.JavaScript['call_function'] = function (block) {
-	var text_name = block.getFieldValue('NAME');
+	var name = block.getFieldValue('NAME');
 	// TODO: Assemble JavaScript into code variable.
-	var code = '...;\n';
+	let code = `func_${name}();\n`;
+
 	return code;
 };
 
