@@ -541,7 +541,19 @@ module.exports = function (app, Config, Log) {
 			}
 		}
 		if (task_code != '') {
-			task_code = task_code + '\n';
+			// task_code = task_code + '\n';
+			// change to declare function first
+			var func_list = task_code.split('\n\n');
+			// for(i in func_list) console.log('debug: ', func_list[i]);
+
+			var task_group = '';
+			var func_group = '';
+			for(func_num in func_list){
+				let current_func = func_list[func_num];
+				if(current_func.indexOf("void func_") !== -1) func_group += current_func;
+				else task_group += current_func;
+			}
+			task_code = func_group + task_group;
 		}
 
 		// plug-ins includes
