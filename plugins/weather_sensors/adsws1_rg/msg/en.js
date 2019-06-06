@@ -1,3 +1,3 @@
-Blockly.Msg.ADSWS1_RG_GET_RAIN_GAUGE_MM_TITLE = "ADWS1 24Hrs Rain Gauge";
-Blockly.Msg.ADSWS1_RG_GET_RAIN_GAUGE_MM_TOOLTIP = "Read ADWS1 Rain Gauge Last 24 Hours (mm.)";
+Blockly.Msg.ADSWS1_RG_GET_RAIN_GAUGE_MM_TITLE = "ADS-WS1 24Hrs Rain Gauge";
+Blockly.Msg.ADSWS1_RG_GET_RAIN_GAUGE_MM_TOOLTIP = "Read ADS-WS1 Rain Gauge Last 24 Hours (mm.)";
 Blockly.Msg.ADSWS1_RG_GET_RAIN_GAUGE_MM_HELPURL = "";

@@ -1,3 +1,3 @@
-Blockly.Msg.ADSWS1_WS_GET_WIND_SPEED_KM_H_TITLE = "ADWS1 Wind Speed";
-Blockly.Msg.ADSWS1_WS_GET_WIND_SPEED_KM_H_TOOLTIP = "Read ADWS1 Wind Speed (km/h)";
+Blockly.Msg.ADSWS1_WS_GET_WIND_SPEED_KM_H_TITLE = "ADS-WS1 Wind Speed";
+Blockly.Msg.ADSWS1_WS_GET_WIND_SPEED_KM_H_TOOLTIP = "Read ADS-WS1 Wind Speed (km/h)";
 Blockly.Msg.ADSWS1_WS_GET_WIND_SPEED_KM_H_HELPURL = "";
