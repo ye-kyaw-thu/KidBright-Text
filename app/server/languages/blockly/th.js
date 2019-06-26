@@ -403,7 +403,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.VARIABLES_GET_CREATE_SET = "สร้าง \"กำหนด %1\"";
 /** @export */ Blockly.Msg.VARIABLES_GET_HELPURL = "https://github.com/google/blockly/wiki/Variables#get";  // untranslated
 /** @export */ Blockly.Msg.VARIABLES_GET_TOOLTIP = "คืนค่าของตัวแปรนี้";
-/** @export */ Blockly.Msg.VARIABLES_SET = "กำหนด %1 จนถึง %2";
+/** @export */ Blockly.Msg.VARIABLES_SET = "กำหนด %1 เป็น %2";
 /** @export */ Blockly.Msg.VARIABLES_SET_CREATE_GET = "สร้าง \"get %1\"";
 /** @export */ Blockly.Msg.VARIABLES_SET_HELPURL = "https://github.com/google/blockly/wiki/Variables#set";  // untranslated
 /** @export */ Blockly.Msg.VARIABLES_SET_TOOLTIP = "กำหนดให้ตัวแปรนี้เท่ากับการป้อนข้อมูล";
