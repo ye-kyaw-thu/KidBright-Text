@@ -17,15 +17,15 @@ Blockly.JavaScript['string_join'] = function(block) {
       elements[i] = Blockly.JavaScript.valueToCode(block, 'ADD' + i,
           Blockly.JavaScript.ORDER_COMMA) || 'null';
 	}
-	var result = '(char *)"';
-	for(i in elements){
+	var result = '';
+	for(var i=0; i<elements.length; i++){
 		var element = elements[i];
-		if (element.indexOf('(char *)') === 0){
-			result += element.substring(9, element.length -1);
-		} else if (element.indexOf('(double)') === 0){
-			result += element.substring(8, element.length);
+		if((i === 0) && (element !== 'null')){
+			result += 'kb_string.kb_concat(global_str,' + element + ')';
+		} else if(element !== 'null'){
+			result = 'kb_string.kb_concat(' + result + ',' + element + ')';			
 		}
 	}
-	var code = result + '"';
+	var code = result;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };

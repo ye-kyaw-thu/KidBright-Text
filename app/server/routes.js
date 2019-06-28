@@ -408,12 +408,9 @@ module.exports = function (app, Config, Log) {
 		var use_prime_func = false;
 
 		if (sta_ssid !== '') {
-			if (sta_password !== '') {
-				// set wifi and enable wifi
-				start_wifi_code = 'wifi_sta_start(CONFIG_WIFI_SSID, CONFIG_WIFI_PASSWORD);\n';
-				if (enable_iot === 'true') {
-					start_iot_code = 'kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
-				}
+			start_wifi_code = 'wifi_sta_start(CONFIG_WIFI_SSID, CONFIG_WIFI_PASSWORD);\n';
+			if (enable_iot === 'true') {
+				start_iot_code = 'kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
 			}
 		}
 
@@ -639,6 +636,8 @@ module.exports = function (app, Config, Log) {
 			// kbiot
 			'#include "nvs_flash.h"\n' +
 			'#include "wificontroller.h"\n' +
+			'#include "../../lib/release/kbstring/include/kbstring.h"\n' +
+			'#include "../../lib/release/kbstring/include/kbstring.cpp"\n' +
 			'#include "kbiot.h"\n\n' +
 			'#define KBSERIAL "' + kbmac_addr + '"\n' +
 			'#define CLIENTID "' + kbmac_addr + '"\n' +
@@ -666,6 +665,8 @@ module.exports = function (app, Config, Log) {
 			'// ==================================================================================\n' +
 			plugins_obj_inst_code +
 			'\n' +
+			'Kbstring kb_string;' +
+			'char global_str[100];\n' +
 			var_str +
 			prime_func_code +
 			iot_task +

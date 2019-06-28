@@ -874,3 +874,9 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.FUNCTION_TITLE = "function";
 /** @export */ Blockly.Msg.CALL_FUNCTION_TITLE = "call function";
 
+// string
+/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_INPUT_WITH = "join string with";
+/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_TOOLTIP = "join strgin from text, variable, and sensor. maximum 100 characters";
+
+/** @export */ Blockly.Msg.STRING_LENGTH_MESSAGE = "Length of text"
+/** @export */ Blockly.Msg.STRING_LENGTH_TOOLTIP = "get length of text.";

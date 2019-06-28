@@ -93,7 +93,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TITLE_ADD = "รายการ";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TOOLTIP = "เพิ่ม ลบ หรือจัดเรียงบล็อกรายการนี้ใหม่";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_HELPURL = "https://github.com/google/blockly/wiki/Lists#create-list-with";  // untranslated
-/** @export */ Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH = "สร้างข้อความด้วย";
+/** @export */ Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH = "สร้างรายการด้วย";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = "เพิ่มไอเท็มเข้าไปในรายการ";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "สร้างรายการพร้อมด้วยไอเท็ม";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FIRST = "แรกสุด";
@@ -883,3 +883,9 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.FUNCTION_TITLE = "ฟังก์ชั่น";
 /** @export */ Blockly.Msg.CALL_FUNCTION_TITLE = "เรียกใช้งานฟังก์ชั่น";
 
+// string
+/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_INPUT_WITH = "สร้างข้อความจากหลายข้อความ";
+/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_TOOLTIP = "รวมข้อความจาก ข้อความ ตัวแปร และค่าเซ็นเซอร์เป็นข้อความเดียวที่รับได้สูงสุด 100 ตัวอักษร";
+
+/** @export */ Blockly.Msg.STRING_LENGTH_MESSAGE = "ความยาวของข้อความ"
+/** @export */ Blockly.Msg.STRING_LENGTH_TOOLTIP = "อ่านค่าความยาวของข้อความ";

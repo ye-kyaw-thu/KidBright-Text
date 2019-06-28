@@ -25,7 +25,7 @@ Blockly.Blocks['string_length'] = {
 	init: function () {
 		this.jsonInit({
 			"type": "string_length",
-			"message0": "Length of text %1",
+			"message0": Blockly.Msg.STRING_LENGTH_MESSAGE +" %1",
 			"args0": [
 			  {
 				"type": "input_value",
@@ -36,7 +36,7 @@ Blockly.Blocks['string_length'] = {
 			"inputsInline": true,
 			"output": null,
 			"colour": 165,
-			"tooltip": "",
+			"tooltip": Blockly.Msg.STRING_LENGTH_TOOLTIP,
 			"helpUrl": ""
 	})}
 }
@@ -52,9 +52,9 @@ Blockly.Blocks['string_join'] = {
       this.setColour(165);
       this.itemCount_ = 3;
       this.updateShape_();
-      this.setOutput(true, 'Array');
+      this.setOutput(true, 'String');
       this.setMutator(new Blockly.Mutator(['lists_create_with_item']));
-      // this.setTooltip(Blockly.Msg['LISTS_CREATE_WITH_TOOLTIP']);
+      this.setTooltip(Blockly.Msg['JOIN_STRING_CREATE_WITH_TOOLTIP']);
     },
     /**
      * Create XML to represent list inputs.
@@ -93,7 +93,7 @@ Blockly.Blocks['string_join'] = {
         connection.connect(itemBlock.previousConnection);
         connection = itemBlock.nextConnection;
       }
-      console.log('decompose: ', containerBlock);
+      // console.log('decompose: ', containerBlock);
       return containerBlock;
     },
     /**
@@ -155,9 +155,9 @@ Blockly.Blocks['string_join'] = {
       // Add new inputs.
       for (var i = 0; i < this.itemCount_; i++) {
         if (!this.getInput('ADD' + i)) {
-          var input = this.appendValueInput('ADD' + i);
+          var input = this.appendValueInput('ADD' + i).setCheck(['Number', 'String']);;
           if (i == 0) {
-            input.appendField(Blockly.Msg['LISTS_CREATE_WITH_INPUT_WITH']);
+            input.appendField(Blockly.Msg['JOIN_STRING_CREATE_WITH_INPUT_WITH']);
           }
         }
       }

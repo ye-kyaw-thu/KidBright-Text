@@ -116,8 +116,8 @@ Blockly.JavaScript['math_variables_set'] = function(block) {
 	var argument0 = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
 	var varName = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
 
-	// return varName + ' = ' + argument0 + ';\n'; // old code
-	return 'NUMBER_' + varName + ' = ' + argument0 + ';\n';
+	return varName + ' = ' + argument0 + ';\n'; // old code
+	// return 'NUMBER_' + varName + ' = ' + argument0 + ';\n';
 };
 
 Blockly.JavaScript['math_variables_get'] = function(block) {
