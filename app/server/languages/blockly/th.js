@@ -93,7 +93,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TITLE_ADD = "รายการ";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TOOLTIP = "เพิ่ม ลบ หรือจัดเรียงบล็อกรายการนี้ใหม่";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_HELPURL = "https://github.com/google/blockly/wiki/Lists#create-list-with";  // untranslated
-/** @export */ Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH = "สร้างข้อความด้วย";
+/** @export */ Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH = "สร้างรายการด้วย";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = "เพิ่มไอเท็มเข้าไปในรายการ";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "สร้างรายการพร้อมด้วยไอเท็ม";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FIRST = "แรกสุด";
@@ -403,7 +403,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.VARIABLES_GET_CREATE_SET = "สร้าง \"กำหนด %1\"";
 /** @export */ Blockly.Msg.VARIABLES_GET_HELPURL = "https://github.com/google/blockly/wiki/Variables#get";  // untranslated
 /** @export */ Blockly.Msg.VARIABLES_GET_TOOLTIP = "คืนค่าของตัวแปรนี้";
-/** @export */ Blockly.Msg.VARIABLES_SET = "กำหนด %1 จนถึง %2";
+/** @export */ Blockly.Msg.VARIABLES_SET = "กำหนด %1 เป็น %2";
 /** @export */ Blockly.Msg.VARIABLES_SET_CREATE_GET = "สร้าง \"get %1\"";
 /** @export */ Blockly.Msg.VARIABLES_SET_HELPURL = "https://github.com/google/blockly/wiki/Variables#set";  // untranslated
 /** @export */ Blockly.Msg.VARIABLES_SET_TOOLTIP = "กำหนดให้ตัวแปรนี้เท่ากับการป้อนข้อมูล";
@@ -878,3 +878,45 @@ goog.require('Blockly.Msg');
 // mqtt get topic data
 /** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA = "get topic data";
 /** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA_TOOLTIP = "get topic data";
+
+// function
+/** @export */ Blockly.Msg.FUNCTION_TITLE = "ฟังก์ชั่น";
+/** @export */ Blockly.Msg.CALL_FUNCTION_TITLE = "เรียกใช้งานฟังก์ชั่น";
+
+// string
+/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_INPUT_WITH = "สร้างข้อความจากหลายข้อความ";
+/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_TOOLTIP = "รวมข้อความจาก ข้อความ ตัวแปร และค่าเซ็นเซอร์เป็นข้อความเดียวที่รับได้สูงสุด 100 ตัวอักษร";
+
+/** @export */ Blockly.Msg.STRING_LENGTH_MESSAGE = "ความยาวของข้อความ"
+/** @export */ Blockly.Msg.STRING_LENGTH_TOOLTIP = "อ่านค่าความยาวของข้อความ";
+
+/** @export */ Blockly.Msg.STRING_CHAR_AT = "";
+/** @export */ Blockly.Msg.STRTING_CHAT_AT_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER = "แสดงข้อความ";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER_VALUE = "กับค่าตัวเลข";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "รวมข้อความกับตัวเลขหรอค่าจากเซ็นเซอร์";
+
+// list
+/** @export */ Blockly.Msg.LIST_GET_LENGTH = "";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_GET_INDEX = "";
+/** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_INSERT_LAST = "";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_GET_TEXT = "";
+/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "";

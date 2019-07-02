@@ -1,0 +1,17 @@
+#ifndef kblist_h
+#define kblist_h
+
+class Kblist
+{
+public:
+  void set_list_value();
+  double get_length();
+  double get_value_index();
+  void set_value_at_index();
+  void insert_first_value();
+  void insert_last_value();
+  void insert_value_index();
+  char* get_list_text();
+};
+
+#endif

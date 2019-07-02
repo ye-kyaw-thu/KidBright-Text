@@ -63,6 +63,7 @@ Blockly.JavaScript['basic_forever'] = function(block) {
 };
 
 Blockly.JavaScript['basic_string'] = function(block) {
+	console.log('=== ', block.getField('VALUE') , block.getField('VALUE').sourceBlock_.type);
 	return [
 		'(char *)"' + block.getFieldValue('VALUE') + '"',
 		Blockly.JavaScript.ORDER_ATOMIC
@@ -73,6 +74,7 @@ Blockly.JavaScript['basic_string'] = function(block) {
 // math
 // =============================================================================
 Blockly.JavaScript['math_number'] = function(block) {
+	console.log('--- ', block.getField('VALUE'), block.getField('VALUE').sourceBlock_.type);
 	return [
 		'(double)' + block.getFieldValue('VALUE'),
 		Blockly.JavaScript.ORDER_ATOMIC
@@ -114,7 +116,8 @@ Blockly.JavaScript['math_variables_set'] = function(block) {
 	var argument0 = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
 	var varName = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
 
-	return varName + ' = ' + argument0 + ';\n';
+	return varName + ' = ' + argument0 + ';\n'; // old code
+	// return 'NUMBER_' + varName + ' = ' + argument0 + ';\n';
 };
 
 Blockly.JavaScript['math_variables_get'] = function(block) {
@@ -503,3 +506,35 @@ Blockly.JavaScript['advance_task'] = function(block) {
 
 	return null;
 };
+
+//---------------------------------------------------------------------
+Blockly.JavaScript['function'] = function (block) {
+	let funcName = block.getFieldValue('NAME');
+
+	// generate unique function name
+	let branch = Blockly.JavaScript.statementToCode(block, 'STACK');
+	if (Blockly.JavaScript.STATEMENT_PREFIX) {
+		branch = Blockly.JavaScript.prefixLines(
+			Blockly.JavaScript.STATEMENT_PREFIX.replace(/%1/g,
+				'\'' + block.id + '\''), Blockly.JavaScript.INDENT) + branch;
+	}
+	if (Blockly.JavaScript.INFINITE_LOOP_TRAP) {
+		branch = Blockly.JavaScript.INFINITE_LOOP_TRAP.replace(/%1/g,
+			'\'' + block.id + '\'') + branch;
+	}
+	let code = 'void func_' + funcName + '(void) {\n' + branch + '\n}';
+	code = Blockly.JavaScript.scrub_(block, code);
+	// Add % so as not to collide with helper functions in definitions list.
+	Blockly.JavaScript.definitions_['%' + funcName] = code;
+	return null;
+};
+
+Blockly.JavaScript['call_function'] = function (block) {
+	var name = block.getFieldValue('NAME');
+	// TODO: Assemble JavaScript into code variable.
+	let code = `func_${name}();\n`;
+
+	return code;
+};
+
+
