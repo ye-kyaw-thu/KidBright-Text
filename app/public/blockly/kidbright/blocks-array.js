@@ -27,6 +27,7 @@ Blockly.Blocks['lists_create_with'] = {
       console.log('mutationToDom: ', container);
       return container;
     },
+    //
     /**
      * Parse XML to restore the list inputs.
      * @param {!Element} xmlElement XML storage element.
