@@ -9,8 +9,11 @@ Blockly.Blocks['lists_create_with'] = {
       this.setColour(230);
       this.itemCount_ = 3;
       this.updateShape_();
-      this.setOutput(true, 'Array');
+      this.setOutput(false, 'Array');
+      // this.setOutput(true, 'Array');
       this.setMutator(new Blockly.Mutator(['lists_create_with_item']));
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
       // this.setTooltip(Blockly.Msg['LISTS_CREATE_WITH_TOOLTIP']);
     },
     /**
@@ -124,4 +127,88 @@ Blockly.Blocks['lists_create_with'] = {
         i++;
       }
     }
-  };
+};
+
+Blockly.Blocks['list_get_length'] = {
+	init: function () {
+		this.jsonInit({
+			//...
+		}
+      /**
+      "message0": Blockly.Msg.LIST_GET_LENGTH
+      "helpUrl": Blockly.Msg.LIST_GET_LENGTH_TOOLTIP
+       */
+    )}
+}
+
+Blockly.Blocks['list_get_index'] = {
+	init: function () {
+		this.jsonInit({
+			//...
+		}
+      /**
+      "message0": Blockly.Msg.LIST_GET_INDEX + " %1"
+      "helpUrl": Blockly.Msg.LIST_GET_INDEX_TOOLTIP
+       */
+    )}
+}
+
+Blockly.Blocks['list_set_index'] = {
+	init: function () {
+		this.jsonInit({
+			//...
+		}
+      /**
+      "message0": Blockly.Msg.LIST_SET_INDEX_VALUE + " %1" + Blockly.Msg.LIST_SET_INDEX_AT + " %2"
+      "helpUrl": Blockly.Msg.LIST_SET_INDEX_TOOLTIP
+       */
+    )}
+}
+
+Blockly.Blocks['list_insert_first'] = {
+	init: function () {
+		this.jsonInit({
+			//...
+		}
+      /**
+      "message0": Blockly.Msg.LIST_INSERT_FIRST + " %1"
+      "helpUrl": Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP
+       */
+    )}
+}
+
+Blockly.Blocks['list_insert_last'] = {
+	init: function () {
+		this.jsonInit({
+			//...
+		}
+      /**
+      "message0": Blockly.Msg.LIST_INSERT_LAST + " %1"
+      "helpUrl": Blockly.Msg.LIST_INSERT_LAST_TOOLTIP
+       */
+    )}
+}
+
+Blockly.Blocks['list_insert_index'] = {
+	init: function () {
+		this.jsonInit({
+			//...
+		}
+      /**
+      "message0": Blockly.Msg.LIST_INSERT_INDEX_VALUE + " %1" + Blockly.Msg.LIST_INSERT_INDEX_AT + " %2"
+      "helpUrl": Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP
+       */
+    )}
+}
+
+Blockly.Blocks['list_get_text'] = {
+	init: function () {
+		this.jsonInit({
+			//...
+		}
+      /**
+      "message0": Blockly.Msg.LIST_GET_TEXT
+      "helpUrl": Blockly.Msg.LIST_GET_TEXT_TOOLTIP
+       */
+    )}
+}

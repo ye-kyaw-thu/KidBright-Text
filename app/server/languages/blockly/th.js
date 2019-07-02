@@ -889,3 +889,34 @@ goog.require('Blockly.Msg');
 
 /** @export */ Blockly.Msg.STRING_LENGTH_MESSAGE = "ความยาวของข้อความ"
 /** @export */ Blockly.Msg.STRING_LENGTH_TOOLTIP = "อ่านค่าความยาวของข้อความ";
+
+/** @export */ Blockly.Msg.STRING_CHAR_AT = "";
+/** @export */ Blockly.Msg.STRTING_CHAT_AT_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER = "แสดงข้อความ";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER_VALUE = "กับค่าตัวเลข";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "รวมข้อความกับตัวเลขหรอค่าจากเซ็นเซอร์";
+
+// list
+/** @export */ Blockly.Msg.LIST_GET_LENGTH = "";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_GET_INDEX = "";
+/** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_INSERT_LAST = "";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_GET_TEXT = "";
+/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "";

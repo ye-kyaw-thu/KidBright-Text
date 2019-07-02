@@ -21,11 +21,32 @@ Blockly.JavaScript['string_join'] = function(block) {
 	for(var i=0; i<elements.length; i++){
 		var element = elements[i];
 		if((i === 0) && (element !== 'null')){
-			result += 'kb_string.kb_concat(global_str,' + element + ')';
+			result += 'kb_string.concat(global_str,' + element + ')';
 		} else if(element !== 'null'){
-			result = 'kb_string.kb_concat(' + result + ',' + element + ')';			
+			result = 'kb_string.concat(' + result + ',' + element + ')';			
 		}
 	}
 	var code = result;
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['string_substring'] = function(block) {
+	var value_input = Blockly.JavaScript.valueToCode(block, 'input', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_from = Blockly.JavaScript.valueToCode(block, 'from', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_to = Blockly.JavaScript.valueToCode(block, 'to', Blockly.JavaScript.ORDER_ATOMIC);
+
+	var code = `kb_string.substring((char*)${value_input}, ${value_from}, ${value_to})`;
+	return [code, Blockly.JavaScript.ORDER_NONE];
+  };
+
+Blockly.JavaScript['string_with_number'] = function (block) { 
+	var text_text = block.getFieldValue('TEXT'); 
+	var argument0 = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC); 
+	
+	var code = 'kb_string.concat((char *)"' + text_text + '",' + argument0 + ')';
+	return [code, Blockly.JavaScript.ORDER_NONE]; 
+}
+
+Blockly.JavaScript['string_charAt'] = function(block) {
+	//...
 };

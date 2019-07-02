@@ -878,5 +878,36 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_INPUT_WITH = "join string with";
 /** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_TOOLTIP = "join strgin from text, variable, and sensor. maximum 100 characters";
 
-/** @export */ Blockly.Msg.STRING_LENGTH_MESSAGE = "Length of text"
+/** @export */ Blockly.Msg.STRING_LENGTH_MESSAGE = "Length of text";
 /** @export */ Blockly.Msg.STRING_LENGTH_TOOLTIP = "get length of text.";
+
+/** @export */ Blockly.Msg.STRING_CHAR_AT = "";
+/** @export */ Blockly.Msg.STRTING_CHAT_AT_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER = "Write text ";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER_VALUE = "with number";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "join text with number or sensor value.";
+
+// list
+/** @export */ Blockly.Msg.LIST_GET_LENGTH = "";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_GET_INDEX = "";
+/** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_INSERT_LAST = "";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "";
+
+/** @export */ Blockly.Msg.LIST_GET_TEXT = "";
+/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "";

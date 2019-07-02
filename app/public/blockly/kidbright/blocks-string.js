@@ -168,3 +168,70 @@ Blockly.Blocks['string_join'] = {
       }
     }
   };
+
+Blockly.Blocks['string_substring'] = {
+  init: function () {
+    this.jsonInit({
+      "type": "string_substring",
+      "message0": "Substring %1 from %2 to %3",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "input",
+          "check": "String"
+        },
+        {
+          "type": "input_value",
+          "name": "from",
+          "check": "Number"
+        },
+        {
+          "type": "input_value",
+          "name": "to",
+          "check": "Number"
+        }
+      ],
+      "inputsInline": true,
+      "output": "String",
+      "colour": 165,
+      "tooltip": "",
+      "helpUrl": ""
+  })}
+}
+
+Blockly.Blocks['string_with_number'] = {
+	init: function () {
+		this.jsonInit({
+      "type": "string_with_number", 
+      "message0": Blockly.Msg.STRING_WITH_NUMBER + " %1" + Blockly.Msg.STRING_WITH_NUMBER_VALUE + " %2",
+      "args0": [ 
+      { 
+      "type": "field_input", 
+      "name": "TEXT", 
+      "text": "Value is" 
+      }, 
+      { 
+      "type": "input_value", 
+      "name": "NAME" 
+      } 
+      ], 
+      "inputsInline": true, 
+      "output": "String", 
+      "colour": 165, 
+      "tooltip": Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP, 
+      "helpUrl": "" 
+    }
+    )}
+}
+
+Blockly.Blocks['string_charAt'] = {
+	init: function () {
+		this.jsonInit({
+      //...
+    }
+      /**
+      "message0": Blockly.Msg.STRING_CHAR_AT + " %1"
+      "helpUrl": Blockly.Msg.STRTING_CHAT_AT_TOOLTIP
+       */
+    )}
+}
