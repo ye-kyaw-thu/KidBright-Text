@@ -207,7 +207,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_POWER = "คืนค่าผลการยกกำลัง โดยตัวเลขแรกเป็นฐาน และตัวเลขที่สองเป็นเลขชี้กำลัง";
 /** @export */ Blockly.Msg.MATH_CHANGE_HELPURL = "https://en.wikipedia.org/wiki/Programming_idiom#Incrementing_a_counter";
 /** @export */ Blockly.Msg.MATH_CHANGE_TITLE = "เปลี่ยนค่า %1 เป็น %2";
-/** @export */ Blockly.Msg.MATH_CHANGE_TOOLTIP = "เพิ่มค่าของตัวแปร \"%1\"";
+/** @export */ Blockly.Msg.MATH_CHANGE_TOOLTIP = "เพิ่มค่าของตัวแปร \"%1\" รองรับเฉพาะข้อมูลชนิดตัวเลขเท่านั้น";
 /** @export */ Blockly.Msg.MATH_CONSTANT_HELPURL = "https://th.wikipedia.org/wiki/ค่าคงตัวทางคณิตศาสตร์";
 /** @export */ Blockly.Msg.MATH_CONSTANT_TOOLTIP = "คืนค่าคงตัวทางคณิตศาสตร์ที่พบบ่อยๆ เช่น π (3.141…), e (2.718…), φ (1.618…), รากที่สอง (1.414…), รากที่ ½ (0.707…), ∞ (อนันต์)";
 /** @export */ Blockly.Msg.MATH_CONSTRAIN_HELPURL = "https://en.wikipedia.org/wiki/Clamping_(graphics)";  // untranslated
@@ -406,7 +406,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.VARIABLES_SET = "กำหนด %1 เป็น %2";
 /** @export */ Blockly.Msg.VARIABLES_SET_CREATE_GET = "สร้าง \"get %1\"";
 /** @export */ Blockly.Msg.VARIABLES_SET_HELPURL = "https://github.com/google/blockly/wiki/Variables#set";  // untranslated
-/** @export */ Blockly.Msg.VARIABLES_SET_TOOLTIP = "กำหนดให้ตัวแปรนี้เท่ากับการป้อนข้อมูล";
+/** @export */ Blockly.Msg.VARIABLES_SET_TOOLTIP = "กำหนดให้ตัวแปรนี้เท่ากับการป้อนข้อมูล รองรับเฉพาะข้อมูลชนิดตัวเลขเท่านั้น";
 /** @export */ Blockly.Msg.VARIABLE_ALREADY_EXISTS = "มีตัวแปรชื่อ '%1' อยู่แล้ว";
 /** @export */ Blockly.Msg.VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE = "ตัวแปรชื่อ '%1' มีอยู่แล้วสำหรับตัวแปรอื่นของชนิด: '%2'";
 /** @export */ Blockly.Msg.PROCEDURES_DEFRETURN_TITLE = Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE;

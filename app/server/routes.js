@@ -509,6 +509,14 @@ module.exports = function (app, Config, Log) {
 				line = '';
 			}
 
+			// change variable line
+			var change_nouse = "(typeof x == 'number' ? x : 0) +";
+			var change_nouse_index = line.indexOf(change_nouse);
+			if(change_nouse_index !== -1){
+				var change_nouse_line = line.split(change_nouse);
+				line = change_nouse_line[0] + change_nouse_line[1];
+			}
+
 			if (line.length <= 0) {
 				continue;
 			}
