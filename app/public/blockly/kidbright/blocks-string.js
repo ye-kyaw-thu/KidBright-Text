@@ -74,7 +74,7 @@ Blockly.Blocks['string_join'] = {
      */
     domToMutation: function(xmlElement) {
       this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
-      console.log('domToMutation: ', this.itemCount_);
+      // console.log('domToMutation: ', this.itemCount_);
       this.updateShape_();
     },
     /**
@@ -173,7 +173,7 @@ Blockly.Blocks['string_substring'] = {
   init: function () {
     this.jsonInit({
       "type": "string_substring",
-      "message0": "Substring %1 from %2 to %3",
+      "message0": Blockly.Msg.STRING_SUBSTRING_TEXT + "%1" + Blockly.Msg.STRING_SUBSTRING_FROM + "%2" + Blockly.Msg.STRING_SUBSTRING_TO +"%3",
       "args0": [
         {
           "type": "input_value",
@@ -194,7 +194,7 @@ Blockly.Blocks['string_substring'] = {
       "inputsInline": true,
       "output": "String",
       "colour": 165,
-      "tooltip": "",
+      "tooltip": Blockly.Msg.STRING_SUBSTRING_TOOLTIP,
       "helpUrl": ""
   })}
 }
@@ -227,11 +227,25 @@ Blockly.Blocks['string_with_number'] = {
 Blockly.Blocks['string_charAt'] = {
 	init: function () {
 		this.jsonInit({
-      //...
-    }
-      /**
-      "message0": Blockly.Msg.STRING_CHAR_AT + " %1"
-      "helpUrl": Blockly.Msg.STRTING_CHAT_AT_TOOLTIP
-       */
+        "type": "string_charAt",
+        "message0": Blockly.Msg.STRING_CHAR_AT_TEXT + "%1" + Blockly.Msg.STRING_CHAR_AT_INDEX + "%2",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "input",
+            "check": ["String", "Number"]
+          },
+          {
+            "type": "input_value",
+            "name": "index",
+            "check": "Number"
+          }
+        ],
+        "inputsInline": true,
+		"output": "String",
+        "colour": 165,
+        "tooltip": Blockly.Msg.STRTING_CHAT_AT_TOOLTIP,
+        "helpUrl": ""
+      }
     )}
 }

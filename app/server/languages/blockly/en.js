@@ -881,8 +881,14 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.STRING_LENGTH_MESSAGE = "Length of text";
 /** @export */ Blockly.Msg.STRING_LENGTH_TOOLTIP = "get length of text.";
 
-/** @export */ Blockly.Msg.STRING_CHAR_AT = "";
-/** @export */ Blockly.Msg.STRTING_CHAT_AT_TOOLTIP = "";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_TEXT = "Substring";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_FROM = "from";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_TO = "to";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_TOOLTIP = "split text from text by set index.";
+
+/** @export */ Blockly.Msg.STRING_CHAR_AT_TEXT = "Get character from ";
+/** @export */ Blockly.Msg.STRING_CHAR_AT_INDEX = "at";
+/** @export */ Blockly.Msg.STRTING_CHAT_AT_TOOLTIP = "get character from text by set index.";
 
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER = "Write text ";
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_VALUE = "with number";

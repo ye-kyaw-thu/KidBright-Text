@@ -28,3 +28,14 @@ char* Kbstring::substring(char* str, int from, int to){
     result[init_i] = '\0';
     return result;
 }
+
+char* Kbstring::charat(char* input, int index){
+    char* result = new char[2];
+    for(int i=0; input[i]!='\0'; i++){
+        if(i == index){
+            result[0] = input[i];
+            result[1] = '\0';
+        }
+    }
+    return result;
+}
