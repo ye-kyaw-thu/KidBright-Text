@@ -678,7 +678,7 @@ module.exports = function (app, Config, Log) {
 			'Kbstring kb_string;\n' +
 			'Kblist kb_list;\n' + 
 			'char global_str[100];\n' +
-			'int global_num[100];\n' +
+			'double global_num[100];\n' +
 			var_str +
 			prime_func_code +
 			iot_task +

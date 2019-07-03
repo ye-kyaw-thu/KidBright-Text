@@ -5,7 +5,7 @@ Blockly.JavaScript['lists_create_with'] = function(block) {
       elements[i] = Blockly.JavaScript.valueToCode(block, 'ADD' + i,
           Blockly.JavaScript.ORDER_COMMA) || 'null';
     }
-    var code = '[' + elements.join(', ') + ']';
+    var code = 'global_num = {' + elements.join(', ') + '}';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
@@ -30,7 +30,11 @@ Blockly.JavaScript['list_insert_last'] = function(block) {
 };
 
 Blockly.JavaScript['list_insert_index'] = function(block) {
-    //...
+	var value_number = Blockly.JavaScript.valueToCode(block, 'number', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_index = Blockly.JavaScript.valueToCode(block, 'index', Blockly.JavaScript.ORDER_ATOMIC);
+
+	var code = `kb_list.insert_value_index(${value_number}, ${value_index}, global_num);\n`;
+	return code;
 };
   
 Blockly.JavaScript['list_get_text'] = function(block) {

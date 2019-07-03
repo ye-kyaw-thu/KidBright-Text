@@ -911,9 +911,9 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_INSERT_LAST = "";
 /** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "";
 
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "";
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "";
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "Insert value";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "to list at";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "insert value to list at index you select.";
 
 /** @export */ Blockly.Msg.LIST_GET_TEXT = "";
 /** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "";

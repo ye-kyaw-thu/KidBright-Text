@@ -10,7 +10,7 @@ public:
   void set_value_at_index();
   void insert_first_value();
   void insert_last_value();
-  void insert_value_index();
+  void insert_value_index(double value, int index, double arr[], int length = 100);
   char* get_list_text();
 };
 

@@ -192,12 +192,27 @@ Blockly.Blocks['list_insert_last'] = {
 Blockly.Blocks['list_insert_index'] = {
 	init: function () {
 		this.jsonInit({
-			//...
+			"type": "list_insert_index",
+			"message0": Blockly.Msg.LIST_INSERT_INDEX_VALUE + " %1" + Blockly.Msg.LIST_INSERT_INDEX_AT + " %2",
+			"args0": [
+			  {
+				"type": "input_value",
+				"name": "number",
+				"check": "Number"
+			  },
+			  {
+				"type": "input_value",
+				"name": "index",
+				"check": "Number"
+			  }
+			],
+			"inputsInline": true,
+			"previousStatement": null,
+			"nextStatement": null,
+			"colour": 230,
+			"tooltip": Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP,
+			"helpUrl": ""
 		}
-      /**
-      "message0": Blockly.Msg.LIST_INSERT_INDEX_VALUE + " %1" + Blockly.Msg.LIST_INSERT_INDEX_AT + " %2"
-      "helpUrl": Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP
-       */
     )}
 }
 

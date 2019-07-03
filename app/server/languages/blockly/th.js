@@ -920,9 +920,9 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_INSERT_LAST = "";
 /** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "";
 
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "";
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "";
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "เพิ่มค่า";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "ไปยังรายการ ณ ตำแหน่งที่";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "เพิ่มค่าตัวเลขไปยังรายการในตำแหน่งที่กำหนด";
 
 /** @export */ Blockly.Msg.LIST_GET_TEXT = "";
 /** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "";
