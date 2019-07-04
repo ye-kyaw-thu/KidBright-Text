@@ -889,15 +889,15 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "join text with number or sensor value.";
 
 // list
-/** @export */ Blockly.Msg.LIST_GET_LENGTH = "";
-/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH = "Get length of list";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "Get how many value inside an array";
 
-/** @export */ Blockly.Msg.LIST_GET_INDEX = "";
-/** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_GET_INDEX = "Get value at index";
+/** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "Get what is the value at specified index";
 
-/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "";
-/** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "";
-/** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "Set value";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "at index";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "change the value at specified index";
 
 /** @export */ Blockly.Msg.LIST_INSERT_FIRST = "";
 /** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "";
