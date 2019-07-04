@@ -915,5 +915,5 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "to list at";
 /** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "insert value to list at index you select.";
 
-/** @export */ Blockly.Msg.LIST_GET_TEXT = "";
-/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_GET_TEXT = "Read value in list from %1 to %2";
+/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "set start and end index to show value in list.";

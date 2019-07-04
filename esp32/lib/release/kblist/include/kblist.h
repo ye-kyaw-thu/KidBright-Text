@@ -12,6 +12,7 @@ public:
   void insert_last_value();
   void insert_value_index(double value, int index, double arr[], int length = 100);
   char* get_list_text();
+  void set_multi(double arr[], int length, int max_len, ...);
 };
 
 #endif

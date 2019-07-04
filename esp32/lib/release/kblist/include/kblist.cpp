@@ -1,5 +1,6 @@
 #include "kblist.h"
 #include <string>
+#include <stdarg.h>
 
 #define TAG "KBLIST"
 
@@ -43,4 +44,15 @@ void Kblist::insert_value_index(double value, int index, double arr[], int lengt
 char* Kblist::get_list_text(){
     //...
     return (char *)"a";
-};
+}
+void Kblist::set_multi(double arr[], int length, int max_len, ...){
+    for(int j=0; j<max_len; j++){
+        arr[j] = 0.0;
+    }
+    va_list ap;
+    va_start(ap, length); //Requires the last fixed parameter (to get the address)
+    for(int i=0; i<length; i++){
+        arr[i] = va_arg(ap, double); //Requires the type to cast to. Increments ap to the next argument.
+    }
+    va_end(ap);
+}

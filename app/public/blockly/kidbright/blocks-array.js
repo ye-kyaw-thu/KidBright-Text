@@ -14,7 +14,7 @@ Blockly.Blocks['lists_create_with'] = {
       this.setMutator(new Blockly.Mutator(['lists_create_with_item']));
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      // this.setTooltip(Blockly.Msg['LISTS_CREATE_WITH_TOOLTIP']);
+      this.setTooltip(Blockly.Msg['LISTS_CREATE_WITH_TOOLTIP']);
     },
     /**
      * Create XML to represent list inputs.
@@ -115,7 +115,7 @@ Blockly.Blocks['lists_create_with'] = {
       // Add new inputs.
       for (var i = 0; i < this.itemCount_; i++) {
         if (!this.getInput('ADD' + i)) {
-          var input = this.appendValueInput('ADD' + i);
+          var input = this.appendValueInput('ADD' + i).setCheck(['Number']);
           if (i == 0) {
             input.appendField(Blockly.Msg['LISTS_CREATE_WITH_INPUT_WITH']);
           }
@@ -219,11 +219,25 @@ Blockly.Blocks['list_insert_index'] = {
 Blockly.Blocks['list_get_text'] = {
 	init: function () {
 		this.jsonInit({
-			//...
+			"type": "list_get_text",
+			"message0": Blockly.Msg.LIST_GET_TEXT,
+			"args0": [
+			  {
+				"type": "field_number",
+				"name": "index_from",
+				"value": 0
+			  },
+			  {
+				"type": "field_number",
+				"name": "index_to",
+				"value": 10
+			  }
+			],
+			"inputsInline": false,
+			"output": "String",
+			"colour": 230,
+			"tooltip": Blockly.Msg.LIST_GET_TEXT_TOOLTIP,
+			"helpUrl": ""
 		}
-      /**
-      "message0": Blockly.Msg.LIST_GET_TEXT
-      "helpUrl": Blockly.Msg.LIST_GET_TEXT_TOOLTIP
-       */
     )}
 }

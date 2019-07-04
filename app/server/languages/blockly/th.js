@@ -95,7 +95,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_HELPURL = "https://github.com/google/blockly/wiki/Lists#create-list-with";  // untranslated
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH = "สร้างรายการด้วย";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = "เพิ่มไอเท็มเข้าไปในรายการ";
-/** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "สร้างรายการพร้อมด้วยไอเท็ม";
+/** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "สร้างรายการพร้อมด้วยไอเท็มที่มีค่าเป็นตัวเลข";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FIRST = "แรกสุด";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FROM_END = "# จากท้าย";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FROM_START = "#";  // untranslated
@@ -924,5 +924,5 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "ไปยังรายการ ณ ตำแหน่งที่";
 /** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "เพิ่มค่าตัวเลขไปยังรายการในตำแหน่งที่กำหนด";
 
-/** @export */ Blockly.Msg.LIST_GET_TEXT = "";
-/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_GET_TEXT = "อ่านค่าจากรายการตั้งแต่ %1 ถึง %2";
+/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "กำหนดลำดับเริ่มต้นและลำดับสุดท้ายในการอ่านข้อมูลจากรายการ";

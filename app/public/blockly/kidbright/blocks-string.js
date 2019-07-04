@@ -155,7 +155,7 @@ Blockly.Blocks['string_join'] = {
       // Add new inputs.
       for (var i = 0; i < this.itemCount_; i++) {
         if (!this.getInput('ADD' + i)) {
-          var input = this.appendValueInput('ADD' + i).setCheck(['Number', 'String']);;
+          var input = this.appendValueInput('ADD' + i).setCheck(['Number', 'String']);
           if (i == 0) {
             input.appendField(Blockly.Msg['JOIN_STRING_CREATE_WITH_INPUT_WITH']);
           }
