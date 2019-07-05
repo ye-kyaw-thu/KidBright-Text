@@ -27,6 +27,7 @@ Blockly.Blocks['lists_create_with'] = {
       console.log('mutationToDom: ', container);
       return container;
     },
+    //
     /**
      * Parse XML to restore the list inputs.
      * @param {!Element} xmlElement XML storage element.
@@ -131,9 +132,14 @@ Blockly.Blocks['lists_create_with'] = {
 
 Blockly.Blocks['list_get_length'] = {
 	init: function () {
-		this.jsonInit({
-			//...
-		}
+    this.jsonInit({
+          "type": "list_get_length",
+          "message0": Blockly.Msg.LIST_GET_LENGTH,
+          "output": "Number",
+          "colour": 230,
+          "tooltip": Blockly.Msg.LIST_GET_LENGTH_TOOLTIP,
+          "helpUrl": ""
+        }
       /**
       "message0": Blockly.Msg.LIST_GET_LENGTH
       "helpUrl": Blockly.Msg.LIST_GET_LENGTH_TOOLTIP
@@ -143,9 +149,22 @@ Blockly.Blocks['list_get_length'] = {
 
 Blockly.Blocks['list_get_index'] = {
 	init: function () {
-		this.jsonInit({
-			//...
-		}
+    this.jsonInit({
+      "type": "list_get_index",
+      "message0": Blockly.Msg.LIST_GET_INDEX + " %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "NAME",
+          "check": "Number"
+        }
+      ],
+      "inputsInline": true,
+      "output": "Number",
+      "colour": 230,
+      "tooltip": Blockly.Msg.LIST_GET_INDEX_TOOLTIP,
+      "helpUrl": ""
+    }
       /**
       "message0": Blockly.Msg.LIST_GET_INDEX + " %1"
       "helpUrl": Blockly.Msg.LIST_GET_INDEX_TOOLTIP
@@ -155,9 +174,28 @@ Blockly.Blocks['list_get_index'] = {
 
 Blockly.Blocks['list_set_index'] = {
 	init: function () {
-		this.jsonInit({
-			//...
-		}
+    this.jsonInit({
+      "type": "list_set_index",
+      "message0": Blockly.Msg.LIST_SET_INDEX_VALUE + " %1 " + Blockly.Msg.LIST_SET_INDEX_AT + " %2",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "val",
+          "check": "Number"
+        },
+        {
+          "type": "input_value",
+          "name": "index",
+          "check": "Number"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": 230,
+      "tooltip": Blockly.Msg.LIST_SET_INDEX_TOOLTIP,
+      "helpUrl": ""
+    }
       /**
       "message0": Blockly.Msg.LIST_SET_INDEX_VALUE + " %1" + Blockly.Msg.LIST_SET_INDEX_AT + " %2"
       "helpUrl": Blockly.Msg.LIST_SET_INDEX_TOOLTIP

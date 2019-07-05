@@ -904,15 +904,15 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "รวมข้อความกับตัวเลขหรอค่าจากเซ็นเซอร์";
 
 // list
-/** @export */ Blockly.Msg.LIST_GET_LENGTH = "";
-/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH = "หาขนาดของรายการ";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "หาขนาดของรายการ";
 
-/** @export */ Blockly.Msg.LIST_GET_INDEX = "";
-/** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_GET_INDEX = "หากค่า ณ ตำแหน่งที่";
+/** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "หากค่าจากรายการ ณ ตำแหน่งที่";
 
-/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "";
-/** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "";
-/** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "กำหนดค่า";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "ในตำแหน่งรายการที่";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "เปลี่ยนค่าในรายการ ณ ตำแหน่งที่กำหนด";
 
 /** @export */ Blockly.Msg.LIST_INSERT_FIRST = "แทรกค่าไปยังด้านหน้ารายการ";
 /** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "แทรกข้อมูลไปยังหน้าสุดของรายการ สมมติว่ามีรายการ [1, 2, 3] แล้วเราแทรก 5 เข้าไปจะได้รายการเป็น [5, 1 ,2, 3]";

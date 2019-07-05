@@ -28,15 +28,25 @@ Blockly.JavaScript['lists_create_with'] = function(block) {
   };
 
 Blockly.JavaScript['list_get_length'] = function(block) {
-    //...
+    // Get length of array
+    var code = '((int)(sizeof(global_num) / sizeof((int)global_num[0])))';
+    return [code, Blockly.JavaScript.ORDER_NONE];
 };
   
 Blockly.JavaScript['list_get_index'] = function(block) {
-    //...
+    // Get index of value
+    var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = 'global_num[(int)' + value_name + ']';
+    return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['list_set_index'] = function(block) {
-    //...
+    // Set he new value to specified index
+    var value_val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_index = Blockly.JavaScript.valueToCode(block, 'index', Blockly.JavaScript.ORDER_ATOMIC);
+
+    var code = 'global_num[(int)' + value_index + '] = ' + value_val + ';\n';
+    return code;
 };
   
 Blockly.JavaScript['list_insert_first'] = function(block) {
