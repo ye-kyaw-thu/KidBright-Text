@@ -168,24 +168,44 @@ Blockly.Blocks['list_set_index'] = {
 Blockly.Blocks['list_insert_first'] = {
 	init: function () {
 		this.jsonInit({
-			//...
+      "type": "list_insert_first",
+      "message0": Blockly.Msg.LIST_INSERT_FIRST + " %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "input",
+          "check": "Number"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": 230,
+      "tooltip": Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP,
+      "helpUrl": ""
 		}
-      /**
-      "message0": Blockly.Msg.LIST_INSERT_FIRST + " %1"
-      "helpUrl": Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP
-       */
     )}
 }
 
 Blockly.Blocks['list_insert_last'] = {
 	init: function () {
 		this.jsonInit({
-			//...
+      "type": "list_insert_first",
+      "message0": Blockly.Msg.LIST_INSERT_LAST + " %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "input",
+          "check": "Number"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": 230,
+      "tooltip": Blockly.Msg.LIST_INSERT_LAST_TOOLTIP,
+      "helpUrl": ""
 		}
-      /**
-      "message0": Blockly.Msg.LIST_INSERT_LAST + " %1"
-      "helpUrl": Blockly.Msg.LIST_INSERT_LAST_TOOLTIP
-       */
     )}
 }
 

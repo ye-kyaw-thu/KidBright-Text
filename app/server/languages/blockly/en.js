@@ -95,7 +95,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_HELPURL = "https://github.com/google/blockly/wiki/Lists#create-list-with";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH = "create list with";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = "Add an item to the list.";
-/** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "Create a list with any number of items.";
+/** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "Create a list with any number of items. the length of list is 100.";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FIRST = "first";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FROM_END = "# from end";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FROM_START = "#";
@@ -905,11 +905,11 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "";
 /** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "";
 
-/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "";
-/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "Insert value to list from first";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "insert value to the first index of list. example list [1, 2, 3] then insert 5 at first the list will be [5, 1, 2, 3] ";
 
-/** @export */ Blockly.Msg.LIST_INSERT_LAST = "";
-/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST = "Insert value to list from last";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "insert value to the last index of list. example list [1, 2, 3] then insert 5 at last the list will be [1, 2, 3, 5] ";
 
 /** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "Insert value";
 /** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "to list at";

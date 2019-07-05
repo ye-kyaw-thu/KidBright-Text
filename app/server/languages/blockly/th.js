@@ -95,7 +95,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_HELPURL = "https://github.com/google/blockly/wiki/Lists#create-list-with";  // untranslated
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH = "สร้างรายการด้วย";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = "เพิ่มไอเท็มเข้าไปในรายการ";
-/** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "สร้างรายการพร้อมด้วยไอเท็มที่มีค่าเป็นตัวเลข";
+/** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "สร้างรายการพร้อมด้วยไอเท็มที่มีค่าเป็นตัวเลข รายการเก็บค่าตัวเลขได้ 100 ค่า";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FIRST = "แรกสุด";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FROM_END = "# จากท้าย";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FROM_START = "#";  // untranslated
@@ -914,11 +914,11 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "";
 /** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "";
 
-/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "";
-/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "แทรกค่าไปยังด้านหน้ารายการ";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "แทรกข้อมูลไปยังหน้าสุดของรายการ สมมติว่ามีรายการ [1, 2, 3] แล้วเราแทรก 5 เข้าไปจะได้รายการเป็น [5, 1 ,2, 3]";
 
-/** @export */ Blockly.Msg.LIST_INSERT_LAST = "";
-/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST = "แทรกค่าไปยังด้านหลังรายการ";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "แทรกข้อมูลไปยังหลังสุดของรายการ สมมติว่ามีรายการ [1, 2, 3] แล้วเราแทรก 5 เข้าไปจะได้รายการเป็น [1 ,2, 3, 5]";
 
 /** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "เพิ่มค่า";
 /** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "ไปยังรายการ ณ ตำแหน่งที่";

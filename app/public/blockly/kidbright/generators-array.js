@@ -40,11 +40,17 @@ Blockly.JavaScript['list_set_index'] = function(block) {
 };
   
 Blockly.JavaScript['list_insert_first'] = function(block) {
-    //...
+	var value_input = Blockly.JavaScript.valueToCode(block, 'input', Blockly.JavaScript.ORDER_ATOMIC);
+	var code = `kb_list.insert_first_value(${value_input}, global_num);\n`;
+
+	return code;
 };
   
 Blockly.JavaScript['list_insert_last'] = function(block) {
-    //...
+	var value_input = Blockly.JavaScript.valueToCode(block, 'input', Blockly.JavaScript.ORDER_ATOMIC);
+	var code = `kb_list.insert_last_value(${value_input}, global_num);\n`;
+	
+	return code;
 };
 
 Blockly.JavaScript['list_insert_index'] = function(block) {

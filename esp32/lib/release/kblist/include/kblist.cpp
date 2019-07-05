@@ -18,11 +18,29 @@ double Kblist::get_value_index(){
 void Kblist::set_value_at_index(){
     //...
 };
-void Kblist::insert_first_value(){
-    //...
+void Kblist::insert_first_value(double value, double arr[], int length){
+    double rest_value;
+    for(int i=0; i<length; i++){
+        if(i == length - 1){
+            arr[i] = value;
+        } else {
+            rest_value = arr[i];
+            arr[i] = value;
+            value = rest_value;
+        }
+    }
 };
-void Kblist::insert_last_value(){
-    //...
+void Kblist::insert_last_value(double value, double arr[], int length){
+    double rest_value;
+    for(int i=length - 1; i>0; i--){
+        if(i == 0){
+            arr[i] = value;
+        } else {
+            rest_value = arr[i];
+            arr[i] = value;
+            value = rest_value;
+        }
+    }    
 };
 void Kblist::insert_value_index(double value, int index, double arr[], int length){
     double rest_value = arr[index];
