@@ -509,6 +509,14 @@ module.exports = function (app, Config, Log) {
 				line = '';
 			}
 
+			// change variable line
+			var change_nouse = "(typeof x == 'number' ? x : 0) +";
+			var change_nouse_index = line.indexOf(change_nouse);
+			if(change_nouse_index !== -1){
+				var change_nouse_line = line.split(change_nouse);
+				line = change_nouse_line[0] + change_nouse_line[1];
+			}
+
 			if (line.length <= 0) {
 				continue;
 			}
@@ -670,7 +678,7 @@ module.exports = function (app, Config, Log) {
 			'Kbstring kb_string;\n' +
 			'Kblist kb_list;\n' + 
 			'char global_str[100];\n' +
-			'int global_num[100];\n' +
+			'double global_num[100];\n' +
 			var_str +
 			prime_func_code +
 			iot_task +

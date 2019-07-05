@@ -95,7 +95,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_HELPURL = "https://github.com/google/blockly/wiki/Lists#create-list-with";  // untranslated
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH = "สร้างรายการด้วย";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = "เพิ่มไอเท็มเข้าไปในรายการ";
-/** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "สร้างรายการพร้อมด้วยไอเท็ม";
+/** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "สร้างรายการพร้อมด้วยไอเท็มที่มีค่าเป็นตัวเลข รายการเก็บค่าตัวเลขได้ 100 ค่า";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FIRST = "แรกสุด";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FROM_END = "# จากท้าย";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FROM_START = "#";  // untranslated
@@ -207,7 +207,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_POWER = "คืนค่าผลการยกกำลัง โดยตัวเลขแรกเป็นฐาน และตัวเลขที่สองเป็นเลขชี้กำลัง";
 /** @export */ Blockly.Msg.MATH_CHANGE_HELPURL = "https://en.wikipedia.org/wiki/Programming_idiom#Incrementing_a_counter";
 /** @export */ Blockly.Msg.MATH_CHANGE_TITLE = "เปลี่ยนค่า %1 เป็น %2";
-/** @export */ Blockly.Msg.MATH_CHANGE_TOOLTIP = "เพิ่มค่าของตัวแปร \"%1\"";
+/** @export */ Blockly.Msg.MATH_CHANGE_TOOLTIP = "เพิ่มค่าของตัวแปร \"%1\" รองรับเฉพาะข้อมูลชนิดตัวเลขเท่านั้น";
 /** @export */ Blockly.Msg.MATH_CONSTANT_HELPURL = "https://th.wikipedia.org/wiki/ค่าคงตัวทางคณิตศาสตร์";
 /** @export */ Blockly.Msg.MATH_CONSTANT_TOOLTIP = "คืนค่าคงตัวทางคณิตศาสตร์ที่พบบ่อยๆ เช่น π (3.141…), e (2.718…), φ (1.618…), รากที่สอง (1.414…), รากที่ ½ (0.707…), ∞ (อนันต์)";
 /** @export */ Blockly.Msg.MATH_CONSTRAIN_HELPURL = "https://en.wikipedia.org/wiki/Clamping_(graphics)";  // untranslated
@@ -406,7 +406,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.VARIABLES_SET = "กำหนด %1 เป็น %2";
 /** @export */ Blockly.Msg.VARIABLES_SET_CREATE_GET = "สร้าง \"get %1\"";
 /** @export */ Blockly.Msg.VARIABLES_SET_HELPURL = "https://github.com/google/blockly/wiki/Variables#set";  // untranslated
-/** @export */ Blockly.Msg.VARIABLES_SET_TOOLTIP = "กำหนดให้ตัวแปรนี้เท่ากับการป้อนข้อมูล";
+/** @export */ Blockly.Msg.VARIABLES_SET_TOOLTIP = "กำหนดให้ตัวแปรนี้เท่ากับการป้อนข้อมูล รองรับเฉพาะข้อมูลชนิดตัวเลขเท่านั้น";
 /** @export */ Blockly.Msg.VARIABLE_ALREADY_EXISTS = "มีตัวแปรชื่อ '%1' อยู่แล้ว";
 /** @export */ Blockly.Msg.VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE = "ตัวแปรชื่อ '%1' มีอยู่แล้วสำหรับตัวแปรอื่นของชนิด: '%2'";
 /** @export */ Blockly.Msg.PROCEDURES_DEFRETURN_TITLE = Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE;
@@ -890,8 +890,14 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.STRING_LENGTH_MESSAGE = "ความยาวของข้อความ"
 /** @export */ Blockly.Msg.STRING_LENGTH_TOOLTIP = "อ่านค่าความยาวของข้อความ";
 
-/** @export */ Blockly.Msg.STRING_CHAR_AT = "";
-/** @export */ Blockly.Msg.STRTING_CHAT_AT_TOOLTIP = "";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_TEXT = "ตัดแบ่งข้อความ";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_FROM = "จากอักษรตัวที่";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_TO = "ถึง";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_TOOLTIP = "ตัดข้อความหนึ่งออกมาโดยกำหนดค่าลำดับของตัวอักษรตัวแรกถึงตัวที่ต้องการ";
+
+/** @export */ Blockly.Msg.STRING_CHAR_AT_TEXT = "อ่านตัวอักษรจากข้อความ";
+/** @export */ Blockly.Msg.STRING_CHAR_AT_INDEX = "ลำดับที่";
+/** @export */ Blockly.Msg.STRTING_CHAT_AT_TOOLTIP = "กำหนดลำดับตัวอักษรจากข้อความเพื่ออ่านตัวอักษรจากข้อความนั้น";
 
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER = "แสดงข้อความ";
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_VALUE = "กับค่าตัวเลข";
@@ -908,15 +914,15 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "";
 /** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "";
 
-/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "";
-/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "แทรกค่าไปยังด้านหน้ารายการ";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "แทรกข้อมูลไปยังหน้าสุดของรายการ สมมติว่ามีรายการ [1, 2, 3] แล้วเราแทรก 5 เข้าไปจะได้รายการเป็น [5, 1 ,2, 3]";
 
-/** @export */ Blockly.Msg.LIST_INSERT_LAST = "";
-/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST = "แทรกค่าไปยังด้านหลังรายการ";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "แทรกข้อมูลไปยังหลังสุดของรายการ สมมติว่ามีรายการ [1, 2, 3] แล้วเราแทรก 5 เข้าไปจะได้รายการเป็น [1 ,2, 3, 5]";
 
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "";
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "";
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "เพิ่มค่า";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "ไปยังรายการ ณ ตำแหน่งที่";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "เพิ่มค่าตัวเลขไปยังรายการในตำแหน่งที่กำหนด";
 
-/** @export */ Blockly.Msg.LIST_GET_TEXT = "";
-/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "";
+/** @export */ Blockly.Msg.LIST_GET_TEXT = "อ่านค่าจากรายการตั้งแต่ %1 ถึง %2";
+/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "กำหนดลำดับเริ่มต้นและลำดับสุดท้ายในการอ่านข้อมูลจากรายการ";

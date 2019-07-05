@@ -48,5 +48,9 @@ Blockly.JavaScript['string_with_number'] = function (block) {
 }
 
 Blockly.JavaScript['string_charAt'] = function(block) {
-	//...
+	var value_input = Blockly.JavaScript.valueToCode(block, 'input', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_index = Blockly.JavaScript.valueToCode(block, 'index', Blockly.JavaScript.ORDER_ATOMIC);
+
+	var code = `kb_string.charat(${value_input}, ${value_index})`;
+	return [code, Blockly.JavaScript.ORDER_NONE];
 };
