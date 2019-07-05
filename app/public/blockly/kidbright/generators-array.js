@@ -56,5 +56,9 @@ Blockly.JavaScript['list_insert_index'] = function(block) {
 };
   
 Blockly.JavaScript['list_get_text'] = function(block) {
+	var number_index_from = block.getFieldValue('index_from');
+	var number_index_to = block.getFieldValue('index_to');
 
+	var code = `kb_list.get_list_text(global_num, ${number_index_from}, ${number_index_to})`;
+	return [code, Blockly.JavaScript.ORDER_NONE];
 };

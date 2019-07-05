@@ -41,10 +41,17 @@ void Kblist::insert_value_index(double value, int index, double arr[], int lengt
         }
     }
 }
-char* Kblist::get_list_text(){
-    //...
-    return (char *)"a";
-}
+char* Kblist::get_list_text(double arr[], int from, int to){
+    char* result = new char[100];
+    for(int i=from; i<to; i++){
+        if(i == from)
+            sprintf(result, "%.2f", arr[i]);
+        else
+            sprintf(result, "%s, %.2f", result, arr[i]);
+    }
+    
+    return result;   
+} 
 void Kblist::set_multi(double arr[], int length, int max_len, ...){
     for(int j=0; j<max_len; j++){
         arr[j] = 0.0;
