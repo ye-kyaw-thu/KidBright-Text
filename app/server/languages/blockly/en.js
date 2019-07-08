@@ -896,24 +896,24 @@ goog.require('Blockly.Msg');
 
 // list
 /** @export */ Blockly.Msg.LIST_GET_LENGTH = "Get length of list";
-/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "Get how many value inside an array";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "Get the number of value(s) inside an array";
 
 /** @export */ Blockly.Msg.LIST_GET_INDEX = "Get value at index";
 /** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "Get what is the value at specified index";
 
-/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "Set value";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "Set value to";
 /** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "at index";
 /** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "change the value at specified index";
 
-/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "Insert value to list from first";
-/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "insert value to the first index of list. example list [1, 2, 3] then insert 5 at first the list will be [5, 1, 2, 3] ";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "Append value at the beginning of the list";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "insert value to the first index of list. For example, list [1, 2, 3] then insert 5 at first the list will be [5, 1, 2, 3] ";
 
-/** @export */ Blockly.Msg.LIST_INSERT_LAST = "Insert value to list from last";
-/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "insert value to the last index of list. example list [1, 2, 3] then insert 5 at last the list will be [1, 2, 3, 5] ";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST = "Append value into the list";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "insert value to the last index of list. For example, list [1, 2, 3] then insert 5 at last the list will be [1, 2, 3, 5] ";
 
 /** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "Insert value";
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "to list at";
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "insert value to list at index you select.";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "into the list at index";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "insert value to list at the specified index";
 
 /** @export */ Blockly.Msg.LIST_GET_TEXT = "Read value in list from %1 to %2";
-/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "set start and end index to show value in list.";
+/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "specify start and end index to show value from the list.";
