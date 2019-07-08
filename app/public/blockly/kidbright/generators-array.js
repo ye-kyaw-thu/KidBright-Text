@@ -5,7 +5,7 @@ Blockly.JavaScript['lists_create_with'] = function(block) {
       elements[i] = Blockly.JavaScript.valueToCode(block, 'ADD' + i,
           Blockly.JavaScript.ORDER_COMMA) || 'null';
     }
-    var code = 'global_num = new ';
+    var code = '';
     for (var j = 0; j < elements.length; j++) {
         code += 'global_num[' + j + '] = ' + elements[j] + ';\n';
     }
@@ -15,7 +15,7 @@ Blockly.JavaScript['lists_create_with'] = function(block) {
 
 Blockly.JavaScript['list_get_length'] = function(block) {
     // Get length of array
-    var code = '((int)(sizeof(global_num) / sizeof((int)global_num[0])))';
+    var code = '((int)(sizeof(global_num) / sizeof(int)))';
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
   
