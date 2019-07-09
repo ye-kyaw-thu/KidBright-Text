@@ -29,7 +29,7 @@ Blockly.JavaScript['lists_create_with'] = function(block) {
 
 Blockly.JavaScript['list_get_length'] = function(block) {
     // Get length of array
-    var code = '((int)(sizeof(global_num) / sizeof((int)global_num[0])))';
+    var code = '((int)(sizeof(global_num) / sizeof(int)))';
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
   

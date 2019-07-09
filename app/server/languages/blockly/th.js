@@ -904,25 +904,25 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "รวมข้อความกับตัวเลขหรอค่าจากเซ็นเซอร์";
 
 // list
-/** @export */ Blockly.Msg.LIST_GET_LENGTH = "หาขนาดของรายการ";
-/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "หาขนาดของรายการ";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH = "ขนาดของรายการ";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "หาจำนวนของข้อมูลทั้งหมดที่ปรากฎในรายการ";
 
-/** @export */ Blockly.Msg.LIST_GET_INDEX = "หากค่า ณ ตำแหน่งที่";
-/** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "หากค่าจากรายการ ณ ตำแหน่งที่";
+/** @export */ Blockly.Msg.LIST_GET_INDEX = "หาค่าของข้อมูล ณ ตำแหน่งที่";
+/** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "หาค่าของข้อมูลจากรายการ ณ ตำแหน่งที่กำหนด โดยตำแหน่งแรกของข้อมูลจะนับเป็นตำแหน่งที่ 0";
 
-/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "กำหนดค่า";
-/** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "ในตำแหน่งรายการที่";
-/** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "เปลี่ยนค่าในรายการ ณ ตำแหน่งที่กำหนด";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "เปลี่ยนค่าเป็น";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "ในตำแหน่งข้อมูลที่";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "เปลี่ยนค่าของข้อมูลที่มีอยู่แล้วในรายการ ณ ตำแหน่งที่กำหนด";
 
-/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "แทรกค่าไปยังด้านหน้ารายการ";
-/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "แทรกข้อมูลไปยังหน้าสุดของรายการ สมมติว่ามีรายการ [1, 2, 3] แล้วเราแทรก 5 เข้าไปจะได้รายการเป็น [5, 1 ,2, 3]";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "เพิ่มข้อมูลไปยังด้านหน้าสุดรายการ";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "เพิ่มข้อมูลไปยังหน้าสุดของรายการ ยกตัวอย่างเช่น ในรายการ [1, 2, 3] หากแทรก 5 เข้าไปจะได้รายการเป็น [5, 1 ,2, 3]";
 
-/** @export */ Blockly.Msg.LIST_INSERT_LAST = "แทรกค่าไปยังด้านหลังรายการ";
-/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "แทรกข้อมูลไปยังหลังสุดของรายการ สมมติว่ามีรายการ [1, 2, 3] แล้วเราแทรก 5 เข้าไปจะได้รายการเป็น [1 ,2, 3, 5]";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST = "เพิ่มข้อมูลไปยังท้ายสุดของรายการ";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "เพิ่มข้อมูลไปยังท้ายสุดของรายการ ยกตัวอย่างเช่น ในรายการ [1, 2, 3] หากแทรก 5 เข้าไปจะได้รายการเป็น [1 ,2, 3, 5]";
 
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "เพิ่มค่า";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "เพิ่มข้อมูล";
 /** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "ไปยังรายการ ณ ตำแหน่งที่";
-/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "เพิ่มค่าตัวเลขไปยังรายการในตำแหน่งที่กำหนด";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "เพิ่มค่าตัวเลขใหม่ไปยังรายการในตำแหน่งที่กำหนด";
 
-/** @export */ Blockly.Msg.LIST_GET_TEXT = "อ่านค่าจากรายการตั้งแต่ %1 ถึง %2";
+/** @export */ Blockly.Msg.LIST_GET_TEXT = "อ่านข้อมูลจากรายการตั้งแต่ตำแหน่งที่ %1 ถึงตำแหน่งที่ %2";
 /** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "กำหนดลำดับเริ่มต้นและลำดับสุดท้ายในการอ่านข้อมูลจากรายการ";
