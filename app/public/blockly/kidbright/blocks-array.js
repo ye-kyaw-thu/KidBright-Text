@@ -207,7 +207,7 @@ Blockly.Blocks['list_insert_first'] = {
 	init: function () {
 		this.jsonInit({
       "type": "list_insert_first",
-      "message0": Blockly.Msg.LIST_INSERT_FIRST + " %1",
+      "message0": Blockly.Msg.LIST_INSERT_FIRST,
       "args0": [
         {
           "type": "input_value",
@@ -229,7 +229,7 @@ Blockly.Blocks['list_insert_last'] = {
 	init: function () {
 		this.jsonInit({
       "type": "list_insert_first",
-      "message0": Blockly.Msg.LIST_INSERT_LAST + " %1",
+      "message0": Blockly.Msg.LIST_INSERT_LAST,
       "args0": [
         {
           "type": "input_value",
