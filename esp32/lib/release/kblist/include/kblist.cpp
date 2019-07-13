@@ -43,7 +43,9 @@ void Kblist::insert_last_value(double value, double arr[], int length){
     }    
 };
 void Kblist::insert_value_index(double value, int index, double arr[], int length){
+    if(index > 99) index = 99;  // pretent index out of range
     double rest_value = arr[index];
+
     for(int i=index; i<length; i++){
         if((i == length -1) && (i == index)){
             arr[i] = value;
@@ -61,13 +63,17 @@ void Kblist::insert_value_index(double value, int index, double arr[], int lengt
 }
 char* Kblist::get_list_text(double arr[], int from, int to){
     char* result = new char[100];
-    for(int i=from; i<to; i++){
-        if(i == from)
-            sprintf(result, "%.2f", arr[i]);
-        else
-            sprintf(result, "%s, %.2f", result, arr[i]);
+    if(from > 99) from = 99; // pretent index out of range
+
+    if(from < to){
+        for(int i=from; i<to; i++){
+            if(i == from)
+                sprintf(result, "%.2f", arr[i]);
+            else
+                sprintf(result, "%s, %.2f", result, arr[i]);
+        }
     }
-    
+
     return result;   
 } 
 void Kblist::set_multi(double arr[], int length, int max_len, ...){

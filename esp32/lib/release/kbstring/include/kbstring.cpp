@@ -20,12 +20,16 @@ char* Kbstring::concat(char* str, double input){
 char* Kbstring::substring(char* str, int from, int to){
     char* sub = str;
     char* result = new char[100];
-    int init_i = 0;
-    for(int i=from; i<to; i++){
-        result[init_i] = sub[i];
-        init_i++;
+
+    if(to > 99) to = 99; // pretent index out of range
+    if(from < to){
+        int init_i = 0;
+        for(int i=from; i<to; i++){
+            result[init_i] = sub[i];
+            init_i++;
+        }
+        result[init_i] = '\0';
     }
-    result[init_i] = '\0';
     return result;
 }
 
