@@ -901,7 +901,7 @@ goog.require('Blockly.Msg');
 
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER = "แสดงข้อความ";
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_VALUE = "กับค่าตัวเลข";
-/** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "รวมข้อความกับตัวเลขหรอค่าจากเซ็นเซอร์";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "รวมข้อความกับตัวเลขหรือค่าเข้าด้วยกันจากเซ็นเซอร์ เช่น \"อุณหภูมิ ณ ปัจจุบันมีค่าเท่ากับ 35\" เป็นต้น";
 
 // list
 /** @export */ Blockly.Msg.LIST_GET_LENGTH = "ขนาดของรายการ";

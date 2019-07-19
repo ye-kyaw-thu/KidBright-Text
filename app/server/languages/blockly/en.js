@@ -871,12 +871,12 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA_TOOLTIP = "get topic data";
 
 // function
-/** @export */ Blockly.Msg.FUNCTION_TITLE = "function";
-/** @export */ Blockly.Msg.CALL_FUNCTION_TITLE = "call function";
+/** @export */ Blockly.Msg.FUNCTION_TITLE = "Function";
+/** @export */ Blockly.Msg.CALL_FUNCTION_TITLE = "Call function";
 
 // string
-/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_INPUT_WITH = "join string with";
-/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_TOOLTIP = "join strgin from text, variable, and sensor. maximum 100 characters";
+/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_INPUT_WITH = "Join string with";
+/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_TOOLTIP = "Join string from text, variable, and sensor. Maximum 100 characters";
 
 /** @export */ Blockly.Msg.STRING_LENGTH_MESSAGE = "Length of text";
 /** @export */ Blockly.Msg.STRING_LENGTH_TOOLTIP = "get length of text.";
@@ -884,15 +884,15 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.STRING_SUBSTRING_TEXT = "Substring";
 /** @export */ Blockly.Msg.STRING_SUBSTRING_FROM = "from";
 /** @export */ Blockly.Msg.STRING_SUBSTRING_TO = "to";
-/** @export */ Blockly.Msg.STRING_SUBSTRING_TOOLTIP = "split text from text by set index.";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_TOOLTIP = "Split text from text by set index.";
 
 /** @export */ Blockly.Msg.STRING_CHAR_AT_TEXT = "Get character from ";
 /** @export */ Blockly.Msg.STRING_CHAR_AT_INDEX = "at";
 /** @export */ Blockly.Msg.STRTING_CHAT_AT_TOOLTIP = "Return character from text by set index.";
 
-/** @export */ Blockly.Msg.STRING_WITH_NUMBER = "Write text ";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER = "Join text ";
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_VALUE = "with number";
-/** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "Merge text with number or sensor value.";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "Merge text with number or sensor value. For example, \"Current temperature is 35\".";
 
 // list
 /** @export */ Blockly.Msg.LIST_GET_LENGTH = "Get length of the list";
