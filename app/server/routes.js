@@ -644,10 +644,8 @@ module.exports = function (app, Config, Log) {
 			// kbiot
 			'#include "nvs_flash.h"\n' +
 			'#include "wificontroller.h"\n' +
-			'#include "../../lib/release/kbstring/include/kbstring.h"\n' +
-			'#include "../../lib/release/kbstring/include/kbstring.cpp"\n' +
-			'#include "../../lib/release/kblist/include/kblist.h"\n' + 
-			'#include "../../lib/release/kblist/include/kblist.cpp"\n' +
+			'#include "kbstring.h"\n' +
+			'#include "kblist.h"\n' +
 			'#include "kbiot.h"\n\n' +
 			'#define KBSERIAL "' + kbmac_addr + '"\n' +
 			'#define CLIENTID "' + kbmac_addr + '"\n' +
