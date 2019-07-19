@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2">
+            <g id="Variables" fill="#A55B80" fill-rule="nonzero">
+                <path d="M256,0 C114.515625,0 0,114.496094 0,256 C0,397.484375 114.496094,512 256,512 C397.484375,512 512,397.503906 512,256 C512,114.515625 397.503906,0 256,0 Z M256,472 C136.621094,472 40,375.390625 40,256 C40,136.621094 136.609375,40 256,40 C375.378906,40 472,136.609375 472,256 C472,375.378906 375.390625,472 256,472 Z" id="Shape"></path>
+            </g>
+            <text id="Y" stroke="#B15582" stroke-width="6" fill="#B15582" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="162" font-weight="normal" letter-spacing="0.699999988">
+                <tspan x="201.025" y="327">Y</tspan>
+            </text>
+            <text id="Z" stroke="#B15582" stroke-width="6" fill="#B15582" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="162" font-weight="normal" letter-spacing="0.699999988">
+                <tspan x="321.324316" y="327">Z</tspan>
+            </text>
+            <text id="X" stroke="#B15582" stroke-width="6" fill="#B15582" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="162" font-weight="normal" letter-spacing="0.699999988">
+                <tspan x="84.2256836" y="327">X</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
