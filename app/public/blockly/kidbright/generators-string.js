@@ -1,12 +1,12 @@
 Blockly.JavaScript['string_variables_set'] = function(block) {
 	var argument0 = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
 	var varName = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
-	return 'STRING_' + varName + ' = ' + argument0 + ';\n';
+	return 'STRING_' + varName + ' = ' + argument0.replace(/\\/g, '\\\\') + ';\n';
 };
 
 Blockly.JavaScript['string_length'] = function(block) {
 	var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-	var code = '(double)strlen(' + value_name + ')';
+	var code = '(double)strlen(' + value_name.replace(/\\/g, '\\\\') + ')';
 	return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -21,9 +21,9 @@ Blockly.JavaScript['string_join'] = function(block) {
 	for(var i=0; i<elements.length; i++){
 		var element = elements[i];
 		if((i === 0) && (element !== 'null')){
-			result += 'kb_string.concat(global_str,' + element + ')';
+			result += 'kb_string.concat(global_str,' + element.replace(/\\/g, '\\\\') + ')';
 		} else if(element !== 'null'){
-			result = 'kb_string.concat(' + result + ',' + element + ')';			
+			result = 'kb_string.concat(' + result + ',' + element.replace(/\\/g, '\\\\') + ')';			
 		}
 	}
 	var code = result;
@@ -35,7 +35,7 @@ Blockly.JavaScript['string_substring'] = function(block) {
 	var value_from = Blockly.JavaScript.valueToCode(block, 'from', Blockly.JavaScript.ORDER_ATOMIC);
 	var value_to = Blockly.JavaScript.valueToCode(block, 'to', Blockly.JavaScript.ORDER_ATOMIC);
 
-	var code = `kb_string.substring((char*)${value_input}, ${value_from}, ${value_to})`;
+	var code = `kb_string.substring((char*)${value_input.replace(/\\/g, '\\\\')}, ${value_from}, ${value_to})`;
 	return [code, Blockly.JavaScript.ORDER_NONE];
   };
 
@@ -43,7 +43,7 @@ Blockly.JavaScript['string_with_number'] = function (block) {
 	var text_text = block.getFieldValue('TEXT'); 
 	var argument0 = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC); 
 	
-	var code = 'kb_string.concat((char *)"' + text_text + '",' + argument0 + ')';
+	var code = 'kb_string.concat((char *)"' + text_text.replace(/\\/g, '\\\\') + '",' + argument0 + ')';
 	return [code, Blockly.JavaScript.ORDER_NONE]; 
 }
 
@@ -51,6 +51,6 @@ Blockly.JavaScript['string_charAt'] = function(block) {
 	var value_input = Blockly.JavaScript.valueToCode(block, 'input', Blockly.JavaScript.ORDER_ATOMIC);
 	var value_index = Blockly.JavaScript.valueToCode(block, 'index', Blockly.JavaScript.ORDER_ATOMIC);
 
-	var code = `kb_string.charat(${value_input}, ${value_index})`;
+	var code = `kb_string.charat(${value_input.replace(/\\/g, '\\\\')}, ${value_index})`;
 	return [code, Blockly.JavaScript.ORDER_NONE];
 };
