@@ -233,7 +233,7 @@ Blockly.Blocks['string_charAt'] = {
           {
             "type": "input_value",
             "name": "input",
-            "check": ["String", "Number"]
+            "check": ["String"]
           },
           {
             "type": "input_value",
