@@ -99,6 +99,9 @@ function renderToolbox(res) {
 		}
 	});
 
+	Blockly.kbide['WORKSPACE'] = workspace;
+	workspace.addChangeListener(handle_function);
+
 	var text = localStorage.getItem('KidBrightLastWorkspace');
 	if (text != null) {
 		var xml = Blockly.Xml.textToDom(text);

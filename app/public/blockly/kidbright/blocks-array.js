@@ -24,7 +24,7 @@ Blockly.Blocks['lists_create_with'] = {
     mutationToDom: function() {
       var container = document.createElement('mutation');
       container.setAttribute('items', this.itemCount_);
-      console.log('mutationToDom: ', container);
+      // console.log('mutationToDom: ', container);
       return container;
     },
     //
@@ -35,7 +35,7 @@ Blockly.Blocks['lists_create_with'] = {
      */
     domToMutation: function(xmlElement) {
       this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
-      console.log('domToMutation: ', this.itemCount_);
+      // console.log('domToMutation: ', this.itemCount_);
       this.updateShape_();
     },
     /**
@@ -54,7 +54,7 @@ Blockly.Blocks['lists_create_with'] = {
         connection.connect(itemBlock.previousConnection);
         connection = itemBlock.nextConnection;
       }
-      console.log('decompose: ', containerBlock);
+      // console.log('decompose: ', containerBlock);
       return containerBlock;
     },
     /**
@@ -140,10 +140,6 @@ Blockly.Blocks['list_get_length'] = {
           "tooltip": Blockly.Msg.LIST_GET_LENGTH_TOOLTIP,
           "helpUrl": ""
         }
-      /**
-      "message0": Blockly.Msg.LIST_GET_LENGTH
-      "helpUrl": Blockly.Msg.LIST_GET_LENGTH_TOOLTIP
-       */
     )}
 }
 
@@ -165,10 +161,6 @@ Blockly.Blocks['list_get_index'] = {
       "tooltip": Blockly.Msg.LIST_GET_INDEX_TOOLTIP,
       "helpUrl": ""
     }
-      /**
-      "message0": Blockly.Msg.LIST_GET_INDEX + " %1"
-      "helpUrl": Blockly.Msg.LIST_GET_INDEX_TOOLTIP
-       */
     )}
 }
 
@@ -196,10 +188,6 @@ Blockly.Blocks['list_set_index'] = {
       "tooltip": Blockly.Msg.LIST_SET_INDEX_TOOLTIP,
       "helpUrl": ""
     }
-      /**
-      "message0": Blockly.Msg.LIST_SET_INDEX_VALUE + " %1" + Blockly.Msg.LIST_SET_INDEX_AT + " %2"
-      "helpUrl": Blockly.Msg.LIST_SET_INDEX_TOOLTIP
-       */
     )}
 }
 
