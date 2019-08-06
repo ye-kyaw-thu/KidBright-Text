@@ -3,7 +3,8 @@ Blockly.JavaScript['function'] = function (block) {
 	let funcName = block.getFieldValue('NAME');
 
 	// generate unique function name
-	let branch = Blockly.JavaScript.statementToCode(block, 'STACK');
+	let branch = Blockly.JavaScript.statementToCode(block, 'CODE');
+	console.log('>>> ', branch);
 	if (Blockly.JavaScript.STATEMENT_PREFIX) {
 		branch = Blockly.JavaScript.prefixLines(
 			Blockly.JavaScript.STATEMENT_PREFIX.replace(/%1/g,
@@ -14,7 +15,6 @@ Blockly.JavaScript['function'] = function (block) {
 			'\'' + block.id + '\'') + branch;
 	}
 	let code = 'void func_' + funcName + '(void) {\n' + branch + '\n}';
-	console.log('branch: ', branch);
 	code = Blockly.JavaScript.scrub_(block, code);
 	// Add % so as not to collide with helper functions in definitions list.
 	Blockly.JavaScript.definitions_['%' + funcName] = code;

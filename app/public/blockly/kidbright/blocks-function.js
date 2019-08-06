@@ -248,7 +248,7 @@ Blockly.kbide['DELETE_CALL_FUNCTION_EVENT'] = function(workspace, blockId){
 const handle_function = function(primaryEvent) {
     // Convert event to JSON.  This could then be transmitted across the net.
     var json = primaryEvent.toJson();
-    console.log(json);
+    // console.log(json);
 
     var ws = Blockly.kbide['WORKSPACE'];
     var blockId = json.blockId
