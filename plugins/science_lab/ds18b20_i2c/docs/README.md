@@ -5,7 +5,7 @@
 - ต่อเซ็นเซอร์ DS18B20 เข้าชิพ DS2482-100 แปลงการเชื่อมต่อเป็น I2C
 - DS2482-100 ต่อได้สูงสุด 4 ตัว ต่อ I2C 1 แชนแนล
 
-![GitHub Logo](images/ads1115_breakout.png)
+![GitHub Logo](images/ds18b20_i2c.png)
 
 ### การต่อใช้งานจาก KidBright I2C Chain ไปยัง DS2482-100
 - กราวด์ (GND) (สายไฟสีดำ) ต่อไปยังขา GND
