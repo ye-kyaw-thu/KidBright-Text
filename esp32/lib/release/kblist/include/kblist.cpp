@@ -3,6 +3,7 @@
 #include <stdarg.h>
 
 #define TAG "KBLIST"
+#define UNDEFINED -999999
 
 void Kblist::set_list_value(){
     //...
@@ -10,7 +11,8 @@ void Kblist::set_list_value(){
 int Kblist::get_length(double arr[], int length){
     int count = 0;
     for (int i=0; i<length; i++) {
-        if (arr[i] != -999999) count++;
+        if (arr[i] != UNDEFINED) count++;
+        else break;
     }
     return count;
 };
@@ -34,27 +36,18 @@ void Kblist::insert_first_value(double value, double arr[], int length){
     }
 };
 void Kblist::insert_last_value(double value, double arr[], int length){
-    // double rest_value;
-    // for(int i=length - 1; i>0; i--){
-    //     if(i == 0){
-    //         arr[i] = value;
-    //     } else {
-    //         rest_value = arr[i];
-    //         arr[i] = value;
-    //         value = rest_value;
-    //     }
-    // }    
     for (int i=0; i<length; i++) {
-        if(arr[i] == -999999) {
-            arr[i] = value;
-            break;
+        if (arr[i] == UNDEFINED) {
+            arr[i] = value;     // insert at first value of undefined 
+            break;              // and then break the loop to finish the process
         }
     }
 };
 void Kblist::insert_value_index(double value, int index, double arr[], int length){
     if(index > 99) index = 99;  // pretent index out of range
     int len = Kblist::get_length(arr);
-    if (len < index) return; // check if insert index is out of range or not
+    if (len < index) return;    // check if insert index is out of range or not
+                                // insert at last index is allowed (same as insert_last_index)
 
     double rest_value = arr[index];
 
@@ -79,7 +72,7 @@ char* Kblist::get_list_text(double arr[], int from, int to){
 
     if(from < to){
         for(int i=from; i<to; i++){
-            if (arr[i] != -999999) {
+            if (arr[i] != UNDEFINED) {
                 if(i == from)
                     sprintf(result, "%.2f", arr[i]);
                 else
@@ -93,7 +86,7 @@ char* Kblist::get_list_text(double arr[], int from, int to){
 } 
 void Kblist::set_multi(double arr[], int length, int max_len, ...){
     for(int j=0; j<max_len; j++){
-        arr[j] = -999999;
+        arr[j] = UNDEFINED;
     }
     va_list ap;
     va_start(ap, length); //Requires the last fixed parameter (to get the address)
