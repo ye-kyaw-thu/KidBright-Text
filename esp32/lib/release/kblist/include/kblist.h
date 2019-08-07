@@ -4,7 +4,7 @@
 class Kblist
 {
 public:
-  double get_length();
+  int get_length(double arr[], int length = 100);
   double get_value_index();
   void set_list_value();
   void set_value_at_index();

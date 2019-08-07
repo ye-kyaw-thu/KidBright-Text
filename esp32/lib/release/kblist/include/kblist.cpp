@@ -7,9 +7,12 @@
 void Kblist::set_list_value(){
     //...
 };
-double Kblist::get_length(){
-    //...
-    return (double)0.0;
+int Kblist::get_length(double arr[], int length){
+    int count = 0;
+    for (int i=0; i<length; i++) {
+        if (arr[i] != -999999) count++;
+    }
+    return count;
 };
 double Kblist::get_value_index(){
     //...
@@ -31,19 +34,28 @@ void Kblist::insert_first_value(double value, double arr[], int length){
     }
 };
 void Kblist::insert_last_value(double value, double arr[], int length){
-    double rest_value;
-    for(int i=length - 1; i>0; i--){
-        if(i == 0){
+    // double rest_value;
+    // for(int i=length - 1; i>0; i--){
+    //     if(i == 0){
+    //         arr[i] = value;
+    //     } else {
+    //         rest_value = arr[i];
+    //         arr[i] = value;
+    //         value = rest_value;
+    //     }
+    // }    
+    for (int i=0; i<length; i++) {
+        if(arr[i] == -999999) {
             arr[i] = value;
-        } else {
-            rest_value = arr[i];
-            arr[i] = value;
-            value = rest_value;
+            break;
         }
-    }    
+    }
 };
 void Kblist::insert_value_index(double value, int index, double arr[], int length){
     if(index > 99) index = 99;  // pretent index out of range
+    int len = Kblist::get_length(arr);
+    if (len < index) return; // check if insert index is out of range or not
+
     double rest_value = arr[index];
 
     for(int i=index; i<length; i++){
@@ -67,10 +79,13 @@ char* Kblist::get_list_text(double arr[], int from, int to){
 
     if(from < to){
         for(int i=from; i<to; i++){
-            if(i == from)
-                sprintf(result, "%.2f", arr[i]);
-            else
-                sprintf(result, "%s, %.2f", result, arr[i]);
+            if (arr[i] != -999999) {
+                if(i == from)
+                    sprintf(result, "%.2f", arr[i]);
+                else
+                    sprintf(result, "%s, %.2f", result, arr[i]);
+            }
+            else break;
         }
     }
 
@@ -78,7 +93,7 @@ char* Kblist::get_list_text(double arr[], int from, int to){
 } 
 void Kblist::set_multi(double arr[], int length, int max_len, ...){
     for(int j=0; j<max_len; j++){
-        arr[j] = 0.0;
+        arr[j] = -999999;
     }
     va_list ap;
     va_start(ap, length); //Requires the last fixed parameter (to get the address)
