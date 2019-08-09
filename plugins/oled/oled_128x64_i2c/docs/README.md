@@ -5,7 +5,7 @@
 - จำนวนพิกเซล 128x64
 - การเชื่อมต่อแบบ I2C
 
-![GitHub Logo](images/oled_128x64_i2c_sh1106.png)
+![OLED 128x64 I2C SH1106](images/oled_128x64_i2c_sh1106.png)
 
 ### ขนาดฟอนต์
 - ขนาดปกติ 6x8
@@ -17,18 +17,18 @@
 - ฟอนต์ขนาดปกติใช้จำนวนช่อง 1 ช่อง
 - ฟอนต์ขนาดใหญ่ใช้จำนวนช่องเป็น 2 เท่าของขนาดฟอนต์ปกติ
 
-![GitHub Logo](images/oled_128x64_i2c_column_row.png)
+![OLED 128x64 I2C Column Row](images/oled_128x64_i2c_column_row.png)
 
 - ฟอนต์ขนาดปกติ ตัวอักษร A อยู่ที่ คอลัมน์ที่ 1 แถวที่ 1
 - ฟอนต์ขนาดปกติ ตัวอักษร B อยู่ที่ คอลัมน์ที่ 2 แถวที่ 1
 
-![GitHub Logo](images/oled_128x64_i2c_column_row_normal_font.png)
+![OLED 128x64 I2C Normal Font](images/oled_128x64_i2c_column_row_normal_font.png)
 
 - ฟอนต์ขนาดใหญ่ ตัวอักษร A อยู่ที่ คอลัมน์ที่ 1 แถวที่ 1
 - ฟอนต์ขนาดใหญ่ ตัวอักษร B อยู่ที่ คอลัมน์ที่ 3 แถวที่ 1
 - จุดอ้างอิงของคอลัมน์ และแถวของฟอนต์ขนาดใหญ่อยู่ที่มุมบนด้านซ้าย
 
-![GitHub Logo](images/oled_128x64_i2c_column_row_big_font.png)
+![OLED 128x64 I2C Big Font](images/oled_128x64_i2c_column_row_big_font.png)
 
 
 ### การต่อใช้งานจาก KidBright I2C Chain ไปยังจอภาพ OLED
@@ -37,7 +37,7 @@
 - SCL1 (สายไฟสีเขียว) ต่อไปยังขา SCK
 - แรงดัน 3.3 โวลต์ (3V3) (สายไฟสีส้ม) ต่อไปยังขา VCC
 
-![GitHub Logo](images/oled_128x64_i2c_wiring.png)
+![OLED 128x64 I2C Wiring](images/oled_128x64_i2c_wiring.png)
 
 ### บล๊อก
 - หมวด OLED
@@ -45,6 +45,8 @@
 - บล๊อก Print สำหรับแสดงตัวอักษรบนจอภาพด้วยฟอนต์ขนาดปกติ
 - บล๊อก Print Big สำหรับแสดงตัวอักษรบนจอภาพด้วยฟอนต์ขนาดใหญ่
 - บล๊อก Print Number สำหรับแสดงตัวเลขบนจอภาพแบบกำหนดจำนวนจุดทศนิยม
+
+![OLED 128x64 I2C Wiring](images/oled_128x64_i2c_blocks.png)
 
 ### ตัวเลือกในบล๊อก
 - ชิพเซ็ต SSD1306 หรือ SH1106
@@ -54,4 +56,5 @@
 - ข้อความหรือค่าที่ต้องการแสดง
 
 ### ตัวอย่างโปรแกรม
-![GitHub Logo](images/oled_128x64_i2c_example.png)
+
+![OLED 128x64 I2C Example](images/oled_128x64_i2c_example.png)
