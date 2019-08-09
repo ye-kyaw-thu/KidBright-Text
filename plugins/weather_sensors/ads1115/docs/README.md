@@ -8,7 +8,7 @@
 - ตั้งค่าแรงดันอินพุตเป็นแบบ Single-Ended (แรงดันอินพุตเทียบกับกราวด์)
 - ตั้งค่าอ่านแรงดันอินพุตสูงสุดไม่เกิน 2.048 โวลต์
 
-![GitHub Logo](images/ads1115_breakout.png)
+![ADS1115](images/ads1115_breakout.png)
 
 ### การต่อใช้งานจาก KidBright I2C Chain ไปยัง ADS1115
 - กราวด์ (GND) (สายไฟสีดำ) ต่อไปยังขา GND
@@ -16,7 +16,7 @@
 - SCL1 (สายไฟสีเขียว) ต่อไปยังขา SCL
 - แรงดัน 3.3 โวลต์ (3V3) (สายไฟสีส้ม) ต่อไปยังขา VCC
 
-![GitHub Logo](images/ads1115_wiring.png)
+![ADS1115 Wiring](images/ads1115_wiring.png)
 
 ### บล๊อก
 - หมวด Weather Sensors
@@ -28,4 +28,4 @@
 
 ### ตัวอย่างโปรแกรม
 
-![GitHub Logo](images/ads1115_example.png)
+![ADS1115 Example](images/ads1115_example.png)
