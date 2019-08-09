@@ -31,6 +31,6 @@
 
 ### ตัวอย่างโปรแกรม สำหรับ WS2812B แบบวงแหวนจำนวน 24 ดวง
 
-![WS2812B example](img/ws2812b_rmt_example.mp4)
+![WS2812B example](images/ws2812b_rmt_example.mp4)
 
 ![WS2812B example](images/ws2812b_rmt_example.png)
