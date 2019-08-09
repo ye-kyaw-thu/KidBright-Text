@@ -408,12 +408,9 @@ module.exports = function (app, Config, Log) {
 		var use_prime_func = false;
 
 		if (sta_ssid !== '') {
-			if (sta_password !== '') {
-				// set wifi and enable wifi
-				start_wifi_code = 'wifi_sta_start(CONFIG_WIFI_SSID, CONFIG_WIFI_PASSWORD);\n';
-				if (enable_iot === 'true') {
-					start_iot_code = 'kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
-				}
+			start_wifi_code = 'wifi_sta_start(CONFIG_WIFI_SSID, CONFIG_WIFI_PASSWORD);\n';
+			if (enable_iot === 'true') {
+				start_iot_code = 'kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
 			}
 		}
 
@@ -512,15 +509,23 @@ module.exports = function (app, Config, Log) {
 				line = '';
 			}
 
+			// change variable line
+			var change_nouse = "(typeof x == 'number' ? x : 0) +";
+			var change_nouse_index = line.indexOf(change_nouse);
+			if(change_nouse_index !== -1){
+				var change_nouse_line = line.split(change_nouse);
+				line = change_nouse_line[0] + change_nouse_line[1];
+			}
+
 			if (line.length <= 0) {
 				continue;
 			}
 
 			// task function
-			if (line.substring(0, 10) == 'void vTask') {
+			if ((line.substring(0, 10) == 'void vTask') || (line.substring(0, 10) == 'void func_')) {
 				var tmp_line = line.replace('(', ' ');
 				var tmp_linelst = tmp_line.split(' ');
-				task_fn_name.push(tmp_linelst[1]);
+				if (line.substring(0, 10) !== 'void func_') task_fn_name.push(tmp_linelst[1]);
 				task_code += '\n';
 				in_func_flag = true;
 			}
@@ -541,7 +546,19 @@ module.exports = function (app, Config, Log) {
 			}
 		}
 		if (task_code != '') {
-			task_code = task_code + '\n';
+			// task_code = task_code + '\n';
+			// change to declare function first
+			var func_list = task_code.split('\n\n');
+			// for(i in func_list) console.log('debug: ', func_list[i]);
+
+			var task_group = '';
+			var func_group = '';
+			for(func_num in func_list){
+				let current_func = func_list[func_num];
+				if(current_func.indexOf("void func_") !== -1) func_group += current_func;
+				else task_group += current_func;
+			}
+			task_code = func_group + task_group;
 		}
 
 		// plug-ins includes
@@ -627,6 +644,8 @@ module.exports = function (app, Config, Log) {
 			// kbiot
 			'#include "nvs_flash.h"\n' +
 			'#include "wificontroller.h"\n' +
+			'#include "kbstring.h"\n' +
+			'#include "kblist.h"\n' +
 			'#include "kbiot.h"\n\n' +
 			'#define KBSERIAL "' + kbmac_addr + '"\n' +
 			'#define CLIENTID "' + kbmac_addr + '"\n' +
@@ -654,6 +673,10 @@ module.exports = function (app, Config, Log) {
 			'// ==================================================================================\n' +
 			plugins_obj_inst_code +
 			'\n' +
+			'Kbstring kb_string;\n' +
+			'Kblist kb_list;\n' + 
+			'char global_str[100];\n' +
+			'double global_num[100];\n' +
 			var_str +
 			prime_func_code +
 			iot_task +

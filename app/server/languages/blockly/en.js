@@ -95,7 +95,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_HELPURL = "https://github.com/google/blockly/wiki/Lists#create-list-with";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_INPUT_WITH = "create list with";
 /** @export */ Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP = "Add an item to the list.";
-/** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "Create a list with any number of items.";
+/** @export */ Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP = "Create a list with any number of items. the length of list is 100.";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FIRST = "first";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FROM_END = "# from end";
 /** @export */ Blockly.Msg.LISTS_GET_INDEX_FROM_START = "#";
@@ -207,7 +207,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_POWER = "Return the first number raised to the power of the second number.";
 /** @export */ Blockly.Msg.MATH_CHANGE_HELPURL = "https://en.wikipedia.org/wiki/Programming_idiom#Incrementing_a_counter";
 /** @export */ Blockly.Msg.MATH_CHANGE_TITLE = "change %1 by %2";
-/** @export */ Blockly.Msg.MATH_CHANGE_TOOLTIP = "Add a number to variable '%1'.";
+/** @export */ Blockly.Msg.MATH_CHANGE_TOOLTIP = "Add a number to variable '%1'. Support only data type number.";
 /** @export */ Blockly.Msg.MATH_CONSTANT_HELPURL = "https://en.wikipedia.org/wiki/Mathematical_constant";
 /** @export */ Blockly.Msg.MATH_CONSTANT_TOOLTIP = "Return one of the common constants: π (3.141…), e (2.718…), φ (1.618…), sqrt(2) (1.414…), sqrt(½) (0.707…), or ∞ (infinity).";
 /** @export */ Blockly.Msg.MATH_CONSTRAIN_HELPURL = "https://en.wikipedia.org/wiki/Clamping_(graphics)";
@@ -406,7 +406,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.VARIABLES_SET = "set %1 to %2";
 /** @export */ Blockly.Msg.VARIABLES_SET_CREATE_GET = "Create 'get %1'";
 /** @export */ Blockly.Msg.VARIABLES_SET_HELPURL = "https://github.com/google/blockly/wiki/Variables#set";
-/** @export */ Blockly.Msg.VARIABLES_SET_TOOLTIP = "Sets this variable to be equal to the input.";
+/** @export */ Blockly.Msg.VARIABLES_SET_TOOLTIP = "Sets this variable to be equal to the input. Support only data type number.";
 /** @export */ Blockly.Msg.VARIABLE_ALREADY_EXISTS = "A variable named '%1' already exists.";
 /** @export */ Blockly.Msg.VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE = "A variable named '%1' already exists for another type: '%2'.";
 /** @export */ Blockly.Msg.PROCEDURES_DEFRETURN_TITLE = Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE;
@@ -869,3 +869,51 @@ goog.require('Blockly.Msg');
 // mqtt get topic data
 /** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA = "get topic data";
 /** @export */ Blockly.Msg.MQTT_GET_TOPIC_DATA_TOOLTIP = "get topic data";
+
+// function
+/** @export */ Blockly.Msg.FUNCTION_TITLE = "Function";
+/** @export */ Blockly.Msg.CALL_FUNCTION_TITLE = "Call function";
+
+// string
+/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_INPUT_WITH = "Join string with";
+/** @export */ Blockly.Msg.JOIN_STRING_CREATE_WITH_TOOLTIP = "Join string from text, variable, and sensor. Maximum 100 characters";
+
+/** @export */ Blockly.Msg.STRING_LENGTH_MESSAGE = "Length of text";
+/** @export */ Blockly.Msg.STRING_LENGTH_TOOLTIP = "get length of text.";
+
+/** @export */ Blockly.Msg.STRING_SUBSTRING_TEXT = "Substring";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_FROM = "from";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_TO = "to";
+/** @export */ Blockly.Msg.STRING_SUBSTRING_TOOLTIP = "Split text from text by set index.";
+
+/** @export */ Blockly.Msg.STRING_CHAR_AT_TEXT = "Get character from ";
+/** @export */ Blockly.Msg.STRING_CHAR_AT_INDEX = "at";
+/** @export */ Blockly.Msg.STRTING_CHAT_AT_TOOLTIP = "Return character from text by set index.";
+
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER = "Join text ";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER_VALUE = "with number";
+/** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "Merge text with number or sensor value. For example, \"Current temperature is 35\".";
+
+// list
+/** @export */ Blockly.Msg.LIST_GET_LENGTH = "Get length of the list";
+/** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "Return the number of value(s) inside an array";
+
+/** @export */ Blockly.Msg.LIST_GET_INDEX = "Get value at index";
+/** @export */ Blockly.Msg.LIST_GET_INDEX_TOOLTIP = "Return the value at specified index";
+
+/** @export */ Blockly.Msg.LIST_SET_INDEX_VALUE = "Set value to";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_AT  = "at index";
+/** @export */ Blockly.Msg.LIST_SET_INDEX_TOOLTIP = "Change the value at specified index";
+
+/** @export */ Blockly.Msg.LIST_INSERT_LAST = "Append value %1 into the list";
+/** @export */ Blockly.Msg.LIST_INSERT_LAST_TOOLTIP = "Insert value to the last index of list. For example, if insert 5 in list [1, 2, 3] using this function, the list will be changed to [1, 2, 3, 5]";
+
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST = "Append value %1 at the beginning of the list";
+/** @export */ Blockly.Msg.LIST_INSERT_FIRST_TOOLTIP = "Insert value to the first index of list. For example, if insert 5 in list [1, 2, 3] using this fucntion, the list will be changed to [5, 1, 2, 3] ";
+
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_VALUE = "Append value";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_AT = "into the list at index";
+/** @export */ Blockly.Msg.LIST_INSERT_INDEX_TOOLTIP = "Insert value to list at the specified index";
+
+/** @export */ Blockly.Msg.LIST_GET_TEXT = "Read value in list from %1 to %2";
+/** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "specify start and end index to show value from the list.";

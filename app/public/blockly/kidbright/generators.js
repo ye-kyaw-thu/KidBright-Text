@@ -63,6 +63,7 @@ Blockly.JavaScript['basic_forever'] = function(block) {
 };
 
 Blockly.JavaScript['basic_string'] = function(block) {
+	console.log('=== ', block.getField('VALUE') , block.getField('VALUE').sourceBlock_.type);
 	return [
 		'(char *)"' + block.getFieldValue('VALUE') + '"',
 		Blockly.JavaScript.ORDER_ATOMIC
@@ -73,6 +74,7 @@ Blockly.JavaScript['basic_string'] = function(block) {
 // math
 // =============================================================================
 Blockly.JavaScript['math_number'] = function(block) {
+	console.log('--- ', block.getField('VALUE'), block.getField('VALUE').sourceBlock_.type);
 	return [
 		'(double)' + block.getFieldValue('VALUE'),
 		Blockly.JavaScript.ORDER_ATOMIC
@@ -114,7 +116,8 @@ Blockly.JavaScript['math_variables_set'] = function(block) {
 	var argument0 = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
 	var varName = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
 
-	return varName + ' = ' + argument0 + ';\n';
+	return varName + ' = ' + argument0 + ';\n'; // old code
+	// return 'NUMBER_' + varName + ' = ' + argument0 + ';\n';
 };
 
 Blockly.JavaScript['math_variables_get'] = function(block) {
