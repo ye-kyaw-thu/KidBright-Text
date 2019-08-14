@@ -14,6 +14,10 @@
 
 ![WS2812B Schematic](images/ws2812b_rmt_schematic.png)
 
+- วงจรต่อใช้งานแบบแยกแรงดัน WS2812B ออกจากบอร์ด KidBright32 เพิ่มตัวต้านทาน 220, 1K, ตัวเก็บประจุ 0.1uF, ไอซี 6N137 และชุดจ่ายไฟแรงดัน 5V ขนาดกระแสตามจำนวน WS2812B ที่ต่อพ่วงกัน
+
+![WS2812B Isolated Supply Schematic](images/ws2812b_rmt_isolated_schematic.png)
+
 ### บล๊อก
 - หมวด LED
 - บล๊อก WS2812B Set Pixel Number สำหรับตั้งค่าจำนวนดวงของ WS2812B ที่ใช้งาน
