@@ -18,3 +18,8 @@ Blockly.Msg.WS2812B_PIXEL_RGB_HELPURL = "";
 
 Blockly.Msg.WS2812B_PIXEL_COLOR_PICKER_TOOLTIP = "Show WS2812B pixel from color picker at selected position (range 1 to pixel number)";
 Blockly.Msg.WS2812B_PIXEL_COLOR_PICKER_HELPURL = "";
+
+Blockly.Msg.WS2812B_POSITION_NUMBER_TOOLTIP = "Position value 1 to 64";
+Blockly.Msg.WS2812B_POSITION_NUMBER_HELPURL = "";
+Blockly.Msg.WS2812B_COLOR_NUMBER_TOOLTIP = "Color value 0 to 255";
+Blockly.Msg.WS2812B_COLOR_NUMBER_HELPURL = "";

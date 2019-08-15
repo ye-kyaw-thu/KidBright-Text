@@ -73,7 +73,6 @@ Blockly.Blocks["ws2812b_rmt.pixel_rgb"] = {
 		}).append('\
 		   <value name="POS">\
 			   <shadow type="ws2812b_rmt.position_number">\
-				   <field name="VALUE">1</field>\
 			   </shadow>\
 		   </value>\
 		   <value name="RED">\
@@ -83,12 +82,10 @@ Blockly.Blocks["ws2812b_rmt.pixel_rgb"] = {
 		   </value>\
 		   <value name="GREEN">\
 			  <shadow type="ws2812b_rmt.color_number">\
-				  <field name="VALUE">0</field>\
 			  </shadow>\
 		  </value>\
 		  <value name="BLUE">\
 			  <shadow type="ws2812b_rmt.color_number">\
-				  <field name="VALUE">0</field>\
 			  </shadow>\
 		  </value>'
 	   );
@@ -128,7 +125,6 @@ Blockly.Blocks["ws2812b_rmt.pixel_color_picker"] = {
 		}).append('\
 		   <value name="POS">\
 			   <shadow type="ws2812b_rmt.position_number">\
-				   <field name="VALUE">1</field>\
 			   </shadow>\
 		   </value>'
 	   );
@@ -144,8 +140,8 @@ Blockly.Blocks["ws2812b_rmt.position_number"] = {
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
 		this.setColour(math_colour);
-		this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
-		this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
+		this.setTooltip(Blockly.Msg.WS2812B_POSITION_NUMBER_TOOLTIP);
+		this.setHelpUrl(Blockly.Msg.WS2812B_POSITION_NUMBER_HELPURL);
 	},
 	// custom xmlToolbox
 	xmlToolbox: function() {
@@ -161,8 +157,8 @@ Blockly.Blocks["ws2812b_rmt.color_number"] = {
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
 		this.setColour(math_colour);
-		this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
-		this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
+		this.setTooltip(Blockly.Msg.WS2812B_COLOR_NUMBER_TOOLTIP);
+		this.setHelpUrl(Blockly.Msg.WS2812B_COLOR_NUMBER_HELPURL);
 	},
 	// custom xmlToolbox
 	xmlToolbox: function() {

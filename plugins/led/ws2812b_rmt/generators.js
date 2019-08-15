@@ -10,15 +10,16 @@ Blockly.JavaScript['ws2812b_rmt.set_pixel_num'] = function(block) {
 };
 
 Blockly.JavaScript['ws2812b_rmt.pixel_rgb'] = function(block) {
-	var pos = Blockly.JavaScript.valueToCode(block, 'POS', Blockly.JavaScript.ORDER_ATOMIC);
-	var red = Blockly.JavaScript.valueToCode(block, 'RED', Blockly.JavaScript.ORDER_ATOMIC);
-	var green = Blockly.JavaScript.valueToCode(block, 'GREEN', Blockly.JavaScript.ORDER_ATOMIC);
-	var blue = Blockly.JavaScript.valueToCode(block, 'BLUE', Blockly.JavaScript.ORDER_ATOMIC);
+	var pos = Blockly.JavaScript.valueToCode(block, 'POS', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
+	var red = Blockly.JavaScript.valueToCode(block, 'RED', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
+	var green = Blockly.JavaScript.valueToCode(block, 'GREEN', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
+	var blue = Blockly.JavaScript.valueToCode(block, 'BLUE', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
 	return 'DEV_IO.WS2812B_RMT(' + block.getFieldValue('OUTPUT') + ')' + '.pixel_rgb(' + pos + ', ' + red + ', ' + green + ', ' + blue + ');\n';
 };
 
 Blockly.JavaScript['ws2812b_rmt.pixel_color_picker'] = function(block) {
-	var pos = Blockly.JavaScript.valueToCode(block, 'POS', Blockly.JavaScript.ORDER_ATOMIC);
+	var pos = Blockly.JavaScript.valueToCode(block, 'POS', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
+
 	var color = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(block.getFieldValue('COLOR'));
 	if (color) {
 		var red = parseInt(color[1], 16);
@@ -28,4 +29,15 @@ Blockly.JavaScript['ws2812b_rmt.pixel_color_picker'] = function(block) {
 	}
 
 	return '\n';
+};
+
+Blockly.JavaScript['ws2812b_rmt.position_number'] = function(block) {
+	// Numeric value.
+	var code = parseFloat(block.getFieldValue('VALUE'));
+	var order = code >= 0 ? Blockly.JavaScript.ORDER_ATOMIC : Blockly.JavaScript.ORDER_UNARY_NEGATION;
+	return [code, order];
+};
+
+Blockly.JavaScript['ws2812b_rmt.color_number'] = function(block) {
+	return Blockly.JavaScript['ws2812b_rmt.position_number'](block);
 };
