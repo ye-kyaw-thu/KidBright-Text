@@ -65,7 +65,34 @@ Blockly.Blocks["ws2812b_rmt.pixel_rgb"] = {
 		this.setColour(160);
 		this.setTooltip(Blockly.Msg.WS2812B_PIXEL_RGB_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.WS2812B_PIXEL_RGB_HELPURL);
-	}
+	},
+	// custom xmlToolbox
+	xmlToolbox: function() {
+		return $(document.createElement('block')).attr({
+			type: 'ws2812b_rmt.pixel_rgb'
+		}).append('\
+		   <value name="POS">\
+			   <shadow type="ws2812b_rmt.position_number">\
+				   <field name="VALUE">1</field>\
+			   </shadow>\
+		   </value>\
+		   <value name="RED">\
+			   <shadow type="ws2812b_rmt.color_number">\
+				   <field name="VALUE">255</field>\
+			   </shadow>\
+		   </value>\
+		   <value name="GREEN">\
+			  <shadow type="ws2812b_rmt.color_number">\
+				  <field name="VALUE">255</field>\
+			  </shadow>\
+		  </value>\
+		  <value name="BLUE">\
+			  <shadow type="ws2812b_rmt.color_number">\
+				  <field name="VALUE">255</field>\
+			  </shadow>\
+		  </value>'
+	   );
+   }
 };
 
 Blockly.Blocks["ws2812b_rmt.pixel_color_picker"] = {
@@ -93,5 +120,52 @@ Blockly.Blocks["ws2812b_rmt.pixel_color_picker"] = {
 		this.setColour(160);
 		this.setTooltip(Blockly.Msg.WS2812B_PIXEL_COLOR_PICKER_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.WS2812B_PIXEL_COLOR_PICKER_HELPURL);
+	} ,
+	// custom xmlToolbox
+	xmlToolbox: function() {
+		return $(document.createElement('block')).attr({
+			type: 'ws2812b_rmt.pixel_color_picker'
+		}).append('\
+		   <value name="POS">\
+			   <shadow type="ws2812b_rmt.position_number">\
+				   <field name="VALUE">1</field>\
+			   </shadow>\
+		   </value>'
+	   );
+   }
+};
+
+// hidden block (no generator defined), temporary used for shadow block
+Blockly.Blocks["ws2812b_rmt.position_number"] = {
+	init: function() {
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldNumber(1, 1, 64, 1), 'VALUE');
+		this.setOutput(true, 'Number');
+		this.setPreviousStatement(false);
+		this.setNextStatement(false);
+		this.setColour(math_colour);
+		this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
+		this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
+	},
+	// custom xmlToolbox
+	xmlToolbox: function() {
+		return null; // hidden block
+	}
+};
+
+Blockly.Blocks["ws2812b_rmt.color_number"] = {
+	init: function() {
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldNumber(0, 0, 255, 1), 'VALUE');
+		this.setOutput(true, 'Number');
+		this.setPreviousStatement(false);
+		this.setNextStatement(false);
+		this.setColour(math_colour);
+		this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
+		this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
+	},
+	// custom xmlToolbox
+	xmlToolbox: function() {
+		return null; // hidden block
 	}
 };
