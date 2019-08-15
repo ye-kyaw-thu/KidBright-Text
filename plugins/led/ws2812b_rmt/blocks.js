@@ -83,12 +83,12 @@ Blockly.Blocks["ws2812b_rmt.pixel_rgb"] = {
 		   </value>\
 		   <value name="GREEN">\
 			  <shadow type="ws2812b_rmt.color_number">\
-				  <field name="VALUE">255</field>\
+				  <field name="VALUE">0</field>\
 			  </shadow>\
 		  </value>\
 		  <value name="BLUE">\
 			  <shadow type="ws2812b_rmt.color_number">\
-				  <field name="VALUE">255</field>\
+				  <field name="VALUE">0</field>\
 			  </shadow>\
 		  </value>'
 	   );
