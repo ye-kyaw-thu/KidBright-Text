@@ -24,4 +24,6 @@ Blockly.Msg.LCD_SPI_20X4_ROW_NUMBER_TOOLTIP = "ค่าแถว 1 ถึง 4"
 Blockly.Msg.LCD_SPI_20X4_ROW_NUMBER_HELPURL = "";
 
 Blockly.Msg.LCD_SPI_20X4_STRING_NUMBER_TOOLTIP = "ตัวอักษรหรือตัวเลข";
+Blockly.Msg.LCD_SPI_20X4_STRING_NUMBER_HELPURL = "";
 Blockly.Msg.LCD_SPI_20X4_NUMBER_TOOLTIP = "ตัวเลข";
+Blockly.Msg.LCD_SPI_20X4_NUMBER_HELPURL = "";

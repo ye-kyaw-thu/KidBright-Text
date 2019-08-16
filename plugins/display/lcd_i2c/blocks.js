@@ -268,7 +268,7 @@ Blockly.Blocks["lcd_i2c_20x4.string_number"] = {
 		this.setNextStatement(false);
 		this.setColour(basic_colour);
 		this.setTooltip(Blockly.Msg.LCD_I2C_20X4_STRING_NUMBER_TOOLTIP);
-		this.setHelpUrl(Blockly.Msg.LCD_I2C_20X4_STRING_NUMBER_TOOLTIP);
+		this.setHelpUrl(Blockly.Msg.LCD_I2C_20X4_STRING_NUMBER_HELPURL);
 	},
 	// custom xmlToolbox
 	xmlToolbox: function() {
