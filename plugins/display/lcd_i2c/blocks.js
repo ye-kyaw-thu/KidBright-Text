@@ -1,30 +1,35 @@
+function lcd_i2c_20x4_init(_this) {
+	_this.appendDummyInput()
+		.appendField(Blockly.Msg.LCD_I2C_20X4_TITLE);
+
+	// i2c channel 0 to 64
+	var channel_array = [];
+	for (var i = 0;i <= 64; i++) {
+		channel_array.push([String(i), String(i)]);
+	}
+	_this.appendDummyInput()
+		.appendField(Blockly.Msg.CHANNEL)
+		.appendField(new Blockly.FieldDropdown(channel_array), 'CHANNEL');
+
+	// device addess
+	_this.appendDummyInput()
+		.appendField(Blockly.Msg.ADDRESS)
+		.appendField(new Blockly.FieldDropdown([
+			["0x20", "32"],
+			["0x21", "33"],
+			["0x22", "34"],
+			["0x23", "35"],
+			["0x24", "36"],
+			["0x25", "37"],
+			["0x26", "38"],
+			["0x27", "39"]
+		]), 'ADDRESS');
+}
+
 Blockly.Blocks["lcd_i2c_20x4.clear"] = {
 	init: function() {
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.LCD_I2C_20X4_TITLE);
-
-		// i2c channel 0 to 64
-		var channel_array = [];
-		for (var i = 0;i <= 64; i++) {
-			channel_array.push([String(i), String(i)]);
-		}
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.CHANNEL)
-			.appendField(new Blockly.FieldDropdown(channel_array), 'CHANNEL');
-
-		// device addess
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.ADDRESS)
-			.appendField(new Blockly.FieldDropdown([
-				["0x20", "32"],
-				["0x21", "33"],
-				["0x22", "34"],
-				["0x23", "35"],
-				["0x24", "36"],
-				["0x25", "37"],
-				["0x26", "38"],
-				["0x27", "39"]
-			]), 'ADDRESS');
+		// init
+		lcd_i2c_20x4_init(this);
 
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.LCD_I2C_20X4_CLR_TITLE);
@@ -40,31 +45,8 @@ Blockly.Blocks["lcd_i2c_20x4.clear"] = {
 
 Blockly.Blocks["lcd_i2c_20x4.backlight"] = {
 	init: function() {
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.LCD_I2C_20X4_TITLE);
-
-		// i2c channel 0 to 64
-		var channel_array = [];
-		for (var i = 0;i <= 64; i++) {
-			channel_array.push([String(i), String(i)]);
-		}
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.CHANNEL)
-			.appendField(new Blockly.FieldDropdown(channel_array), 'CHANNEL');
-
-		// device addess
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.ADDRESS)
-			.appendField(new Blockly.FieldDropdown([
-				["0x20", "32"],
-				["0x21", "33"],
-				["0x22", "34"],
-				["0x23", "35"],
-				["0x24", "36"],
-				["0x25", "37"],
-				["0x26", "38"],
-				["0x27", "39"]
-			]), 'ADDRESS');
+		// init
+		lcd_i2c_20x4_init(this);
 
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.LCD_I2C_20X4_BACKLIGHT_TITLE)
@@ -84,31 +66,8 @@ Blockly.Blocks["lcd_i2c_20x4.backlight"] = {
 
 Blockly.Blocks["lcd_i2c_20x4.print"] = {
 	init: function() {
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.LCD_I2C_20X4_TITLE);
-
-		// i2c channel 0 to 64
-		var channel_array = [];
-		for (var i = 0;i <= 64; i++) {
-			channel_array.push([String(i), String(i)]);
-		}
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.CHANNEL)
-			.appendField(new Blockly.FieldDropdown(channel_array), 'CHANNEL');
-
-		// device addess
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.ADDRESS)
-			.appendField(new Blockly.FieldDropdown([
-				["0x20", "32"],
-				["0x21", "33"],
-				["0x22", "34"],
-				["0x23", "35"],
-				["0x24", "36"],
-				["0x25", "37"],
-				["0x26", "38"],
-				["0x27", "39"]
-			]), 'ADDRESS');
+		// init
+		lcd_i2c_20x4_init(this);
 
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.LCD_I2C_20X4_PRINT_TITLE + ' (');
@@ -152,31 +111,8 @@ Blockly.Blocks["lcd_i2c_20x4.print"] = {
 
 Blockly.Blocks["lcd_i2c_20x4.print_prec"] = {
 	init: function() {
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.LCD_I2C_20X4_TITLE);
-
-		// i2c channel 0 to 64
-		var channel_array = [];
-		for (var i = 0;i <= 64; i++) {
-			channel_array.push([String(i), String(i)]);
-		}
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.CHANNEL)
-			.appendField(new Blockly.FieldDropdown(channel_array), 'CHANNEL');
-
-		// device addess
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.ADDRESS)
-			.appendField(new Blockly.FieldDropdown([
-				["0x20", "32"],
-				["0x21", "33"],
-				["0x22", "34"],
-				["0x23", "35"],
-				["0x24", "36"],
-				["0x25", "37"],
-				["0x26", "38"],
-				["0x27", "39"]
-			]), 'ADDRESS');
+		// init
+		lcd_i2c_20x4_init(this);
 
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.LCD_I2C_20X4_PRINT_PREC_TITLE + ' (');
@@ -226,7 +162,7 @@ Blockly.Blocks["lcd_i2c_20x4.print_prec"] = {
 Blockly.Blocks["lcd_i2c_20x4.column_number"] = {
 	init: function() {
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldNumber(1, 1, 20, 1), 'VALUE');
+			.appendField(new Blockly.FieldNumber(0, 0, 19, 1), 'VALUE');
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
@@ -243,7 +179,7 @@ Blockly.Blocks["lcd_i2c_20x4.column_number"] = {
 Blockly.Blocks["lcd_i2c_20x4.row_number"] = {
 	init: function() {
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldNumber(1, 1, 4, 1), 'VALUE');
+			.appendField(new Blockly.FieldNumber(0, 0, 3, 1), 'VALUE');
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);

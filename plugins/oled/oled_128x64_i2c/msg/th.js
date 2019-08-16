@@ -22,9 +22,9 @@ Blockly.Msg.OLED_128X64_I2C_PRINT_BIG_PREC_HELPURL = "";
 
 Blockly.Msg.PRECISION_TITLE = "ทศนิยม";
 
-Blockly.Msg.OLED_128X64_I2C_COLUMN_NUMBER_TOOLTIP = "ค่าคอลัมน์ 1 ถึง 21";
+Blockly.Msg.OLED_128X64_I2C_COLUMN_NUMBER_TOOLTIP = "ค่าคอลัมน์ 0 ถึง 20";
 Blockly.Msg.OLED_128X64_I2C_COLUMN_NUMBER_HELPURL = "";
-Blockly.Msg.OLED_128X64_I2C_ROW_NUMBER_TOOLTIP = "ค่าแถว 1 ถึง 8";
+Blockly.Msg.OLED_128X64_I2C_ROW_NUMBER_TOOLTIP = "ค่าแถว 0 ถึง 7";
 Blockly.Msg.OLED_128X64_I2C_ROW_NUMBER_HELPURL = "";
 
 Blockly.Msg.OLED_128X64_I2C_STRING_NUMBER_TOOLTIP = "ตัวอักษรหรือตัวเลข";

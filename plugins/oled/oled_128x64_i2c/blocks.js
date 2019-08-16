@@ -248,7 +248,7 @@ Blockly.Blocks["oled_128x64_i2c.putstr_big_prec"] = {
 Blockly.Blocks["oled_128x64_i2c.column_number"] = {
 	init: function() {
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldNumber(1, 1, 21, 1), 'VALUE');
+			.appendField(new Blockly.FieldNumber(0, 0, 20, 1), 'VALUE');
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
@@ -265,7 +265,7 @@ Blockly.Blocks["oled_128x64_i2c.column_number"] = {
 Blockly.Blocks["oled_128x64_i2c.row_number"] = {
 	init: function() {
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldNumber(1, 1, 8, 1), 'VALUE');
+			.appendField(new Blockly.FieldNumber(0, 0, 7, 1), 'VALUE');
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);

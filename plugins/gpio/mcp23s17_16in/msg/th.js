@@ -1,3 +1,6 @@
 Blockly.Msg.MCP23S17_16IN_READ_TITLE = "อ่าน MCP23S17_16IN";
 Blockly.Msg.MCP23S17_16IN_READ_TOOLTIP = "อ่าน MCP23S17_16IN จีพีไอโอ 16 อินพุต";
 Blockly.Msg.MCP23S17_16IN_READ_HELPURL = "";
+
+Blockly.Msg.MCP23S17_16IN_INPUT_NUMBER_TOOLTIP = "ค่าหมายเลขอินพุต 0 ถึง 15"
+Blockly.Msg.MCP23S17_16IN_INPUT_NUMBER_HELPURL = "";

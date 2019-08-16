@@ -135,7 +135,7 @@ Blockly.Blocks["ws2812b_rmt.pixel_color_picker"] = {
 Blockly.Blocks["ws2812b_rmt.position_number"] = {
 	init: function() {
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldNumber(1, 1, 64, 1), 'VALUE');
+			.appendField(new Blockly.FieldNumber(0, 0, 63, 1), 'VALUE');
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);

@@ -19,7 +19,7 @@ Blockly.Msg.WS2812B_PIXEL_SHOW_HELPURL = "";
 Blockly.Msg.WS2812B_PIXEL_COLOR_PICKER_TOOLTIP = "แสดงพิกเซลของ WS2812B ด้วยค่าจากสีที่เลือก ในตำแหน่งที่กำหนด (ค่าตั้งแต่ 1 ถึงจำนวนพิกเซล)";
 Blockly.Msg.WS2812B_PIXEL_COLOR_PICKER_HELPURL = "";
 
-Blockly.Msg.WS2812B_POSITION_NUMBER_TOOLTIP = "ค่าตำแหน่ง 1 ถึง 64";
+Blockly.Msg.WS2812B_POSITION_NUMBER_TOOLTIP = "ค่าตำแหน่ง 0 ถึง 63";
 Blockly.Msg.WS2812B_POSITION_NUMBER_HELPURL = "";
 Blockly.Msg.WS2812B_COLOR_NUMBER_TOOLTIP = "ค่าสี 0 ถึง 255";
 Blockly.Msg.WS2812B_COLOR_NUMBER_HELPURL = "";
