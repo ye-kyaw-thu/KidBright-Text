@@ -141,7 +141,7 @@ Blockly.Blocks["lcd_spi_20x4.print"] = {
 					if ((typeof(this.sourceBlock_) != "undefined") && (typeof(this.sourceBlock_.inputList) != "undefined")) {
 						var selected_channel = parseInt(this.sourceBlock_.inputList[1].fieldRow[1].value_);
 						return Blockly.mcp23s17_address_dropdown_menu(selected_channel);
-					}LCD_I2C_
+					}
 				} catch (e) {
 
 				}
@@ -319,8 +319,12 @@ Blockly.Blocks["lcd_spi_20x4.string_number"] = {
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
 		this.setColour(basic_colour);
-		this.setTooltip(Blockly.Msg.LCD_I2C_20X4_STRING_NUMBER_TOOLTIP);
-		this.setHelpUrl(Blockly.Msg.LCD_I2C_20X4_STRING_NUMBER_TOOLTIP);
+		this.setTooltip(Blockly.Msg.LCD_SPI_20X4_STRING_NUMBER_TOOLTIP);
+		this.setHelpUrl(Blockly.Msg.LCD_SPI_20X4_STRING_NUMBER_TOOLTIP);
+	},
+	// custom xmlToolbox
+	xmlToolbox: function() {
+		return null; // hidden block
 	}
 };
 
