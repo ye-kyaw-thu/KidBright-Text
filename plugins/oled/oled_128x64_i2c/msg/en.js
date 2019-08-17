@@ -22,9 +22,9 @@ Blockly.Msg.OLED_128X64_I2C_PRINT_BIG_PREC_HELPURL = "";
 
 Blockly.Msg.PRECISION_TITLE = "Precision";
 
-Blockly.Msg.OLED_128X64_I2C_COLUMN_NUMBER_TOOLTIP = "Column value 0 to 20";
+Blockly.Msg.OLED_128X64_I2C_COLUMN_NUMBER_TOOLTIP = "Column value 1 to 21";
 Blockly.Msg.OLED_128X64_I2C_COLUMN_NUMBER_HELPURL = "";
-Blockly.Msg.OLED_128X64_I2C_ROW_NUMBER_TOOLTIP = "Row value 0 to 7";
+Blockly.Msg.OLED_128X64_I2C_ROW_NUMBER_TOOLTIP = "Row value 1 to 8";
 Blockly.Msg.OLED_128X64_I2C_ROW_NUMBER_HELPURL = "";
 
 Blockly.Msg.OLED_128X64_I2C_STRING_NUMBER_TOOLTIP = "String or number";
