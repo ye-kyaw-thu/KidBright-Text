@@ -294,21 +294,16 @@ void LCD_I2C::process(Driver *drv) {
 	}
 }
 
-bool LCD_I2C::valid_column_row(uint8_t lcd_column, uint8_t lcd_row) {
-	if ((lcd_column < column) && (lcd_row < row)) {
-		return true;
-	}
-
-	return false;
-}
-
 void LCD_I2C::print(uint8_t lcd_column, uint8_t lcd_row, char *buf) {
 	int len;
 
-	// validate column,row
-	if (!valid_column_row(lcd_column, lcd_row)) {
+	// validate column,row (1-based)
+	if (!(((lcd_column >= 1) && (lcd_column <= column)) && ((lcd_row >= 1) && (lcd_row <= row)))) {
 		return;
 	}
+	// change to zero based
+	lcd_column--;
+	lcd_row--;
 
 	len = strlen(buf);
 	if (len > (column - lcd_column)) {

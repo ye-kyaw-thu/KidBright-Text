@@ -175,7 +175,7 @@ Blockly.Blocks["lcd_spi_20x4.print_prec"] = {
 Blockly.Blocks["lcd_spi_20x4.column_number"] = {
 	init: function() {
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldNumber(0, 0, 19, 1), 'VALUE');
+			.appendField(new Blockly.FieldNumber(1, 1, 20, 1), 'VALUE');
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
@@ -192,7 +192,7 @@ Blockly.Blocks["lcd_spi_20x4.column_number"] = {
 Blockly.Blocks["lcd_spi_20x4.row_number"] = {
 	init: function() {
 		this.appendDummyInput()
-			.appendField(new Blockly.FieldNumber(0, 0, 3, 1), 'VALUE');
+			.appendField(new Blockly.FieldNumber(1, 1, 4, 1), 'VALUE');
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
