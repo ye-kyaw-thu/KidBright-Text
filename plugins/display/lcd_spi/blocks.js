@@ -1,7 +1,6 @@
 function lcd_spi_20x4_init(_this) {
 	_this.appendDummyInput()
 		.appendField(Blockly.Msg.LCD_SPI_20X4_TITLE);
-
 	// spi channel 0 to 64
 	var channel_array = [];
 	for (var i = 0;i <= 64; i++) {
@@ -11,12 +10,20 @@ function lcd_spi_20x4_init(_this) {
 		.appendField(Blockly.Msg.CHANNEL)
 		.appendField(
 			new Blockly.FieldDropdown(channel_array, function(selectedIndex) {
-				// if address item index > 3 for selected index 0, set address item index to 0
-				if (selectedIndex == 0) {
-					if (Blockly.mcp23s17_get_address_item_index(selectedIndex, _this.sourceBlock_.inputList[2].fieldRow[1].value_) > 3) {
-						_this.sourceBlock_.inputList[2].fieldRow[1].setValue(Blockly.mcp23s17_address_dropdown_menu(0)[0][1]);
+				try {
+					if ((typeof(this.sourceBlock_) != "undefined") && (typeof(this.sourceBlock_.inputList) != "undefined")) {
+						var inputlist = this.sourceBlock_.inputList;
+						// if address item index > 3 for selected index 0, set address item index to 0
+						if (selectedIndex == 0) {
+							if (Blockly.mcp23s17_get_address_item_index(selectedIndex, inputlist[2].fieldRow[1].value_) > 3) {
+								inputlist[2].fieldRow[1].setValue(Blockly.mcp23s17_address_dropdown_menu(0)[0][1]);
+							}
+						}
 					}
+				} catch (e) {
+
 				}
+				// return selected index
 				return selectedIndex;
 			}),
 			'CHANNEL'
@@ -27,8 +34,9 @@ function lcd_spi_20x4_init(_this) {
 		.appendField(Blockly.Msg.ADDRESS)
 		.appendField(new Blockly.FieldDropdown(function() {
 			try {
-				if ((typeof(_this.sourceBlock_) != "undefined") && (typeof(_this.sourceBlock_.inputList) != "undefined")) {
-					var selected_channel = parseInt(_this.sourceBlock_.inputList[1].fieldRow[1].value_);
+				if ((typeof(this.sourceBlock_) != "undefined") && (typeof(this.sourceBlock_.inputList) != "undefined")) {
+					var inputlist = this.sourceBlock_.inputList;
+					var selected_channel = parseInt(inputlist[1].fieldRow[1].value_);
 					return Blockly.mcp23s17_address_dropdown_menu(selected_channel);
 				}
 			} catch (e) {
@@ -38,6 +46,7 @@ function lcd_spi_20x4_init(_this) {
 			return Blockly.mcp23s17_address_dropdown_menu(0);
 		}), 'ADDRESS');
 }
+
 
 Blockly.Blocks["lcd_spi_20x4.clear"] = {
 	init: function() {
