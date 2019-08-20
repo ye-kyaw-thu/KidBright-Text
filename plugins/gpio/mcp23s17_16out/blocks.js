@@ -67,8 +67,8 @@ Blockly.Blocks["mcp23s17_16out.write"] = {
 			]), 'OUTPUT')
 			.appendField(Blockly.Msg.STATUS)
 			.appendField(new Blockly.FieldDropdown([
-				[Blockly.Msg.STATUS_OFF, "0"],
-				[Blockly.Msg.STATUS_ON, "1"]
+				["0", "0"],
+				["1", "1"]
 			]), 'STATUS');
 
 		this.setInputsInline(true);
@@ -129,8 +129,8 @@ Blockly.Blocks["mcp23s17_16out.output_number"] = {
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
 		this.setColour(math_colour);
-		this.setTooltip(Blockly.Msg.MCP23S17_16IN_OUTPUT_NUMBER_TOOLTIP);
-		this.setHelpUrl(Blockly.Msg.MCP23S17_16IN_OUTPUT_NUMBER_HELPURL);
+		this.setTooltip(Blockly.Msg.MCP23S17_16OUT_OUTPUT_NUMBER_TOOLTIP);
+		this.setHelpUrl(Blockly.Msg.MCP23S17_16OUT_OUTPUT_NUMBER_HELPURL);
 	},
 	// custom xmlToolboxcolumn
 	xmlToolbox: function() {
@@ -146,8 +146,8 @@ Blockly.Blocks["mcp23s17_16out.status_number"] = {
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
 		this.setColour(math_colour);
-		this.setTooltip(Blockly.Msg.MCP23S17_16IN_STATUS_NUMBER_TOOLTIP);
-		this.setHelpUrl(Blockly.Msg.MCP23S17_16IN_STATUS_NUMBER_HELPURL);
+		this.setTooltip(Blockly.Msg.MCP23S17_16OUT_STATUS_NUMBER_TOOLTIP);
+		this.setHelpUrl(Blockly.Msg.MCP23S17_16OUT_STATUS_NUMBER_HELPURL);
 	},
 	// custom xmlToolboxcolumn
 	xmlToolbox: function() {
