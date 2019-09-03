@@ -59,9 +59,18 @@ function renderToolbox(res) {
 				for (var j = 0; j < res.categories[i].plugins.length; j++) {
 					var driver = res.categories[i].plugins[j];
 					for (var k = 0; k < driver.blocks.length; k++) {
-						$(category_node).append($(document.createElement('block')).attr({
-							type: driver.blocks[k]
-						}));
+						// check if plugin has defined custom xmlToolbox
+						if (typeof(Blockly.Blocks[driver.blocks[k]].xmlToolbox) != 'undefined') {
+							// check if not a hidden one
+							if (Blockly.Blocks[driver.blocks[k]].xmlToolbox != null) {
+								$(category_node).append(Blockly.Blocks[driver.blocks[k]].xmlToolbox());
+							}
+						}
+						else {
+							$(category_node).append($(document.createElement('block')).attr({
+								type: driver.blocks[k]
+							}));
+						}
 					}
 				}
 				$(plugin_node).append(category_node);

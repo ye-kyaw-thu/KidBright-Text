@@ -19,7 +19,6 @@ class LCD_I2C : public Device {
 		uint8_t cmd_index, row_index;
 		uint8_t flag, set_flag, clr_flag;
 		uint8_t backlight_mask(void);
-		bool valid_column_row(uint8_t lcd_column, uint8_t lcd_row);
 		esp_err_t lcd_write(I2CDev *i2c, bool instruction, uint8_t val);
 
 	public:
