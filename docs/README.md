@@ -6,7 +6,7 @@
 - SPI Chain
 - I/O Chain
 
-![GitHub Logo](images/kidbright_chain_interface.png)
+![KidBright Chain Interface](images/kidbright_chain_interface.png)
 
 ### Channel Expander
 สำหรับ I2C และ SPI สามารถเพิ่มเติมฮาร์ดแวร์ที่ช่วยขยายจากที่มีอย่างละ 1 แชลแนล ได้สูงสุด 64 แชลแนล โดยจะได้ประโยชน์ดังนี้
@@ -16,7 +16,7 @@
 
 [วงจร Channel Expander](https://gitlab.com/kidbright/kbide/blob/master/docs/schematics/kidbright_expansion_rev11.pdf)
 
-![GitHub Logo](images/i2c_spi_channel_expander.png)
+![I2C/SPI Channel Expander](images/i2c_spi_channel_expander.png)
 
 ### I2C Channel Expander
 การขยายช่องต่อ I2C ใช้ไอซี TCA9548A กรณีต้องการใช้อุปกรณ์ I2C ที่มี address เดียวกัน ให้ต่อบนแชนแนลอื่นๆ ยกเว้น แชลแนล 0
@@ -24,7 +24,9 @@
 - เพิ่ม TCA9548A ได้สูงสุด 8 ตัว (address 0x70 ถึง 0x77)
 
 
-![GitHub Logo](images/i2c_channel_expander.png)
+![I2C Channel Expander](images/i2c_channel_expander.png)
+
+![I2C Channel Expander PCB V1.0](images/i2c_channel_expander_pcb_v10.png)
 
 ### SPI Channel Expander
 การขยายช่องต่อ SPI ใช้ไอซี MCP23S17
@@ -32,11 +34,13 @@
 - เพิ่ม MCP23S17 ได้สูงสุด 4 ตัว (address 0x24 ถึง 0x27)
 - MCP23S17 address 0x20 ถึง 0x23 ถูกสำรองไว้ใช้สำหรับการทำฮาร์ดแวร์ขยาย GPIO
 
-![GitHub Logo](images/spi_channel_expander.png)
+![SPI Channel Expander](images/spi_channel_expander.png)
+
+![SPI Channel Expander PCB V1.0](images/spi_channel_expander_pcb_v10.png)
 
 ### Software Stack
 
-![GitHub Logo](images/kidbright_engine.png)
+![KidBright Engine](images/kidbright_engine.png)
 
 ### I2C/SPI Device Driver
 - i2c-dev และ spi-dev เป็นซอร์ฟแวร์ device driver สำหรับ I2C และ SPI ตามลำดับ
@@ -44,7 +48,7 @@
 - จัดการเรื่องการสลับแชลแนลขณะติดต่ออุปกรณ์
 - กำหนดความเร็วของ SPI ได้
 
-![GitHub Logo](images/i2c_spi_device_driver.png)
+![I2C/SPI Device Driver](images/i2c_spi_device_driver.png)
 
 ### Device Platform C++ Class
 device class สำหรับพัฒนาอุปกรณ์ชนิดใหม่ๆ ออกแบบบนพื้นฐาน Non-Blocking I/O Model
@@ -55,7 +59,7 @@ Virtual Methods ที่ต้องเตรียมไว้
 - Properties สำหรับ CLI เป็นตัวเลือก สามารถเพิ่มเติมให้สมบูรณ์ภายหลังได้
 - มีสถานะการทำงานของอุปกรณ์ และฟังก์ชั่นคำนวณเวลาที่ผ่านไปเพื่อนำไปคำนวณการทำงานตามเวลาได้
 
-![GitHub Logo](images/device_platform.png)
+![Device Platform](images/device_platform.png)
 
 ### Device Manager Engine
 เป็นตัวบริหารจัดการอุปกรณ์ทุกๆตัวที่ถูกเลือกใช้งานในการเขียนโปรแกรมแบบบล๊อกจาก KidBright IDE
@@ -64,7 +68,7 @@ Virtual Methods ที่ต้องเตรียมไว้
 - จัดการการใช้ทรัพยากรที่ใช้ร่วมกันระหว่างหลายๆอุปกรณ์
 - ให้บริการคำสั่ง CLI เพื่อสอบถามสถานะของอุปกรณ์
 
-![GitHub Logo](images/device_manager.png)
+![Device Manager](images/device_manager.png)
 
 ### Device Manager tasks
 device manager จะสร้าง task จำนวน 4 tasks โดยแต่ละ task จะมี list เก็บรายการอุปกรณ์ (device) ที่อยู่ใน task ซึ่งเพิ่มเข้ามาจากขั้นตอนการลงทะเบียน เพื่อบริหารจัดการต่อไป ดังนี้
@@ -75,7 +79,7 @@ device manager จะสร้าง task จำนวน 4 tasks โดยแ�
 
 โดย task priority ทั้งหมดที่อยู่ในระบบ device manager จะสูงกว่าของ user application ที่สร้างตอนเขียนโปรแกรมแบบบล๊อก
 
-![GitHub Logo](images/device_manager_tasks.png)
+![Device Manager Tasks](images/device_manager_tasks.png)
 
 ### vDevListTask State Machine
 ขั้นตอนการทำงานของแต่ละ task ใน device manager มีดังนี้
@@ -85,4 +89,4 @@ device manager จะสร้าง task จำนวน 4 tasks โดยแ�
 
 state machine นี้ทำงานโดยมี idle ในแต่ละ state ตามค่า task_idle_ms ของ device list แต่ละชุดที่ device manager สร้างขึ้น
 
-![GitHub Logo](images/vDevListTask_state_machine.png)
+![vDevListTask State Machine](images/vDevListTask_state_machine.png)

@@ -3,10 +3,10 @@ Blockly.Blocks["adsws1_rg.get_rain_gauge_mm"] = {
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.ADSWS1_RG_GET_RAIN_GAUGE_MM_TITLE)
 			.appendField(new Blockly.FieldDropdown([
-				["IN1", "32"],
-				["IN2", "33"],
-				["IN3", "34"],
-				["IN4", "35"]
+				["IN1", "IN1_GPIO"],
+				["IN2", "IN2_GPIO"],
+				["IN3", "IN3_GPIO"],
+				["IN4", "IN4_GPIO"]
 			]), 'INPUT');
 		this.setOutput(true, 'Number');
 		this.setPreviousStatement(false);
