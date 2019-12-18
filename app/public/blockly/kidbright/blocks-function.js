@@ -13,7 +13,7 @@ Blockly.kbide['LATEST_CHANGED_FUNCTION'] = {name: undefined, newName: undefined,
 Blockly.Blocks['function'] = {
     init: function() {
         this.appendDummyInput()
-            .appendField("function")
+            .appendField(Blockly.Msg.FUNCTION_TITLE)
             .appendField(new Blockly.FieldTextInput("foo"), "NAME");
         this.appendStatementInput("CODE")
             .setCheck(null);
@@ -25,7 +25,7 @@ Blockly.Blocks['function'] = {
 Blockly.Blocks['call_function'] = {
     init: function() {
         this.appendDummyInput("CALL_INPUT")
-            .appendField("call function ")
+            .appendField(Blockly.Msg.CALL_FUNCTION_TITLE)
             .appendField(new Blockly.FieldDropdown(Blockly.kbide['DROPDOWN_FUNCTION']), "NAME")
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
