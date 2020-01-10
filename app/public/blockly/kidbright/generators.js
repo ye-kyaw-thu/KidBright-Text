@@ -236,15 +236,17 @@ Blockly.JavaScript['logic_sw1_pressed'] = function(block) {
 }
 
 Blockly.JavaScript['logic_sw1_released'] = function(block) {
-	return ['(get_B1state() == 0 ) || button12.is_sw1_released()', Blockly.JavaScript.ORDER_ATOMIC];
+	// return ['(get_B1state() == 0 ) || button12.is_sw1_released()', Blockly.JavaScript.ORDER_ATOMIC];
+	return ['(get_B1state() == 0 ) && button12.is_sw1_released()', Blockly.JavaScript.ORDER_ATOMIC];
 }
 
 Blockly.JavaScript['logic_sw2_pressed'] = function(block) {
-	return ['get_B2stateClicked() || button12.is_sw2_pressed()', Blockly.JavaScript.ORDER_ATOMIC];
+	return ['(get_B2stateClicked() || button12.is_sw2_pressed())', Blockly.JavaScript.ORDER_ATOMIC];
 }
 
 Blockly.JavaScript['logic_sw2_released'] = function(block) {
-	return ['(get_B2state() == 0 ) || button12.is_sw2_released()', Blockly.JavaScript.ORDER_ATOMIC];
+	// return ['((get_B2state() == 0 ) || button12.is_sw2_released())', Blockly.JavaScript.ORDER_ATOMIC];
+	return ['((get_B2state() == 0 ) && button12.is_sw2_released())', Blockly.JavaScript.ORDER_ATOMIC];	
 }
 
 // =============================================================================
@@ -293,7 +295,7 @@ Blockly.JavaScript['wait_sw1_pressed'] = function(block) {
 };
 
 Blockly.JavaScript['wait_sw1_released'] = function(block) {
-	var code = 'while(1){if ((get_B1state() == 0 ) || button12.is_sw1_released()){break;}}\n';
+	var code = 'while(1){if ((get_B1state() == 0 ) && button12.is_sw1_released()){break;}}\n';
 	// return 'button12.wait_sw1_released();\n';
 	return code;
 };
@@ -305,7 +307,7 @@ Blockly.JavaScript['wait_sw2_pressed'] = function(block) {
 };
 
 Blockly.JavaScript['wait_sw2_released'] = function(block) {
-	var code = 'while(1){if ((get_B2state() == 0 ) || button12.is_sw2_released()){break;}}\n';
+	var code = 'while(1){if ((get_B2state() == 0 ) && button12.is_sw2_released()){break;}}\n';
 	// return 'button12.wait_sw2_released();\n';
 	return code;
 };
