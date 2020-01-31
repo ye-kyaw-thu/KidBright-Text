@@ -903,6 +903,10 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_VALUE = "กับค่าตัวเลข";
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "รวมข้อความกับตัวเลขหรือค่าเข้าด้วยกันจากเซ็นเซอร์ เช่น \"อุณหภูมิ ณ ปัจจุบันมีค่าเท่ากับ 35\" เป็นต้น";
 
+/** @export */ Blockly.Msg.STRING_COMPARE = "เปรียบเทียบข้อความระหว่าง";
+/** @export */ Blockly.Msg.STRING_COMPARE_SECOND = "และ";
+/** @export */ Blockly.Msg.STRING_COMPARE_TOOLTIP = "ตรวจสอบว่าข้อความทั้ง 2 ข้อความนั้นเหมือนกันหรือไม่ หากเหมือนกันจะให้ค่า 1 แต่หากทั้งสองข้อความต่างกันจะให้ค่า 0 (ตัวอักษรพิมพ์เล็กและพิมพ์ใหญ่มีผลต่อความแตกต่างของข้อความ)"
+
 // list
 /** @export */ Blockly.Msg.LIST_GET_LENGTH = "ขนาดของรายการ";
 /** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "หาจำนวนของข้อมูลทั้งหมดที่ปรากฎในรายการ";

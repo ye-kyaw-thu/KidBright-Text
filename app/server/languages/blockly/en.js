@@ -894,6 +894,10 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_VALUE = "with number";
 /** @export */ Blockly.Msg.STRING_WITH_NUMBER_TOOLTIP = "Merge text with number or sensor value. For example, \"Current temperature is 35\".";
 
+/** @export */ Blockly.Msg.STRING_COMPARE = "Compare string between";
+/** @export */ Blockly.Msg.STRING_COMPARE_SECOND = "and";
+/** @export */ Blockly.Msg.STRING_COMPARE_TOOLTIP = "Check if two texts are identical to one another or not. If so, it will return 1. Otherwise, return 0. (Case sensitive applied)"
+
 // list
 /** @export */ Blockly.Msg.LIST_GET_LENGTH = "Get length of the list";
 /** @export */ Blockly.Msg.LIST_GET_LENGTH_TOOLTIP = "Return the number of value(s) inside an array";

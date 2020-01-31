@@ -249,3 +249,44 @@ Blockly.Blocks['string_charAt'] = {
       }
     )}
 }
+
+Blockly.Blocks['string_compare'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "string_compare",
+      "message0": Blockly.Msg.STRING_COMPARE + "%1" + Blockly.Msg.STRING_COMPARE_SECOND + "%2",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "TEXT1",
+          "check": ["String"]
+        }, 
+        {
+          "type": "input_value",
+          "name": "TEXT2",
+          "check": ["String"]
+        }
+      ],
+      "inputsInline": true,
+      "output": "Number",
+      "colour": 165,
+      "tooltip": Blockly.Msg.STRING_COMPARE_TOOLTIP,
+      "helpUrl": ""
+    })
+  }
+}
+// Blockly.Blocks['string_compare'] = {
+//   init: function () {
+//     this.appendValueInput(Blockly.Msg.STRING_COMPARE)
+//       .setCheck(null)
+//       .appendField("Compare between");
+//     this.appendValueInput("NAME")
+//       .setCheck(null)
+//       .appendField(Blockly.Msg.STRING_COMPARE_SECOND);
+//     this.setInputsInline(true);
+//     this.setOutput(true, null);
+//     this.setColour(230);
+//     this.setTooltip(Blockly.Msg.STRING_COMPARE_TOOLTIP);
+//     this.setHelpUrl("");
+//   }
+// };
