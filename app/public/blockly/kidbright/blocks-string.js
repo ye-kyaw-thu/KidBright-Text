@@ -249,3 +249,29 @@ Blockly.Blocks['string_charAt'] = {
       }
     )}
 }
+
+Blockly.Blocks['string_compare'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "string_compare",
+      "message0": Blockly.Msg.STRING_COMPARE + "%1" + Blockly.Msg.STRING_COMPARE_SECOND + "%2",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "TEXT1",
+          "check": ["String"]
+        }, 
+        {
+          "type": "input_value",
+          "name": "TEXT2",
+          "check": ["String"]
+        }
+      ],
+      "inputsInline": true,
+      "output": "Boolean",
+      "colour": 165,
+      "tooltip": Blockly.Msg.STRING_COMPARE_TOOLTIP,
+      "helpUrl": ""
+    })
+  }
+}

@@ -54,3 +54,11 @@ Blockly.JavaScript['string_charAt'] = function(block) {
 	var code = `kb_string.charat(${value_input.replace(/\\/g, '\\\\')}, ${value_index})`;
 	return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['string_compare'] = function (block) {
+	var value_text1 = Blockly.JavaScript.valueToCode(block, 'TEXT1', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_text2 = Blockly.JavaScript.valueToCode(block, 'TEXT2', Blockly.JavaScript.ORDER_ATOMIC);
+
+	var code = 'kb_string.string_compare(' + value_text1.replace(/\\/g, '\\\\') + ', ' + value_text2.replace(/\\/g, '\\\\') + ')';
+	return [code, Blockly.JavaScript.ORDER_NONE];
+};
