@@ -268,25 +268,10 @@ Blockly.Blocks['string_compare'] = {
         }
       ],
       "inputsInline": true,
-      "output": "Number",
+      "output": "Boolean",
       "colour": 165,
       "tooltip": Blockly.Msg.STRING_COMPARE_TOOLTIP,
       "helpUrl": ""
     })
   }
 }
-// Blockly.Blocks['string_compare'] = {
-//   init: function () {
-//     this.appendValueInput(Blockly.Msg.STRING_COMPARE)
-//       .setCheck(null)
-//       .appendField("Compare between");
-//     this.appendValueInput("NAME")
-//       .setCheck(null)
-//       .appendField(Blockly.Msg.STRING_COMPARE_SECOND);
-//     this.setInputsInline(true);
-//     this.setOutput(true, null);
-//     this.setColour(230);
-//     this.setTooltip(Blockly.Msg.STRING_COMPARE_TOOLTIP);
-//     this.setHelpUrl("");
-//   }
-// };
