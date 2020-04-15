@@ -146,8 +146,6 @@ void ADSWS1_WD::process(Driver *drv) {
 			// init wind direction
 			wind_direction = 0;
 
-			// get current tickcnt
-			tickcnt = get_tickcnt();
 			// go to capture start state
 			state = s_cap_start;
 			break;
@@ -172,6 +170,8 @@ void ADSWS1_WD::process(Driver *drv) {
 
 		case s_cap_wait_trig:
 			if (stop_ts != 0) {
+				gpio_intr_disable(capture_gpio); // disable cap interrupt
+
 				res = ((stop_ts - start_ts) * 9.8) - R_SERIE;
 #ifdef __DEBUG__
 				ESP_LOGI(TAG, "stop_ts - start_ts = %lld", stop_ts - start_ts);
@@ -191,13 +191,19 @@ void ADSWS1_WD::process(Driver *drv) {
 					}
 				}
 
-				// clear error flag
-				error = false;
-				// set initialized flag
-				initialized = true;
+				// check resistance matched in table
+				if (wd_tab[i].r_min == 0) {
+					state = s_error;
+				}
+				else {
+					// clear error flag
+					error = false;
+					// set initialized flag
+					initialized = true;
 
-				tickcnt = get_tickcnt();
-				state = s_cap_idle;
+					tickcnt = get_tickcnt();
+					state = s_cap_idle;
+				}
 			}
 			else {
 				// check trig timeout
@@ -239,12 +245,6 @@ void ADSWS1_WD::process(Driver *drv) {
 }
 
 double ADSWS1_WD::get_wind_direction_degrees(void) {
-	double val;
-
-	// atomic read
-	gpio_intr_disable(capture_gpio);
-	val = wind_direction;
-	gpio_intr_enable(capture_gpio);
-
-	return val;
+	// just return current wind direction value
+	return wind_direction;
 }
