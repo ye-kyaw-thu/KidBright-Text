@@ -47,7 +47,7 @@ const wd_tab_t wd_tab[] = {
 static void IRAM_ATTR adsws1_wd_gpio_isr_handler(void* arg) {
 	ADSWS1_WD *adsws1_wd = (ADSWS1_WD *)arg;
 
-    adsws1_wd->stop_ts = esp_timer_get_time();
+	adsws1_wd->stop_ts = esp_timer_get_time();
 }
 
 ADSWS1_WD::ADSWS1_WD(int trig, int capture) {
@@ -143,9 +143,6 @@ void ADSWS1_WD::process(Driver *drv) {
 			// hook isr handler for specific gpio pin
 			gpio_isr_handler_add(capture_gpio, adsws1_wd_gpio_isr_handler, (void *)this);
 
-			// init wind direction
-			wind_direction = 0;
-
 			// go to capture start state
 			state = s_cap_start;
 			break;
@@ -238,7 +235,7 @@ void ADSWS1_WD::process(Driver *drv) {
 		case s_wait:
 			// delay 1000ms before retry detect
 			if (is_tickcnt_elapsed(tickcnt, 1000)) {
-				state = s_detect;
+				state = s_cap_start;
 			}
 			break;
 	}
