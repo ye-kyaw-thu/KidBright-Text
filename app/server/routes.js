@@ -401,16 +401,29 @@ module.exports = function (app, Config, Log) {
 
 		var sta_ssid = req.body['sta_ssid'];
 		var sta_password = req.body['sta_password'];
-		var enable_iot = req.body['enable_iot'];
+		// var enable_iot = req.body['enable_iot'];
+		
+		var iot_option = req.body['iot_option'];
+		var netpie_device_id = req.body['netpie_device_id'];
+		var netpie_device_token = req.body['netpie_device_token'];
+
 		var start_wifi_code = '';
 		var start_iot_code = '';
 		var prime_func_code = '';
 		var use_prime_func = false;
 
 		if (sta_ssid !== '') {
-			start_wifi_code = 'wifi_sta_start(CONFIG_WIFI_SSID, CONFIG_WIFI_PASSWORD);\n';
-			if (enable_iot === 'true') {
-				start_iot_code = 'kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
+			start_wifi_code = '	wifi_sta_start(CONFIG_WIFI_SSID, CONFIG_WIFI_PASSWORD);\n';
+			// if (enable_iot === 'true') {
+			// 	start_iot_code = 'kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
+			// }
+
+			if (iot_option === 'kbiot') {
+				start_iot_code = '	kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
+			} else if (iot_option === 'netpie') {
+				start_iot_code = 
+				'	netpie_subscribe("@msg/#");\n' +
+				`	netpie_connect("mqtt://mqtt.netpie.io:1883", "${netpie_device_id}", "${netpie_device_token}");\n`;
 			}
 		}
 
@@ -621,9 +634,22 @@ module.exports = function (app, Config, Log) {
 		}
 
 		var iot_task = 'void iotTask(void *pvParameters) {\n' +
+			'	ESP_ERROR_CHECK( nvs_flash_erase() );\n' +
+			'	ESP_ERROR_CHECK( nvs_flash_init() );\n' +
+			
 			start_wifi_code +
 			start_iot_code +
-			'vTaskDelay(500 / portTICK_RATE_MS);\n' +
+
+			// test
+			// '	netpie_subscribe("@msg/#");\n' +
+			// '	netpie_connect("mqtt://mqtt.netpie.io:1883", "708acf2a-e97a-4dd7-85ca-599edb68faae", "HtksdKDsyrD1NuAQnmMnVJY1ZFdGzqwi");\n' +
+
+			// test
+			// 'on_message([](char* topic, char* payload, size_t len) {\n' +
+			// '	printf("topic = %s , payload = %s\\n ", topic, payload);\n' +
+			// '});\n' +
+
+			'	vTaskDelay(500 / portTICK_RATE_MS);\n' +
 			'    vTaskDelete(NULL);\n' +
 			'}\n';
 
@@ -650,6 +676,10 @@ module.exports = function (app, Config, Log) {
 			'#include "wificontroller.h"\n' +
 			'#include "kbstring.h"\n' +
 			'#include "kblist.h"\n' +
+
+			'#include "ArduinoJson.h"\n' +
+			'#include "netpieclient.h"\n' + // test
+
 			'#include "kbiot.h"\n\n' +
 			'#define KBSERIAL "' + kbmac_addr + '"\n' +
 			'#define CLIENTID "' + kbmac_addr + '"\n' +
@@ -688,6 +718,15 @@ module.exports = function (app, Config, Log) {
 			'void user_app(void) {\n' +
 			'xTaskCreatePinnedToCore(iotTask, "iotTask", 4096, NULL, USERAPP_TASK_PRIORITY, NULL, KIDBRIGHT_RUNNING_CORE);\n' +
 			'srand(mcp7940n.get(5));\n' + // random seed
+
+			// test
+			// 'on_shadow_updated([](JsonVariant shadow) {\n' +
+			// '	printf("Shadow updated");\n' +
+			// '	printf("watt = %f \\n ",  getShadowValueAsNumber(shadow["data"]["watt"]));\n' +
+			// '	printf("home.bedroom.humid = %f \\n ", getShadowValueAsNumber(shadow["data"]["home"]["bedroom"]["humid"]) );\n' +
+			// '	printf("shadow updated has field voltage == %d\\n", ifJsonFieldAvailable(shadow["data"]["voltage"]));\n' +
+			// '});\n' +
+
 			setup_code +
 			task_fn_code +
 			'}\n' +

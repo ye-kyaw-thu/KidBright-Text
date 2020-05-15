@@ -13,8 +13,18 @@
                 p Password
                 input#sta-password.form-control(type="password")
                 label
-                input(type="checkbox")#wifi-iot-checkbox
-                div(style="display: inline;vertical-align: middle")#wifi-iot-text Insert Mode
+                //- input(type="checkbox")#wifi-iot-checkbox
+                //- div(style="display: inline;vertical-align: middle")#wifi-iot-text Insert Mode
+                p IOT
+                select#iot-option.form-control
+                    option(value='null') ------
+                    option(value='kbiot') Kidbright IOT
+                    option(value='netpie') Netpie  
+                div.netpie-form
+                    p Device ID
+                    input#netpie-device-id.form-control(type="text")
+                    p Device token
+                    input#netpie-device-token.form-control(type="text")    
             .modal-footer.modal-f
                 button#btn-cancel(data-dismiss="modal").cancel.btn.btn-danger Cancel
                 button(data-dismiss="modal")#wifi-build-ok.btn.btn-success OK
