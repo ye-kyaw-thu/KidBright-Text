@@ -1,0 +1,6 @@
+Blockly.Msg.ADSWS1_WD_GET_WIND_DIRECTION_DEGREES_TITLE = "ทิศทางลม ADS-WS1";
+Blockly.Msg.ADSWS1_WD_GET_WIND_DIRECTION_DEGREES_TOOLTIP = "อ่านค่าทิศทางลม ADS-WS1 (องศา)";
+Blockly.Msg.ADSWS1_WD_GET_WIND_DIRECTION_DEGREES_HELPURL = "";
+
+Blockly.Msg.ADSWS1_WD_TRIG = "ทริก";
+Blockly.Msg.ADSWS1_WD_CAPTURE = "แคปเจอร์";
