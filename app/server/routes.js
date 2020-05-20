@@ -364,12 +364,13 @@ module.exports = function (app, Config, Log) {
 		return flag;
 	}
 
-	function compileFiles(files, index, cflags, plugins_includes_switch, output_dir, cb) {
+	function compileFiles(files, index, cflags, ldflags, plugins_includes_switch, output_dir, cb) {
 		var fn = files[index];
 		var fn_obj = output_dir + '/' + path.basename(fn.substr(0, fn.lastIndexOf('.')) + '.o');
 
 		Log.i('compiling... ' + path.basename(fn));
-		var cmd = util.format('"%s/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H -Iesp32/lib/release/netpie/include %s %s -c "%s" -o "%s"', toolchain_dir, cflags, plugins_includes_switch, fn, fn_obj);
+		// var cmd = util.format('"%s/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H -Iesp32/lib/release/netpie/include %s %s -c "%s" -o "%s"', toolchain_dir, cflags, plugins_includes_switch, fn, fn_obj);
+		var cmd = `"${toolchain_dir}/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DARDUINO=10800 -DESP32=1 -DARDUINO_ARCH_ESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H ${cflags} ${ldflags} ${plugins_includes_switch} -c ${fn} -o ${fn_obj}`;
 		exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
 			if (err) {
 				// compile error
@@ -380,7 +381,7 @@ module.exports = function (app, Config, Log) {
 			else {
 				index++;
 				if (index < files.length) {
-					compileFiles(files, index, cflags, plugins_includes_switch, output_dir, cb);
+					compileFiles(files, index, cflags, ldflags, plugins_includes_switch, output_dir, cb);
 				} else {
 					if (cb) {
 						cb();
@@ -640,15 +641,6 @@ module.exports = function (app, Config, Log) {
 			start_wifi_code +
 			start_iot_code +
 
-			// test
-			// '	netpie_subscribe("@msg/#");\n' +
-			// '	netpie_connect("mqtt://mqtt.netpie.io:1883", "708acf2a-e97a-4dd7-85ca-599edb68faae", "HtksdKDsyrD1NuAQnmMnVJY1ZFdGzqwi");\n' +
-
-			// test
-			// 'on_message([](char* topic, char* payload, size_t len) {\n' +
-			// '	printf("topic = %s , payload = %s\\n ", topic, payload);\n' +
-			// '});\n' +
-
 			'	vTaskDelay(500 / portTICK_RATE_MS);\n' +
 			'    vTaskDelete(NULL);\n' +
 			'}\n';
@@ -678,7 +670,7 @@ module.exports = function (app, Config, Log) {
 			'#include "kblist.h"\n' +
 
 			'#include "ArduinoJson.h"\n' +
-			'#include "netpieclient.h"\n' + // test
+			'#include "netpieclient.h"\n' + 
 
 			'#include "kbiot.h"\n\n' +
 			'#define KBSERIAL "' + kbmac_addr + '"\n' +
@@ -718,14 +710,6 @@ module.exports = function (app, Config, Log) {
 			'void user_app(void) {\n' +
 			'xTaskCreatePinnedToCore(iotTask, "iotTask", 4096, NULL, USERAPP_TASK_PRIORITY, NULL, KIDBRIGHT_RUNNING_CORE);\n' +
 			'srand(mcp7940n.get(5));\n' + // random seed
-
-			// test
-			// 'on_shadow_updated([](JsonVariant shadow) {\n' +
-			// '	printf("Shadow updated");\n' +
-			// '	printf("watt = %f \\n ",  getShadowValueAsNumber(shadow["data"]["watt"]));\n' +
-			// '	printf("home.bedroom.humid = %f \\n ", getShadowValueAsNumber(shadow["data"]["home"]["bedroom"]["humid"]) );\n' +
-			// '	printf("shadow updated has field voltage == %d\\n", ifJsonFieldAvailable(shadow["data"]["voltage"]));\n' +
-			// '});\n' +
 
 			setup_code +
 			task_fn_code +
@@ -826,7 +810,7 @@ module.exports = function (app, Config, Log) {
 					// add user_app into sources
 					plugins_sources.push(user_app_dir + '/user_app.cpp');
 					// compile
-					compileFiles(plugins_sources, 0, cflags, plugins_includes_switch, user_app_dir, (err) => {
+					compileFiles(plugins_sources, 0, cflags, ldflags, plugins_includes_switch, user_app_dir, (err) => {
 						if (err) {
 							console.log(err);
 							// response with json format (ajax post dataType is json)
