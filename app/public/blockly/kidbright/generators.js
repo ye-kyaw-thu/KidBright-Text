@@ -63,7 +63,6 @@ Blockly.JavaScript['basic_forever'] = function(block) {
 };
 
 Blockly.JavaScript['basic_string'] = function(block) {
-	console.log('=== ', block.getField('VALUE') , block.getField('VALUE').sourceBlock_.type);
 	return [
 		'(char *)"' + block.getFieldValue('VALUE') + '"',
 		Blockly.JavaScript.ORDER_ATOMIC

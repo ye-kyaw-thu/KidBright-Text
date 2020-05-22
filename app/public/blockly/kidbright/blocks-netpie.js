@@ -154,3 +154,59 @@ Blockly.Blocks['netpie_on_shadow_updated'] = {
     }
   )}
 }
+
+Blockly.Blocks['netpie_received_shadow_updated'] = {
+	init: function () {
+    this.jsonInit({
+        "type": "netpie_received_shadow_updated",
+        "message0": "Received shadow updated field %1 as %2",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "field",
+            "check": "String"
+          },
+          {
+            "type": "field_dropdown",
+            "name": "type",
+            "options": [
+              [
+                "String",
+                "string"
+              ],
+              [
+                "Number",
+                "number"
+              ]
+            ]
+          }
+        ],
+        "inputsInline": true,
+        "output": null,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": ""  
+    }
+  )}
+}
+
+Blockly.Blocks['netpie_shadow_updated_contains'] = {
+	init: function () {
+    this.jsonInit({
+      "type": "netpie_shadow_updated_contains",
+      "message0": "Shadow updated contains field %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "field",
+          "check": "String"
+        }
+      ],
+      "inputsInline": true,
+      "output": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    }
+  )}
+}
