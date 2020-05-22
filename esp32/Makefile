@@ -1,5 +1,8 @@
+# XTENSA_PATH=../xtensa-esp32-elf/bin
 include lib/release/common.mk
 
+port=/dev/tty.usbmodemFD121
+board=30-ae-a4-32-db-08
 USER_APP_DIR=build/$(board)
 NETPIE_LIB_DIR=lib/release/netpie
 NETPIE_LIB_SRC_DIR=../../lib

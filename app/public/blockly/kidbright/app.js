@@ -110,6 +110,7 @@ function renderToolbox(res) {
 
 	Blockly.kbide['WORKSPACE'] = workspace;
 	workspace.addChangeListener(handle_function);
+	workspace.addChangeListener(handle_on_shadow_updated);
 
 	var text = localStorage.getItem('KidBrightLastWorkspace');
 	if (text != null) {

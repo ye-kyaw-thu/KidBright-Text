@@ -364,12 +364,13 @@ module.exports = function (app, Config, Log) {
 		return flag;
 	}
 
-	function compileFiles(files, index, cflags, plugins_includes_switch, output_dir, cb) {
+	function compileFiles(files, index, cflags, ldflags, plugins_includes_switch, output_dir, cb) {
 		var fn = files[index];
 		var fn_obj = output_dir + '/' + path.basename(fn.substr(0, fn.lastIndexOf('.')) + '.o');
 
 		Log.i('compiling... ' + path.basename(fn));
-		var cmd = util.format('"%s/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H -Iesp32/lib/release/netpie/include %s %s -c "%s" -o "%s"', toolchain_dir, cflags, plugins_includes_switch, fn, fn_obj);
+		// var cmd = util.format('"%s/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H -Iesp32/lib/release/netpie/include %s %s -c "%s" -o "%s"', toolchain_dir, cflags, plugins_includes_switch, fn, fn_obj);
+		var cmd = `"${toolchain_dir}/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DARDUINO=10800 -DESP32=1 -DARDUINO_ARCH_ESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H ${cflags} ${ldflags} ${plugins_includes_switch} -c ${fn} -o ${fn_obj}`;
 		exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
 			if (err) {
 				// compile error
@@ -380,7 +381,7 @@ module.exports = function (app, Config, Log) {
 			else {
 				index++;
 				if (index < files.length) {
-					compileFiles(files, index, cflags, plugins_includes_switch, output_dir, cb);
+					compileFiles(files, index, cflags, ldflags, plugins_includes_switch, output_dir, cb);
 				} else {
 					if (cb) {
 						cb();
@@ -401,16 +402,29 @@ module.exports = function (app, Config, Log) {
 
 		var sta_ssid = req.body['sta_ssid'];
 		var sta_password = req.body['sta_password'];
-		var enable_iot = req.body['enable_iot'];
+		// var enable_iot = req.body['enable_iot'];
+		
+		var iot_option = req.body['iot_option'];
+		var netpie_device_id = req.body['netpie_device_id'];
+		var netpie_device_token = req.body['netpie_device_token'];
+
 		var start_wifi_code = '';
 		var start_iot_code = '';
 		var prime_func_code = '';
 		var use_prime_func = false;
 
 		if (sta_ssid !== '') {
-			start_wifi_code = 'wifi_sta_start(CONFIG_WIFI_SSID, CONFIG_WIFI_PASSWORD);\n';
-			if (enable_iot === 'true') {
-				start_iot_code = 'kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
+			start_wifi_code = '	wifi_sta_start(CONFIG_WIFI_SSID, CONFIG_WIFI_PASSWORD);\n';
+			// if (enable_iot === 'true') {
+			// 	start_iot_code = 'kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
+			// }
+
+			if (iot_option === 'kbiot') {
+				start_iot_code = '	kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
+			} else if (iot_option === 'netpie') {
+				start_iot_code = 
+				'	netpie_subscribe("@msg/#");\n' +
+				`	netpie_connect("mqtt://mqtt.netpie.io:1883", "${netpie_device_id}", "${netpie_device_token}");\n`;
 			}
 		}
 
@@ -621,9 +635,13 @@ module.exports = function (app, Config, Log) {
 		}
 
 		var iot_task = 'void iotTask(void *pvParameters) {\n' +
+			'	ESP_ERROR_CHECK( nvs_flash_erase() );\n' +
+			'	ESP_ERROR_CHECK( nvs_flash_init() );\n' +
+			
 			start_wifi_code +
 			start_iot_code +
-			'vTaskDelay(500 / portTICK_RATE_MS);\n' +
+
+			'	vTaskDelay(500 / portTICK_RATE_MS);\n' +
 			'    vTaskDelete(NULL);\n' +
 			'}\n';
 
@@ -650,6 +668,10 @@ module.exports = function (app, Config, Log) {
 			'#include "wificontroller.h"\n' +
 			'#include "kbstring.h"\n' +
 			'#include "kblist.h"\n' +
+
+			'#include "ArduinoJson.h"\n' +
+			'#include "netpieclient.h"\n' + 
+
 			'#include "kbiot.h"\n\n' +
 			'#define KBSERIAL "' + kbmac_addr + '"\n' +
 			'#define CLIENTID "' + kbmac_addr + '"\n' +
@@ -688,6 +710,7 @@ module.exports = function (app, Config, Log) {
 			'void user_app(void) {\n' +
 			'xTaskCreatePinnedToCore(iotTask, "iotTask", 4096, NULL, USERAPP_TASK_PRIORITY, NULL, KIDBRIGHT_RUNNING_CORE);\n' +
 			'srand(mcp7940n.get(5));\n' + // random seed
+
 			setup_code +
 			task_fn_code +
 			'}\n' +
@@ -787,7 +810,7 @@ module.exports = function (app, Config, Log) {
 					// add user_app into sources
 					plugins_sources.push(user_app_dir + '/user_app.cpp');
 					// compile
-					compileFiles(plugins_sources, 0, cflags, plugins_includes_switch, user_app_dir, (err) => {
+					compileFiles(plugins_sources, 0, cflags, ldflags, plugins_includes_switch, user_app_dir, (err) => {
 						if (err) {
 							console.log(err);
 							// response with json format (ajax post dataType is json)

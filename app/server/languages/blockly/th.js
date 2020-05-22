@@ -930,3 +930,7 @@ goog.require('Blockly.Msg');
 
 /** @export */ Blockly.Msg.LIST_GET_TEXT = "อ่านข้อมูลจากรายการ ตั้งแต่ตำแหน่งที่ %1 ถึงตำแหน่งที่ %2";
 /** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "กำหนดลำดับเริ่มต้นและลำดับสุดท้ายในการอ่านข้อมูลจากรายการ";
+
+// netpie platform
+/** @export */ Blockly.Msg.STRING_NETPIE_WRITE_SHADOW = "เขียนข้อมูลชาโดว์ %1 ด้วยข้อมูล %2";
+/** @export */ Blockly.Msg.STRING_NETPIE_WRITE_SHADOW_TOOLTIP = "ตั้งค่า filed ที่ต้องการแก้ไขโดยส่งข้อมูลชนิดตัวเลขหรือข้อความไปเขียนข้อมูลชาโดว์";

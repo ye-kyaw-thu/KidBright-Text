@@ -921,3 +921,7 @@ goog.require('Blockly.Msg');
 
 /** @export */ Blockly.Msg.LIST_GET_TEXT = "Read value in list from %1 to %2";
 /** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "specify start and end index to show value from the list.";
+
+// netpie platform
+/** @export */ Blockly.Msg.STRING_NETPIE_WRITE_SHADOW = "Write device shadow field %1 with value %2";
+/** @export */ Blockly.Msg.STRING_NETPIE_WRITE_SHADOW_TOOLTIP = "Set field and data (support type string and number) to update device shadow.";
