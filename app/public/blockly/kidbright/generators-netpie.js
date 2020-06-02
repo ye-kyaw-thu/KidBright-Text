@@ -68,4 +68,10 @@ Blockly.JavaScript['netpie_shadow_updated_contains'] = function(block) {
     var code = `ifJsonFieldAvailable(shadow["data"]${field_code})`;
 
     return [code, Blockly.JavaScript.ORDER_NONE];
-  };
+};
+Blockly.JavaScript['netpie_read_entire_shadow'] = function(block) {
+    var statements_on_read_shadow = Blockly.JavaScript.statementToCode(block, 'on_read_shadow');
+    var code = 'get_entire_shadow([](JsonVariant shadow) {\n' + 
+        statements_on_read_shadow + '});\n';
+    return code;
+};

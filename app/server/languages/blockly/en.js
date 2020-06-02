@@ -923,5 +923,29 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "specify start and end index to show value from the list.";
 
 // netpie platform
-/** @export */ Blockly.Msg.STRING_NETPIE_WRITE_SHADOW = "Write device shadow field %1 with value %2";
-/** @export */ Blockly.Msg.STRING_NETPIE_WRITE_SHADOW_TOOLTIP = "Set field and data (support type string and number) to update device shadow.";
+/** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW = "%1 Write device shadow field %2 with value %3";
+/** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW_TOOLTIP = "Write device shadow input1 set field to write shadow like json (home.temp) and input2 for set value.";
+
+/** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE = "%1 On received message of topic @msg/ %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE_TOOLTIP = "Event recevie message of topic statement";
+
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE = "%1 Received message as  %2";
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE_TOOLTIP = "Receive message then select data type."
+
+/** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE = "%1 Publish to topic @msg/ %2 with value  %3"
+/** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE_TOOLTIP = "Publish message with topic and payload. example input1 is topic home/temp and input2 is payload 25. ";
+
+/** @export */ Blockly.Msg.NETPIE_SUBSCRIBE = "%1 Subscribe to topic @msg/ %2";
+/** @export */ Blockly.Msg.NETPIE_SUBSCRIBE_TOOLTIP = "Subscribe topic";
+
+/** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED = "%1 On shadow updated %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED_TOOLTIP = "Event shadow updated statement";
+
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED = "%1 Received shadow field %2 as %3";
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED_TOOLTIP = "Input1 get device shadow like json. exmaple use home.temp to get 25 from { home: { temp: 25 } }. Input2 select data type.";
+
+/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 Shadow contains field %2";
+/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD_TOOLTIP = "Check if shadow contain field. example home.temp";
+
+/** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 Read entire shadow %2 %3";
+/** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW_TOOLTIP = "Read entire shadow statement";
