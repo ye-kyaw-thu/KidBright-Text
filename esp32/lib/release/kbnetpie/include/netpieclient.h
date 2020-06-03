@@ -38,6 +38,7 @@ typedef void (*on_connected_handler_t)();
 typedef void (*on_disconnected_handler_t)();
 typedef void (*shadow_get_handler_t)(JsonVariant);
 
+void initiate_global();
 void on_connected(on_connected_handler_t _handler);
 void on_disconnected(on_disconnected_handler_t _handler);
 void on_shadow_updated(shadow_updated_handler_t _handler);
