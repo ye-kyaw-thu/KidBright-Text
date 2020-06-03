@@ -958,3 +958,9 @@ goog.require('Blockly.Msg');
 
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 อ่าน shadow ทั้งหมด %2 %3";
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW_TOOLTIP = "ทำการอ่านค่า shadow ทั้งหมด";
+
+/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED = "%1 เหตุการณ์เชื่อมต่อเน็ตพาย %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP = "เมื่อมีเหตุการณ์เชื่อมต่อเน็ตพายสำเร็จ block ในนี้จะทำงาน";
+
+/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 เหตุการณ์หลุดการเชื่อมต่อเน็ตพาย %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "เมื่อมีเหตุการณ์หลุดการเชื่อมต่อเน็ตพาย block ในนี้จะทำงาน";

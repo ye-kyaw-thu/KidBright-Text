@@ -75,3 +75,16 @@ Blockly.JavaScript['netpie_read_entire_shadow'] = function(block) {
         statements_on_read_shadow + '});\n';
     return code;
 };
+Blockly.JavaScript['netpie_on_connected'] = function(block) {
+    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+    var code = 'on_connected([]() {\n' + 
+        statements_name + '});\n';
+    return code;
+};
+Blockly.JavaScript['netpie_on_disconnected'] = function(block) {
+    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+    var code = 'on_disconnected([]() {\n' + 
+        statements_name + '});\n';
+    return code;
+};
+  
