@@ -2,8 +2,15 @@ Blockly.Blocks['netpie_write_shadow'] = {
 	init: function () {
     this.jsonInit({
         "type": "netpie_write_shadow",
-        "message0": Blockly.Msg.STRING_NETPIE_WRITE_SHADOW,
+        "message0": Blockly.Msg.NETPIE_WRITE_SHADOW,
         "args0": [
+          {
+            "type": "field_image",
+            "src": "/icons/netpie-logo.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*"
+          },
           {
             "type": "input_value",
             "name": "field",
@@ -22,8 +29,8 @@ Blockly.Blocks['netpie_write_shadow'] = {
         "inputsInline": true,
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
-        "tooltip": Blockly.Msg.STRING_NETPIE_WRITE_SHADOW_TOOLTIP,
+        "colour": "#218c74",
+        "tooltip": Blockly.Msg.NETPIE_WRITE_SHADOW_TOOLTIP,
         "helpUrl": ""
     }
     )}
@@ -33,8 +40,15 @@ Blockly.Blocks['netpie_on_receive_message'] = {
 	init: function () {
     this.jsonInit({
         "type": "netpie_on_receive_message",
-        "message0": "On received message topic %1 %2",
+        "message0": Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE,
         "args0": [
+          {
+            "type": "field_image",
+            "src": "/icons/netpie-logo.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*"
+          },
           {
             "type": "input_value",
             "name": "topic",
@@ -47,8 +61,8 @@ Blockly.Blocks['netpie_on_receive_message'] = {
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
-        "tooltip": "",
+        "colour": "#133253",
+        "tooltip": Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE_TOOLTIP,
         "helpUrl": ""   
       } 
     )}
@@ -58,8 +72,15 @@ Blockly.Blocks['netpie_received_message'] = {
 	init: function () {
     this.jsonInit({
         "type": "netpie_received_message",
-        "message0": "Received message as  %1",
+        "message0": Blockly.Msg.NETPIE_RECEIVE_MESSAGE,
         "args0": [
+          {
+            "type": "field_image",
+            "src": "/icons/netpie-logo.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*"
+          },
           {
             "type": "field_dropdown",
             "name": "type",
@@ -76,8 +97,8 @@ Blockly.Blocks['netpie_received_message'] = {
           }
         ],
         "output": null,
-        "colour": 230,
-        "tooltip": "",
+        "colour": "#133253",
+        "tooltip": Blockly.Msg.NETPIE_RECEIVE_MESSAGE_TOOLTIP,
         "helpUrl": ""
     }
   )}
@@ -87,8 +108,15 @@ Blockly.Blocks['netpie_publish_message'] = {
 	init: function () {
     this.jsonInit({
       "type": "netpie_publish_message",
-      "message0": "Publish to topic  %1 with value  %2",
+      "message0": Blockly.Msg.NETPIE_PUBLISH_MESSAGE,
       "args0": [
+        {
+          "type": "field_image",
+          "src": "/icons/netpie-logo.png",
+          "width": 20,
+          "height": 20,
+          "alt": "*"
+        },
         {
           "type": "input_value",
           "name": "topic",
@@ -102,8 +130,8 @@ Blockly.Blocks['netpie_publish_message'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "colour": 230,
-      "tooltip": "",
+      "colour": "#218c74",
+      "tooltip": Blockly.Msg.NETPIE_PUBLISH_MESSAGE_TOOLTIP,
       "helpUrl": ""
     }
   )}
@@ -113,8 +141,15 @@ Blockly.Blocks['netpie_subscribe'] = {
 	init: function () {
     this.jsonInit({
       "type": "netpie_subscribe",
-      "message0": "Subscribe to message %1",
+      "message0": Blockly.Msg.NETPIE_SUBSCRIBE,
       "args0": [
+        {
+          "type": "field_image",
+          "src": "/icons/netpie-logo.png",
+          "width": 20,
+          "height": 20,
+          "alt": "*"
+        },
         {
           "type": "input_value",
           "name": "topic",
@@ -124,8 +159,8 @@ Blockly.Blocks['netpie_subscribe'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "colour": 230,
-      "tooltip": "",
+      "colour": "#218c74",
+      "tooltip": Blockly.Msg.NETPIE_SUBSCRIBE_TOOLTIP,
       "helpUrl": ""
     }
   )}
@@ -135,8 +170,15 @@ Blockly.Blocks['netpie_on_shadow_updated'] = {
 	init: function () {
     this.jsonInit({
       "type": "netpie_on_shadow_updated",
-      "message0": "On shadow updated %1 %2",
+      "message0": Blockly.Msg.NETPIE_ON_SHADOW_UPDATED,
       "args0": [
+        {
+          "type": "field_image",
+          "src": "/icons/netpie-logo.png",
+          "width": 20,
+          "height": 20,
+          "alt": "*"
+        },
         {
           "type": "input_dummy"
         },
@@ -148,8 +190,8 @@ Blockly.Blocks['netpie_on_shadow_updated'] = {
       "inputsInline": false,
       "previousStatement": null,
       "nextStatement": null,
-      "colour": 230,
-      "tooltip": "",
+      "colour": "#34ace0",
+      "tooltip": Blockly.Msg.NETPIE_ON_SHADOW_UPDATED_TOOLTIP,
       "helpUrl": ""     
     }
   )}
@@ -159,8 +201,15 @@ Blockly.Blocks['netpie_received_shadow_updated'] = {
 	init: function () {
     this.jsonInit({
         "type": "netpie_received_shadow_updated",
-        "message0": "Received shadow updated field %1 as %2",
+        "message0": Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED,
         "args0": [
+          {
+            "type": "field_image",
+            "src": "/icons/netpie-logo.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*"
+          },
           {
             "type": "input_value",
             "name": "field",
@@ -183,8 +232,8 @@ Blockly.Blocks['netpie_received_shadow_updated'] = {
         ],
         "inputsInline": true,
         "output": null,
-        "colour": 230,
-        "tooltip": "",
+        "colour": "#34ace0",
+        "tooltip": Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED_TOOLTIP,
         "helpUrl": ""  
     }
   )}
@@ -194,8 +243,15 @@ Blockly.Blocks['netpie_shadow_updated_contains'] = {
 	init: function () {
     this.jsonInit({
       "type": "netpie_shadow_updated_contains",
-      "message0": "Shadow updated contains field %1",
+      "message0": Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD,
       "args0": [
+        {
+          "type": "field_image",
+          "src": "/icons/netpie-logo.png",
+          "width": 20,
+          "height": 20,
+          "alt": "*"
+        },
         {
           "type": "input_value",
           "name": "field",
@@ -204,10 +260,41 @@ Blockly.Blocks['netpie_shadow_updated_contains'] = {
       ],
       "inputsInline": true,
       "output": null,
-      "colour": 230,
-      "tooltip": "",
+      "colour": "#34ace0",
+      "tooltip": Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD_TOOLTIP,
       "helpUrl": ""
     }
+  )}
+}
+
+Blockly.Blocks['netpie_read_entire_shadow'] = {
+	init: function () {
+    this.jsonInit(
+      {
+        "type": "netpie_read_entire_shadow",
+        "message0": Blockly.Msg.NETPIE_READ_ENTITE_SHADOW,
+        "args0": [
+          {
+            "type": "field_image",
+            "src": "/icons/netpie-logo.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*"
+          },
+          {
+            "type": "input_dummy"
+          },
+          {
+            "type": "input_statement",
+            "name": "on_read_shadow"
+          }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#34ace0",
+        "tooltip": Blockly.Msg.NETPIE_READ_ENTITE_SHADOW_TOOLTIP,
+        "helpUrl": ""
+      }
   )}
 }
 

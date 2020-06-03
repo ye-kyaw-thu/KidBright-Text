@@ -424,6 +424,7 @@ module.exports = function (app, Config, Log) {
 			} else if (iot_option === 'netpie') {
 				start_iot_code = 
 				'	netpie_subscribe("@msg/#");\n' +
+				'	netpie_subscribe("@private/#");\n' +
 				`	netpie_connect("mqtt://mqtt.netpie.io:1883", "${netpie_device_id}", "${netpie_device_token}");\n`;
 			}
 		}
