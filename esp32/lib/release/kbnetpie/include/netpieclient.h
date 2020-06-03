@@ -12,7 +12,10 @@
 
 #define MAXSUBTOPIC 5
 #define MAXONTOPIC 10
+#define MAXGETSHADOW 4
 #define TOPICLEN 48
+
+#define SHADOW_GET_MIN_WAIT 3000
 
 //#define UNDEFINED -DBL_MAX
 #define UNDEFINED 0
@@ -33,11 +36,13 @@ typedef void (*message_handler_t)(char*, char*, size_t);
 typedef void (*on_topic_handler_t)(char*, size_t);
 typedef void (*on_connected_handler_t)();
 typedef void (*on_disconnected_handler_t)();
+typedef void (*shadow_get_handler_t)(JsonVariant);
 
 void on_connected(on_connected_handler_t _handler);
 void on_disconnected(on_disconnected_handler_t _handler);
 void on_shadow_updated(shadow_updated_handler_t _handler);
 void on_message(message_handler_t _handler);
 bool on_message_topic(char* topic, on_topic_handler_t _handler);
+bool get_entire_shadow(shadow_get_handler_t _handler);
 
 #endif
