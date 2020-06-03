@@ -949,3 +949,9 @@ goog.require('Blockly.Msg');
 
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 Read entire shadow %2 %3";
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW_TOOLTIP = "Read entire shadow statement";
+
+/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED = "%1 On connected %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP = "Event on connected with NETPIE";
+
+/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 On disconnected %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "Event on disconnected with NETPIE";

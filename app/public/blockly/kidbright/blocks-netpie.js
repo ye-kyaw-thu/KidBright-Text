@@ -298,6 +298,68 @@ Blockly.Blocks['netpie_read_entire_shadow'] = {
   )}
 }
 
+Blockly.Blocks['netpie_on_connected'] = {
+	init: function () {
+    this.jsonInit(
+      {
+        "type": "netpie_on_connected",
+        "message0": Blockly.Msg.NETPIE_ON_CONNECTED,
+        "args0": [
+          {
+            "type": "field_image",
+            "src": "/icons/netpie-logo.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*"
+          },
+          {
+            "type": "input_dummy"
+          },
+          {
+            "type": "input_statement",
+            "name": "NAME"
+          }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#474787",
+        "tooltip": Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP,
+        "helpUrl": ""
+      }    
+  )}
+}
+
+Blockly.Blocks['netpie_on_disconnected'] = {
+	init: function () {
+    this.jsonInit(
+      {
+        "type": "netpie_on_disconnected",
+        "message0": Blockly.Msg.NETPIE_ON_DISCONNECTED,
+        "args0": [
+          {
+            "type": "field_image",
+            "src": "/icons/netpie-logo.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*"
+          },
+          {
+            "type": "input_dummy"
+          },
+          {
+            "type": "input_statement",
+            "name": "NAME"
+          }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#474787",
+        "tooltip": Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP,
+        "helpUrl": ""
+      }    
+  )}
+}
+
 Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'] = [];
 Blockly.kbide['CREATE_ON_SHADOW_UPDATED_EVENT'] = function(ws, blockId){
   if(Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].length < 1){
