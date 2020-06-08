@@ -402,31 +402,76 @@ Blockly.Blocks['netpie_on_disconnected'] = {
   )}
 }
 
-Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'] = [];
-Blockly.kbide['CREATE_ON_SHADOW_UPDATED_EVENT'] = function(ws, blockId){
-  if(Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].length < 1){
-    Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].push(blockId);
+// Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'] = [];
+Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'] = [];
+Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'] = [];
+
+Blockly.kbide['CREATE_NETPIE_ON_CONNECTED_EVENT'] = function(ws, blockId){
+  if(Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'].length < 1){
+    Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'].push(blockId);
   } else {
     ws.undo(false);
   }
 }
-Blockly.kbide['DELETE_ON_SHADOW_UPDATED_EVENT'] = function(ws, blockId){
-  Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'] = Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].filter((obj) => {
+Blockly.kbide['CREATE_NETPIE_ON_DISCONNECTED_EVENT'] = function(ws, blockId){
+  if(Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'].length < 1){
+    Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'].push(blockId);
+  } else {
+    ws.undo(false);
+  }
+}
+Blockly.kbide['DELETE_NETPIE_ON_CONNECTED_EVENT'] = function(ws, blockId){
+  Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'] = Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'].filter((obj) => {
+    return obj !== blockId
+  })
+  Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'] = Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'].filter((obj) => {
     return obj !== blockId
   })
 }
-Blockly.kbide['SCAN_ON_SHADOW_UPDATED_EVENT'] = function(ws){
-  var blocks = Blockly.kbide.GET_BLOCKS_BY_TYPE(ws, 'netpie_on_shadow_updated');
-  var on_shadow_len = Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].length;
-  if(blocks.length === 0){
-    Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'] = [];
+Blockly.kbide['SCAN_NETPIE_ON_CONNECTED_EVENT'] = function(ws){
+  var blocks_connected = Blockly.kbide.GET_BLOCKS_BY_TYPE(ws, 'netpie_on_connected');
+  var on_connected_len = Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'].length;
+  if(blocks_connected.length === 0){
+    Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'] = [];
   }
-  else if((blocks.length > 0) && (on_shadow_len < 1)) {
-    Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].push(blocks[0].id);
+  else if((blocks_connected.length > 0) && (on_connected_len < 1)) {
+    Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'].push(blocks_connected[0].id);
+  }
+
+  var blocks_disconnected = Blockly.kbide.GET_BLOCKS_BY_TYPE(ws, 'netpie_on_disconnected');
+  var on_disconnected_len = Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'].length;
+  if(blocks_disconnected.length === 0){
+    Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'] = [];
+  }
+  else if((blocks_disconnected.length > 0) && (on_disconnected_len < 1)) {
+    Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'].push(blocks_disconnected[0].id);
   }
 }
 
-const handle_on_shadow_updated = function(primaryEvent) {
+// Blockly.kbide['CREATE_ON_SHADOW_UPDATED_EVENT'] = function(ws, blockId){
+//   if(Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].length < 1){
+//     Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].push(blockId);
+//   } else {
+//     ws.undo(false);
+//   }
+// }
+// Blockly.kbide['DELETE_ON_SHADOW_UPDATED_EVENT'] = function(ws, blockId){
+//   Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'] = Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].filter((obj) => {
+//     return obj !== blockId
+//   })
+// }
+// Blockly.kbide['SCAN_ON_SHADOW_UPDATED_EVENT'] = function(ws){
+//   var blocks = Blockly.kbide.GET_BLOCKS_BY_TYPE(ws, 'netpie_on_shadow_updated');
+//   var on_shadow_len = Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].length;
+//   if(blocks.length === 0){
+//     Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'] = [];
+//   }
+//   else if((blocks.length > 0) && (on_shadow_len < 1)) {
+//     Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'].push(blocks[0].id);
+//   }
+// }
+
+const handle_netpie_on_connected = function(primaryEvent) {
   // Convert event to JSON.  This could then be transmitted across the net.
   var json = primaryEvent.toJson();
   // console.log(json);
@@ -436,16 +481,17 @@ const handle_on_shadow_updated = function(primaryEvent) {
   var block = ws.getBlockById(json.blockId);
   switch(json.type){
       case 'delete':
-        Blockly.kbide.DELETE_ON_SHADOW_UPDATED_EVENT(ws, blockId);
+        Blockly.kbide.DELETE_NETPIE_ON_CONNECTED_EVENT(ws, blockId);
         break;
       case 'create':
-          if (block.type === 'netpie_on_shadow_updated') Blockly.kbide.CREATE_ON_SHADOW_UPDATED_EVENT(ws, blockId);
+          if (block.type === 'netpie_on_connected') Blockly.kbide.CREATE_NETPIE_ON_CONNECTED_EVENT(ws, blockId);
+          else if (block.type === 'netpie_on_disconnected') Blockly.kbide.CREATE_NETPIE_ON_DISCONNECTED_EVENT(ws, blockId);
           break;
       case 'move':
-          Blockly.kbide.SCAN_ON_SHADOW_UPDATED_EVENT(ws);
+          Blockly.kbide.SCAN_NETPIE_ON_CONNECTED_EVENT(ws);
           break;
       case 'ui':
-          Blockly.kbide.SCAN_ON_SHADOW_UPDATED_EVENT(ws);
+          Blockly.kbide.SCAN_NETPIE_ON_CONNECTED_EVENT(ws);
           break;
       default:
         break;

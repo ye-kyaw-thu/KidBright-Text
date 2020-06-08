@@ -515,15 +515,15 @@ function HomeController() {
 
 					var wifi_ssid = sessionStorage.getItem('wifi-ssid');
 					var wifi_password = sessionStorage.getItem('wifi-password');
-					// var enable_iot = sessionStorage.getItem('enable-iot');
+					var enable_iot = sessionStorage.getItem('enable-iot');
 
-					var iot_option = sessionStorage.getItem('iot-option');
-					var netpie_device_id = sessionStorage.getItem('netpie-device-id');
-					var netpie_device_token = sessionStorage.getItem('netpie-device-token');
+					// var iot_option = sessionStorage.getItem('iot-option');
+					// var netpie_device_id = sessionStorage.getItem('netpie-device-id');
+					// var netpie_device_token = sessionStorage.getItem('netpie-device-token');
 
 					$('.modal-wifi-config input#sta-ssid').val(wifi_ssid);
 					$('.modal-wifi-config input#sta-password').val(wifi_password);
-					// $('.modal-wifi-config #wifi-iot-checkbox').val(enable_iot);
+					$('.modal-wifi-config #wifi-iot-checkbox').val(enable_iot);
 					$.ajax({
 						url: '/read_mac',
 						type: 'POST',
@@ -549,10 +549,10 @@ function HomeController() {
 									// NETPIE Config Data
 									sta_ssid: wifi_ssid,
 									sta_password: wifi_password,
-									// enable_iot: enable_iot,
-									iot_option: iot_option,
-									netpie_device_id: netpie_device_id,
-									netpie_device_token: netpie_device_token
+									enable_iot: enable_iot,
+									// iot_option: iot_option,
+									// netpie_device_id: netpie_device_id,
+									// netpie_device_token: netpie_device_token
 								},
 								dataType: 'json',
 								error: function (e) {
@@ -714,34 +714,34 @@ function HomeController() {
 		if (typeof (sessionStorage.getItem('wifi-password')) !== 'undefined') {
 			sessionStorage.setItem('wifi-password', $('.modal-wifi-config input#sta-password').val());
 		}
-		// if (typeof (sessionStorage.getItem('enable-iot')) !== 'undefined') {
-		// 	if ($('.modal-wifi-config #wifi-iot-checkbox').prop('checked') == false) {
-		// 		sessionStorage.setItem('enable-iot', false);
-		// 	} else {
-		// 		sessionStorage.setItem('enable-iot', true);
-		// 	}
+		if (typeof (sessionStorage.getItem('enable-iot')) !== 'undefined') {
+			if ($('.modal-wifi-config #wifi-iot-checkbox').prop('checked') == false) {
+				sessionStorage.setItem('enable-iot', false);
+			} else {
+				sessionStorage.setItem('enable-iot', true);
+			}
+		}
+		// if (typeof (sessionStorage.getItem('iot-option')) !== 'undefined') {
+		// 	sessionStorage.setItem('iot-option', $('.modal-wifi-config #iot-option').val());
 		// }
-		if (typeof (sessionStorage.getItem('iot-option')) !== 'undefined') {
-			sessionStorage.setItem('iot-option', $('.modal-wifi-config #iot-option').val());
-		}
-		if (typeof (sessionStorage.getItem('netpie-device-id')) !== 'undefined') {
-			sessionStorage.setItem('netpie-device-id', $('.modal-wifi-config #netpie-device-id').val());
-		}
-		if (typeof (sessionStorage.getItem('netpie-device-token')) !== 'undefined') {
-			sessionStorage.setItem('netpie-device-token', $('.modal-wifi-config #netpie-device-token').val());
-		}
+		// if (typeof (sessionStorage.getItem('netpie-device-id')) !== 'undefined') {
+		// 	sessionStorage.setItem('netpie-device-id', $('.modal-wifi-config #netpie-device-id').val());
+		// }
+		// if (typeof (sessionStorage.getItem('netpie-device-token')) !== 'undefined') {
+		// 	sessionStorage.setItem('netpie-device-token', $('.modal-wifi-config #netpie-device-token').val());
+		// }
 	});
-	$('.modal-wifi-config #iot-option').change(function () {
-		var iot_option = $('.modal-wifi-config #iot-option').val();
-		var netpie_form = $('.modal-wifi-config .modal-body.modal-b .netpie-form');
-		switch(iot_option){
-			case 'netpie':
-				netpie_form.show();
-				break;
-			default:
-				netpie_form.hide();
-		}
-	});
+	// $('.modal-wifi-config #iot-option').change(function () {
+	// 	var iot_option = $('.modal-wifi-config #iot-option').val();
+	// 	var netpie_form = $('.modal-wifi-config .modal-body.modal-b .netpie-form');
+	// 	switch(iot_option){
+	// 		case 'netpie':
+	// 			netpie_form.show();
+	// 			break;
+	// 		default:
+	// 			netpie_form.hide();
+	// 	}
+	// });
 	$('#btn-wifi-config').click(function () {
 		$('.modal-wifi-config #wifi-iot-text').text(LANG_IOT_MODE);
 		$('.modal-wifi-config .modal-footer #wifi-build-ok').text(LANG_OK);
@@ -749,21 +749,21 @@ function HomeController() {
 		
 		$('.modal-wifi-config input#sta-ssid').val(sessionStorage.getItem('wifi-ssid'));
 		$('.modal-wifi-config input#sta-password').val(sessionStorage.getItem('wifi-password'));
-		// $('.modal-wifi-config #wifi-iot-checkbox').val(sessionStorage.getItem('enable-iot'));
+		$('.modal-wifi-config #wifi-iot-checkbox').val(sessionStorage.getItem('enable-iot'));
 
-		$('.modal-wifi-config #iot-option').val(sessionStorage.getItem('iot-option'));
-		$('.modal-wifi-config #netpie-device-id').val(sessionStorage.getItem('netpie-device-id'));
-		$('.modal-wifi-config #netpie-device-token').val(sessionStorage.getItem('netpie-device-token'));
+		// $('.modal-wifi-config #iot-option').val(sessionStorage.getItem('iot-option'));
+		// $('.modal-wifi-config #netpie-device-id').val(sessionStorage.getItem('netpie-device-id'));
+		// $('.modal-wifi-config #netpie-device-token').val(sessionStorage.getItem('netpie-device-token'));
 
-		var iot_option = sessionStorage.getItem('iot-option');
-		var netpie_form = $('.modal-wifi-config .modal-body.modal-b .netpie-form');
-		switch(iot_option){
-			case 'netpie':
-				netpie_form.show();
-				break;
-			default:
-				netpie_form.hide();
-		}
+		// var iot_option = sessionStorage.getItem('iot-option');
+		// var netpie_form = $('.modal-wifi-config .modal-body.modal-b .netpie-form');
+		// switch(iot_option){
+		// 	case 'netpie':
+		// 		netpie_form.show();
+		// 		break;
+		// 	default:
+		// 		netpie_form.hide();
+		// }
 
 		$('.modal-wifi-config.modal').modal({
 			show: true,

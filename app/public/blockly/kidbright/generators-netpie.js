@@ -90,7 +90,9 @@ Blockly.JavaScript['netpie_on_disconnected'] = function(block) {
 Blockly.JavaScript['netpie_connect'] = function(block) {
     var text_device_id = block.getFieldValue('DEVICE_ID');
     var text_device_token = block.getFieldValue('DEVICE_TOKEN');
-    var code = `netpie_connect("mqtt://mqtt.netpie.io:1883", "${text_device_id}", "${text_device_token}");\n`;
+    var code = 	'netpie_subscribe("@msg/#");\n' +
+                'netpie_subscribe("@private/#");\n' +
+                `netpie_connect("mqtt://mqtt.netpie.io:1883", "${text_device_id}", "${text_device_token}");\n`;
     return code;
   };
   
