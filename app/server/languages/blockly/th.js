@@ -932,35 +932,38 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "กำหนดลำดับเริ่มต้นและลำดับสุดท้ายในการอ่านข้อมูลจากรายการ";
 
 // netpie platform
-/** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW = "%1 เขียนข้อมูลชาโดว์ %2 ด้วยข้อมูล %3";
+/** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW = "%1 เขียนชาโดว์ %2 ด้วยข้อมูล %3";
 /** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW_TOOLTIP = "ตั้งค่า filed ที่ต้องการแก้ไขโดยกำหนดเหมือน json เช่น home.temp แล้วส่งข้อมูลชนิดตัวเลขหรือข้อความไปเขียนข้อมูลชาโดว์";
 
-/** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE = "%1 เหตุการณ์รับข้อความจาก topic @msg/ %2 %3";
-/** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE_TOOLTIP = "สโคปของ block ที่ทำงานเมื่อมีเหตุการณ์ได้รับข้อความเข้ามาตาม topic ที่กำหนด";
+/** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE = "%1 เมื่อได้รับข้อมูลจากหัวข้อ @msg/ %2 %3 %4";
+/** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE_TOOLTIP = "ทำงานเมื่อมีเหตุการณ์ได้รับข้อความเข้ามาตาม topic ที่กำหนด";
 
-/** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE = "%1 รับข้อความที่เป็น  %2";
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE = "%1 ได้รับข้อมูลชนิด  %2";
 /** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE_TOOLTIP = "รับข้อความเข้ามาโดยกำหนดชนิดได้ว่าเป็นตัวเลขหรือตัวอักษร"
 
-/** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE = "%1 Publish ไปยัง topic @msg/ %2 ด้วยข้อมูล  %3"
+/** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE = "%1 ส่งข้อมูลไปยังหัวข้อ @msg/ %2 ด้วยข้อมูล  %3"
 /** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE_TOOLTIP = "Publish ข้อความไปยัง topic ที่กำหนด ตัวอย่างเช่น input1 ใช้ topic home/temp และ input2 ส่ง 25";
 
-/** @export */ Blockly.Msg.NETPIE_SUBSCRIBE = "%1 Subscribe ไปยัง topic @msg/ %2";
+/** @export */ Blockly.Msg.NETPIE_SUBSCRIBE = "%1 ติดตามหัวข้อ @msg/ %2";
 /** @export */ Blockly.Msg.NETPIE_SUBSCRIBE_TOOLTIP = "Subscribe ไปยัง topic ที่สนใจ";
 
-/** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED = "%1 เหตุการณ์ shadow ถูกแก้ไข %2 %3";
-/** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED_TOOLTIP = "สโคปของ block ที่ทำงานเมื่อมีเหตุการณ์ shadow ถูกแก้ไข";
+/** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED = "%1 เมื่อชาโดว์ถูกแก้ไข %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED_TOOLTIP = "ทำงานเมื่อมีเหตุการณ์ device shadow ถูกแก้ไข";
 
-/** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED = "%1 ได้รับ shadow field %2 ชนิด %3";
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED = "%1 ได้รับข้อมูลชาโดว์ %2 ชนิด %3";
 /** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED_TOOLTIP = "Input1 ระบุ field ที่ต้องการใน shadow เหมือน json ตัวอย่างเช่น home.temp เพื่อรับค่า 25 จาก { home: { temp: 25 } }. Input2 ใช้เลือกชนิดของข้อมูล";
 
-/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 Shadow ประกอบด้วย field %2";
+/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 ชาโดว์มีข้อมูล %2";
 /** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD_TOOLTIP = "ใช้ตรวจสอบ shadow ว่ามี field ที่ต้องการหรือไม่ เช่น home.temp";
 
-/** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 อ่าน shadow ทั้งหมด %2 %3";
+/** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 อ่านชาโดว์ทั้งหมด %2 %3";
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW_TOOLTIP = "ทำการอ่านค่า shadow ทั้งหมด";
 
-/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED = "%1 เหตุการณ์เชื่อมต่อเน็ตพาย %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED = "%1 เมื่อเชื่อมต่อเน็ตพาย %2 %3";
 /** @export */ Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP = "เมื่อมีเหตุการณ์เชื่อมต่อเน็ตพายสำเร็จ block ในนี้จะทำงาน";
 
-/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 เหตุการณ์หลุดการเชื่อมต่อเน็ตพาย %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 เมื่อหลุดการเชื่อมต่อเน็ตพาย %2 %3";
 /** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "เมื่อมีเหตุการณ์หลุดการเชื่อมต่อเน็ตพาย block ในนี้จะทำงาน";
+
+/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 เชื่อมต่อเน็ตพาย %2 ไอดีของอุปกรณ์ %3 %4 โทเคนของอุปกรณ์ %5";
+/** @export */ Blockly.Msg.NETPIE_CONNECT_TOOLTIP = "เชื่อมต่อเน็ตพายโดยใช้ device id และ device token";

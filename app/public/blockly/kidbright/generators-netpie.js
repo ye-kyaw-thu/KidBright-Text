@@ -1,14 +1,14 @@
 Blockly.JavaScript['netpie_write_shadow'] = function(block) {
-    var value_field = Blockly.JavaScript.valueToCode(block, 'field', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_field = block.getFieldValue('field');
     var value_data = Blockly.JavaScript.valueToCode(block, 'data', Blockly.JavaScript.ORDER_ATOMIC);
 
-    var code = `netpie_write_shadow(${value_field}, ${value_data});\n`;
+    var code = `netpie_write_shadow("${value_field}", ${value_data});\n`;
     return code;
 };
 Blockly.JavaScript['netpie_on_receive_message'] = function(block) {
-    var value_topic = Blockly.JavaScript.valueToCode(block, 'topic', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_topic = block.getFieldValue('topic');
     var statements_on_receive_message = Blockly.JavaScript.statementToCode(block, 'on_receive_message');
-    var code = 'on_message_topic("@msg/' + value_topic.split('(char *)')[1].split('"')[1] + '", [](char* payload, size_t len) {\n' + 
+    var code = 'on_message_topic("@msg/' + value_topic + '", [](char* payload, size_t len) {\n' + 
         statements_on_receive_message + '});\n';
     return code;
 };
@@ -24,14 +24,14 @@ Blockly.JavaScript['netpie_received_message'] = function(block) {
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 Blockly.JavaScript['netpie_publish_message'] = function(block) {
-    var value_topic = Blockly.JavaScript.valueToCode(block, 'topic', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_topic = block.getFieldValue('topic');
     var value_data = Blockly.JavaScript.valueToCode(block, 'data', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = 'netpie_publish("@msg/' + value_topic.split('(char *)')[1].split('"')[1] + '", '+ value_data +');\n';
+    var code = 'netpie_publish("@msg/' + value_topic + '", '+ value_data +');\n';
     return code;
 };
 Blockly.JavaScript['netpie_subscribe'] = function(block) {
-    var value_topic = Blockly.JavaScript.valueToCode(block, 'topic', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = 'netpie_subscribe("@msg/' + value_topic.split('(char *)')[1].split('"')[1] + '");\n';
+    var value_topic = block.getFieldValue('topic');
+    var code = 'netpie_subscribe("@msg/' + value_topic + '");\n';
     return code;
 };
 Blockly.JavaScript['netpie_on_shadow_updated'] = function(block) {
@@ -40,9 +40,9 @@ Blockly.JavaScript['netpie_on_shadow_updated'] = function(block) {
     return code;
 };
 Blockly.JavaScript['netpie_received_shadow_updated'] = function(block) {
-    var value_field = Blockly.JavaScript.valueToCode(block, 'field', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_field = block.getFieldValue('field');
     var dropdown_type = block.getFieldValue('type');
-    var fields = value_field.split('(char *)')[1].split('"')[1].split('.')
+    var fields = value_field.split('.');
 
     var code = '';
     var field_code = '["data"]';
@@ -87,4 +87,12 @@ Blockly.JavaScript['netpie_on_disconnected'] = function(block) {
         statements_name + '});\n';
     return code;
 };
+Blockly.JavaScript['netpie_connect'] = function(block) {
+    var text_device_id = block.getFieldValue('DEVICE_ID');
+    var text_device_token = block.getFieldValue('DEVICE_TOKEN');
+    var code = 	'netpie_subscribe("@msg/#");\n' +
+                'netpie_subscribe("@private/#");\n' +
+                `netpie_connect("mqtt://mqtt.netpie.io:1883", "${text_device_id}", "${text_device_token}");\n`;
+    return code;
+  };
   

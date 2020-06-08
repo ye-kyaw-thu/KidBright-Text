@@ -402,11 +402,11 @@ module.exports = function (app, Config, Log) {
 
 		var sta_ssid = req.body['sta_ssid'];
 		var sta_password = req.body['sta_password'];
-		// var enable_iot = req.body['enable_iot'];
+		var enable_iot = req.body['enable_iot'];
 		
-		var iot_option = req.body['iot_option'];
-		var netpie_device_id = req.body['netpie_device_id'];
-		var netpie_device_token = req.body['netpie_device_token'];
+		// var iot_option = req.body['iot_option'];
+		// var netpie_device_id = req.body['netpie_device_id'];
+		// var netpie_device_token = req.body['netpie_device_token'];
 
 		var start_wifi_code = '';
 		var start_iot_code = '';
@@ -415,18 +415,18 @@ module.exports = function (app, Config, Log) {
 
 		if (sta_ssid !== '') {
 			start_wifi_code = '	wifi_sta_start(CONFIG_WIFI_SSID, CONFIG_WIFI_PASSWORD);\n';
-			// if (enable_iot === 'true') {
-			// 	start_iot_code = 'kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
-			// }
-
-			if (iot_option === 'kbiot') {
-				start_iot_code = '	kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
-			} else if (iot_option === 'netpie') {
-				start_iot_code = 
-				'	netpie_subscribe("@msg/#");\n' +
-				'	netpie_subscribe("@private/#");\n' +
-				`	netpie_connect("mqtt://mqtt.netpie.io:1883", "${netpie_device_id}", "${netpie_device_token}");\n`;
+			if (enable_iot === 'true') {
+				start_iot_code = 'kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
 			}
+
+			// if (iot_option === 'kbiot') {
+			// 	start_iot_code = '	kbiot_init(KBSERIAL, CLIENTID, USERNAME, PASSWORD);\n\n';
+			// } else if (iot_option === 'netpie') {
+			// 	start_iot_code = 
+			// 	'	netpie_subscribe("@msg/#");\n' +
+			// 	'	netpie_subscribe("@private/#");\n' +
+			// 	`	netpie_connect("mqtt://mqtt.netpie.io:1883", "${netpie_device_id}", "${netpie_device_token}");\n`;
+			// }
 		}
 
 		Log.i('building board id ' + board_id + ' (' + mac_addr + ')');
