@@ -1,3 +1,42 @@
+Blockly.Blocks['netpie_connect'] = {
+	init: function () {
+    this.jsonInit({
+        "type": "netpie_connect",
+        "message0": Blockly.Msg.NETPIE_CONNECT,
+        "args0": [
+          {
+            "type": "field_image",
+            "src": "/icons/netpie-logo.png",
+            "width": 20,
+            "height": 20,
+            "alt": "*"
+          },
+          {
+            "type": "input_dummy"
+          },
+          {
+            "type": "field_input",
+            "name": "DEVICE_ID",
+            "text": "default"
+          },
+          {
+            "type": "input_dummy"
+          },
+          {
+            "type": "field_input",
+            "name": "DEVICE_TOKEN",
+            "text": "default"
+          }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": "#218c74",
+        "tooltip": Blockly.Msg.NETPIE_CONNECT_TOOLTIP,
+        "helpUrl": ""
+      }
+    )}
+}
+
 Blockly.Blocks['netpie_write_shadow'] = {
 	init: function () {
     this.jsonInit({
@@ -12,9 +51,9 @@ Blockly.Blocks['netpie_write_shadow'] = {
             "alt": "*"
           },
           {
-            "type": "input_value",
+            "type": "field_input",
             "name": "field",
-            "check": "String"
+            "text": "home.temp"
           },
           {
             "type": "input_value",
@@ -50,9 +89,12 @@ Blockly.Blocks['netpie_on_receive_message'] = {
             "alt": "*"
           },
           {
-            "type": "input_value",
+            "type": "field_input",
             "name": "topic",
-            "check": "String"
+            "text": "home/temp"
+          },
+          {
+            "type": "input_dummy"
           },
           {
             "type": "input_statement",
@@ -63,7 +105,7 @@ Blockly.Blocks['netpie_on_receive_message'] = {
         "nextStatement": null,
         "colour": "#133253",
         "tooltip": Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE_TOOLTIP,
-        "helpUrl": ""   
+        "helpUrl": ""
       } 
     )}
 }
@@ -118,9 +160,9 @@ Blockly.Blocks['netpie_publish_message'] = {
           "alt": "*"
         },
         {
-          "type": "input_value",
+          "type": "field_input",
           "name": "topic",
-          "check": "String"
+          "text": "home/temp"
         },
         {
           "type": "input_value",
@@ -151,9 +193,9 @@ Blockly.Blocks['netpie_subscribe'] = {
           "alt": "*"
         },
         {
-          "type": "input_value",
+          "type": "field_input",
           "name": "topic",
-          "check": "String"
+          "text": "home/temp"
         }
       ],
       "inputsInline": true,
@@ -211,9 +253,9 @@ Blockly.Blocks['netpie_received_shadow_updated'] = {
             "alt": "*"
           },
           {
-            "type": "input_value",
+            "type": "field_input",
             "name": "field",
-            "check": "String"
+            "text": "home.temp"
           },
           {
             "type": "field_dropdown",

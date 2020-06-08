@@ -923,10 +923,10 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "specify start and end index to show value from the list.";
 
 // netpie platform
-/** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW = "%1 Write device shadow field %2 with value %3";
+/** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW = "%1 Write shadow field %2 with value %3";
 /** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW_TOOLTIP = "Write device shadow input1 set field to write shadow like json (home.temp) and input2 for set value.";
 
-/** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE = "%1 On received message of topic @msg/ %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE = "%1 On received message of topic @msg/ %2 %3 %4";
 /** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE_TOOLTIP = "Event recevie message of topic statement";
 
 /** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE = "%1 Received message as  %2";
@@ -955,3 +955,6 @@ goog.require('Blockly.Msg');
 
 /** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 On disconnected %2 %3";
 /** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "Event on disconnected with NETPIE";
+
+/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 Connect NETPIE %2 Device ID %3 %4 Device Token %5";
+/** @export */ Blockly.Msg.NETPIE_CONNECT_TOOLTIP = "Connect NETPIE by device id and device token";
