@@ -951,10 +951,10 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW_TOOLTIP = "Read entire shadow statement";
 
 /** @export */ Blockly.Msg.NETPIE_ON_CONNECTED = "%1 On connected %2 %3";
-/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP = "Event on connected with NETPIE";
+/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP = "Event on connected with NETPIE 2020";
 
 /** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 On disconnected %2 %3";
-/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "Event on disconnected with NETPIE";
+/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "Event on disconnected with NETPIE 2020";
 
-/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 Connect NETPIE %2 Device ID %3 %4 Device Token %5";
+/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 Connect NETPIE 2020 %2 Device ID %3 %4 Device Token %5";
 /** @export */ Blockly.Msg.NETPIE_CONNECT_TOOLTIP = "Connect NETPIE by device id and device token";

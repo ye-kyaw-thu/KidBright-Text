@@ -959,11 +959,11 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 อ่านชาโดว์ทั้งหมด %2 %3";
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW_TOOLTIP = "ทำการอ่านค่า shadow ทั้งหมด";
 
-/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED = "%1 เมื่อเชื่อมต่อเน็ตพาย %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED = "%1 เมื่อเชื่อมต่อเน็ตพาย 2020 %2 %3";
 /** @export */ Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP = "เมื่อมีเหตุการณ์เชื่อมต่อเน็ตพายสำเร็จ block ในนี้จะทำงาน";
 
-/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 เมื่อหลุดการเชื่อมต่อเน็ตพาย %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 เมื่อหลุดการเชื่อมต่อเน็ตพาย 2020 %2 %3";
 /** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "เมื่อมีเหตุการณ์หลุดการเชื่อมต่อเน็ตพาย block ในนี้จะทำงาน";
 
-/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 เชื่อมต่อเน็ตพาย %2 ไอดีของอุปกรณ์ %3 %4 โทเคนของอุปกรณ์ %5";
+/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 เชื่อมต่อเน็ตพาย 2020 %2 ไอดีของอุปกรณ์ %3 %4 โทเคนของอุปกรณ์ %5";
 /** @export */ Blockly.Msg.NETPIE_CONNECT_TOOLTIP = "เชื่อมต่อเน็ตพายโดยใช้ device id และ device token";
