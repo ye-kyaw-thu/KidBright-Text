@@ -397,7 +397,7 @@ module.exports = function (app, Config, Log) {
 		var kbmac_addr = (mac_addr.replace(/:/g, "")).toUpperCase();
 		var md5_mac_addr = md5('K:' + kbmac_addr);
 
-		// console.log('=== ' + kbmac_addr);
+		// console.log('kbmac_addr: ' + kbmac_addr);
 		// console.log(md5_mac_addr);
 
 		var sta_ssid = req.body['sta_ssid'];
@@ -439,6 +439,7 @@ module.exports = function (app, Config, Log) {
 		var task_code = '';
 		var task_fn_name = [];
 		var setup_code = '// setup\n';
+		var kbnetpie_code = '';
 		var in_func_flag = false;
 
 		var driver_type_arr = [
@@ -541,10 +542,10 @@ module.exports = function (app, Config, Log) {
 			}
 
 			// task function
-			if ((line.substring(0, 10) == 'void vTask') || (line.substring(0, 10) == 'void func_')) {
+			if ((line.substring(0, 10) == 'void vTask') || (line.substring(0, 10) == 'void func_') || (line.substring(0, 10) == 'KBNETPIE__')) {
 				var tmp_line = line.replace('(', ' ');
 				var tmp_linelst = tmp_line.split(' ');
-				if (line.substring(0, 10) !== 'void func_') task_fn_name.push(tmp_linelst[1]);
+				if ((line.substring(0, 10) !== 'void func_') && (line.substring(0, 10) !== 'KBNETPIE__')) task_fn_name.push(tmp_linelst[1]);
 				task_code += '\n';
 				in_func_flag = true;
 			}
@@ -575,6 +576,9 @@ module.exports = function (app, Config, Log) {
 			for(func_num in func_list){
 				let current_func = func_list[func_num];
 				if(current_func.indexOf("void func_") !== -1) func_group += current_func;
+				else if(current_func.indexOf("KBNETPIE__") !== -1) {
+					kbnetpie_code += current_func.replace("KBNETPIE__", "\n");
+				}
 				else task_group += current_func;
 			}
 			task_code = func_group + task_group;
@@ -711,7 +715,7 @@ module.exports = function (app, Config, Log) {
 			'void user_app(void) {\n' +
 			'xTaskCreatePinnedToCore(iotTask, "iotTask", 4096, NULL, USERAPP_TASK_PRIORITY, NULL, KIDBRIGHT_RUNNING_CORE);\n' +
 			'srand(mcp7940n.get(5));\n' + // random seed
-
+			kbnetpie_code +
 			setup_code +
 			task_fn_code +
 			'}\n' +

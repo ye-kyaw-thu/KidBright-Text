@@ -941,20 +941,20 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED = "%1 On shadow updated %2 %3";
 /** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED_TOOLTIP = "Event shadow updated statement";
 
-/** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED = "%1 Received shadow field %2 as %3";
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED = "%1 Field %2 as %3";
 /** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED_TOOLTIP = "Input1 get device shadow like json. exmaple use home.temp to get 25 from { home: { temp: 25 } }. Input2 select data type.";
 
-/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 Shadow contains field %2";
+/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 Field %2 has value";
 /** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD_TOOLTIP = "Check if shadow contain field. example home.temp";
 
-/** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 Read entire shadow %2 %3";
+/** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 Read shadow %2 %3";
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW_TOOLTIP = "Read entire shadow statement";
 
 /** @export */ Blockly.Msg.NETPIE_ON_CONNECTED = "%1 On connected %2 %3";
-/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP = "Event on connected with NETPIE 2020";
+/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP = "Event on connected with NETPIE";
 
 /** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 On disconnected %2 %3";
-/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "Event on disconnected with NETPIE 2020";
+/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "Event on disconnected with NETPIE";
 
-/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 Connect NETPIE 2020 %2 Device ID %3 %4 Device Token %5";
+/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 Connect NETPIE %2 Device ID %3 %4 Device Token %5";
 /** @export */ Blockly.Msg.NETPIE_CONNECT_TOOLTIP = "Connect NETPIE by device id and device token";

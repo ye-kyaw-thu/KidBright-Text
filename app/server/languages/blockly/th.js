@@ -950,20 +950,20 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED = "%1 เมื่อชาโดว์ถูกแก้ไข %2 %3";
 /** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED_TOOLTIP = "ทำงานเมื่อมีเหตุการณ์ device shadow ถูกแก้ไข";
 
-/** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED = "%1 ได้รับข้อมูลชาโดว์ %2 ชนิด %3";
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED = "%1 ชาโดว์ตำแหน่ง %2 ชนิด %3";
 /** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED_TOOLTIP = "Input1 ระบุ field ที่ต้องการใน shadow เหมือน json ตัวอย่างเช่น home.temp เพื่อรับค่า 25 จาก { home: { temp: 25 } }. Input2 ใช้เลือกชนิดของข้อมูล";
 
-/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 ชาโดว์มีข้อมูล %2";
+/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 ชาโดว์ตำแหน่ง %2 มีค่า";
 /** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD_TOOLTIP = "ใช้ตรวจสอบ shadow ว่ามี field ที่ต้องการหรือไม่ เช่น home.temp";
 
-/** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 อ่านชาโดว์ทั้งหมด %2 %3";
+/** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 อ่านชาโดว์ %2 %3";
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW_TOOLTIP = "ทำการอ่านค่า shadow ทั้งหมด";
 
-/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED = "%1 เมื่อเชื่อมต่อเน็ตพาย 2020 %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_CONNECTED = "%1 เมื่อเชื่อมต่อเน็ตพาย %2 %3";
 /** @export */ Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP = "เมื่อมีเหตุการณ์เชื่อมต่อเน็ตพายสำเร็จ block ในนี้จะทำงาน";
 
-/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 เมื่อหลุดการเชื่อมต่อเน็ตพาย 2020 %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 เมื่อหลุดการเชื่อมต่อเน็ตพาย %2 %3";
 /** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "เมื่อมีเหตุการณ์หลุดการเชื่อมต่อเน็ตพาย block ในนี้จะทำงาน";
 
-/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 เชื่อมต่อเน็ตพาย 2020 %2 ไอดีของอุปกรณ์ %3 %4 โทเคนของอุปกรณ์ %5";
+/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 เชื่อมต่อเน็ตพาย %2 ไอดีของอุปกรณ์ %3 %4 โทเคนของอุปกรณ์ %5";
 /** @export */ Blockly.Msg.NETPIE_CONNECT_TOOLTIP = "เชื่อมต่อเน็ตพายโดยใช้ device id และ device token";
