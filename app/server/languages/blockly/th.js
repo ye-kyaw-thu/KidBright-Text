@@ -932,28 +932,28 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "กำหนดลำดับเริ่มต้นและลำดับสุดท้ายในการอ่านข้อมูลจากรายการ";
 
 // netpie platform
-/** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW = "%1 เขียนชาโดว์ %2 ด้วยข้อมูล %3";
+/** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW = "%1 เขียนชาโดว์ฟิวด์ %2 ด้วยข้อมูล %3";
 /** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW_TOOLTIP = "ตั้งค่า filed ที่ต้องการแก้ไขโดยกำหนดเหมือน json เช่น home.temp แล้วส่งข้อมูลชนิดตัวเลขหรือข้อความไปเขียนข้อมูลชาโดว์";
 
-/** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE = "%1 เมื่อได้รับข้อมูลจากหัวข้อ @msg/ %2 %3 %4";
+/** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE = "%1 เมื่อได้รับแมสเสจจากหัวเรื่อง @msg/ %2 %3 %4";
 /** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE_TOOLTIP = "ทำงานเมื่อมีเหตุการณ์ได้รับข้อความเข้ามาตาม topic ที่กำหนด";
 
-/** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE = "%1 ได้รับข้อมูลชนิด  %2";
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE = "%1 ข้อมูลแมสเสจชนิด  %2";
 /** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE_TOOLTIP = "รับข้อความเข้ามาโดยกำหนดชนิดได้ว่าเป็นตัวเลขหรือตัวอักษร"
 
-/** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE = "%1 ส่งข้อมูลไปยังหัวข้อ @msg/ %2 ด้วยข้อมูล  %3"
+/** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE = "%1 ส่งแมสเสจไปยังหัวเรื่อง @msg/ %2 ด้วยข้อมูล  %3"
 /** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE_TOOLTIP = "Publish ข้อความไปยัง topic ที่กำหนด ตัวอย่างเช่น input1 ใช้ topic home/temp และ input2 ส่ง 25";
 
-/** @export */ Blockly.Msg.NETPIE_SUBSCRIBE = "%1 ติดตามหัวข้อ @msg/ %2";
+/** @export */ Blockly.Msg.NETPIE_SUBSCRIBE = "%1 ติดตามแมสเสจหัวเรื่อง @msg/ %2";
 /** @export */ Blockly.Msg.NETPIE_SUBSCRIBE_TOOLTIP = "Subscribe ไปยัง topic ที่สนใจ";
 
-/** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED = "%1 เมื่อชาโดว์ถูกแก้ไข %2 %3";
-/** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED_TOOLTIP = "ทำงานเมื่อมีเหตุการณ์ device shadow ถูกแก้ไข";
+/** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED = "%1 เมื่อชาโดว์เปลี่ยนแปลง %2 %3";
+/** @export */ Blockly.Msg.NETPIE_ON_SHADOW_UPDATED_TOOLTIP = "ทำงานเมื่อมีเหตุการณ์ device shadow มีการเปลี่ยนแปลงค่า";
 
-/** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED = "%1 ชาโดว์ตำแหน่ง %2 ชนิด %3";
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED = "%1 ฟิวด์ %2 ชนิด %3";
 /** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED_TOOLTIP = "Input1 ระบุ field ที่ต้องการใน shadow เหมือน json ตัวอย่างเช่น home.temp เพื่อรับค่า 25 จาก { home: { temp: 25 } }. Input2 ใช้เลือกชนิดของข้อมูล";
 
-/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 ชาโดว์ตำแหน่ง %2 มีค่า";
+/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 ตัวแปร %2 มีค่า";
 /** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD_TOOLTIP = "ใช้ตรวจสอบ shadow ว่ามี field ที่ต้องการหรือไม่ เช่น home.temp";
 
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 อ่านชาโดว์ %2 %3";

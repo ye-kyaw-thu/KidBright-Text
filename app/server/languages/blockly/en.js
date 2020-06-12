@@ -929,10 +929,10 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE = "%1 On received message of topic @msg/ %2 %3 %4";
 /** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE_TOOLTIP = "Event recevie message of topic statement";
 
-/** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE = "%1 Received message as  %2";
+/** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE = "%1 Message payload as  %2";
 /** @export */ Blockly.Msg.NETPIE_RECEIVE_MESSAGE_TOOLTIP = "Receive message then select data type."
 
-/** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE = "%1 Publish to topic @msg/ %2 with value  %3"
+/** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE = "%1 Publish to topic @msg/ %2 with payload  %3"
 /** @export */ Blockly.Msg.NETPIE_PUBLISH_MESSAGE_TOOLTIP = "Publish message with topic and payload. example input1 is topic home/temp and input2 is payload 25. ";
 
 /** @export */ Blockly.Msg.NETPIE_SUBSCRIBE = "%1 Subscribe to topic @msg/ %2";
@@ -944,7 +944,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED = "%1 Field %2 as %3";
 /** @export */ Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED_TOOLTIP = "Input1 get device shadow like json. exmaple use home.temp to get 25 from { home: { temp: 25 } }. Input2 select data type.";
 
-/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 Field %2 has value";
+/** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD = "%1 Variable %2 has value";
 /** @export */ Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD_TOOLTIP = "Check if shadow contain field. example home.temp";
 
 /** @export */ Blockly.Msg.NETPIE_READ_ENTITE_SHADOW = "%1 Read shadow %2 %3";
