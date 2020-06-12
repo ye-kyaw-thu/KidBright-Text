@@ -932,7 +932,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.LIST_GET_TEXT_TOOLTIP = "กำหนดลำดับเริ่มต้นและลำดับสุดท้ายในการอ่านข้อมูลจากรายการ";
 
 // netpie platform
-/** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW = "%1 เขียนชาโดว์ฟิวด์ %2 ด้วยข้อมูล %3";
+/** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW = "%1 เขียนชาโดว์ฟิวด์ %2 ด้วยค่า %3";
 /** @export */ Blockly.Msg.NETPIE_WRITE_SHADOW_TOOLTIP = "ตั้งค่า filed ที่ต้องการแก้ไขโดยกำหนดเหมือน json เช่น home.temp แล้วส่งข้อมูลชนิดตัวเลขหรือข้อความไปเขียนข้อมูลชาโดว์";
 
 /** @export */ Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE = "%1 เมื่อได้รับแมสเสจจากหัวเรื่อง @msg/ %2 %3 %4";
