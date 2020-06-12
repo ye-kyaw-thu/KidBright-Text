@@ -1,5 +1,9 @@
+const CONNECT_COLOR = "#4f9936";
+let SHADOW_COLOR = "#2d8fba";
+let MSG_COLOR = "#9e478f";
+
 Blockly.Blocks['netpie_connect'] = {
-	init: function () {
+    init: function () {
     this.jsonInit({
         "type": "netpie_connect",
         "message0": Blockly.Msg.NETPIE_CONNECT,
@@ -30,7 +34,7 @@ Blockly.Blocks['netpie_connect'] = {
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": "#474787",
+        "colour": CONNECT_COLOR,
         "tooltip": Blockly.Msg.NETPIE_CONNECT_TOOLTIP,
         "helpUrl": ""
       }
@@ -38,7 +42,7 @@ Blockly.Blocks['netpie_connect'] = {
 }
 
 Blockly.Blocks['netpie_write_shadow'] = {
-	init: function () {
+    init: function () {
     this.jsonInit({
         "type": "netpie_write_shadow",
         "message0": Blockly.Msg.NETPIE_WRITE_SHADOW,
@@ -68,7 +72,7 @@ Blockly.Blocks['netpie_write_shadow'] = {
         "inputsInline": true,
         "previousStatement": null,
         "nextStatement": null,
-        "colour": "#34ace0",
+        "colour": SHADOW_COLOR,
         "tooltip": Blockly.Msg.NETPIE_WRITE_SHADOW_TOOLTIP,
         "helpUrl": ""
     }
@@ -76,7 +80,7 @@ Blockly.Blocks['netpie_write_shadow'] = {
 }
 
 Blockly.Blocks['netpie_on_receive_message'] = {
-	init: function () {
+    init: function () {
     this.jsonInit({
         "type": "netpie_on_receive_message",
         "message0": Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE,
@@ -101,7 +105,7 @@ Blockly.Blocks['netpie_on_receive_message'] = {
             "name": "on_receive_message"
           }
         ],
-        "colour": "#133253",
+        "colour": MSG_COLOR,
         "tooltip": Blockly.Msg.NETPIE_ON_RECEIVE_MESSAGE_TOOLTIP,
         "helpUrl": ""
       } 
@@ -109,7 +113,7 @@ Blockly.Blocks['netpie_on_receive_message'] = {
 }
 
 Blockly.Blocks['netpie_received_message'] = {
-	init: function () {
+    init: function () {
     this.jsonInit({
         "type": "netpie_received_message",
         "message0": Blockly.Msg.NETPIE_RECEIVE_MESSAGE,
@@ -137,7 +141,7 @@ Blockly.Blocks['netpie_received_message'] = {
           }
         ],
         "output": null,
-        "colour": "#133253",
+        "colour": MSG_COLOR,
         "tooltip": Blockly.Msg.NETPIE_RECEIVE_MESSAGE_TOOLTIP,
         "helpUrl": ""
     }
@@ -145,7 +149,7 @@ Blockly.Blocks['netpie_received_message'] = {
 }
 
 Blockly.Blocks['netpie_publish_message'] = {
-	init: function () {
+    init: function () {
     this.jsonInit({
       "type": "netpie_publish_message",
       "message0": Blockly.Msg.NETPIE_PUBLISH_MESSAGE,
@@ -170,7 +174,7 @@ Blockly.Blocks['netpie_publish_message'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "colour": "#133253",
+      "colour": MSG_COLOR,
       "tooltip": Blockly.Msg.NETPIE_PUBLISH_MESSAGE_TOOLTIP,
       "helpUrl": ""
     }
@@ -178,7 +182,7 @@ Blockly.Blocks['netpie_publish_message'] = {
 }
 
 Blockly.Blocks['netpie_subscribe'] = {
-	init: function () {
+    init: function () {
     this.jsonInit({
       "type": "netpie_subscribe",
       "message0": Blockly.Msg.NETPIE_SUBSCRIBE,
@@ -199,7 +203,7 @@ Blockly.Blocks['netpie_subscribe'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "colour": "#133253",
+      "colour": MSG_COLOR,
       "tooltip": Blockly.Msg.NETPIE_SUBSCRIBE_TOOLTIP,
       "helpUrl": ""
     }
@@ -207,7 +211,7 @@ Blockly.Blocks['netpie_subscribe'] = {
 }
 
 Blockly.Blocks['netpie_on_shadow_updated'] = {
-	init: function () {
+    init: function () {
     this.jsonInit({
       "type": "netpie_on_shadow_updated",
       "message0": Blockly.Msg.NETPIE_ON_SHADOW_UPDATED,
@@ -228,7 +232,7 @@ Blockly.Blocks['netpie_on_shadow_updated'] = {
         }
       ],
       "inputsInline": false,
-      "colour": "#34ace0",
+      "colour": SHADOW_COLOR,
       "tooltip": Blockly.Msg.NETPIE_ON_SHADOW_UPDATED_TOOLTIP,
       "helpUrl": ""     
     }
@@ -236,7 +240,7 @@ Blockly.Blocks['netpie_on_shadow_updated'] = {
 }
 
 Blockly.Blocks['netpie_received_shadow_updated'] = {
-	init: function () {
+    init: function () {
     this.jsonInit({
         "type": "netpie_received_shadow_updated",
         "message0": Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED,
@@ -270,7 +274,7 @@ Blockly.Blocks['netpie_received_shadow_updated'] = {
         ],
         "inputsInline": true,
         "output": null,
-        "colour": "#34ace0",
+        "colour": SHADOW_COLOR,
         "tooltip": Blockly.Msg.NETPIE_RECEIVE_SHADOW_UPDATED_TOOLTIP,
         "helpUrl": ""  
     }
@@ -278,7 +282,7 @@ Blockly.Blocks['netpie_received_shadow_updated'] = {
 }
 
 Blockly.Blocks['netpie_shadow_updated_contains'] = {
-	init: function () {
+    init: function () {
     this.jsonInit({
       "type": "netpie_shadow_updated_contains",
       "message0": Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD,
@@ -298,7 +302,7 @@ Blockly.Blocks['netpie_shadow_updated_contains'] = {
       ],
       "inputsInline": true,
       "output": null,
-      "colour": "#34ace0",
+      "colour": SHADOW_COLOR,
       "tooltip": Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD_TOOLTIP,
       "helpUrl": ""
     }
@@ -306,7 +310,7 @@ Blockly.Blocks['netpie_shadow_updated_contains'] = {
 }
 
 Blockly.Blocks['netpie_read_entire_shadow'] = {
-	init: function () {
+    init: function () {
     this.jsonInit(
       {
         "type": "netpie_read_entire_shadow",
@@ -329,7 +333,7 @@ Blockly.Blocks['netpie_read_entire_shadow'] = {
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": "#34ace0",
+        "colour": SHADOW_COLOR,
         "tooltip": Blockly.Msg.NETPIE_READ_ENTITE_SHADOW_TOOLTIP,
         "helpUrl": ""
       }
@@ -337,7 +341,7 @@ Blockly.Blocks['netpie_read_entire_shadow'] = {
 }
 
 Blockly.Blocks['netpie_on_connected'] = {
-	init: function () {
+    init: function () {
     this.jsonInit(
       {
         "type": "netpie_on_connected",
@@ -358,7 +362,7 @@ Blockly.Blocks['netpie_on_connected'] = {
             "name": "NAME"
           }
         ],
-        "colour": "#474787",
+        "colour": CONNECT_COLOR,
         "tooltip": Blockly.Msg.NETPIE_ON_CONNECTED_TOOLTIP,
         "helpUrl": ""
       }    
@@ -366,7 +370,7 @@ Blockly.Blocks['netpie_on_connected'] = {
 }
 
 Blockly.Blocks['netpie_on_disconnected'] = {
-	init: function () {
+    init: function () {
     this.jsonInit(
       {
         "type": "netpie_on_disconnected",
@@ -387,7 +391,7 @@ Blockly.Blocks['netpie_on_disconnected'] = {
             "name": "NAME"
           }
         ],
-        "colour": "#474787",
+        "colour": CONNECT_COLOR,
         "tooltip": Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP,
         "helpUrl": ""
       }    
