@@ -8,7 +8,7 @@ Blockly.JavaScript['netpie_write_shadow'] = function(block) {
 Blockly.JavaScript['netpie_on_receive_message'] = function(block) {
     var value_topic = block.getFieldValue('topic');
     var statements_on_receive_message = Blockly.JavaScript.statementToCode(block, 'on_receive_message');
-    var code = 'on_message_topic("@msg/' + value_topic + '", [](char* payload, size_t len) {\n' + 
+    var code = 'KBNETPIE__on_message_topic("@msg/' + value_topic + '", [](char* payload, size_t len) {\n' + 
         statements_on_receive_message + '});\n';
     return code;
 };
@@ -36,7 +36,7 @@ Blockly.JavaScript['netpie_subscribe'] = function(block) {
 };
 Blockly.JavaScript['netpie_on_shadow_updated'] = function(block) {
     var statements_shadow_updated = Blockly.JavaScript.statementToCode(block, 'shadow_updated');
-    var code = 'on_shadow_updated([](JsonVariant shadow) {\n' + statements_shadow_updated + '});\n';
+    var code = 'KBNETPIE__on_shadow_updated([](JsonVariant shadow) {\n' + statements_shadow_updated + '});\n';
     return code;
 };
 Blockly.JavaScript['netpie_received_shadow_updated'] = function(block) {
@@ -77,13 +77,13 @@ Blockly.JavaScript['netpie_read_entire_shadow'] = function(block) {
 };
 Blockly.JavaScript['netpie_on_connected'] = function(block) {
     var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
-    var code = 'on_connected([]() {\n' + 
+    var code = 'KBNETPIE__on_connected([]() {\n' + 
         statements_name + '});\n';
     return code;
 };
 Blockly.JavaScript['netpie_on_disconnected'] = function(block) {
     var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
-    var code = 'on_disconnected([]() {\n' + 
+    var code = 'KBNETPIE__on_disconnected([]() {\n' + 
         statements_name + '});\n';
     return code;
 };
