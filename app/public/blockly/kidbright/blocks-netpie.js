@@ -10,7 +10,7 @@ Blockly.Blocks['netpie_connect'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "/icons/netpie-logo.png",
+            "src": "/icons/netpie-block.png",
             "width": 20,
             "height": 20,
             "alt": "*"
@@ -49,7 +49,7 @@ Blockly.Blocks['netpie_write_shadow'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "/icons/netpie-logo.png",
+            "src": "/icons/netpie-block.png",
             "width": 20,
             "height": 20,
             "alt": "*"
@@ -87,7 +87,7 @@ Blockly.Blocks['netpie_on_receive_message'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "/icons/netpie-logo.png",
+            "src": "/icons/netpie-block.png",
             "width": 20,
             "height": 20,
             "alt": "*"
@@ -120,7 +120,7 @@ Blockly.Blocks['netpie_received_message'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "/icons/netpie-logo.png",
+            "src": "/icons/netpie-block.png",
             "width": 20,
             "height": 20,
             "alt": "*"
@@ -156,7 +156,7 @@ Blockly.Blocks['netpie_publish_message'] = {
       "args0": [
         {
           "type": "field_image",
-          "src": "/icons/netpie-logo.png",
+          "src": "/icons/netpie-block.png",
           "width": 20,
           "height": 20,
           "alt": "*"
@@ -189,7 +189,7 @@ Blockly.Blocks['netpie_subscribe'] = {
       "args0": [
         {
           "type": "field_image",
-          "src": "/icons/netpie-logo.png",
+          "src": "/icons/netpie-block.png",
           "width": 20,
           "height": 20,
           "alt": "*"
@@ -218,7 +218,7 @@ Blockly.Blocks['netpie_on_shadow_updated'] = {
       "args0": [
         {
           "type": "field_image",
-          "src": "/icons/netpie-logo.png",
+          "src": "/icons/netpie-block.png",
           "width": 20,
           "height": 20,
           "alt": "*"
@@ -247,7 +247,7 @@ Blockly.Blocks['netpie_received_shadow_updated'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "/icons/netpie-logo.png",
+            "src": "/icons/netpie-block.png",
             "width": 20,
             "height": 20,
             "alt": "*"
@@ -289,7 +289,7 @@ Blockly.Blocks['netpie_shadow_updated_contains'] = {
       "args0": [
         {
           "type": "field_image",
-          "src": "/icons/netpie-logo.png",
+          "src": "/icons/netpie-block.png",
           "width": 20,
           "height": 20,
           "alt": "*"
@@ -318,7 +318,7 @@ Blockly.Blocks['netpie_read_entire_shadow'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "/icons/netpie-logo.png",
+            "src": "/icons/netpie-block.png",
             "width": 20,
             "height": 20,
             "alt": "*"
@@ -349,7 +349,7 @@ Blockly.Blocks['netpie_on_connected'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "/icons/netpie-logo.png",
+            "src": "/icons/netpie-block.png",
             "width": 20,
             "height": 20,
             "alt": "*"
@@ -378,7 +378,7 @@ Blockly.Blocks['netpie_on_disconnected'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": "/icons/netpie-logo.png",
+            "src": "/icons/netpie-block.png",
             "width": 20,
             "height": 20,
             "alt": "*"
