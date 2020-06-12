@@ -30,7 +30,7 @@ Blockly.Blocks['netpie_connect'] = {
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": "#218c74",
+        "colour": "#474787",
         "tooltip": Blockly.Msg.NETPIE_CONNECT_TOOLTIP,
         "helpUrl": ""
       }
@@ -68,7 +68,7 @@ Blockly.Blocks['netpie_write_shadow'] = {
         "inputsInline": true,
         "previousStatement": null,
         "nextStatement": null,
-        "colour": "#218c74",
+        "colour": "#34ace0",
         "tooltip": Blockly.Msg.NETPIE_WRITE_SHADOW_TOOLTIP,
         "helpUrl": ""
     }
@@ -170,7 +170,7 @@ Blockly.Blocks['netpie_publish_message'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "colour": "#218c74",
+      "colour": "#133253",
       "tooltip": Blockly.Msg.NETPIE_PUBLISH_MESSAGE_TOOLTIP,
       "helpUrl": ""
     }
@@ -199,7 +199,7 @@ Blockly.Blocks['netpie_subscribe'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "colour": "#218c74",
+      "colour": "#133253",
       "tooltip": Blockly.Msg.NETPIE_SUBSCRIBE_TOOLTIP,
       "helpUrl": ""
     }
@@ -394,9 +394,8 @@ Blockly.Blocks['netpie_on_disconnected'] = {
   )}
 }
 
-// Blockly.kbide['ON_SHADOW_UPDATED_BLOCK'] = [];
-Blockly.kbide['NETPIE_CONNECTED_BLOCK'] = [];
-Blockly.kbide['NETPIE_CONNECTED_BLOCK_MAX'] = 1;
+Blockly.kbide['NETPIE_CONNECT_BLOCK'] = [];
+Blockly.kbide['NETPIE_CONNECT_BLOCK_MAX'] = 1;
 
 Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'] = [];
 Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK_MAX'] = 1;
@@ -405,48 +404,29 @@ Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'] = [];
 Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK_MAX'] = 1;
 
 Blockly.kbide['NETPIE_ON_RECEIVE_MSG_BLOCK'] = [];
-Blockly.kbide['NETPIE_ON_RECEIVE_MSG_BLOCK_MAX'] = 2;
+Blockly.kbide['NETPIE_ON_RECEIVE_MSG_BLOCK_MAX'] = 20;
 
 Blockly.kbide['NETPIE_ON_SHADOW_UPDATED_BLOCK'] = [];
-Blockly.kbide['NETPIE_ON_SHADOW_UPDATED_BLOCK_MAX'] = 2;
+Blockly.kbide['NETPIE_ON_SHADOW_UPDATED_BLOCK_MAX'] = 20;
 
-Blockly.kbide['CONTROL_NETPIE_BLOCK_CREATED'] = function(ws, blockId, targetBlock, max){
-  if(Blockly.kbide[targetBlock].length < Blockly.kbide[max]){
-    Blockly.kbide[targetBlock].push(blockId);
-  } else {
-    ws.undo(false);
+Blockly.kbide['CONTROL_NETPIE_BLOCK_CREATED'] = function(ws, blockId, targetBlock){
+  if (Blockly.kbide[targetBlock].indexOf(blockId) === -1) {
+    if(Blockly.kbide[targetBlock].length < Blockly.kbide[`${targetBlock}_MAX`]){
+      Blockly.kbide[targetBlock].push(blockId);
+   } else {
+     ws.undo(false);
+   }
   }
 }
 
-// Blockly.kbide['CREATE_NETPIE_ON_CONNECTED_EVENT'] = function(ws, blockId){
-//   if(Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'].length < Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK_MAX']){
-//     Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'].push(blockId);
-//   } else {
-//     ws.undo(false);
-//   }
-// }
-// Blockly.kbide['CREATE_NETPIE_ON_DISCONNECTED_EVENT'] = function(ws, blockId){
-//   if(Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'].length < Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK_MAX']){
-//     Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'].push(blockId);
-//   } else {
-//     ws.undo(false);
-//   }
-// }
-// Blockly.kbide['CREATE_NETPIE_CONNECTED_EVENT'] = function(ws, blockId){
-//   if(Blockly.kbide['NETPIE_CONNECTED_BLOCK'].length < Blockly.kbide['NETPIE_CONNECTED_BLOCK_MAX']){
-//     Blockly.kbide['NETPIE_CONNECTED_BLOCK'].push(blockId);
-//   } else {
-//     ws.undo(false);
-//   }
-// }
-Blockly.kbide['DELETE_NETPIE_ON_CONNECTED_EVENT'] = function(ws, blockId){
+Blockly.kbide['DELETE_NETPIE_ALL_BLOCK_EVENT'] = function(ws, blockId){
   Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'] = Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'].filter((obj) => {
     return obj !== blockId
   })
   Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'] = Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'].filter((obj) => {
     return obj !== blockId
   })
-  Blockly.kbide['NETPIE_CONNECTED_BLOCK'] = Blockly.kbide['NETPIE_CONNECTED_BLOCK'].filter((obj) => {
+  Blockly.kbide['NETPIE_CONNECT_BLOCK'] = Blockly.kbide['NETPIE_CONNECT_BLOCK'].filter((obj) => {
     return obj !== blockId
   })
   Blockly.kbide['NETPIE_ON_RECEIVE_MSG_BLOCK'] = Blockly.kbide['NETPIE_ON_RECEIVE_MSG_BLOCK'].filter((obj) => {
@@ -459,17 +439,19 @@ Blockly.kbide['DELETE_NETPIE_ON_CONNECTED_EVENT'] = function(ws, blockId){
 Blockly.kbide['SCAN_NETPIE_BLOCK'] = function(blockArray, blockType, ws){
   var blocks = Blockly.kbide.GET_BLOCKS_BY_TYPE(ws, blockType);
   var len = Blockly.kbide[blockArray].length;
-  if(blocks.length === 0){
-    Blockly.kbide[blockArray] = [];
+  if(blocks[0] !== undefined){
+    if(blocks.length === 0){
+      Blockly.kbide[blockArray] = [];
+    }
+    else if((blocks.length > 0) && (len < Blockly.kbide[`${blockArray}_MAX`])) {
+      if (Blockly.kbide[blockArray].indexOf(blocks[0].id) === -1) Blockly.kbide[blockArray].push(blocks[0].id);
+    }  
   }
-  else if((blocks.length > 0) && (len < Blockly.kbide[`${blockArray}_MAX`])) {
-    Blockly.kbide[blockArray].push(blocks[0].id);
-  }  
 }
 Blockly.kbide['SCAN_ALL_NETPIE_BLOCK'] = function(ws){
   Blockly.kbide.SCAN_NETPIE_BLOCK('NETPIE_ON_CONNECTED_BLOCK', 'netpie_on_connected', ws);
   Blockly.kbide.SCAN_NETPIE_BLOCK('NETPIE_ON_DISCONNECTED_BLOCK', 'netpie_on_disconnected', ws);
-  Blockly.kbide.SCAN_NETPIE_BLOCK('NETPIE_CONNECTED_BLOCK', 'netpie_connect', ws);
+  Blockly.kbide.SCAN_NETPIE_BLOCK('NETPIE_CONNECT_BLOCK', 'netpie_connect', ws);
   Blockly.kbide.SCAN_NETPIE_BLOCK('NETPIE_ON_RECEIVE_MSG_BLOCK', 'netpie_on_receive_message', ws);
   Blockly.kbide.SCAN_NETPIE_BLOCK('NETPIE_ON_SHADOW_UPDATED_BLOCK', 'netpie_on_shadow_updated', ws);
 }
@@ -484,14 +466,14 @@ const handle_kbnetpie = function(primaryEvent) {
   var block = ws.getBlockById(json.blockId);
   switch(json.type){
       case 'delete':
-        Blockly.kbide.DELETE_NETPIE_ON_CONNECTED_EVENT(ws, blockId);
+        Blockly.kbide.DELETE_NETPIE_ALL_BLOCK_EVENT(ws, blockId);
         break;
       case 'create':
-          if (block.type === 'netpie_on_connected') Blockly.kbide.CONTROL_NETPIE_BLOCK_CREATED(ws, blockId, Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK'], Blockly.kbide['NETPIE_ON_CONNECTED_BLOCK_MAX']); // Blockly.kbide.CREATE_NETPIE_ON_CONNECTED_EVENT(ws, blockId);
-          else if (block.type === 'netpie_on_disconnected') Blockly.kbide.CONTROL_NETPIE_BLOCK_CREATED(ws, blockId, Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK'], Blockly.kbide['NETPIE_ON_DISCONNECTED_BLOCK_MAX']); // Blockly.kbide.CREATE_NETPIE_ON_DISCONNECTED_EVENT(ws, blockId);
-          else if (block.type === 'netpie_connect') Blockly.kbide.CONTROL_NETPIE_BLOCK_CREATED(ws, blockId, Blockly.kbide['NETPIE_CONNECTED_BLOCK'], Blockly.kbide['NETPIE_CONNECTED_BLOCK_MAX']); // Blockly.kbide.CREATE_NETPIE_CONNECTED_EVENT(ws, blockId);
-          else if (block.type === 'netpie_on_receive_message') Blockly.kbide.CONTROL_NETPIE_BLOCK_CREATED(ws, blockId, Blockly.kbide['NETPIE_ON_RECEIVE_MSG_BLOCK'], Blockly.kbide['NETPIE_ON_RECEIVE_MSG_BLOCK_MAX']);
-          else if (block.type === 'netpie_on_shadow_updated') Blockly.kbide.CONTROL_NETPIE_BLOCK_CREATED(ws, blockId, Blockly.kbide['NETPIE_ON_SHADOW_UPDATED_BLOCK'], Blockly.kbide['NETPIE_ON_SHADOW_UPDATED_BLOCK_MAX']);
+          if (block.type === 'netpie_on_connected') Blockly.kbide.CONTROL_NETPIE_BLOCK_CREATED(ws, blockId, 'NETPIE_ON_CONNECTED_BLOCK'); 
+          else if (block.type === 'netpie_on_disconnected') Blockly.kbide.CONTROL_NETPIE_BLOCK_CREATED(ws, blockId, 'NETPIE_ON_DISCONNECTED_BLOCK');
+          else if (block.type === 'netpie_connect') Blockly.kbide.CONTROL_NETPIE_BLOCK_CREATED(ws, blockId, 'NETPIE_CONNECT_BLOCK');
+          else if (block.type === 'netpie_on_receive_message') Blockly.kbide.CONTROL_NETPIE_BLOCK_CREATED(ws, blockId, 'NETPIE_ON_RECEIVE_MSG_BLOCK');
+          else if (block.type === 'netpie_on_shadow_updated') Blockly.kbide.CONTROL_NETPIE_BLOCK_CREATED(ws, blockId, 'NETPIE_ON_SHADOW_UPDATED_BLOCK');
           break;
       case 'move':
           Blockly.kbide.SCAN_ALL_NETPIE_BLOCK(ws);

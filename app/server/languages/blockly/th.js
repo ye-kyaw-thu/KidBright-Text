@@ -965,5 +965,5 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED = "%1 เมื่อหลุดการเชื่อมต่อเน็ตพาย %2 %3";
 /** @export */ Blockly.Msg.NETPIE_ON_DISCONNECTED_TOOLTIP = "เมื่อมีเหตุการณ์หลุดการเชื่อมต่อเน็ตพาย block ในนี้จะทำงาน";
 
-/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 เชื่อมต่อเน็ตพาย %2 ไอดีของอุปกรณ์ %3 %4 โทเคนของอุปกรณ์ %5";
+/** @export */ Blockly.Msg.NETPIE_CONNECT = "%1 เชื่อมต่อเน็ตพาย %2 ไอดีอุปกรณ์ %3 %4 โทเคนอุปกรณ์ %5";
 /** @export */ Blockly.Msg.NETPIE_CONNECT_TOOLTIP = "เชื่อมต่อเน็ตพายโดยใช้ device id และ device token";
