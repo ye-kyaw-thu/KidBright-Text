@@ -1,6 +1,6 @@
-const CONNECT_COLOR = "#4f9936";
-let SHADOW_COLOR = "#2d8fba";
-let MSG_COLOR = "#9e478f";
+const CONNECT_COLOR = "#9A8954";
+let SHADOW_COLOR = "#5C83A6";
+let MSG_COLOR = "#549A67";
 
 Blockly.Blocks['netpie_connect'] = {
     init: function () {
