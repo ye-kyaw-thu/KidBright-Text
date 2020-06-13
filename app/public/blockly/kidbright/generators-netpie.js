@@ -57,7 +57,7 @@ Blockly.JavaScript['netpie_received_shadow_updated'] = function(block) {
 
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
-Blockly.JavaScript['netpie_shadow_updated_contains'] = function(block) {
+Blockly.JavaScript['netpie_shadow_variable_defined'] = function(block) {
     var value_field = Blockly.JavaScript.valueToCode(block, 'field', Blockly.JavaScript.ORDER_ATOMIC);
     var code = '';
     if(value_field.includes('getShadowValueAsNumber(shadow["data"]')){

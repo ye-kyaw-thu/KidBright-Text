@@ -277,10 +277,10 @@ Blockly.Blocks['netpie_received_shadow_updated'] = {
   )}
 }
 
-Blockly.Blocks['netpie_shadow_updated_contains'] = {
+Blockly.Blocks['netpie_shadow_variable_defined'] = {
 	init: function () {
     this.jsonInit({
-      "type": "netpie_shadow_updated_contains",
+      "type": "netpie_shadow_variable_defined",
       "message0": Blockly.Msg.NETPIE_SHADOW_CONTAIN_FIELD,
       "args0": [
         {
