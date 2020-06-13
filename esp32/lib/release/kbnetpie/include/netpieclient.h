@@ -45,5 +45,7 @@ void on_shadow_updated(shadow_updated_handler_t _handler);
 void on_message(message_handler_t _handler);
 bool on_message_topic(char* topic, on_topic_handler_t _handler);
 bool get_entire_shadow(shadow_get_handler_t _handler);
+bool isVariableDefined(char *str);
+bool isVariableDefined(double val);
 
 #endif
