@@ -59,18 +59,7 @@ Blockly.JavaScript['netpie_received_shadow_updated'] = function(block) {
 };
 Blockly.JavaScript['netpie_shadow_variable_defined'] = function(block) {
     var value_field = Blockly.JavaScript.valueToCode(block, 'field', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = '';
-    if(value_field.includes('getShadowValueAsNumber(shadow["data"]')){
-        code = `ifJsonFieldAvailable${value_field}`;
-    } else {
-        var fields = value_field.split('(char *)')[1].split('"')[1].split('.')
-        var field_code = '';
-    
-        for(i in fields){
-            field_code += `["${fields[i]}"]`;
-        }
-        code = `ifJsonFieldAvailable(shadow["data"]${field_code})`;
-    }
+    var code = `isVariableDefined(${value_field})`;
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 Blockly.JavaScript['netpie_read_entire_shadow'] = function(block) {
