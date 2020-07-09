@@ -123,6 +123,6 @@ const LANG_UNDER_DEVELOPMENT = 'กำลังอยู่ระหว่าง
 
 const LANG_INSERT_MODE = 'โหมดเพิ่มเข้า';
 const LANG_WIFI_CONFIG = 'ตั้งค่า WIFI';
-const LANG_IOT_MODE = "ใช้งานไอโอที";
+const LANG_IOT_MODE = "ใช้งานแอปคิดไบร์ทไอโอที";
 const LANG_QRCODE =  "คิวอาร์โค้ด";
 const LANG_QR_CHECKING = "สแกนคิวอาร์โค้ดเพื่ออ่านค่าแม็คแอดเดรสของบอร์ด";
