@@ -127,6 +127,6 @@ const LANG_UNDER_DEVELOPMENT = 'Under Development';
 
 const LANG_INSERT_MODE = 'Insert Mode';
 const LANG_WIFI_CONFIG = 'WIFI Config';
-const LANG_IOT_MODE = "Enable IOT";
+const LANG_IOT_MODE = "Enable Kidbright IOT App";
 const LANG_QRCODE = "QR Code";
 const LANG_QR_CHECKING = "Scan QR Code to get board's mac address.";
