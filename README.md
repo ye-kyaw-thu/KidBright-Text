@@ -19,6 +19,32 @@ npm run build
 npm start
 ```
 
+### วิธีติดตั้งสำหรับ Ubuntu 20.04
+```
+cd /home/$USER
+wget https://nodejs.org/dist/v8.17.0/node-v8.17.0-linux-x64.tar.gz
+tar xzvf node-v8.17.0-linux-x64.tar.gz
+echo 'export PATH=$PATH:/home/$USER/node-v8.17.0-linux-x64/bin' >> /home/$USER/.bashrc
+
+sudo apt install python3-pip
+sudo pip3 install pyserial
+sudo ln -s /usr/bin/python3 /usr/local/sbin/python
+sudo usermod -a -G dialout $USER
+sudo shutdown -r now
+
+cd /home/$USER
+git clone https://gitlab.com/kidbright/kbide --recursive
+npm run build
+```
+
+การรันโปรแกรม
+```
+cd /home/$USER/kbide
+npm start
+```
+
+เปิด Web Browser แล้วพิมพ์ http://localhost:8000 เพื่อใช้งาน KidBrightIDE
+
 ### KidBright Engine
 
 - รายละเอียดวงจร การต่อขยายฮาร์ดแวร์ การออกแบบซอฟท์แวร์ ของ KidBright
