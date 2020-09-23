@@ -13,10 +13,11 @@
 
 #define ESP_INTR_FLAG_DEFAULT 	0
 #define	R_SERIE					1000
-#define MATCHING_ERROR_PERCENT	5
+#define MATCHING_ERROR_PERCENT	10
 
 #define R_MIN(x)				((x * (100 - MATCHING_ERROR_PERCENT)) / 100)
 #define R_MAX(x)				((x * (100 + MATCHING_ERROR_PERCENT)) / 100)
+#define R_MAX_5(x)				((x * (100 + 5)) / 100)
 
 typedef struct wd_tab_struct {
 	double r_min;
@@ -26,7 +27,7 @@ typedef struct wd_tab_struct {
 
 const wd_tab_t wd_tab[] = {
 	{ R_MIN(688), R_MAX(688), 112.5 },
-	{ R_MIN(891), R_MAX(891), 67.5 },
+	{ R_MIN(891), R_MAX_5(891), 67.5 },
 	{ R_MIN(1000), R_MAX(1000), 90 },
 	{ R_MIN(1410), R_MAX(1410), 157.5 },
 	{ R_MIN(2200), R_MAX(2200), 135 },
@@ -34,7 +35,7 @@ const wd_tab_t wd_tab[] = {
 	{ R_MIN(3900), R_MAX(3900), 180 },
 	{ R_MIN(6570), R_MAX(6570), 22.5 },
 	{ R_MIN(8200), R_MAX(8200), 45 },
-	{ R_MIN(14120), R_MAX(14120), 247.5 },
+	{ R_MIN(14120), R_MAX_5(14120), 247.5 },
 	{ R_MIN(16000), R_MAX(16000), 225 },
 	{ R_MIN(21880), R_MAX(21880), 337.5 },
 	{ R_MIN(33000), R_MAX(33000), 0 },
@@ -169,7 +170,11 @@ void ADSWS1_WD::process(Driver *drv) {
 			if (stop_ts != 0) {
 				gpio_intr_disable(capture_gpio); // disable cap interrupt
 
-				res = ((stop_ts - start_ts) * 9.8) - R_SERIE;
+				// sensor vcc = 5.0V
+				res = ((stop_ts - start_ts) * 9.788075945) - R_SERIE;
+				// sensor vcc = 3.3V
+				//res = ((stop_ts - start_ts) * 5.367351153) - R_SERIE;
+
 #ifdef __DEBUG__
 				ESP_LOGI(TAG, "stop_ts - start_ts = %lld", stop_ts - start_ts);
 				ESP_LOGI(TAG, "resistance = %f", res);
