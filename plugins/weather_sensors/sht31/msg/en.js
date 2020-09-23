@@ -5,3 +5,7 @@ Blockly.Msg.SHT31_GET_TEMPERATURE_HELPURL = "";
 Blockly.Msg.SHT31_GET_HUMIDITY_TITLE = "SHT31 Humidity";
 Blockly.Msg.SHT31_GET_HUMIDITY_TOOLTIP = "Read SHT31 Humidity";
 Blockly.Msg.SHT31_GET_HUMIDITY_HELPURL = "";
+
+Blockly.Msg.SHT31_IS_ERROR_TITLE = "SHT31 Error";
+Blockly.Msg.SHT31_IS_ERROR_TOOLTIP = "Check SHT31 Error";
+Blockly.Msg.SHT31_IS_ERROR_HELPURL = "";
