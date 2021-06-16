@@ -1,5 +1,5 @@
-#ifndef __SHT31_H__
-#define __SHT31_H__
+#ifndef __HPMA115S0_H__
+#define __HPMA115S0_H__
 
 #include "driver.h"
 #include "device.h"
