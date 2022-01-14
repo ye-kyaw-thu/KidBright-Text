@@ -370,7 +370,16 @@ module.exports = function (app, Config, Log) {
 
 		Log.i('compiling... ' + path.basename(fn));
 		// var cmd = util.format('"%s/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H -Iesp32/lib/release/netpie/include %s %s -c "%s" -o "%s"', toolchain_dir, cflags, plugins_includes_switch, fn, fn_obj);
-		var cmd = `"${toolchain_dir}/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DARDUINO=10800 -DESP32=1 -DARDUINO_ARCH_ESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H ${cflags} ${ldflags} ${plugins_includes_switch} -c ${fn} -o ${fn_obj}`;
+		
+		// check file extension, c source file compile with xtensa-esp32-elf-gcc otherwise using xtensa-esp32-elf-c++
+		var fn_ext = path.extname(fn);		
+		if (fn_ext == '.c') {			
+			var cmd = `"${toolchain_dir}/xtensa-esp32-elf-gcc" -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DARDUINO=10800 -DESP32=1 -DARDUINO_ARCH_ESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H ${cflags} ${ldflags} ${plugins_includes_switch} -c ${fn} -o ${fn_obj}`;
+		}
+		else {
+			var cmd = `"${toolchain_dir}/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DARDUINO=10800 -DESP32=1 -DARDUINO_ARCH_ESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H ${cflags} ${ldflags} ${plugins_includes_switch} -c ${fn} -o ${fn_obj}`;
+		}
+
 		exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
 			if (err) {
 				// compile error
@@ -915,7 +924,7 @@ module.exports = function (app, Config, Log) {
 		var mac_addr = req.body['mac_addr'];
 		var port_name = req.body['port_name'];
 
-		Log.i('programing board id ' + board_id + ' (' + mac_addr + ')');
+		Log.i('programming board id ' + board_id + ' (' + mac_addr + ')');
 		try {
 			var board_name = mac_addr.replace(/:/g, '-');
 			var user_app_dir = Config.process_dir + '/esp32/build/' + board_name;
