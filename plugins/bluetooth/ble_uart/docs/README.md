@@ -41,7 +41,7 @@
 
 ![BLE UART Example 1](images/ble_uart_example_1.png)
 
-- การเชื่อมต่อ nRF Connect กับบอร์ด KidBright ให้กดปุ่ม Connect แล้วเลือกชื่อบอร์ด KidBright แสดงด้วยตัวอักษร BLEUART แล้วตามด้วยเลขฐานสิบหกของ MAC Address 3 ไบท์สุดท้ายบวกด้วย 2
+- การเชื่อมต่อ nRF Toolbox กับบอร์ด KidBright ให้กดปุ่ม Connect แล้วเลือกชื่อบอร์ด KidBright แสดงด้วยตัวอักษร BLEUART แล้วตามด้วยเลขฐานสิบหกของ MAC Address ของบอร์ด 3 ไบท์สุดท้ายบวกด้วย 2
 
 ![nRF Toolbox Connect](images/ble_uart_nrf_toolbox_connect.png)
 
@@ -49,7 +49,7 @@
 
 ![nRF Toolbox Logs](images/ble_uart_nrf_toolbox_logs_helloworld.png)
 
-- กดปุ่มที่สร้างให้ส่งข้อความใน nRF Connect เพื่อส่งข้อความไปแสดงบนหน้าจอบอร์ด KidBright
+- กดปุ่มที่สร้างให้ส่งข้อความใน nRF Toolbox เพื่อส่งข้อความไปแสดงบนหน้าจอบอร์ด KidBright
 
 ### ตัวอย่างโปรแกรมแบบที่ 2
 - แสดงข้อมูลที่รับเข้ามาเป็นตัวอักษรวิ่งบนจอภาพ
@@ -61,4 +61,4 @@
 
 ![nRF Toolbox Logs](images/ble_uart_nrf_toolbox_logs_temperature.png)
 
-- กดปุ่มที่สร้างให้ส่งข้อความใน nRF Connect เพื่อส่งข้อความไปแสดงบนหน้าจอบอร์ด KidBright
+- กดปุ่มที่สร้างให้ส่งข้อความใน nRF Toolbox เพื่อส่งข้อความไปแสดงบนหน้าจอบอร์ด KidBright
