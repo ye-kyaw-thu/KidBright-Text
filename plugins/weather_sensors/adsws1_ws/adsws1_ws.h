@@ -17,6 +17,7 @@ class ADSWS1_WS : public Device {
 		TickType_t tickcnt;
 		int64_t last_wind_speed_ts;
 		float wind_speed;
+		char wind_speed_text[64];
 		// constructor
 		ADSWS1_WS(int dev_addr);
 		// override
@@ -30,6 +31,7 @@ class ADSWS1_WS : public Device {
 		bool prop_write(int index, char *value);
 		// method
 		double get_wind_speed_km_h(void);
+		char *get_wind_speed_km_h_text(int precision);
 };
 
 #endif

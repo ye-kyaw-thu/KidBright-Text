@@ -157,3 +157,22 @@ double ADSWS1_WS::get_wind_speed_km_h(void) {
 
 	return val;
 }
+
+char *ADSWS1_WS::get_wind_speed_km_h_text(int precision) {
+	char fmt[8];
+
+	if (precision < 0) {
+		strcpy(fmt, "%.0f");
+	}
+	else
+	if (precision > 6) {
+		strcpy(fmt, "%.6f");
+	}
+	else {
+		snprintf(fmt, sizeof(fmt) - 1, "%%.%df", precision);
+	}
+
+	snprintf(wind_speed_text, sizeof(wind_speed_text) - 1, fmt, wind_speed);
+
+	return wind_speed_text;
+}
