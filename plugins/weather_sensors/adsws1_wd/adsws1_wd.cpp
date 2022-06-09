@@ -17,6 +17,7 @@
 
 #define R_MIN(x)				((x * (100 - MATCHING_ERROR_PERCENT)) / 100)
 #define R_MAX(x)				((x * (100 + MATCHING_ERROR_PERCENT)) / 100)
+#define R_MIN_5(x)				((x * (100 - 5)) / 100)
 #define R_MAX_5(x)				((x * (100 + 5)) / 100)
 
 typedef struct wd_tab_struct {
@@ -28,7 +29,7 @@ typedef struct wd_tab_struct {
 const wd_tab_t wd_tab[] = {
 	{ R_MIN(688), R_MAX(688), 112.5 },
 	{ R_MIN(891), R_MAX_5(891), 67.5 },
-	{ R_MIN(1000), R_MAX(1000), 90 },
+	{ R_MIN_5(1000), R_MAX(1000), 90 },
 	{ R_MIN(1410), R_MAX(1410), 157.5 },
 	{ R_MIN(2200), R_MAX(2200), 135 },
 	{ R_MIN(3140), R_MAX(3140), 202.5 },
@@ -36,7 +37,7 @@ const wd_tab_t wd_tab[] = {
 	{ R_MIN(6570), R_MAX(6570), 22.5 },
 	{ R_MIN(8200), R_MAX(8200), 45 },
 	{ R_MIN(14120), R_MAX_5(14120), 247.5 },
-	{ R_MIN(16000), R_MAX(16000), 225 },
+	{ R_MIN_5(16000), R_MAX(16000), 225 },
 	{ R_MIN(21880), R_MAX(21880), 337.5 },
 	{ R_MIN(33000), R_MAX(33000), 0 },
 	{ R_MIN(42120), R_MAX(42120), 292.5 },
@@ -60,6 +61,13 @@ ADSWS1_WD::ADSWS1_WD(int trig, int capture) {
 void ADSWS1_WD::init(void) {
 #ifdef __DEBUG__
 	esp_log_level_set(TAG, ESP_LOG_VERBOSE);
+	
+	// print out resistance table
+	int i = 0;
+	while (wd_tab[i].r_min != 0) {
+		printf("%f - %f\n", wd_tab[i].r_min, wd_tab[i].r_max);
+		i++;
+	}
 #endif
 
 	wind_direction = 0;
