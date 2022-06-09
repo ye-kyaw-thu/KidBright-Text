@@ -12,3 +12,11 @@ Blockly.Msg.HPMA115S0_PM_RX = "Rx";
 Blockly.Msg.HPMA115S0_IS_ERROR_TITLE = "การทำงานผิดพลาดของ HPMA115S0";
 Blockly.Msg.HPMA115S0_IS_ERROR_TOOLTIP = "อ่านการทำงานผิดพลาดของ HPMA115S0";
 Blockly.Msg.HPMA115S0_IS_ERROR_HELPURL = "";
+
+Blockly.Msg.HPMA115S0_GET_ERROR_COUNT_TITLE = "จำนวนครั้งการทำงานผิดพลาดของ HPMA115S0";
+Blockly.Msg.HPMA115S0_GET_ERROR_COUNT_TOOLTIP = "อ่านค่าจำนวนครั้งการทำงานผิดพลาดของ HPMA115S0";
+Blockly.Msg.HPMA115S0_GET_ERROR_COUNT_HELPURL = "";
+
+Blockly.Msg.HPMA115S0_GET_ERROR_CLEAR_COUNT_TITLE = "จำนวนครั้งการแก้ไขความผิดพลาดของ HPMA115S0";
+Blockly.Msg.HPMA115S0_GET_ERROR_CLEAR_COUNT_TOOLTIP = "อ่านค่าจำนวนครั้งการแก้ไขความผิดพลาดของ HPMA115S0";
+Blockly.Msg.HPMA115S0_GET_ERROR_CLEAR_COUNT_HELPURL = "";
