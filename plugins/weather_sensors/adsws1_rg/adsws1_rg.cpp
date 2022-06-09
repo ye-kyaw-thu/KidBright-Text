@@ -14,6 +14,13 @@ static void IRAM_ATTR adsws1_rg_gpio_isr_handler(void* arg) {
 
 	// accumulated rain gauge for 0.2794 mm. per tick
 	adsws1_rg->rain_gauge += 0.2794;
+	// increment rain gauge counter
+	adsws1_rg->rain_gauge_counter++;
+}
+
+void ADSWS1_RG::reset_rain_gauge(void) {
+	rain_gauge = 0;
+	rain_gauge_counter = 0;
 }
 
 ADSWS1_RG::ADSWS1_RG(int dev_addr) {
@@ -22,17 +29,22 @@ ADSWS1_RG::ADSWS1_RG(int dev_addr) {
 }
 
 void ADSWS1_RG::init(void) {
-	rain_gauge = 0;
+	reset_rain_gauge();
 	state = s_detect;
 }
 
 int ADSWS1_RG::prop_count(void) {
-	return 1;
+	return 2;
 }
 
 bool ADSWS1_RG::prop_name(int index, char *name) {
 	if (index == 0) {
 		snprintf(name, DEVICE_PROP_NAME_LEN_MAX, "%s", "rain_gauge");
+		return true;
+	}
+	else
+	if (index == 1) {
+		snprintf(name, DEVICE_PROP_NAME_LEN_MAX, "%s", "rain_gauge_counter");
 		return true;
 	}
 
@@ -45,6 +57,11 @@ bool ADSWS1_RG::prop_unit(int index, char *unit) {
 		snprintf(unit, DEVICE_PROP_UNIT_LEN_MAX, "%s", "mm");
 		return true;
 	}
+	else
+	if (index == 1) {
+		snprintf(unit, DEVICE_PROP_UNIT_LEN_MAX, "%s", "count");
+		return true;
+	}
 
 	// not supported
 	return false;
@@ -52,6 +69,11 @@ bool ADSWS1_RG::prop_unit(int index, char *unit) {
 
 bool ADSWS1_RG::prop_attr(int index, char *attr) {
 	if (index == 0) {
+		get_attr_str(attr, PROP_ATTR_READ_FLAG | PROP_ATTR_TYPE_NUMBER_FLAG); // read only, number
+		return true;
+	}
+	else
+	if (index == 1) {
 		get_attr_str(attr, PROP_ATTR_READ_FLAG | PROP_ATTR_TYPE_NUMBER_FLAG); // read only, number
 		return true;
 	}
@@ -63,6 +85,11 @@ bool ADSWS1_RG::prop_attr(int index, char *attr) {
 bool ADSWS1_RG::prop_read(int index, char *value) {
 	if (index == 0) {
 		snprintf(value, DEVICE_PROP_VALUE_LEN_MAX, "%f", rain_gauge);
+		return true;
+	}
+	else
+	if (index == 1) {
+		snprintf(value, DEVICE_PROP_VALUE_LEN_MAX, "%d", rain_gauge_counter);
 		return true;
 	}
 
@@ -98,8 +125,8 @@ void ADSWS1_RG::process(Driver *drv) {
 			// remove isr handler for gpio number
 			//gpio_isr_handler_remove(sensor_gpio);
 
-			// init rain gauge
-			rain_gauge = 0;
+			// reset rain gauge
+			reset_rain_gauge();
 			// enable in1 interrupt
 			gpio_intr_enable(sensor_gpio);
 
@@ -131,7 +158,7 @@ void ADSWS1_RG::process(Driver *drv) {
 					// save current year,month,day string
 					strcpy(current_year_month_day_str, mcp7940n.get_date());
 					// reset rain gauge for 24hrs.
-					rain_gauge = 0;
+					reset_rain_gauge();
 				}
 			}
 			break;
@@ -162,6 +189,17 @@ double ADSWS1_RG::get_rain_gauge_mm(void) {
 	// atomic read
 	gpio_intr_disable(sensor_gpio);
 	val = rain_gauge;
+	gpio_intr_enable(sensor_gpio);
+
+	return val;
+}
+
+int ADSWS1_RG::get_rain_gauge_counter(void) {
+	int val;
+
+	// atomic read
+	gpio_intr_disable(sensor_gpio);
+	val = rain_gauge_counter;
 	gpio_intr_enable(sensor_gpio);
 
 	return val;

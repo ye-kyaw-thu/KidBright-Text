@@ -18,6 +18,7 @@ class ADSWS1_RG : public Device {
 	public:
 		TickType_t tickcnt;
 		float rain_gauge;
+		uint32_t rain_gauge_counter;
 		// constructor
 		ADSWS1_RG(int dev_addr);
 		// override
@@ -31,6 +32,8 @@ class ADSWS1_RG : public Device {
 		bool prop_write(int index, char *value);
 		// method
 		double get_rain_gauge_mm(void);
+		int get_rain_gauge_counter(void);
+		void reset_rain_gauge(void);
 };
 
 #endif
