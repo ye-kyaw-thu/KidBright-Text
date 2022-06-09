@@ -2,7 +2,6 @@
 node_modules
 xtensa-esp32-elf
 esptool
-esptool.py
 esptool.exe
 app/public/images/qrcode.png
 esp32/build/
