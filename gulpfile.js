@@ -50,6 +50,11 @@ gulp.task('download_xtensa', ['install'], () => {
 })
 
 gulp.task('download_esptool', ['download_xtensa'], () => {
+    // if download url not defined
+    if (pathe == '') {
+        return;
+    }
+
     return download(pathe)
             .pipe(gulp.dest(__dirname))
 })
