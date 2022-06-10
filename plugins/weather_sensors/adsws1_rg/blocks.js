@@ -14,6 +14,9 @@ Blockly.Blocks["adsws1_rg.get_rain_gauge_mm"] = {
 		this.setColour(58);
 		this.setTooltip(Blockly.Msg.ADSWS1_RG_GET_RAIN_GAUGE_MM_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.ADSWS1_RG_GET_RAIN_GAUGE_MM_HELPURL);
+
+		// set default field dropdown
+		this.inputList[0].fieldRow[1].setValue('IN2_GPIO');
 	}
 };
 
@@ -33,6 +36,9 @@ Blockly.Blocks["adsws1_rg.get_rain_gauge_counter"] = {
 		this.setColour(58);
 		this.setTooltip(Blockly.Msg.ADSWS1_RG_GET_RAIN_GAUGE_COUNTER_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.ADSWS1_RG_GET_RAIN_GAUGE_COUNTER_HELPURL);
+
+		// set default field dropdown
+		this.inputList[0].fieldRow[1].setValue('IN2_GPIO');
 	}
 };
 
@@ -53,5 +59,8 @@ Blockly.Blocks["adsws1_rg.reset_rain_gauge"] = {
 		this.setColour(58);
 		this.setTooltip(Blockly.ADSWS1_RG_RESET_RAIN_GAUGE_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.ADSWS1_RG_RESET_RAIN_GAUGE_HELPURL);
+
+		// set default field dropdown
+		this.inputList[0].fieldRow[1].setValue('IN2_GPIO');
 	}
 };
