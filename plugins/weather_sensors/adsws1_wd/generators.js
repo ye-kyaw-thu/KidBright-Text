@@ -5,3 +5,10 @@ Blockly.JavaScript['adsws1_wd.get_wind_direction_degrees'] = function(block) {
 		Blockly.JavaScript.ORDER_ATOMIC
 	];
 };
+
+Blockly.JavaScript['adsws1_wd.is_error'] = function(block) {
+	return [
+		'DEV_IO.ADSWS1_WD(' + block.getFieldValue('OUTPUT') + ', ' + block.getFieldValue('INPUT') + ')' + '.is_error()',
+		Blockly.JavaScript.ORDER_ATOMIC
+	];
+};
