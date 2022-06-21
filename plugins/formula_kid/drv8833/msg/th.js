@@ -1,4 +1,4 @@
-Blockly.Msg.DRV8833_MOVE_TITLE = "DRV8833 เครื่อนที่";
+Blockly.Msg.DRV8833_MOVE_TITLE = "DRV8833 เคลื่อนที่";
 Blockly.Msg.DRV8833_MOVE_TOOLTIP = "สั่งชุดขับเคลื่อน DRV8833 ให้ทำงานตามทิศทางที่กำหนดและค่าความเร็วสัมบูรณ์";
 Blockly.Msg.DRV8833_MOVE_HELPURL = "";
 

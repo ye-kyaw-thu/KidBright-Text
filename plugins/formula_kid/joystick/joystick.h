@@ -17,6 +17,9 @@ class JOYSTICK : public Device {
 		int64_t start_ts, stop_ts;
 		double resistance;
 		int position;
+		int calibrate_release;
+		int calibrate_min;
+		int calibrate_max;
 		// constructor
 		JOYSTICK(int trig, int capture);
 		// override
@@ -31,6 +34,7 @@ class JOYSTICK : public Device {
 		// method
 		double get_resistance(void);
 		int get_position(void);
+		void calibrate_set(int release_value, int min_value, int max_value);
 };
 
 #endif

@@ -4,8 +4,8 @@
 #include "kidbright32.h"
 #include "joystick.h"
 
-//#undef __DEBUG__
-#define __DEBUG__
+#undef __DEBUG__
+//#define __DEBUG__
 
 #ifdef __DEBUG__
 #include "esp_log.h"
@@ -36,6 +36,9 @@ void JOYSTICK::init(void) {
 
 	resistance = 0;
 	position = 0;
+	calibrate_release = 0;
+	calibrate_min = -100;
+	calibrate_max = 100;
 	state = s_detect;
 }
 
@@ -105,7 +108,7 @@ bool JOYSTICK::prop_write(int index, char *value) {
 
 void JOYSTICK::process(Driver *drv) {
 	gpio_config_t io_conf;
-	int i;
+	int i, cal;
 
 	switch (state) {
 		case s_detect:
@@ -162,6 +165,20 @@ void JOYSTICK::process(Driver *drv) {
 				// sensor vcc = 3.3V
 				//res = ((stop_ts - start_ts) * 5.367351153) - R_SERIE;
 				position = (int)((resistance * 200) / 10000) - 100;
+
+				// calibrate origin
+				position = position - calibrate_release;
+				// calibrate min
+				if (position < 0) {
+					cal = calibrate_min - calibrate_release;
+					position = (position * 100) / (cal < 0 ? (-1 * cal) : cal);
+				}
+				else
+				if (position > 0) {
+					cal = calibrate_max - calibrate_release;
+					position = (position * 100) / (cal < 0 ? (-1 * cal) : cal);
+				}
+
 				// positive position cap
 				if (position > 100) {
 					position = 100;
@@ -228,4 +245,10 @@ double JOYSTICK::get_resistance(void) {
 
 int JOYSTICK::get_position(void) {
 	return position;
+}
+
+void JOYSTICK::calibrate_set(int release_value, int min_value, int max_value) {
+	calibrate_release = release_value;
+	calibrate_min = min_value;
+	calibrate_max = max_value;
 }
