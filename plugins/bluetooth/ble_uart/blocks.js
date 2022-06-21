@@ -25,6 +25,19 @@ Blockly.Blocks["ble_uart.read_text"] = {
 	}
 };
 
+Blockly.Blocks["ble_uart.read_number"] = {
+	init: function() {
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.BLE_UART_READ_NUMBER_TITLE);
+		this.setOutput(true, 'Number');
+		this.setPreviousStatement(false);
+		this.setNextStatement(false);
+		this.setColour(160);
+		this.setTooltip(Blockly.Msg.BLE_UART_READ_NUMBER_TOOLTIP);
+		this.setHelpUrl(Blockly.Msg.BLE_UART_READ_NUMBER_HELPURL);
+	}
+};
+
 Blockly.Blocks["ble_uart.send"] = {
 	init: function() {
 		this.appendValueInput("VALUE")        

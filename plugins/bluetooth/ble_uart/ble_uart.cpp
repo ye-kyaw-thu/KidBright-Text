@@ -772,6 +772,15 @@ char *BLE_UART::read_text(void) {
 	return read_data_buffer;
 }
 
+double BLE_UART::read_number(void) {
+	char str[256];
+
+	strcpy(str, data_buffer);
+	strcpy(data_buffer, "");
+
+	return atof(str);
+}
+
 void BLE_UART::send(char *str) {
 	if (bleuart_connected) {
 		esp_ble_gatts_send_indicate(notify_gatts_if, notify_conn_id, gl_char[1].char_handle, strlen(str), (uint8_t *)str, false);

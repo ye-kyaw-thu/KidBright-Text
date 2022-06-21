@@ -47,6 +47,7 @@ class BLE_UART : public Device {
 		bool is_connected(void);		
 		void on_data(BLE_UART_ON_DATA_CB callback);
 		char *read_text(void);
+		double read_number(void);
 		void send(char *str);
 		void send(double val);
 };

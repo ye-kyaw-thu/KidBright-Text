@@ -6,6 +6,10 @@ Blockly.Msg.BLE_UART_READ_TEXT_TITLE = "อ่านตัวอักษร BLE
 Blockly.Msg.BLE_UART_READ_TEXT_TOOLTIP = "อ่านตัวอักษร BLE UART";
 Blockly.Msg.BLE_UART_READ_TEXT_HELPURL = "";
 
+Blockly.Msg.BLE_UART_READ_NUMBER_TITLE = "อ่านตัวเลข BLE UART";
+Blockly.Msg.BLE_UART_READ_NUMBER_TOOLTIP = "อ่านตัวอักษรจาก BLE UART แล้วแปลงเป็นตัวเลข, ถ้าเกิดความผิดพลาดให้ค่าเป็น 0";
+Blockly.Msg.BLE_UART_READ_NUMBER_HELPURL = "";
+
 Blockly.Msg.BLE_UART_SEND_TITLE = "ส่ง BLE UART";
 Blockly.Msg.BLE_UART_SEND_TOOLTIP = "ส่ง BLE UART";
 Blockly.Msg.BLE_UART_SEND_HELPURL = "";
