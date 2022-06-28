@@ -1,0 +1,11 @@
+Blockly.Msg.SHT21_GET_TEMPERATURE_TITLE = "SHT21 Temperature";
+Blockly.Msg.SHT21_GET_TEMPERATURE_TOOLTIP = "Read SHT21 Temperature";
+Blockly.Msg.SHT21_GET_TEMPERATURE_HELPURL = "";
+
+Blockly.Msg.SHT21_GET_HUMIDITY_TITLE = "SHT21 Humidity";
+Blockly.Msg.SHT21_GET_HUMIDITY_TOOLTIP = "Read SHT21 Humidity";
+Blockly.Msg.SHT21_GET_HUMIDITY_HELPURL = "";
+
+Blockly.Msg.SHT21_IS_ERROR_TITLE = "SHT21 Error";
+Blockly.Msg.SHT21_IS_ERROR_TOOLTIP = "Check SHT21 Error";
+Blockly.Msg.SHT21_IS_ERROR_HELPURL = "";
