@@ -12,13 +12,6 @@ Blockly.Blocks["sht21.get_temperature"] = {
 			.appendField(Blockly.Msg.CHANNEL)
 			.appendField(new Blockly.FieldDropdown(channel_array), 'CHANNEL');
 
-		// device addess
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.ADDRESS)
-			.appendField(new Blockly.FieldDropdown([
-				["0x40", "64"]
-			]), 'ADDRESS');
-
 		this.setOutput(true, 'Number');
 		this.setInputsInline(true);
 		this.setPreviousStatement(false);
@@ -43,13 +36,6 @@ Blockly.Blocks["sht21.get_humidity"] = {
 			.appendField(Blockly.Msg.CHANNEL)
 			.appendField(new Blockly.FieldDropdown(channel_array), 'CHANNEL');
 
-		// device addess
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.ADDRESS)
-			.appendField(new Blockly.FieldDropdown([
-				["0x40", "64"]
-			]), 'ADDRESS');
-
 		this.setOutput(true, 'Number');
 		this.setInputsInline(true);
 		this.setPreviousStatement(false);
@@ -73,13 +59,6 @@ Blockly.Blocks["sht21.is_error"] = {
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.CHANNEL)
 			.appendField(new Blockly.FieldDropdown(channel_array), 'CHANNEL');
-
-		// device addess
-		this.appendDummyInput()
-			.appendField(Blockly.Msg.ADDRESS)
-			.appendField(new Blockly.FieldDropdown([
-				["0x40", "64"]
-			]), 'ADDRESS');
 
 		this.setOutput(true, 'Boolean');
 		this.setInputsInline(true);
