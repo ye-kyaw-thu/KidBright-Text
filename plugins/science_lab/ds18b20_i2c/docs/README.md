@@ -26,3 +26,7 @@
 ### ตัวอย่างโปรแกรม
 
 ![DS18B20 I2C Example](images/ds18b20_i2c_example.png)
+
+### ตัวอย่างการต่อบอร์ด KidBright กับบอร์ดแปลง I2C เป็น 1-WIRE
+
+![KidBright_ET-I2C_TO_1-WIRE](images/KidBright_ET-I2C_TO_1-WIRE.png)
