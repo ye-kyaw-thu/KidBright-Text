@@ -56,7 +56,7 @@ npm start
 
 - เปิด command prompt รันคำสั่ง
 	```
-	cd kbdide-master
+	cd kbide-master
 	npm run build
 	npm start
 	```
