@@ -1,11 +1,5 @@
 # blink plugin example
 
-### แพลตฟอร์ม windows
-- ติดตั้ง KidBright IDE (NEW UI, 64 bits)
-- เปิดโปรแกรม KidBright IDE และ Minimize ไว้
-- การพัฒนา plugins จะทดสอบผ่านโปรแกรม Google Chrome
-- ใช้ Google Chrome พิมพ์ http://localhost:8000
-
 ### ตรวจสอบ plugins ที่ติดตั้งมากับโปรแกรม KidBright IDE
 ![GitHub Logo](images/installed_plugins.png)
 
