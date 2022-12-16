@@ -2,7 +2,7 @@
 
 node application สำหรับ kidbright ide 2.0 beta
 - รองรับ node.js เวอร์ชั่นใหม่
-- เพิ่ม debugging serial port messages
+- เพิ่ม debugging serial port messages ผ่านทาง websocket (ที่ Chrome Browser เปิดดูด้วย Ctrl-Shift-J)
 
 ความต้องการ
 - node.js 18
