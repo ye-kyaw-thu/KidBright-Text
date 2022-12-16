@@ -25,7 +25,7 @@ sudo shutdown -r now
 cd /home/$USER
 git clone https://gitlab.com/kidbright/kbide kbide
 cd kbide
-tar xzvf kbide2_beta_patch.tgz
+tar xzvf kbide2_beta/kbide2_beta_patch.tgz
 npm run build
 ```
 
@@ -50,7 +50,7 @@ npm start
 	```	
 	tar -xf kbide-master.zip
 	cd kbide-master
-	tar -xf kbide2_beta_patch.tgz
+	tar -xf kbide2_beta\kbide2_beta_patch.tgz
 	npm run build
 	npm start
 	```
