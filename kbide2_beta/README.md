@@ -39,7 +39,7 @@ npm start
 เปิด Web Browser แล้วพิมพ์ http://localhost:8000 เพื่อใช้งาน KidBrightIDE
 
 ### วิธีติดตั้งสำหรับ Windows
-- ดาวน์โหลดและติดตั้ง node.js 8
+- ดาวน์โหลดและติดตั้ง node.js 18
 
 	https://nodejs.org/dist/v18.12.1/node-v18.12.1-x64.msi
 
