@@ -499,7 +499,7 @@ Blockly.JavaScript['advance_task'] = function(block) {
 			'\'' + block.id + '\'') + branch;
 	}
 
-	var code = 'void ' + funcName + '(void *pvParameters) {\n' +
+	var code = 'void ' + funcName + '(void *pvParameters) {\n srand(mcp7940n.get(5));\n' +
 		branch +
 		'  // kill itself\n' +
 		'  vTaskDelete(NULL);\n' +
