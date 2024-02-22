@@ -89,7 +89,8 @@ void DRV8833::drv8833_pwm_ab(int da, int db) {
 	// mcpwm gpio initialization
 	memset(&pin_config, 0, sizeof(mcpwm_pin_config_t));
 
-	if (da != duty_a) {
+	// fixed missing output update
+	//if (da != duty_a) {
 		if (da != 0) {
 			pin_config.mcpwm0a_out_num = (da > 0 ? GPIO_A1 : GPIO_A2);
 			a_flag = true;
@@ -100,9 +101,10 @@ void DRV8833::drv8833_pwm_ab(int da, int db) {
 			// update new duty cycle
 			duty_a = da;
 		}
-	}
+	//}
 
-	if (db != duty_b) {
+	// fixed missing output update
+	//if (db != duty_b) {
 		if (db != 0) {
 			//pin_config.mcpwm0b_out_num = (db > 0 ? GPIO_B1 : GPIO_B2);
 			pin_config.mcpwm1a_out_num = (db > 0 ? GPIO_B1 : GPIO_B2);
@@ -114,7 +116,7 @@ void DRV8833::drv8833_pwm_ab(int da, int db) {
 			// update new duty cycle
 			duty_b = db;
 		}
-	}
+	//}
 
 	// if at least one duty cycle change
 	if (a_flag || b_flag) {
@@ -148,54 +150,6 @@ void DRV8833::drv8833_pwm_ab(int da, int db) {
 			duty_b = db;
 		}
 	}
-
-/*
-	if (da != duty_a) {
-		// stop motor
-		drv8833_stop_a();
-
-		if (da != 0) {
-			// mcpwm gpio initialization
-			memset(&pin_config, 0, sizeof(mcpwm_pin_config_t));
-			pin_config.mcpwm0a_out_num = (da > 0 ? GPIO_A1 : GPIO_A2);
-			mcpwm_set_pin(DRV8833_MCPWM_UNIT, &pin_config);
-
-			// initialize mcpwm configuration
-			pwm_config.frequency = 1000; // frequency = 1000Hz
-			pwm_config.cmpr_a = cmpr_calc(da); // calc compare value for specific duty cycle of PWM0A
-			pwm_config.counter_mode = MCPWM_UP_COUNTER;
-			pwm_config.duty_mode = (pin_config.mcpwm0a_out_num == GPIO_A1 ? MCPWM_DUTY_MODE_0 : MCPWM_DUTY_MODE_1); // set duty cycle phrase to normal or inverted
-			mcpwm_init(DRV8833_MCPWM_UNIT, MCPWM_TIMER_0, &pwm_config);   // configure PWM0A above settings
-		}
-
-		// update new duty cycle
-		duty_a = da;
-	}
-
-	if (db != duty_b) {
-		// stop motor
-		drv8833_stop_b();
-
-		if (db != 0) {
-			// mcpwm gpio initialization
-			memset(&pin_config, 0, sizeof(mcpwm_pin_config_t));
-			pin_config.mcpwm0b_out_num = (db > 0 ? GPIO_B1 : GPIO_B2);
-			mcpwm_set_pin(DRV8833_MCPWM_UNIT, &pin_config);
-
-			// initialize mcpwm configuration
-			pwm_config.frequency = 1000; // frequency = 1000Hz
-			pwm_config.cmpr_b = cmpr_calc(db); // calc compare value for specific duty cycle of PWM0B
-			pwm_config.counter_mode = MCPWM_UP_COUNTER;
-			pwm_config.duty_mode = (pin_config.mcpwm0b_out_num == GPIO_B1 ? MCPWM_DUTY_MODE_0 : MCPWM_DUTY_MODE_1); // set duty cycle phrase to normal or inverted
-			mcpwm_init(DRV8833_MCPWM_UNIT, MCPWM_TIMER_0, &pwm_config);   // configure PWM0B with above settings
-		}
-
-		// update new duty cycle
-		duty_b = db;
-	}
-*/
-
-
 }
 
 void DRV8833::init(void) {
