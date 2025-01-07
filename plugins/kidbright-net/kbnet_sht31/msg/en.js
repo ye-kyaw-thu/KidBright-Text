@@ -1,0 +1,11 @@
+Blockly.Msg.KBNET_SHT31_GET_TEMPERATURE_TITLE = "SHT31 Temperature";
+Blockly.Msg.KBNET_SHT31_GET_TEMPERATURE_TOOLTIP = "Read KidBright-Net SHT31 Temperature";
+Blockly.Msg.KBNET_SHT31_GET_TEMPERATURE_HELPURL = "";
+
+Blockly.Msg.KBNET_SHT31_GET_HUMIDITY_TITLE = "SHT31 Humidity";
+Blockly.Msg.KBNET_SHT31_GET_HUMIDITY_TOOLTIP = "Read KidBright-Net SHT31 Humidity";
+Blockly.Msg.KBNET_SHT31_GET_HUMIDITY_HELPURL = "";
+
+Blockly.Msg.KBNET_SHT31_IS_ERROR_TITLE = "SHT31 Error";
+Blockly.Msg.KBNET_SHT31_IS_ERROR_TOOLTIP = "Check KidBright-Net SHT31 Error (sensor not found)";
+Blockly.Msg.KBNET_SHT31_IS_ERROR_HELPURL = "";
