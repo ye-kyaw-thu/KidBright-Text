@@ -288,25 +288,25 @@ Blockly.JavaScript['wait_led_matrix_ready'] = function(block) {
 };
 
 Blockly.JavaScript['wait_sw1_pressed'] = function(block) {
-	var code = 'while(1){if ((get_B1state() == 1 ) || (get_B1state() == 2 ) || button12.is_sw1_pressed()){if(get_B1state() == 2){set_B1release();} break;}}\n';
+	var code = 'while(1){if ((get_B1state() == 1 ) || (get_B1state() == 2 ) || button12.is_sw1_pressed()){if(get_B1state() == 2){set_B1release();} break;}else{vTaskDelay(20 / portTICK_RATE_MS);}}\n';
 	// button12.wait_sw1_pressed();\n
 	return code;
 };
 
 Blockly.JavaScript['wait_sw1_released'] = function(block) {
-	var code = 'while(1){if ((get_B1state() == 0 ) && button12.is_sw1_released()){break;}}\n';
+	var code = 'while(1){if ((get_B1state() == 0 ) && button12.is_sw1_released()){break;}else{vTaskDelay(20 / portTICK_RATE_MS);}}\n';
 	// return 'button12.wait_sw1_released();\n';
 	return code;
 };
 
 Blockly.JavaScript['wait_sw2_pressed'] = function(block) {
-	var code = 'while(1){if ((get_B2state() == 1 ) || (get_B2state() == 2 ) || button12.is_sw2_pressed()){if(get_B2state() == 2){set_B2release();} break;}}\n';
+	var code = 'while(1){if ((get_B2state() == 1 ) || (get_B2state() == 2 ) || button12.is_sw2_pressed()){if(get_B2state() == 2){set_B2release();} break;}else{vTaskDelay(20 / portTICK_RATE_MS);}}\n';
 	// return 'button12.wait_sw2_pressed();\n';
 	return code;
 };
 
 Blockly.JavaScript['wait_sw2_released'] = function(block) {
-	var code = 'while(1){if ((get_B2state() == 0 ) && button12.is_sw2_released()){break;}}\n';
+	var code = 'while(1){if ((get_B2state() == 0 ) && button12.is_sw2_released()){break;}else{vTaskDelay(20 / portTICK_RATE_MS);}}\n';
 	// return 'button12.wait_sw2_released();\n';
 	return code;
 };
