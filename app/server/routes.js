@@ -597,6 +597,8 @@ module.exports = function (app, Config, Log) {
 		var plugins_includes_code = '';
 		var plugins_includes_switch = '';
 		var plugins_sources = [];
+		var plugins_ldflags = ''; // plugin static link supported
+
 		for (var inst_index in obj_inst_tab) {
 			for (var i in pluginsInfo[obj_inst_tab[inst_index].dir].incs) {
 				plugins_includes_code += '#include "' + pluginsInfo[obj_inst_tab[inst_index].dir].incs[i] + '"\n';
@@ -605,6 +607,15 @@ module.exports = function (app, Config, Log) {
 				plugins_sources.push(pluginsInfo[obj_inst_tab[inst_index].dir].abs_dir + '/' + pluginsInfo[obj_inst_tab[inst_index].dir].srcs[i]);
 			}
 			plugins_includes_switch += ' -I"' + pluginsInfo[obj_inst_tab[inst_index].dir].rel_dir + '"';
+			
+			// plugin static link supported			
+			if (pluginsInfo[obj_inst_tab[inst_index].dir].libs[i]) { // check static link libraries
+				plugins_ldflags += ' -L"' + pluginsInfo[obj_inst_tab[inst_index].dir].abs_dir + '"';
+				var lib_name = pluginsInfo[obj_inst_tab[inst_index].dir].libs[i];
+				lib_name = lib_name.replace(/^lib/, '');
+				lib_name = lib_name.replace(/\.a$/, '');
+				plugins_ldflags += ' -l' + lib_name;
+			}
 		}
 
 		// plug-ins object instantiate code, ex: SHT31 sht31_0 = SHT31(64, 0x44, 1000);
@@ -819,7 +830,7 @@ module.exports = function (app, Config, Log) {
 						}
 					}
 					cflags = cflags.replace(/\$\(RELEASE_DIR\)/g, 'esp32/' + release_dir);
-					ldflags = ldflags.replace(/\$\(RELEASE_DIR\)/g, 'esp32/' + release_dir);
+					ldflags = ldflags.replace(/\$\(RELEASE_DIR\)/g, 'esp32/' + release_dir) + plugins_ldflags; // plugin static link supported
 
 					// add user_app into sources
 					plugins_sources.push(user_app_dir + '/user_app.cpp');
@@ -993,7 +1004,8 @@ module.exports = function (app, Config, Log) {
 										abs_dir: dir,
 										rel_dir: 'plugins/' + cats[index].directory + '/' + driver,
 										srcs: [],
-										incs: []
+										incs: [],
+										libs: [] // plugin static link supported
 									};
 
 									// extract block definitions
@@ -1065,6 +1077,10 @@ module.exports = function (app, Config, Log) {
 						// header file (*.h)
 						if (file.match(/\.h$/g) != null) {
 							pluginsInfo[drivers[index]].incs.push(file);
+						}
+						// static link file (*.a)
+						if (file.match(/\.a$/g) != null) { // plugin static link support
+							pluginsInfo[drivers[index]].libs.push(file);
 						}
 					}
 				});
