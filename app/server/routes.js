@@ -6,11 +6,13 @@ const moment = require('moment');
 const SerialPort = require('serialport');
 const QRCode = require('qrcode');
 const md5 = require('md5');
+const { execSync } = require('child_process');
 
 module.exports = function (app, Config, Log) {
 	const server_dir = __dirname;
 	const data_dir = Config.process_dir + '/' + Config.ide.directories.data;
 	const toolchain_dir = Config.process_dir + '/xtensa-esp32-elf/bin';
+	const toolchain_esp32ulp_dir = Config.process_dir + '/esp32ulp-elf-binutils/bin';
 	const plugins_dir = Config.process_dir + '/' + Config.ide.directories.plugins;
 	var pluginsInfo = [];
 
@@ -51,6 +53,31 @@ module.exports = function (app, Config, Log) {
 
 	function categorySortAsc(a, b) {
 		return a.name.localeCompare(b.name);
+	}
+	
+	function copyFileSync(src, dest) {
+		const data = fs.readFileSync(src);
+		fs.writeFileSync(dest, data);
+	}
+	
+	function deleteDir(dir, include_dir = true) {
+		if (fs.existsSync(dir)) {
+			fs.readdirSync(dir).forEach(file => {
+				const cur_dir = path.join(dir, file);
+				if (fs.lstatSync(cur_dir).isDirectory()) {
+					// recursive
+					deleteDir(cur_dir);
+				}
+				else {
+					// delete file
+					fs.unlinkSync(cur_dir);
+				}
+			});
+			
+			if (include_dir) {
+				fs.rmdirSync(dir);
+			}
+		}
 	}
 
 	// main login page
@@ -370,14 +397,104 @@ module.exports = function (app, Config, Log) {
 
 		Log.i('compiling... ' + path.basename(fn));
 		// var cmd = util.format('"%s/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H -Iesp32/lib/release/netpie/include %s %s -c "%s" -o "%s"', toolchain_dir, cflags, plugins_includes_switch, fn, fn_obj);
+
+		// is ulp source available
+		if(fn.indexOf('\/plugins\/') != -1) {
+			var ulp_dir = path.dirname(fn) + '/ulp';
+			try {
+				// ulp source included
+				if (fs.lstatSync(ulp_dir).isDirectory(ulp_dir)) {
+					var ulp_files = fs.readdirSync(ulp_dir);
+					// support only single ulp assembly
+					if (ulp_files.length == 1) {
+						// ulp assembly file (*.S)
+						if (ulp_files[0].match(/\.S$/g) != null) {
+							// assembler
+							var ulp_fn = ulp_files[0];
+							var ulp_name = path.basename(ulp_fn, path.extname(ulp_fn));
+							var ulp_output_name = output_dir + '/' + ulp_name;
+							var lib_release_dir = output_dir.split('esp32\/build')[0] + 'esp32/lib/release';
+							/*
+							/home/user/build/esp-idf-v3.1/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc -MMD -MP -DWITH_POSIX -MT led.ulp.o -E -P -xc -o led.ulp.pS -I /home/user/build/gitlab/tmp/kbide/esp32/lib/release/soc/esp32/include -D__ASSEMBLER__ led.S  
+							/home/user/build/esp-idf-v3.1/xtensa-esp32-elf/bin/esp32ulp-elf-as -al=led.ulp.lst -o led.ulp.o led.ulp.pS  
+							/home/user/build/esp-idf-v3.1/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc -MMD -MP -DWITH_POSIX -MT ulp_main.common.ld -E -P -xc -o ulp_main.common.ld -I /home/user/build/gitlab/tmp/kbide/esp32/lib/release/include -D__ASSEMBLER__ /home/user/build/gitlab/tmp/kbide/esp32/lib/release/ulp/ld/esp32.ulp.ld
+							/home/user/build/esp-idf-v3.1/xtensa-esp32-elf/bin/esp32ulp-elf-ld -o ulp_main.elf -A elf32-esp32ulp -Map=ulp_main.map -T ulp_main.common.ld led.ulp.o  
+							/home/user/build/esp-idf-v3.1/xtensa-esp32-elf/bin/esp32ulp-elf-nm -g -f posix ulp_main.elf > ulp_main.sym
+							node /home/user/Dropbox/mcu/esp32-idf-v3.1/ulp_blink/esp32ulp_mapgen.js ulp_main.sym
+							/home/user/build/esp-idf-v3.1/xtensa-esp32-elf/bin/esp32ulp-elf-objcopy -O binary ulp_main.elf ulp_main.bin
+							*/
+							Log.i('assembling... ' + path.basename(ulp_fn));
+							try {
+								var cmd = `"${toolchain_dir}/xtensa-esp32-elf-gcc" -MMD -MP -DWITH_POSIX -MT ${ulp_output_name}.ulp.o -E -P -xc -o ${ulp_output_name}.ulp.pS ${cflags} -D__ASSEMBLER__ ${ulp_dir}/${ulp_fn}`;
+								execSync(ospath(cmd));
+								
+								cmd = `"${toolchain_esp32ulp_dir}/esp32ulp-elf-as" -al=${ulp_output_name}.ulp.lst -o ${ulp_output_name}.ulp.o ${ulp_output_name}.ulp.pS`;
+								execSync(ospath(cmd));
+
+								cmd = `"${toolchain_dir}/xtensa-esp32-elf-gcc" -MMD -MP -DWITH_POSIX -MT ${output_dir}/ulp_main.common.ld -E -P -xc -o ${output_dir}/ulp_main.common.ld ${cflags} -D__ASSEMBLER__ ${lib_release_dir}/ulp/ld/esp32.ulp.ld`;
+								execSync(ospath(cmd));
+								
+								cmd = `"${toolchain_esp32ulp_dir}/esp32ulp-elf-ld" -o ${output_dir}/ulp_main.elf -A elf32-esp32ulp -Map=${output_dir}/ulp_main.map -T ${output_dir}/ulp_main.common.ld ${ulp_output_name}.ulp.o`;
+								execSync(ospath(cmd));
+								
+								cmd = `"${toolchain_esp32ulp_dir}/esp32ulp-elf-nm" -g -f posix ${output_dir}/ulp_main.elf > ${output_dir}/ulp_main.sym`;
+								execSync(ospath(cmd));
+
+								const sym = fs.readFileSync(output_dir + '/ulp_main.sym');
+								const sym_lines = String(sym).split(/\r?\n/);
+								var ulp_main_h = '#pragma once\n\n';
+								var ulp_main_ld = '';
+								sym_lines.forEach(line => {
+									var str = line.trim();
+									if (str.length > 0) {
+										strlst = str.split(' ');
+										if (strlst.length == 3) {
+											var sym_name = strlst[0];
+											var sym_addr = '0x' + (parseInt(strlst[2], 16) + 0x50000000).toString(16);
+											ulp_main_h += 'extern uint32_t ulp_' + sym_name + ';\n';
+											ulp_main_ld += 'PROVIDE ( ulp_' + sym_name + ' = ' + sym_addr + ' );\n';
+										}
+									}
+								});
+								// ulp_main.h
+								fs.writeFileSync(output_dir + '/ulp_main.h', '// Variable definitions for ESP32ULP\n// This file is generated automatically\n\n' + ulp_main_h + '\n');
+								//ulp_main.ld	
+								fs.writeFileSync(output_dir + '/ulp_main.ld', '/* Variable definitions for ESP32ULP linker\n * This file is generated automatically\n */\n\n' + ulp_main_ld + '\n');
+								
+								cmd = `"${toolchain_esp32ulp_dir}/esp32ulp-elf-objcopy" -O binary ${output_dir}/ulp_main.elf ${output_dir}/ulp_main.bin`;
+								execSync(ospath(cmd));
+
+								// prepare directory to create ulp binary object
+								var embed_bin_dir = output_dir + '/embed_bin';
+								deleteDir(embed_bin_dir);
+								fs.mkdirSync(output_dir + '/embed_bin');
+								copyFileSync(output_dir + '/ulp_main.bin', output_dir + '/embed_bin/ulp_main.bin');
+								cmd = `"${toolchain_dir}/xtensa-esp32-elf-objcopy" --input-target binary --output-target elf32-xtensa-le --binary-architecture xtensa --rename-section .data=.rodata.embedded ulp_main.bin ulp_main.bin.bin.o`;
+								// execute objcopy inside embed_bin directory
+								execSync(ospath(cmd), {cwd: embed_bin_dir});
+								// copy ulp binary object back to output directory								
+								copyFileSync(embed_bin_dir + '/ulp_main.bin.bin.o', output_dir + '/ulp_main.bin.bin.o');
+								// remove embed_bin directory
+								deleteDir(embed_bin_dir);
+							} catch (err) {
+								//console.error('Error: ' + err.toString());
+							}
+						}								
+					}
+				}
+			} catch (e) {
+				// exception on not directory
+			}
+		}
+		
 		
 		// check file extension, c source file compile with xtensa-esp32-elf-gcc otherwise using xtensa-esp32-elf-c++
 		var fn_ext = path.extname(fn);		
-		if (fn_ext == '.c') {			
-			var cmd = `"${toolchain_dir}/xtensa-esp32-elf-gcc" -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DARDUINO=10800 -DESP32=1 -DARDUINO_ARCH_ESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H ${cflags} ${ldflags} ${plugins_includes_switch} -c ${fn} -o ${fn_obj}`;
+		if (fn_ext == '.c') {
+			var cmd = `"${toolchain_dir}/xtensa-esp32-elf-gcc" -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DARDUINO=10800 -DESP32=1 -DARDUINO_ARCH_ESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H ${cflags} -I${output_dir} ${ldflags} ${plugins_includes_switch} -c ${fn} -o ${fn_obj}`;
 		}
 		else {
-			var cmd = `"${toolchain_dir}/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DARDUINO=10800 -DESP32=1 -DARDUINO_ARCH_ESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H ${cflags} ${ldflags} ${plugins_includes_switch} -c ${fn} -o ${fn_obj}`;
+			var cmd = `"${toolchain_dir}/xtensa-esp32-elf-c++" -std=gnu++11 -fno-rtti -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -fno-exceptions -DESP_PLATFORM -D IDF_VER=\'""\' -MMD -MP  -Wno-unused-variable -Wno-unused-value -DARDUINO=10800 -DESP32=1 -DARDUINO_ARCH_ESP32=1 -DWITH_POSIX -DMBEDTLS_CONFIG_FILE=\'"mbedtls/esp_config.h"\' -DHAVE_CONFIG_H ${cflags} -I${output_dir} ${ldflags} ${plugins_includes_switch} -c ${fn} -o ${fn_obj}`;
 		}
 
 		exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
@@ -388,6 +505,15 @@ module.exports = function (app, Config, Log) {
 				}
 			}
 			else {
+				// check if ulp_main embeded binary exists
+				if (fs.existsSync(output_dir + '/ulp_main.bin.bin.o')) {
+					var d_fn = output_dir + '/' + path.basename(fn_obj, path.extname(fn_obj)) + '.d';
+					if (fs.existsSync(d_fn)) {
+						const d_content = fs.readFileSync(d_fn);
+						fs.writeFileSync(d_fn, '\n' + d_content + fn + '\n');
+					}
+				}
+
 				index++;
 				if (index < files.length) {
 					compileFiles(files, index, cflags, ldflags, plugins_includes_switch, output_dir, cb);
@@ -793,6 +919,10 @@ module.exports = function (app, Config, Log) {
 			if (!fs.existsSync(user_app_dir)) {
 				fs.mkdirSync(user_app_dir);
 			}
+			else {
+				// remove old files inside user_app directory
+				deleteDir(user_app_dir, false);
+			}
 
 			// save to file
 			fs.writeFile(user_app_dir + '/user_app.cpp', user_app_code, (err) => {
@@ -834,6 +964,7 @@ module.exports = function (app, Config, Log) {
 
 					// add user_app into sources
 					plugins_sources.push(user_app_dir + '/user_app.cpp');
+					
 					// compile
 					compileFiles(plugins_sources, 0, cflags, ldflags, plugins_includes_switch, user_app_dir, (err) => {
 						if (err) {
@@ -857,7 +988,15 @@ module.exports = function (app, Config, Log) {
 							}
 							// create libmain
 							Log.i('archiving... libmain.a');
-							var cmd = util.format('"%s/xtensa-esp32-elf-ar" cru "%s/libmain.a" %s', toolchain_dir, user_app_dir, obj_files);
+							// prepare ulp archive and linker script
+							var ulp_main_bin_bin_o = '';
+							var ulp_linker_script = '';
+							// check if ulp_main embeded binary exists
+							if (fs.existsSync(user_app_dir + '/ulp_main.bin.bin.o')) {
+								ulp_main_bin_bin_o = ' "' + user_app_dir + '/ulp_main.bin.bin.o"';
+								ulp_linker_script = ' -T ' + user_app_dir + '/ulp_main.ld';
+							}
+							var cmd = util.format('"%s/xtensa-esp32-elf-ar" cru "%s/libmain.a" %s%s', toolchain_dir, user_app_dir, obj_files, ulp_main_bin_bin_o);
 							exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
 								if (err) {
 									console.log(err);
@@ -871,7 +1010,7 @@ module.exports = function (app, Config, Log) {
 								else {
 									// link
 									Log.i('linking... ' + board_name + '.elf');
-									var cmd = util.format('"%s/xtensa-esp32-elf-gcc" -nostdlib -u call_user_start_cpu0  -Wl,--gc-sections -Wl,-static -Wl,--start-group %s -L"%s" -lgcc -lstdc++ -lgcov -Wl,--end-group -Wl,-EL -o "%s/%s.elf"', toolchain_dir, ldflags, user_app_dir, user_app_dir, board_name);
+									var cmd = util.format('"%s/xtensa-esp32-elf-gcc" -nostdlib -u call_user_start_cpu0  -Wl,--gc-sections -Wl,-static -Wl,--start-group %s -L"%s" -lgcc -lstdc++ -lgcov%s -Wl,--end-group -Wl,-EL -o "%s/%s.elf"', toolchain_dir, ldflags, user_app_dir, ulp_linker_script, user_app_dir, board_name);
 									exec(ospath(cmd), { cwd: __dirname + '/../..' }, (err, stdout, stderr) => {
 										if (err) {
 											console.log(err);
@@ -992,63 +1131,67 @@ module.exports = function (app, Config, Log) {
 		fs.readdir(ospath(plugins_dir + '/' + cats[index].directory), (err, drivers) => {
 			if (!err) {
 				drivers.forEach(driver => {
-					var dir = plugins_dir + '/' + cats[index].directory + '/' + driver;
-					try {
-						if (driver == (cats[index].directory + '.json')) {
-							cats[index].category = JSON.parse(fs.readFileSync(dir), 'utf8');
-						} else {
-							// check directory
-							if (fs.lstatSync(dir).isDirectory(dir)) {
-								try {
-									pluginsInfo[driver] = {
-										abs_dir: dir,
-										rel_dir: 'plugins/' + cats[index].directory + '/' + driver,
-										srcs: [],
-										incs: [],
-										libs: [] // plugin static link supported
-									};
-
-									// extract block definitions
-									var Blockly = {
-										Blocks: []
-									};
-									eval(fs.readFileSync(dir + '/blocks.js').toString());
-									var blocks = [];
-									var block_cnt = 0;
-									for (var i in Blockly.Blocks) {
-										blocks.push(i);
-										block_cnt++;
-									}
-
+//testbug
+					// ignore documents directory as a plugin
+					if (driver != 'docs') {
+						var dir = plugins_dir + '/' + cats[index].directory + '/' + driver;
+						try {
+							if (driver == (cats[index].directory + '.json')) {
+								cats[index].category = JSON.parse(fs.readFileSync(dir), 'utf8');
+							} else {
+								// check directory
+								if (fs.lstatSync(dir).isDirectory(dir)) {
 									try {
-										// extrack block generators
-										var Blockly = {
-											JavaScript: []
+										pluginsInfo[driver] = {
+											abs_dir: dir,
+											rel_dir: 'plugins/' + cats[index].directory + '/' + driver,
+											srcs: [],
+											incs: [],
+											libs: [] // plugin static link supported
 										};
-										eval(fs.readFileSync(dir + '/generators.js').toString());
-										var generators = [];
-										var generator_cnt = 0;
-										for (var i in Blockly.JavaScript) {
-											generators.push(i);
-											generator_cnt++;
+
+										// extract block definitions
+										var Blockly = {
+											Blocks: []
+										};
+										eval(fs.readFileSync(dir + '/blocks.js').toString());
+										var blocks = [];
+										var block_cnt = 0;
+										for (var i in Blockly.Blocks) {
+											blocks.push(i);
+											block_cnt++;
 										}
 
-										Log.i('plugin "' + driver + '" found ' + block_cnt + (block_cnt > 1 ? ' blocks' : ' block'));
-										cats[index].plugins.push({
-											name: driver,
-											blocks: blocks
-										});
-									} catch (e) {
-										Log.e('plugin "' + driver + '" generators.js error');
-									}
-								} catch (e) {
-									Log.e('plugin "' + driver + '" blocks.js error');
-								}
+										try {
+											// extrack block generators
+											var Blockly = {
+												JavaScript: []
+											};
+											eval(fs.readFileSync(dir + '/generators.js').toString());
+											var generators = [];
+											var generator_cnt = 0;
+											for (var i in Blockly.JavaScript) {
+												generators.push(i);
+												generator_cnt++;
+											}
 
+											Log.i('plugin "' + driver + '" found ' + block_cnt + (block_cnt > 1 ? ' blocks' : ' block'));
+											cats[index].plugins.push({
+												name: driver,
+												blocks: blocks
+											});
+										} catch (e) {
+											Log.e('plugin "' + driver + '" generators.js error');
+										}
+									} catch (e) {
+										Log.e('plugin "' + driver + '" blocks.js error');
+									}
+
+								}
 							}
-						}
-					} catch (e) {
-						// exception on not directory
+						} catch (e) {
+							// exception on not directory
+						}						
 					}
 				});
 			}
@@ -1068,7 +1211,7 @@ module.exports = function (app, Config, Log) {
 		var dir = pluginsInfo[drivers[index]].abs_dir;
 		fs.readdir(ospath(dir), (err, files) => {
 			if (!err) {
-				files.forEach(file => {
+				files.forEach(file => {					
 					if (fs.lstatSync(dir + '/' + file).isFile(dir + '/' + file)) {
 						// source file (*.c, *.cpp)
 						if ((file.match(/\.c$/g) != null) || (file.match(/\.cpp$/g) != null)) {
@@ -1079,10 +1222,10 @@ module.exports = function (app, Config, Log) {
 							pluginsInfo[drivers[index]].incs.push(file);
 						}
 						// static link file (*.a)
-						if (file.match(/\.a$/g) != null) { // plugin static link support
+						if (file.match(/\.a$/g) != null) { // plugin static link supported
 							pluginsInfo[drivers[index]].libs.push(file);
-						}
-					}
+						}						
+					}					
 				});
 			}
 
@@ -1138,7 +1281,7 @@ module.exports = function (app, Config, Log) {
 	});
 
 	function createPluginsJs(cats, index, req, res, cb) {
-		fs.readdir(ospath(plugins_dir + '/' + cats[index]), (err, drivers) => {
+		fs.readdir(ospath(plugins_dir + '/' + cats[index]), (err, drivers) => {	
 			if (!err) {
 				// default language
 				var lang = 'en';
@@ -1147,17 +1290,21 @@ module.exports = function (app, Config, Log) {
 				}
 				// collect drivers
 				drivers.forEach(driver => {
-					var dir = plugins_dir + '/' + cats[index] + '/' + driver;
-					try {
-						// check directory
-						if (fs.lstatSync(dir).isDirectory(dir)) {
-							res.write(fs.readFileSync(dir + '/msg/' + lang + '.js'));
-							res.write(fs.readFileSync(dir + '/blocks.js'));
-							res.write(fs.readFileSync(dir + '/generators.js'));
+//testbug
+					// ignore documents directory as a plugin
+					if (driver != 'docs') {
+						var dir = plugins_dir + '/' + cats[index] + '/' + driver;
+						try {
+							// check directory
+							if (fs.lstatSync(dir).isDirectory(dir)) {
+								res.write(fs.readFileSync(dir + '/msg/' + lang + '.js'));
+								res.write(fs.readFileSync(dir + '/blocks.js'));
+								res.write(fs.readFileSync(dir + '/generators.js'));
+							}
+						} catch (e) {
+							// exceptions
+							console.log(e);
 						}
-					} catch (e) {
-						// exceptions
-						console.log(e);
 					}
 				});
 			}
