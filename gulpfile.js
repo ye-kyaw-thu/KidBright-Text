@@ -29,10 +29,17 @@ gulp.task('download_xtensa', ['install'], () => {
     for (var i = 0; i < json.packages.length; i++) {
         if (process.platform === json.packages[i].platform) {
             pathl = json.packages[i].items[0].download_url
-            pathnl = pathl.split("dl/")[1]
+            pathnl = pathl.split("dl/")[1]            
             pathnlt = pathnl.split('.gz')[0]
-            console.log(pathnlt);
+            //console.log(pathnlt);
+
+            pathb = json.packages[i].items[2].download_url
+            pathnb = pathb.split("v2.28.51-esp-20191205/")[1]            
+            pathnbt = pathnb.split('.gz')[0]            
+            //console.log(pathnbt);
+            
             pathe = json.packages[i].items[1].download_url
+
             if (process.platform === 'win32' || process.platform === 'darwin') {
                 pathne = pathe.split("dl/")[1]
                 pathnet = pathne.split('.gz')[0]
@@ -49,7 +56,17 @@ gulp.task('download_xtensa', ['install'], () => {
     }
 })
 
-gulp.task('download_esptool', ['download_xtensa'], () => {
+gulp.task('download_binutils-esp32ulp', ['download_xtensa'], () => {
+    // if download url not defined
+    if (pathb == '') {
+        return;
+    }
+
+    return download(pathb)
+            .pipe(gulp.dest(__dirname))
+})
+
+gulp.task('download_esptool', ['download_binutils-esp32ulp'], () => {
     // if download url not defined
     if (pathe == '') {
         return;
@@ -73,13 +90,16 @@ gulp.task('decompress', ['download_esptool'], () => {
         if (process.platform === 'darwin') {
             return gulp.src(__dirname)
                 .pipe(exec('tar xvzf ' + pathnl))
-                .pipe(exec('tar xvzf ' + pathne))
+                .pipe(exec('tar xvzf ' + pathnb))
+                .pipe(exec('tar xvzf ' + pathne))                
         } else if (process.platform === 'linux') {
             return gulp.src(__dirname)
                 .pipe(exec('tar xvzf ' + pathnl))
+                .pipe(exec('tar xvzf ' + pathnb))
         } else if (process.platform === 'win32') {
             return gulp.src(__dirname)
                 .pipe(exec("powershell.exe -NoP -NonI -Command " + "Expand-Archive '" + pathnl + "' '.'"))
+                .pipe(exec("powershell.exe -NoP -NonI -Command " + "Expand-Archive '" + pathnb + "' '.'"))
                 .pipe(exec("powershell.exe -NoP -NonI -Command " + "Expand-Archive '" + pathne + "' '.'"))
         }
     }
@@ -95,11 +115,15 @@ gulp.task('chmod_linux', ['decompress'], () => {
     }
 })
 
-gulp.task('del', ['chmod_linux'], () => {
+gulp.task('del', ['chmod_linux'], () => {	
     return del([pathz])
 })
 
-gulp.task('build', ['del'], () => {
+gulp.task('del_esp32ulp-elf_share', ['del'], () => {	
+    return del([path.join(__dirname, '/esp32ulp-elf-binutils/{esp32ulp-elf,share}')])
+})
+
+gulp.task('build', ['del_esp32ulp-elf_share'], () => {
     return
 })
 
