@@ -33,12 +33,12 @@ gulp.task('download_xtensa', ['install'], () => {
             pathnlt = pathnl.split('.gz')[0]
             //console.log(pathnlt);
 
-            pathb = json.packages[i].items[2].download_url
+            pathb = json.packages[i].items[1].download_url
             pathnb = pathb.split("v2.28.51-esp-20191205/")[1]            
             pathnbt = pathnb.split('.gz')[0]            
             //console.log(pathnbt);
             
-            pathe = json.packages[i].items[1].download_url
+            pathe = json.packages[i].items[2].download_url
 
             if (process.platform === 'win32' || process.platform === 'darwin') {
                 pathne = pathe.split("dl/")[1]
