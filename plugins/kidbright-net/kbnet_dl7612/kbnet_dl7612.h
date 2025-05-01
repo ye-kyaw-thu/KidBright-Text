@@ -78,7 +78,6 @@ class KBNET_DL7612 : public Device {
 		at_line_begin_t at_line_check(bool match_all_flag, char *str, TickType_t *timeout_tickcnt, TickType_t timeout, char *rx_str);
 		char *get_str_at_char(char *str, char ch);
 		bool send_01(double temperature, double humidity, double wind_speed, double wind_direction, double rain_volume);
-		bool send_02(uint32_t flags, double temperature, double humidity, double wind_speed, double wind_direction, double rain_volume, double light, double pm2_5, double pm10);
 };
 
 #endif

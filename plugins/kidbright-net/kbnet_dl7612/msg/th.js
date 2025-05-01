@@ -17,7 +17,3 @@ Blockly.Msg.DL7612_RAIN_VOLUME = "ปริมาณน้ำฝน";
 
 Blockly.Msg.DL7612_TXPOWER = "กำลังส่ง            ";
 Blockly.Msg.DL7612_DBM = "dBm";
-
-Blockly.Msg.DL7612_LIGHT = "แสง";
-Blockly.Msg.DL7612_PM25 = "ฝุ่น PM 2.5";
-Blockly.Msg.DL7612_PM10 = "ฝุ่น PM 10";

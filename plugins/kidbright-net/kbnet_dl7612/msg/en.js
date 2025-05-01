@@ -17,7 +17,3 @@ Blockly.Msg.DL7612_RAIN_VOLUME = "Rain Volume";
 
 Blockly.Msg.DL7612_TXPOWER = "TX Power         ";
 Blockly.Msg.DL7612_DBM = "dBm";
-
-Blockly.Msg.DL7612_LIGHT = "Light";
-Blockly.Msg.DL7612_PM25 = "PM 2.5";
-Blockly.Msg.DL7612_PM10 = "PM 10";
