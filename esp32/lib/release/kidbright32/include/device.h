@@ -33,6 +33,7 @@ class Device {
 		int address = -1;
 		bool error = false;
 		bool initialized = false;
+		bool standby = false;
 		uint32_t polling_ms;
 		// method
 		virtual void init(void);
@@ -43,6 +44,13 @@ class Device {
 		virtual bool prop_attr(int index, char *attr);
 		virtual bool prop_read(int index, char *value);
 		virtual bool prop_write(int index, char *value);
+		// range min/max virtual method
+		virtual bool prop_range_min(int index, char *value);
+		virtual bool prop_range_max(int index, char *value);
+		// stanby virtual method		
+		virtual void standby_enable(void);
+		virtual bool standby_ready(void);
+
 		bool is_error(void);
 		bool is_initialized(void);
 		void get_stat_str(char *stat);

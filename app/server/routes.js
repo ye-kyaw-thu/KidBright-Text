@@ -439,10 +439,11 @@ module.exports = function (app, Config, Log) {
 								
 								cmd = `"${toolchain_esp32ulp_dir}/esp32ulp-elf-nm" -g -f posix ${output_dir}/ulp_main.elf > ${output_dir}/ulp_main.sym`;
 								execSync(ospath(cmd));
-
+								
+								// create ulp_main.h from ulp_main.sym symbolic file
 								const sym = fs.readFileSync(output_dir + '/ulp_main.sym');
 								const sym_lines = String(sym).split(/\r?\n/);
-								var ulp_main_h = '#pragma once\n\n';
+								var ulp_main_h = '#pragma once\n\n' + '#ifdef __cplusplus\nextern "C" {\n#endif\n\n';
 								var ulp_main_ld = '';
 								sym_lines.forEach(line => {
 									var str = line.trim();
@@ -451,11 +452,16 @@ module.exports = function (app, Config, Log) {
 										if (strlst.length == 3) {
 											var sym_name = strlst[0];
 											var sym_addr = '0x' + (parseInt(strlst[2], 16) + 0x50000000).toString(16);
-											ulp_main_h += 'extern uint32_t ulp_' + sym_name + ';\n';
+											var sym_type = 'uint16_t';
+											if (sym_name == 'entry') {
+												sym_type = 'uint32_t';
+											}
+											ulp_main_h += 'extern ' + sym_type + ' ulp_' + sym_name + ';\n';
 											ulp_main_ld += 'PROVIDE ( ulp_' + sym_name + ' = ' + sym_addr + ' );\n';
 										}
 									}
 								});
+								ulp_main_h += '\n#ifdef __cplusplus\n}\n#endif\n';
 								// ulp_main.h
 								fs.writeFileSync(output_dir + '/ulp_main.h', '// Variable definitions for ESP32ULP\n// This file is generated automatically\n\n' + ulp_main_h + '\n');
 								//ulp_main.ld	
@@ -744,6 +750,81 @@ module.exports = function (app, Config, Log) {
 			}
 		}
 
+		// ========================================================================================================
+		// apply plugin settings.json
+		// ========================================================================================================
+		// check ports device constructed settings
+		const IN1_PORTS_MASK = 0x01;
+		const IN2_PORTS_MASK = 0x02;
+		const IN3_PORTS_MASK = 0x04;
+		const IN4_PORTS_MASK = 0x08;
+		const OUT1_PORTS_MASK = 0x10;
+		const OUT2_PORTS_MASK = 0x20;
+		const USBSW_PORTS_MASK = 0x40;
+		const PORTS_ALL_MASK = IN1_PORTS_MASK | IN2_PORTS_MASK | IN3_PORTS_MASK | IN4_PORTS_MASK | OUT1_PORTS_MASK | OUT2_PORTS_MASK | USBSW_PORTS_MASK;
+		var ports_mask_enabled = PORTS_ALL_MASK;		
+		// check plugin settings available		
+		for (var inst_index in obj_inst_tab) {
+			var st = pluginsInfo[obj_inst_tab[inst_index].dir].settings;
+			// check ports disabled
+			if (st && st.devman && st.devman.devices && st.devman.devices.ports && st.devman.devices.ports.disabled) {
+				for (var i = 0;i < st.devman.devices.ports.disabled.length; i++) {
+					switch (st.devman.devices.ports.disabled[i]) {
+						case 'in1':							
+							ports_mask_enabled &= ~IN1_PORTS_MASK;
+							break;
+
+						case 'in2':							
+							ports_mask_enabled &= ~IN2_PORTS_MASK;
+							break;
+
+						case 'in3':							
+							ports_mask_enabled &= ~IN3_PORTS_MASK;
+							break;
+
+						case 'in4':							
+							ports_mask_enabled &= ~IN4_PORTS_MASK;
+							break;
+							
+						case 'out1':							
+							ports_mask_enabled &= ~OUT1_PORTS_MASK;
+							break;
+							
+						case 'out2':							
+							ports_mask_enabled &= ~OUT2_PORTS_MASK;
+							break;
+							
+						case 'usbsw':							
+							ports_mask_enabled &= ~USBSW_PORTS_MASK;
+							break;
+					}
+					
+				}
+			}
+		}
+		// default ports constuctor
+		var ports_mask_enabled_str = '';
+		// check if need to pass ports constructor mask
+		if (ports_mask_enabled != PORTS_ALL_MASK) {
+			ports_mask_enabled_str = '0x' + ports_mask_enabled.toString(16);
+			
+			var ports_disable_str = '';
+			var bit_mask = 0x01;
+			var ports_name_arr = ['in1', 'in2', 'in3', 'in4', 'out1', 'out2', 'usbsw'];
+			for (var i = 0; i < ports_name_arr.length; i++) {			
+				if ((ports_mask_enabled & (1 << i)) == 0) {
+					if (ports_disable_str.length == 0) {
+						ports_disable_str += ports_name_arr[i];
+					}
+					else {
+						ports_disable_str += ', ' + ports_name_arr[i];
+					}
+				}
+			}
+			Log.i('[devman] ports device constructed with mask ' + ports_mask_enabled_str + ' (' + ports_disable_str + ' disabled)');
+		}
+		// ========================================================================================================
+
 		// plug-ins object instantiate code, ex: SHT31 sht31_0 = SHT31(64, 0x44, 1000);
 		var plugins_obj_inst_code = '';
 		for (var inst_index in obj_inst_tab) {
@@ -836,7 +917,7 @@ module.exports = function (app, Config, Log) {
 			'// on-board devices\n' +
 			'// ==================================================================================\n' +
 			'// i/o devices\n' +
-			'PORTS ports = PORTS();\n' +
+			'PORTS ports = PORTS(' + ports_mask_enabled_str + ');\n' +
 			'BUTTON12 button12 = BUTTON12();\n' +
 			'LDR ldr = LDR();\n' +
 			'SOUND sound = SOUND();\n' +
@@ -1131,7 +1212,6 @@ module.exports = function (app, Config, Log) {
 		fs.readdir(ospath(plugins_dir + '/' + cats[index].directory), (err, drivers) => {
 			if (!err) {
 				drivers.forEach(driver => {
-//testbug
 					// ignore documents directory as a plugin
 					if (driver != 'docs') {
 						var dir = plugins_dir + '/' + cats[index].directory + '/' + driver;
@@ -1147,7 +1227,8 @@ module.exports = function (app, Config, Log) {
 											rel_dir: 'plugins/' + cats[index].directory + '/' + driver,
 											srcs: [],
 											incs: [],
-											libs: [] // plugin static link supported
+											libs: [], // plugin static link supported
+											settings: null // plugin settings
 										};
 
 										// extract block definitions
@@ -1162,8 +1243,8 @@ module.exports = function (app, Config, Log) {
 											block_cnt++;
 										}
 
-										try {
-											// extrack block generators
+										// extrack block generators
+										try {											
 											var Blockly = {
 												JavaScript: []
 											};
@@ -1182,6 +1263,17 @@ module.exports = function (app, Config, Log) {
 											});
 										} catch (e) {
 											Log.e('plugin "' + driver + '" generators.js error');
+										}
+
+										// load settings.json if available
+										try {
+											var fn = pluginsInfo[driver].abs_dir + '/settings.json';
+											if (fs.existsSync(fn)) {
+												// parse settings
+												pluginsInfo[driver].settings = JSON.parse(fs.readFileSync(fn, 'utf8'));												
+											}
+										} catch (e) {
+											Log.e('plugin "' + driver + '" settings.json error');
 										}
 									} catch (e) {
 										Log.e('plugin "' + driver + '" blocks.js error');
@@ -1290,7 +1382,6 @@ module.exports = function (app, Config, Log) {
 				}
 				// collect drivers
 				drivers.forEach(driver => {
-//testbug
 					// ignore documents directory as a plugin
 					if (driver != 'docs') {
 						var dir = plugins_dir + '/' + cats[index] + '/' + driver;

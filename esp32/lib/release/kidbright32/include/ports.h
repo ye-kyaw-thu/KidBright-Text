@@ -4,15 +4,25 @@
 #include "driver.h"
 #include "device.h"
 
+#define IN1_PORTS_MASK		0x01
+#define IN2_PORTS_MASK		0x02
+#define IN3_PORTS_MASK		0x04
+#define IN4_PORTS_MASK		0x08
+#define OUT1_PORTS_MASK		0x10
+#define OUT2_PORTS_MASK		0x20
+#define USBSW_PORTS_MASK	0x40
+
 class PORTS : public Device {
 	private:
 		 int usbsw_value;
 		 int out1_value;
 		 int out2_value;
+		 uint8_t mask_enabled;
 
 	public:
 		// constructor
 		PORTS();
+		PORTS(uint8_t mask_en);
 		// override
 		void init(void);
 		void process(Driver *drv);

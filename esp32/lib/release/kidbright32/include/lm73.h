@@ -25,6 +25,9 @@ class LM73 : public Device {
 		bool prop_attr(int index, char *attr);
 		bool prop_read(int index, char *value);
 		bool prop_write(int index, char *value);
+		// range min/max method
+		bool prop_range_min(int index, char *value) override;
+		bool prop_range_max(int index, char *value) override;
 		// method
 		double get(void);
 };

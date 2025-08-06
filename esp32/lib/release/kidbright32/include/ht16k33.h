@@ -11,7 +11,7 @@
 class HT16K33 : public Device {
 	private:
 		enum {
-			s_detect, s_clrscr, s_cmd_init, s_show, s_scrolling_init, s_scrolling, s_idle, s_error, s_wait
+			s_detect, s_clrscr, s_cmd_init, s_show, s_scrolling_init, s_scrolling, s_idle, s_error, s_wait, s_ht16k33_cmd_standby, s_ht16k33_standby
 		} state;
 		TickType_t tickcnt;
 		uint8_t buffer[16], temp_buffer[16];
@@ -32,6 +32,8 @@ class HT16K33 : public Device {
 		bool prop_attr(int index, char *attr);
 		bool prop_read(int index, char *value);
 		bool prop_write(int index, char *value);
+		void standby_enable(void) override;
+		bool standby_ready(void) override;
 		// method
 		int busy(void);
 		int idle(void);

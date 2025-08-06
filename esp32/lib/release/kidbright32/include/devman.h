@@ -16,5 +16,8 @@ void devman_start(void);
 bool devman_ready(void);
 bool devman_cli(char *line, char list[][MAX_UART_LINE_CHAR_COUNT], int len);
 void devman_init(void);
+// stanby management
+void devman_standby(void);
+bool devman_standby_ready(void);
 
 #endif
