@@ -682,26 +682,37 @@ function HomeController() {
 		});
 	});
 
+	// # day of week	
+	//
+	// ### mcp7940n
+	// The day of week value counts from 1 to 7, increments at midnight,
+	// and the representation is user-defined (i.e.,the MCP7940N does not require 1 to equal Sunday, etc.)
+	//
+	// ### moment.js
+	// Day of Week (Locale)	e	(Sunday = 0, Monday = 1, ... Saturday = 6)
+	// Day of Week (ISO)	E	(Monday = 1, Sunday = 7)
+	
+	const dttm_format = 'YYMMDD0EHHmmss';
 	$('.modal-set-clock #button-sub7').click(function () {
 		var dttm_sub7 = moment($('.modal-set-clock #button-sub7').text(), 'DD/MM/YYYY HH:mm:ss');
-		var dttm_sub7_serial = dttm_sub7.format('YYMMDD0eHHmmss');
+		var dttm_sub7_serial = dttm_sub7.format(dttm_format);
 		setting_clock(dttm_sub7_serial);
 	});
 
 	$('.modal-set-clock #button-zero').click(function () {
 		var dttm_zero = moment($('.modal-set-clock #button-zero').text(), 'DD/MM/YYYY HH:mm:ss');
-		var dttm_zero_serial = dttm_zero.format('YYMMDD0eHHmmss');
+		var dttm_zero_serial = dttm_zero.format(dttm_format);
 		setting_clock(dttm_zero_serial);
 	});
 	$('.modal-set-clock #button-sub7-new').click(function () {
 		var dttm_sub7 = moment($('.modal-set-clock #button-sub7').text(), 'DD/MM/YYYY HH:mm:ss');
-		var dttm_sub7_serial = dttm_sub7.format('YYMMDD0eHHmmss');
+		var dttm_sub7_serial = dttm_sub7.format(dttm_format);
 		setting_clock(dttm_sub7_serial);
 	});
 
 	$('.modal-set-clock #button-zero-new').click(function () {
 		var dttm_zero = moment($('.modal-set-clock #button-zero').text(), 'DD/MM/YYYY HH:mm:ss');
-		var dttm_zero_serial = dttm_zero.format('YYMMDD0eHHmmss');
+		var dttm_zero_serial = dttm_zero.format(dttm_format);
 		setting_clock(dttm_zero_serial);
 	});
 	// =========================================================================

@@ -1348,6 +1348,19 @@ Blockly.Blocks["rtc_get_day"] = {
 	}
 };
 
+Blockly.Blocks["rtc_get_day_of_week"] = {
+	init: function() {
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.RTC_GETDAYOFWEEK_TITLE);
+		this.setOutput(true, 'Number');
+		this.setPreviousStatement(false);
+		this.setNextStatement(false);
+		this.setColour(rtc_colour);
+		this.setTooltip(Blockly.Msg.RTC_GETDAYOFWEEK_TOOLTIP);
+		this.setHelpUrl(Blockly.Msg.RTC_GETDAYOFWEEK_HELPURL);
+	}
+};
+
 Blockly.Blocks["rtc_get_hour"] = {
 	init: function() {
 		this.appendDummyInput()

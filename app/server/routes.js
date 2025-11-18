@@ -190,11 +190,11 @@ module.exports = function (app, Config, Log) {
 		}
 	});
 
-	app.post('/setclock', function (req, res) {
-		Log.i('setting board real time clock...');
+	app.post('/setclock', function (req, res) {		
 		try {
 			var port_name = req.body['port_name'];
 			var tx_str = req.body['datetime'];
+			Log.i('setting board real time clock... (' + tx_str + ')');
 			var serialport = new SerialPort(port_name, {
 				baudRate: 115200,
 				dataBits: 8,
@@ -209,7 +209,6 @@ module.exports = function (app, Config, Log) {
 
 			serialport.open(function (err) {
 				if (err) throw err;
-
 				serialport.write('rtc set ' + tx_str + '\n', function (err) {
 					if (err) {
 						console.log('Error on write: ', err.message);

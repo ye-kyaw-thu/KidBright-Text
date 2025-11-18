@@ -403,6 +403,12 @@ Blockly.JavaScript['rtc_get_time'] = function(block) {
 		Blockly.JavaScript.ORDER_ATOMIC
 	];
 };
+Blockly.JavaScript['rtc_get_day_of_week'] = function(block) {
+	return [
+		'mcp7940n.get(6)',
+		Blockly.JavaScript.ORDER_ATOMIC
+	];
+};
 Blockly.JavaScript['rtc_get_day'] = function(block) {
 	return [
 		'mcp7940n.get(0)',
