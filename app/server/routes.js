@@ -425,19 +425,19 @@ module.exports = function (app, Config, Log) {
 							Log.i('assembling... ' + path.basename(ulp_fn));
 							try {
 								var cmd = `"${toolchain_dir}/xtensa-esp32-elf-gcc" -MMD -MP -DWITH_POSIX -MT ${ulp_output_name}.ulp.o -E -P -xc -o ${ulp_output_name}.ulp.pS ${cflags} -D__ASSEMBLER__ ${ulp_dir}/${ulp_fn}`;
-								execSync(ospath(cmd));
+								execSync(ospath(cmd), { cwd: __dirname + '/../..' });
 								
 								cmd = `"${toolchain_esp32ulp_dir}/esp32ulp-elf-as" -al=${ulp_output_name}.ulp.lst -o ${ulp_output_name}.ulp.o ${ulp_output_name}.ulp.pS`;
-								execSync(ospath(cmd));
+								execSync(ospath(cmd), { cwd: __dirname + '/../..' });
 
 								cmd = `"${toolchain_dir}/xtensa-esp32-elf-gcc" -MMD -MP -DWITH_POSIX -MT ${output_dir}/ulp_main.common.ld -E -P -xc -o ${output_dir}/ulp_main.common.ld ${cflags} -D__ASSEMBLER__ ${lib_release_dir}/ulp/ld/esp32.ulp.ld`;
-								execSync(ospath(cmd));
+								execSync(ospath(cmd), { cwd: __dirname + '/../..' });
 								
 								cmd = `"${toolchain_esp32ulp_dir}/esp32ulp-elf-ld" -o ${output_dir}/ulp_main.elf -A elf32-esp32ulp -Map=${output_dir}/ulp_main.map -T ${output_dir}/ulp_main.common.ld ${ulp_output_name}.ulp.o`;
-								execSync(ospath(cmd));
+								execSync(ospath(cmd), { cwd: __dirname + '/../..' });
 								
 								cmd = `"${toolchain_esp32ulp_dir}/esp32ulp-elf-nm" -g -f posix ${output_dir}/ulp_main.elf > ${output_dir}/ulp_main.sym`;
-								execSync(ospath(cmd));
+								execSync(ospath(cmd), { cwd: __dirname + '/../..' });
 								
 								// create ulp_main.h from ulp_main.sym symbolic file
 								const sym = fs.readFileSync(output_dir + '/ulp_main.sym');
@@ -467,7 +467,7 @@ module.exports = function (app, Config, Log) {
 								fs.writeFileSync(output_dir + '/ulp_main.ld', '/* Variable definitions for ESP32ULP linker\n * This file is generated automatically\n */\n\n' + ulp_main_ld + '\n');
 								
 								cmd = `"${toolchain_esp32ulp_dir}/esp32ulp-elf-objcopy" -O binary ${output_dir}/ulp_main.elf ${output_dir}/ulp_main.bin`;
-								execSync(ospath(cmd));
+								execSync(ospath(cmd), { cwd: __dirname + '/../..' });
 
 								// prepare directory to create ulp binary object
 								var embed_bin_dir = output_dir + '/embed_bin';
@@ -476,7 +476,7 @@ module.exports = function (app, Config, Log) {
 								copyFileSync(output_dir + '/ulp_main.bin', output_dir + '/embed_bin/ulp_main.bin');
 								cmd = `"${toolchain_dir}/xtensa-esp32-elf-objcopy" --input-target binary --output-target elf32-xtensa-le --binary-architecture xtensa --rename-section .data=.rodata.embedded ulp_main.bin ulp_main.bin.bin.o`;
 								// execute objcopy inside embed_bin directory
-								execSync(ospath(cmd), {cwd: embed_bin_dir});
+								execSync(ospath(cmd), { cwd: embed_bin_dir });
 								// copy ulp binary object back to output directory								
 								copyFileSync(embed_bin_dir + '/ulp_main.bin.bin.o', output_dir + '/ulp_main.bin.bin.o');
 								// remove embed_bin directory
