@@ -1,3 +1,8 @@
+// bright pink: #ff69b4
+// hot pink: #ff1493
+// magenta: #ff00ff
+const LED_TEST_BLOCK_COLOR = '#ff00ff';
+
 /*Blockly.Blocks["led_test.start"] = {
 	init: function() {
 		this.appendDummyInput()
@@ -5,7 +10,7 @@
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(160);
+		this.setColour(LED_TEST_BLOCK_COLOR);
 		this.setTooltip(Blockly.Msg.LED_TEST_START_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LED_TEST_START_HELPURL);
 	}
@@ -18,7 +23,7 @@ Blockly.Blocks["led_test.stop"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(160);
+		this.setColour(LED_TEST_BLOCK_COLOR);
 		this.setTooltip(Blockly.Msg.LED_TEST_STOP_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LED_TEST_STOP_HELPURL);
 	}
@@ -30,8 +35,8 @@ Blockly.Blocks["led_test_all.start"] = {
 			.appendField(Blockly.Msg.LED_TEST_ALL_START_TITLE);
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
-		this.setNextStatement(true);
-		this.setColour(160);
+		this.setNextStatement(true);		
+		this.setColour(LED_TEST_BLOCK_COLOR);
 		this.setTooltip(Blockly.Msg.LED_TEST_ALL_START_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LED_TEST_ALL_START_HELPURL);
 	}
@@ -44,7 +49,7 @@ Blockly.Blocks["led_test_all.stop"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(160);
+		this.setColour(LED_TEST_BLOCK_COLOR);
 		this.setTooltip(Blockly.Msg.LED_TEST_ALL_STOP_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LED_TEST_ALL_STOP_HELPURL);
 	}
@@ -57,7 +62,7 @@ Blockly.Blocks["led_test_run.start"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(160);
+		this.setColour(LED_TEST_BLOCK_COLOR);
 		this.setTooltip(Blockly.Msg.LED_TEST_RUN_START_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LED_TEST_RUN_START_HELPURL);
 	}
@@ -70,7 +75,7 @@ Blockly.Blocks["led_test_run.stop"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-		this.setColour(160);
+		this.setColour(LED_TEST_BLOCK_COLOR);
 		this.setTooltip(Blockly.Msg.LED_TEST_RUN_STOP_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.LED_TEST_RUN_STOP_HELPURL);
 	}

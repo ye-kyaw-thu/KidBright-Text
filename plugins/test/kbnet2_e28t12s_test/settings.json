@@ -1,0 +1,13 @@
+{
+	"devman": {
+		"devices": {
+			"ports": {
+				"disabled": [
+					"in1",
+					"out1",
+					"usbsw"
+				]
+			}
+		}
+	}
+}

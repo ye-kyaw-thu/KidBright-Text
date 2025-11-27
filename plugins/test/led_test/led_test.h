@@ -8,13 +8,14 @@
 class LED_TEST : public Device {
 	private:
 		enum {
-			s_detect, s_blink
+			s_detect, s_blink, s_standby
 		} state;
 		int blink_status;
 		bool blink_flag;
 		bool blink_all_flag;
 		bool blink_run_flag;
 		int blink_run_cnt;
+		bool standby_flag;
 
 	public:
 		TickType_t tickcnt;
@@ -29,6 +30,8 @@ class LED_TEST : public Device {
 		bool prop_attr(int index, char *attr);
 		bool prop_read(int index, char *value);
 		bool prop_write(int index, char *value);
+		void standby_enable(void) override;
+		bool standby_ready(void) override;
 		// method
 		void start(void);
 		void stop(void);

@@ -1,3 +1,8 @@
+// bright pink: #ff69b4
+// hot pink: #ff1493
+// magenta: #ff00ff
+const UART_TEST_BLOCK_COLOR = '#ff00ff';
+
 Blockly.Blocks["uartchk.check"] = {
 	init: function () {
 		this.appendDummyInput()
@@ -35,7 +40,7 @@ Blockly.Blocks["uartchk.check"] = {
 		this.setInputsInline(true);
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
-		this.setColour(58);
+		this.setColour(UART_TEST_BLOCK_COLOR);
 		this.setTooltip(Blockly.Msg.UARTCHK_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.UARTCHK_HELPURL);
 	}
