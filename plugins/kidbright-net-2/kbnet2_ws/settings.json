@@ -1,0 +1,11 @@
+{
+	"devman": {
+		"devices": {
+			"ports": {
+				"disabled": [
+					"in3"
+				]
+			}
+		}
+	}
+}

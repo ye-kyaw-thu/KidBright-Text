@@ -1,0 +1,26 @@
+Blockly.Msg.KBNET2_E28T12S_SEND_TITLE = "E28-2G4T12S Send Data";
+Blockly.Msg.KBNET2_E28T12S_SEND_TOOLTIP = "E28-2G4T12S Send Data";
+Blockly.Msg.KBNET2_E28T12S_SEND_HELPURL = "";
+
+Blockly.Msg.KBNET2_E28T12S_APPSKEY = "Application Key";
+Blockly.Msg.KBNET2_E28T12S_NWKSKEY = "Network Key    ";
+Blockly.Msg.KBNET2_E28T12S_APPSKEY_TOOLTIP = "Enter Application Key";
+Blockly.Msg.KBNET2_E28T12S_APPSKEY_HELPURL = "";
+Blockly.Msg.KBNET2_E28T12S_NWKSKEY_TOOLTIP = "Enter Network Key";
+Blockly.Msg.KBNET2_E28T12S_NWKSKEY_HELPURL = "";
+
+Blockly.Msg.KBNET2_E28T12S_TEMPERATURE = "Temperature";
+Blockly.Msg.KBNET2_E28T12S_HUMIDITY = "Humidity";
+Blockly.Msg.KBNET2_E28T12S_WIND_SPEED = "Wind Speed";
+Blockly.Msg.KBNET2_E28T12S_WIND_DIRECTION = "Wind Direction";
+Blockly.Msg.KBNET2_E28T12S_RAIN_VOLUME = "Rain Volume";
+Blockly.Msg.KBNET2_E28T12S_PM25 = "PM2.5";
+Blockly.Msg.KBNET2_E28T12S_PM10 = "PM10";
+
+Blockly.Msg.KBNET2_E28T12S_TXPOWER = "TX Power         ";
+Blockly.Msg.KBNET2_E28T12S_DBM = "dBm";
+Blockly.Msg.KBNET2_E28T12S_FREQUENCY = "Frequency        ";
+
+Blockly.Msg.KBNET2_E28T12S_IS_ERROR_TITLE = "E28-2G4T12S Error";
+Blockly.Msg.KBNET2_E28T12S_IS_ERROR_TOOLTIP = "Check E28-2G4T12S Error";
+Blockly.Msg.KBNET2_E28T12S_IS_ERROR_HELPURL = "";

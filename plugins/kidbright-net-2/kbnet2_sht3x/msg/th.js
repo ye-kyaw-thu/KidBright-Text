@@ -1,0 +1,11 @@
+Blockly.Msg.KBNET2_SHT3X_GET_TEMPERATURE_TITLE = "อุณหภูมิ SHT3X";
+Blockly.Msg.KBNET2_SHT3X_GET_TEMPERATURE_TOOLTIP = "อ่านค่าอุณหภูมิ SHT3X";
+Blockly.Msg.KBNET2_SHT3X_GET_TEMPERATURE_HELPURL = "";
+
+Blockly.Msg.KBNET2_SHT3X_GET_HUMIDITY_TITLE = "ความชื้น SHT3X";
+Blockly.Msg.KBNET2_SHT3X_GET_HUMIDITY_TOOLTIP = "อ่านค่าความชื้น SHT3X";
+Blockly.Msg.KBNET2_SHT3X_GET_HUMIDITY_HELPURL = "";
+
+Blockly.Msg.KBNET2_SHT3X_IS_ERROR_TITLE = "การทำงานผิดพลาด SHT3X";
+Blockly.Msg.KBNET2_SHT3X_IS_ERROR_TOOLTIP = "SHT3X ทำงานผิดพลาด (ไม่พบเซ็นเซอร์)";
+Blockly.Msg.KBNET2_SHT3X_IS_ERROR_HELPURL = "";
