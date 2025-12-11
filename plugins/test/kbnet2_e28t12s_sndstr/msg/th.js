@@ -1,0 +1,11 @@
+Blockly.Msg.KBNET2_E28T12S_SNDSTR_SEND_TITLE = "E28-2G4T12S ส่งข้อมูล";
+Blockly.Msg.KBNET2_E28T12S_SNDSTR_SEND_TOOLTIP = "E28-2G4T12S ส่งข้อมูล";
+Blockly.Msg.KBNET2_E28T12S_SNDSTR_SEND_HELPURL = "";
+
+Blockly.Msg.KBNET2_E28T12S_SNDSTR_MSG = "แมสเสส      ";
+Blockly.Msg.KBNET2_E28T12S_SNDSTR_MSG_TOOLTIP = "ป้อนแมสเสส";
+Blockly.Msg.KBNET2_E28T12S_SNDSTR_MSG_HELPURL = "";
+
+Blockly.Msg.KBNET2_E28T12S_SNDSTR_TXPOWER = "กำลังส่ง            ";
+Blockly.Msg.KBNET2_E28T12S_SNDSTR_DBM = "dBm";
+Blockly.Msg.KBNET2_E28T12S_SNDSTR_FREQUENCY = "ความถี่              ";

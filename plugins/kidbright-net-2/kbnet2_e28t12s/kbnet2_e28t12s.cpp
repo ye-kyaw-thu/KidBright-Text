@@ -34,8 +34,8 @@ extern MCP7940N mcp7940n;
 
 #define E28_POWER_DEFAULT		12
 // channel frequency = 2400 + (CHAN * 1MHz)
-#define E28_FREQ_START			77	// 2477 MHz
-#define E28_FREQ_STOP			96	// 2496 MHz
+#define E28_FREQ_START			75	// 2475 MHz
+#define E28_FREQ_STOP			82	// 2482 MHz
 #define E28_FREQ_DEFAULT		82	// 2482 MHz
 
 const char *E28_SPED_76[] = {
