@@ -568,7 +568,7 @@ KBNET2_E28T12S_TEST::KBNET2_E28T12S_TEST(void) {
 	
 	// set frequency #1, #2
 	rf_freq_1 = 82;
-	rf_freq_2 = 91;
+	rf_freq_2 = 80;
 	// set current frequency
 	curr_freq = rf_freq_1;
 
