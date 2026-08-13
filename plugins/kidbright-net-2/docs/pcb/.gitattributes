@@ -1,0 +1,42 @@
+*.gbr  -text
+*.GBR  -text
+
+*.ger  -text
+*.GER  -text
+
+*.gtl  -text
+*.GTL  -text
+
+*.gbl  -text
+*.GBL  -text
+
+*.gto  -text
+*.GTO  -text
+
+*.gbo  -text
+*.GBO  -text
+
+*.gts  -text
+*.GTS  -text
+
+*.gbs  -text
+*.GBS  -text
+
+*.gtp  -text
+*.GTP  -text
+
+*.gbp  -text
+*.GBP  -text
+
+*.gko  -text
+*.GKO  -text
+
+*.drl  -text
+*.DRL  -text
+
+*.xln  -text
+*.XLN  -text
+
+*.txt  -text
+*.TXT  -text
+
