@@ -1,0 +1,15 @@
+# KBT Core — write and read the digital state of OUT2.
+# Connect a suitable low-voltage output device and check the board pin limits.
+io.output(2).write(false)
+display.scroll("OUT2 OFF")
+display.wait_ready()
+
+forever:
+    buttons.one.wait_pressed()
+    io.output(2).write(true)
+    status = io.output(2).read()
+    display.scroll(status)
+    display.wait_ready()
+
+    buttons.one.wait_released()
+    io.output(2).write(false)

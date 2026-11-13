@@ -1,0 +1,21 @@
+# Interactive Core — cover the light sensor or shine a torch on it.
+# DARK is <= 30, BRIGHT is >= 70, and the middle band is NORMAL.
+# A zone variable displays a message only when the light enters a new band.
+zone = -1
+forever:
+    light = sensors.light_percent()
+
+    if light >= 70 and zone != 2:
+        display.scroll("BRIGHT")
+        display.wait_ready()
+        zone = 2
+    elif light <= 30 and zone != 0:
+        display.scroll("DARK")
+        display.wait_ready()
+        zone = 0
+    elif light > 30 and light < 70 and zone != 1:
+        display.scroll("NORMAL")
+        display.wait_ready()
+        zone = 1
+
+    wait_seconds(0.25)

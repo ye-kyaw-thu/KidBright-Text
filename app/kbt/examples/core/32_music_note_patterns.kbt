@@ -1,0 +1,13 @@
+# KBT Core — create a short repeating melody with rests.
+# The volume is a percentage from 0 to 100.
+music.set_volume(45)
+
+forever:
+    music.play("C4", "quarter")
+    music.play("E4", "quarter")
+    music.play("G4", "quarter")
+    music.rest("eighth")
+    music.play("G4", "eighth")
+    music.play("E4", "eighth")
+    music.play("C4", "half")
+    wait_seconds(0.5)

@@ -1,3 +1,8 @@
+/*
+ * KBT-MODIFICATION-NOTICE: Modified by Ye Kyaw Thu for KidBright Text v0.4.0 on 2026-11-13. Original upstream notices are retained.
+ * This file adapts upstream KidBright IDE code.
+ * Original upstream copyright and attribution notices are retained.
+ */
 'use strict';
 
 goog.require('Blockly.JavaScript');
@@ -231,7 +236,7 @@ Blockly.JavaScript['logic_led16x8_scroll_ready'] = function(block) {
 }
 
 Blockly.JavaScript['logic_sw1_pressed'] = function(block) {
-	return ['get_B1stateClicked() || button12.is_sw1_pressed()', Blockly.JavaScript.ORDER_ATOMIC];
+	return ['(get_B1stateClicked() || button12.is_sw1_pressed())', Blockly.JavaScript.ORDER_ATOMIC];
 }
 
 Blockly.JavaScript['logic_sw1_released'] = function(block) {

@@ -1,0 +1,15 @@
+# KBT Core — use Switch 2 wait blocks and state expressions.
+# Press Switch 2 to start; the loop runs while the button remains pressed.
+buttons.two.wait_pressed()
+display.scroll("SW2 PRESSED")
+display.wait_ready()
+
+while buttons.two.is_pressed():
+    display.show_2chars(2)
+    wait_seconds(0.05)
+
+if buttons.two.is_released():
+    display.scroll("SW2 RELEASED")
+    display.wait_ready()
+
+buttons.two.wait_released()

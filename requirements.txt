@@ -1,0 +1,7 @@
+# KBT compiler runtime requirements:
+# - Python 3.10 or newer
+# - The compiler currently uses Python standard-library modules only.
+# No pip packages are required for KBT syntax/semantic checks or Blockly XML generation.
+#
+# For hardware flashing with the upstream esptool.py script, see:
+#   requirements-hardware.txt

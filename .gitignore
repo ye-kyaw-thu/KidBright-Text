@@ -1,9 +1,47 @@
-.DS_Store
-node_modules
-xtensa-esp32-elf
-esptool
-esptool.exe
-app/public/images/qrcode.png
-esp32/build/
+# KBT-MODIFICATION-NOTICE: Modified by Ye Kyaw Thu for KidBright Text v0.4.0 on 2026-11-13. Original upstream notices are retained.
+# Node dependencies (installed locally, never committed)
+node_modules/
+**/node_modules/
+
+# Runtime user data and generated build output
 data/
-temp
+temp/
+tmp/
+/esp32/build/
+/kbt-demo-output/
+dist/
+/release/
+coverage/
+
+# Python caches / virtual environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Local logs and OS/editor files
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Local backup folders / editor backup files
+kbt-*-backup-*/
+kbt-*-backup-*
+*.bak
+*.bak-*
+*.node24-backup
+
+# Large generated binaries and downloaded compiler toolchains.
+# Keep source/configuration in esp32/ and archive/ under version control.
+/xtensa-esp32-elf/
+/esp32ulp-elf-binutils/
+/esptool.exe
+/esptool
+# Keep esptool.py tracked when the upstream source file is restored.
+
+# Machine-specific QR code containing a hardware MAC address.
+/app/public/images/qrcode.png

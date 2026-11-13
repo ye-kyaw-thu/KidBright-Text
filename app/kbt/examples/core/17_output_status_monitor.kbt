@@ -1,0 +1,12 @@
+# KBT Core — toggle OUT1 and show its resulting state on the LED matrix.
+# Connect a compatible output device to OUT1 to observe the electrical output.
+forever:
+    if buttons.one.is_pressed():
+        io.output(1).toggle()
+        if io.output(1).read() == 1:
+            display.scroll("OUT1 ON")
+        else:
+            display.scroll("OUT1 OFF")
+        display.wait_ready()
+        buttons.one.wait_released()
+    wait_seconds(0.05)

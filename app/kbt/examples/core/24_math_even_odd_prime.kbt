@@ -1,0 +1,20 @@
+# KBT Core — test whether an integer is even, odd, and prime.
+candidate = 17
+
+if is_prime(candidate):
+    display.scroll("PRIME")
+    display.wait_ready()
+else:
+    display.scroll("NOT PRIME")
+    display.wait_ready()
+
+if is_odd(candidate):
+    display.scroll("ODD")
+    display.wait_ready()
+
+if is_even(candidate):
+    display.scroll("EVEN")
+    display.wait_ready()
+else:
+    display.scroll("NOT EVEN")
+    display.wait_ready()

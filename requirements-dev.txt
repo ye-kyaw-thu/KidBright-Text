@@ -1,0 +1,2 @@
+# KBT regression tests use Python's unittest and standard library.
+# No additional Python development packages are required.

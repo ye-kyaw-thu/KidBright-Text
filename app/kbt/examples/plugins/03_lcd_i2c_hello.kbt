@@ -1,0 +1,5 @@
+# KBT Plugins — write a greeting to an LCD I2C 20x4 module.
+# Connect a compatible LCD module to I2C channel 1, address 0x27.
+plugins.display.lcd_i2c_20x4.clear(channel=0, address=39)
+plugins.display.lcd_i2c_20x4.backlight(status=true, channel=0, address=39)
+plugins.display.lcd_i2c_20x4.print(column=0, row=0, value="KBT READY", channel=0, address=39)

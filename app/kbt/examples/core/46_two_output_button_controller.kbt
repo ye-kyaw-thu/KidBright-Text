@@ -1,0 +1,17 @@
+# Interactive Core — Switch 1 toggles OUT1; Switch 2 toggles OUT2.
+# Connect suitable low-voltage devices and respect KidBright port limits.
+# The display shows the digital state returned by each output port.
+display.scroll("SW1 OUT1 SW2 OUT2")
+display.wait_ready()
+forever:
+    if buttons.one.is_pressed():
+        io.output(1).toggle()
+        display.scroll(io.output(1).read())
+        display.wait_ready()
+        buttons.one.wait_released()
+    elif buttons.two.is_pressed():
+        io.output(2).toggle()
+        display.scroll(io.output(2).read())
+        display.wait_ready()
+        buttons.two.wait_released()
+    wait_seconds(0.05)

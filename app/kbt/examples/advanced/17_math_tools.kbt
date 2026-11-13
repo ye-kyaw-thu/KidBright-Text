@@ -1,0 +1,17 @@
+# KBT Advanced — rounding, number properties, and angle conversion.
+value = 12.75
+rounded = round(value)
+upward = ceil(value)
+downward = floor(value)
+angle_radians = radians(180)
+angle_degrees = degrees(angle_radians)
+
+if is_even(rounded):
+    display.scroll("EVEN")
+    display.wait_ready()
+else:
+    display.scroll("ODD")
+    display.wait_ready()
+
+display.scroll(angle_degrees)
+display.wait_ready()

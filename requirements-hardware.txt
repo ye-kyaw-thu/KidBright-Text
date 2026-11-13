@@ -1,0 +1,2 @@
+# Optional Python dependency used by the legacy esptool.py hardware-flashing path.
+pyserial>=3.5,<4.0

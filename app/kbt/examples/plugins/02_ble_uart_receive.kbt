@@ -1,0 +1,5 @@
+# KBT Plugins — display incoming BLE UART text.
+# Requires a paired BLE UART peer and the Bluetooth BLE UART plugin.
+on plugins.bluetooth.ble_uart.data:
+    display.scroll(plugins.bluetooth.ble_uart.read_text())
+    display.wait_ready()

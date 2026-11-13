@@ -1,0 +1,10 @@
+# KBT Core — natural log, base-10 log, exponential, and powers of ten.
+# Keep the arguments positive for logarithm functions.
+natural_log = log(10)
+common_log = log10(100)
+exponential = exp(1)
+power_of_ten = pow10(2)
+
+result = natural_log + common_log + exponential + power_of_ten
+display.scroll(result)
+display.wait_ready()

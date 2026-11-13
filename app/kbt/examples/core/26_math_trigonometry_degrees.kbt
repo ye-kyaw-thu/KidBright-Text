@@ -1,0 +1,12 @@
+# KBT Core — trigonometric and inverse-trigonometric functions use degrees.
+sine_value = sin_deg(30)
+cosine_value = cos_deg(60)
+tangent_value = tan_deg(45)
+display.scroll(sine_value + cosine_value + tangent_value)
+display.wait_ready()
+
+angle_a = asin_deg(0.5)
+angle_b = acos_deg(0.5)
+angle_c = atan_deg(1)
+display.scroll(angle_a + angle_b + angle_c)
+display.wait_ready()

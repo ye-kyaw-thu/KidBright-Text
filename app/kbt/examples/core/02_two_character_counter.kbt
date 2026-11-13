@@ -1,0 +1,7 @@
+# KBT Core — display an incrementing value.
+count = 0
+
+forever:
+    display.show_2chars(count)
+    wait_seconds(1.0)
+    count = count + 1

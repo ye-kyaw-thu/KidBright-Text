@@ -1,0 +1,9 @@
+# KBT Core — poll both logical states of Switch 1.
+# The program shows a message while the switch is pressed and a marker when released.
+forever:
+    if buttons.one.is_pressed():
+        display.scroll_if_idle("SW1 DOWN")
+    elif buttons.one.is_released():
+        display.show_2chars(0)
+
+    wait_seconds(0.1)

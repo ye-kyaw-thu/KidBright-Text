@@ -1,0 +1,17 @@
+# KBT Core — read the two analog input ports one at a time.
+# Connect a compatible sensor/divider to the selected input and board GND.
+# An unconnected analog input may float; its reading is not guaranteed to be zero.
+forever:
+    input_one = io.input(1).read()
+    input_two = io.input(2).read()
+
+    display.scroll("IN1")
+    display.wait_ready()
+    display.scroll(input_one)
+    display.wait_ready()
+
+    display.scroll("IN2")
+    display.wait_ready()
+    display.scroll(input_two)
+    display.wait_ready()
+    wait_seconds(0.5)

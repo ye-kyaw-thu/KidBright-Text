@@ -1,0 +1,7 @@
+# KBT Plugins — read an external DS18B20 temperature sensor via DS2482 I2C bridge.
+# Confirm the I2C channel and bridge address for your hardware.
+forever:
+    external_temperature = plugins.science_lab.ds18b20_i2c.get_temperature(channel=0, address=24)
+    display.scroll(external_temperature)
+    display.wait_ready()
+    wait_seconds(1.0)

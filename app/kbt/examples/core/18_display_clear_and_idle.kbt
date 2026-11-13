@@ -1,0 +1,12 @@
+# KBT Core — check display availability before requesting a new message.
+# is_idle() is checked BEFORE scroll_if_idle(); after a scroll starts, the display is busy.
+display.clear()
+
+if display.is_idle():
+    display.scroll_if_idle("READY")
+else:
+    display.scroll("WAITING")
+    display.wait_ready()
+
+display.wait_ready()
+display.show_2chars(1)

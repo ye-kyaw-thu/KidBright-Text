@@ -1,0 +1,11 @@
+# KBT Advanced — string length, character access, substring, and comparison.
+# Text expressions are passed directly; mutable text variables are not supported.
+display.scroll(text.length("KIDBRIGHT"))
+display.wait_ready()
+display.scroll(text.char_at("KIDBRIGHT", 0))
+display.wait_ready()
+display.scroll(text.substring("KIDBRIGHT", 0, 4))
+display.wait_ready()
+if text.compare("KBT", "KBT"):
+    display.scroll("MATCH")
+    display.wait_ready()

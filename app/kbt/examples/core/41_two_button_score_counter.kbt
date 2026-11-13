@@ -1,0 +1,18 @@
+# Interactive Core — Switch 1 adds one; Switch 2 subtracts one.
+# The score is prevented from going below zero.
+score = 0
+display.scroll("SW1 ADD SW2 SUB")
+display.wait_ready()
+forever:
+    if buttons.one.is_pressed():
+        score = score + 1
+        display.scroll(score)
+        display.wait_ready()
+        buttons.one.wait_released()
+    elif buttons.two.is_pressed():
+        if score > 0:
+            score = score - 1
+        display.scroll(score)
+        display.wait_ready()
+        buttons.two.wait_released()
+    wait_seconds(0.05)

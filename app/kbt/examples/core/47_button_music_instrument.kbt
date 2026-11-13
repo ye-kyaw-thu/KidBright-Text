@@ -1,0 +1,12 @@
+# Interactive Core — play two different notes with the two switches.
+# Switch 1 plays C5; Switch 2 plays G5.
+display.scroll("SW1 C5 SW2 G5")
+display.wait_ready()
+forever:
+    if buttons.one.is_pressed():
+        music.play("C5", "quarter")
+        buttons.one.wait_released()
+    elif buttons.two.is_pressed():
+        music.play("G5", "quarter")
+        buttons.two.wait_released()
+    wait_seconds(0.05)

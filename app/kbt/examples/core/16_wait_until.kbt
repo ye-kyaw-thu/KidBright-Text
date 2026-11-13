@@ -1,0 +1,7 @@
+# KBT Core — repeat the wait until Switch 2 is pressed.
+display.scroll("PRESS SWITCH 2")
+display.wait_ready()
+until buttons.two.is_pressed():
+    wait_seconds(0.05)
+display.scroll("DONE")
+display.wait_ready()

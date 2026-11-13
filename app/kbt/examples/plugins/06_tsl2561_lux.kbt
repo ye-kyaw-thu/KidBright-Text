@@ -1,0 +1,7 @@
+# KBT Plugins — read illuminance using a TSL2561 sensor.
+# Connect the sensor at I2C channel 0, address 0x39 (57).
+forever:
+    lux = plugins.weather_sensors.tsl2561.get_illuminance(channel=0, address=57)
+    display.scroll(lux)
+    display.wait_ready()
+    wait_seconds(1.0)

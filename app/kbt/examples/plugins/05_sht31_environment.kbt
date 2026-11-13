@@ -1,0 +1,10 @@
+# KBT Plugins — read temperature and humidity from an SHT31 sensor.
+# Connect SHT31 at I2C channel 0, address 0x44 (68).
+forever:
+    external_temperature = plugins.weather_sensors.sht31.get_temperature(channel=0, address=68)
+    humidity = plugins.weather_sensors.sht31.get_humidity(channel=0, address=68)
+    display.scroll(external_temperature)
+    display.wait_ready()
+    display.scroll(humidity)
+    display.wait_ready()
+    wait_seconds(2.0)

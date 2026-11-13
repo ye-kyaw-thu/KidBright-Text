@@ -1,0 +1,18 @@
+# Interactive Core — compare rectangle and triangle areas with the switches.
+# Switch 1 displays rectangle area; Switch 2 displays triangle area.
+base = 12
+height = 7
+display.scroll("SW1 RECT SW2 TRI")
+display.wait_ready()
+forever:
+    if buttons.one.is_pressed():
+        area = base * height
+        display.scroll(area)
+        display.wait_ready()
+        buttons.one.wait_released()
+    elif buttons.two.is_pressed():
+        area = base * height / 2
+        display.scroll(area)
+        display.wait_ready()
+        buttons.two.wait_released()
+    wait_seconds(0.05)

@@ -1,0 +1,9 @@
+# KBT Core — read the current speaker volume and change it safely.
+current_volume = music.get_volume()
+display.scroll(current_volume)
+display.wait_ready()
+
+music.set_volume(35)
+music.play("G5", "quarter")
+music.rest("eighth")
+music.play("C5", "half")

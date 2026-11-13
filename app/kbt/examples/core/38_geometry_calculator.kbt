@@ -1,0 +1,15 @@
+# KBT Core — compare rectangle and triangle area calculations.
+base = 12
+height = 7
+rectangle_area = base * height
+triangle_area = base * height / 2
+perimeter = 2 * (base + height)
+
+if rectangle_area > triangle_area:
+    display.scroll(rectangle_area)
+    display.wait_ready()
+
+display.scroll(triangle_area)
+display.wait_ready()
+display.scroll(perimeter)
+display.wait_ready()

@@ -1,0 +1,12 @@
+# Interactive Core — Switch 1 starts a five-second countdown.
+# The two-character display shows the remaining seconds.
+display.scroll("PRESS SW1")
+display.wait_ready()
+buttons.one.wait_pressed()
+seconds_left = 5
+while seconds_left > 0:
+    display.show_2chars(seconds_left)
+    wait_seconds(1.0)
+    seconds_left = seconds_left - 1
+display.scroll("TIME UP")
+display.wait_ready()

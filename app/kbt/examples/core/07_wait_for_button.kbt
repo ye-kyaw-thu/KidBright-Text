@@ -1,0 +1,8 @@
+# KBT Core — block until Switch 1 is pressed, then released.
+while true:
+    buttons.one.wait_pressed()
+    display.scroll("PRESSED")
+    display.wait_ready()
+    buttons.one.wait_released()
+    display.scroll("RELEASED")
+    display.wait_ready()

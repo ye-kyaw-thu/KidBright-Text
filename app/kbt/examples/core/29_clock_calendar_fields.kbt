@@ -1,0 +1,15 @@
+# KBT Core — read date, date-time, and individual calendar fields.
+# Set the KidBright real-time clock before running this lesson.
+display.scroll(clock.date())
+display.wait_ready()
+display.scroll(clock.datetime())
+display.wait_ready()
+
+display.scroll(clock.year)
+display.wait_ready()
+display.scroll(clock.month)
+display.wait_ready()
+display.scroll(clock.day)
+display.wait_ready()
+display.scroll(clock.day_of_week)
+display.wait_ready()

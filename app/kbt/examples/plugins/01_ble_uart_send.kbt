@@ -1,0 +1,3 @@
+# KBT Plugins — send a text message over the BLE UART plugin.
+# Requires the Bluetooth BLE UART plugin to be installed and enabled.
+plugins.bluetooth.ble_uart.send("HELLO FROM KBT")

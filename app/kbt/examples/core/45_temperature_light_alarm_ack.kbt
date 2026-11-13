@@ -1,0 +1,25 @@
+# Interactive Core — combined sensor alarm with Switch 2 acknowledgement.
+# HOT AND BRIGHT requires BOTH conditions. Switch 2 acknowledges the message.
+# The alarm is shown again on the next loop until acknowledged.
+acknowledged = 0
+forever:
+    temperature = sensors.temperature_c()
+    light = sensors.light_percent()
+
+    if temperature >= 30 and light >= 60:
+        if acknowledged == 0:
+            display.scroll("HOT AND BRIGHT")
+            display.wait_ready()
+        if buttons.two.is_pressed():
+            acknowledged = 1
+            display.scroll("ACKNOWLEDGED")
+            display.wait_ready()
+            buttons.two.wait_released()
+    elif temperature < 20 or light < 25:
+        acknowledged = 0
+        display.scroll_if_idle("COOL OR DARK")
+    else:
+        acknowledged = 0
+        display.show_2chars(temperature)
+
+    wait_seconds(0.25)

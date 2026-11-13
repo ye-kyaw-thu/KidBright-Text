@@ -1,0 +1,22 @@
+# KBT Core — combine temperature, light and Switch 1 conditions.
+# HOT AND BRIGHT: both thresholds must be reached (AND).
+# COOL OR DARK: either low-temperature OR low-light condition is enough (OR).
+# When Switch 1 is released, show the live temperature; while pressed, show CHECK.
+# Adjust 30/60 and 20/25 to explore the decision boundaries.
+forever:
+    temperature = sensors.temperature_c()
+    light = sensors.light_percent()
+
+    if temperature >= 30 and light >= 60:
+        display.scroll("HOT AND BRIGHT")
+        display.wait_ready()
+    elif temperature < 20 or light < 25:
+        display.scroll("COOL OR DARK")
+        display.wait_ready()
+    elif buttons.one.is_released():
+        display.show_2chars(temperature)
+    else:
+        display.scroll("CHECK")
+        display.wait_ready()
+
+    wait_seconds(1.0)

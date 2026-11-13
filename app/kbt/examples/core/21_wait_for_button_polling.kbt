@@ -1,0 +1,12 @@
+# KBT Core — wait for Switch 1 by polling a boolean sensor expression.
+# This demonstrates the word operator 'not' and a non-blocking display request.
+display.scroll("PRESS SWITCH 1")
+display.wait_ready()
+
+while not buttons.one.is_pressed():
+    display.scroll_if_idle("WAITING")
+    wait_seconds(0.1)
+
+display.clear()
+display.scroll("DETECTED")
+display.wait_ready()

@@ -1,0 +1,9 @@
+# KBT Core — convert between degrees and radians.
+angle_degrees = 180
+angle_radians = radians(angle_degrees)
+angle_returned = degrees(angle_radians)
+
+display.scroll(angle_radians)
+display.wait_ready()
+display.scroll(angle_returned)
+display.wait_ready()

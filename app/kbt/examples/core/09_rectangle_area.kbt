@@ -1,0 +1,7 @@
+# KBT Core — variables and arithmetic.
+width = 10
+length = 30
+area = width * length
+
+display.scroll(area)
+display.wait_ready()

@@ -1,0 +1,12 @@
+# KBT Core — check the onboard LM73 temperature.
+forever:
+    temperature = sensors.temperature_c()
+
+    if temperature > 30:
+        display.scroll("HOT")
+        display.wait_ready()
+        music.play("C5", "quarter")
+    else:
+        display.show_2chars("OK")
+
+    wait_seconds(1.0)

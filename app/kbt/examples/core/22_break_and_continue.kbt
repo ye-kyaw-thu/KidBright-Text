@@ -1,0 +1,18 @@
+# KBT Core — skip even values and stop a loop at the final odd value.
+# 'continue' skips the remaining body; 'break' exits the loop immediately.
+count = 0
+
+while count < 10:
+    count = count + 1
+
+    if count % 2 == 0:
+        continue
+
+    display.show_2chars(count)
+    wait_seconds(0.2)
+
+    if count >= 9:
+        break
+
+display.scroll("DONE")
+display.wait_ready()

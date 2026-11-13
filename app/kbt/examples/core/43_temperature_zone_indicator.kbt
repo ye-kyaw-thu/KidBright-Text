@@ -1,0 +1,21 @@
+# Interactive Core — classify the temperature into three teaching zones.
+# Change the thresholds to explore COOL, COMFORT and HOT behavior.
+# The zone variable prevents the display from repeating the same message.
+zone = -1
+forever:
+    temperature = sensors.temperature_c()
+
+    if temperature >= 30 and zone != 2:
+        display.scroll("HOT")
+        display.wait_ready()
+        zone = 2
+    elif temperature <= 20 and zone != 0:
+        display.scroll("COOL")
+        display.wait_ready()
+        zone = 0
+    elif temperature > 20 and temperature < 30 and zone != 1:
+        display.scroll("COMFORT")
+        display.wait_ready()
+        zone = 1
+
+    wait_seconds(0.5)

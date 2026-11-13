@@ -1,0 +1,11 @@
+KidBright Text v0.4.0
+Copyright 2026 Ye Kyaw Thu
+
+KidBright Text-specific contributions in this repository are intended to be
+distributed under the Apache License, Version 2.0, as stated in LICENSE.
+
+This repository is based on and modifies the upstream KidBright IDE project.
+Upstream copyright and attribution notices are retained in the source files.
+See THIRD_PARTY_NOTICES.md and docs/LICENSING.md for scope and third-party
+component notes. The LICENSE file does not relicense third-party dependencies,
+hardware toolchains, binary assets, or datasets that carry separate terms.

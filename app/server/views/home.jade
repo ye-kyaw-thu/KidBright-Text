@@ -1,14 +1,27 @@
+//- KBT-MODIFICATION-NOTICE: Modified by Ye Kyaw Thu for KidBright Text v0.4.0 on 2026-11-13. Original upstream notices are retained.
 extends layout
+
+- var supportedBlocklyLanguages = ['en', 'th', 'my', 'km', 'lo', 'vi'];
+- var activeBlocklyLanguage = supportedBlocklyLanguages.indexOf(ulang) >= 0 ? ulang : 'en';
 
 block content
 	nav.navbar-default(style="padding-left:0px;").header
 		.container-fluid(style="margin:0vh 1vw 0vh 1vw;")
 			ul.nav.navbar-nav
 				img(src="/images/SVG/Logo.svg", height="60").kb_logo_top
+				li.kbt-mode-buttons
+					button#kbt-mode-visual.kbt-mode-button.active(type='button') Visual Programming
+				li.kbt-mode-buttons
+					button#kbt-mode-text.kbt-mode-button(type='button') KidBright Text
 			ul.nav.navbar-nav.navbar-right
-				li
-					.divtog
-						input#toggle-lang.toggle(type='checkbox' checked=false)
+				li#kbt-language-picker(style="padding: 8px 10px 0 0")
+					select#language-select.form-control(aria-label="Blockly language", data-selected-language=activeBlocklyLanguage, style="min-width: 145px")
+						option(value="en", selected=activeBlocklyLanguage == 'en') English
+						option(value="th", selected=activeBlocklyLanguage == 'th') ไทย
+						option(value="my", selected=activeBlocklyLanguage == 'my') မြန်မာ
+						option(value="km", selected=activeBlocklyLanguage == 'km') ខ្មែរ
+						option(value="lo", selected=activeBlocklyLanguage == 'lo') ລາວ
+						option(value="vi", selected=activeBlocklyLanguage == 'vi') Tiếng Việt
 				//- li
 				//- 	.lang-container
 				//- 		.lang-text
@@ -54,11 +67,12 @@ block content
 
 
 
-	// blockly category language
-	- if (ulang == 'th')
-		include blockly-th
-	- else
-		include blockly
+	// Blockly toolbox category labels follow the selected Blockly language.
+	- var categoryLabels = { en: {basic:'Basic', math:'Math', logic:'Logic', loops:'Loop', wait:'Wait', music:'Music', sensor:'Sensor', clock:'Clock', io:'I/O', advance:'Advance', variables:'Variables', text:'Text', list:'List', iot:'KB IOT', gauge:'Gauge', graph:'Graph', messaging:'Messaging', netpie:'NETPIE', message:'Message', shadow:'Shadow', connection:'Connection'}, th: {basic:'พื้นฐาน', math:'คณิตศาสตร์', logic:'ตรรกะ', loops:'วนรอบ', wait:'รอ', music:'เสียงดนตรี', sensor:'เซนเซอร์', clock:'เวลา', io:'ไอโอ', advance:'ขั้นสูง', variables:'ตัวแปร', text:'ข้อความ', list:'รายการ', iot:'เคบี ไอโอที', gauge:'มาตรวัด', graph:'กราฟเส้น', messaging:'ข้อความ', netpie:'เน็ตพาย', message:'ข้อความ', shadow:'ชาโดว์', connection:'การเชื่อมต่อ'}, my: {basic:'အခြေခံ', math:'သင်္ချာ', logic:'ယုတ္တိဗေဒ', loops:'ထပ်ခါလုပ်ခြင်း', wait:'စောင့်ဆိုင်းရန်', music:'ဂီတ', sensor:'အာရုံခံကိရိယာ', clock:'နာရီ', io:'အဝင်/အထွက်', advance:'အဆင့်မြင့်', variables:'ကိန်းရှင်များ', text:'စာသား', list:'စာရင်း', iot:'KB IoT', gauge:'တိုင်းတာချက်', graph:'မျဉ်းဂရပ်', messaging:'စာတိုပေးပို့ခြင်း', netpie:'NETPIE', message:'စာတို', shadow:'Shadow', connection:'ချိတ်ဆက်မှု'}, km: {basic:'មូលដ្ឋាន', math:'គណិតវិទ្យា', logic:'តក្កវិជ្ជា', loops:'រង្វិលជុំ', wait:'រង់ចាំ', music:'តន្ត្រី', sensor:'ឧបករណ៍ចាប់សញ្ញា', clock:'នាឡិកា', io:'បញ្ចូល/បញ្ចេញ', advance:'កម្រិតខ្ពស់', variables:'អថេរ', text:'អត្ថបទ', list:'បញ្ជី', iot:'KB IoT', gauge:'រង្វាស់', graph:'ក្រាហ្វបន្ទាត់', messaging:'ការផ្ញើសារ', netpie:'NETPIE', message:'សារ', shadow:'ស្រមោល', connection:'ការតភ្ជាប់'}, lo: {basic:'ພື້ນຖານ', math:'ຄະນິດສາດ', logic:'ຕັກກະສາດ', loops:'ວົງຈອນ', wait:'ລໍຖ້າ', music:'ດົນຕີ', sensor:'ເຊັນເຊີ', clock:'ໂມງ', io:'ນຳເຂົ້າ/ສົ່ງອອກ', advance:'ຂັ້ນສູງ', variables:'ຕົວປ່ຽນ', text:'ຂໍ້ຄວາມ', list:'ລາຍການ', iot:'KB IoT', gauge:'ເຄື່ອງວັດ', graph:'ກຣາຟເສັ້ນ', messaging:'ການສົ່ງຂໍ້ຄວາມ', netpie:'NETPIE', message:'ຂໍ້ຄວາມ', shadow:'Shadow', connection:'ການເຊື່ອມຕໍ່'}, vi: {basic:'Cơ bản', math:'Toán học', logic:'Logic', loops:'Vòng lặp', wait:'Chờ', music:'Âm nhạc', sensor:'Cảm biến', clock:'Đồng hồ', io:'Vào/Ra', advance:'Nâng cao', variables:'Biến', text:'Văn bản', list:'Danh sách', iot:'KB IoT', gauge:'Đồng hồ đo', graph:'Biểu đồ đường', messaging:'Nhắn tin', netpie:'NETPIE', message:'Thông điệp', shadow:'Bóng thiết bị', connection:'Kết nối'} };
+	- var blocklyLocale = categoryLabels[activeBlocklyLanguage] || categoryLabels.en;
+	include blockly
+
+	include kbt-editor
 
 	include modals/alert
 	include modals/confirm
@@ -89,8 +103,11 @@ block scripts
 	//script(src='blockly/blockly_uncompressed.js')
 	script(src='blockly/blocks_compressed.js')
 	script(src='blockly/javascript_compressed.js')
-	// blockly blocks language
-	script(src='blockly/lang.js')
+	// Blockly locale catalog: /home?lang=xx validates and stores the root-path
+	// locale cookie before this HTML is parsed. Keep this parser-blocking script
+	// after Blockly core and before KidBright's custom block definitions. The
+	// server serves the cookie-selected catalog inline at this static URL.
+	script(src='/blockly/lang.js')
 	script(src='blockly/kidbright/blocks.js')
 	script(src='blockly/kidbright/blocks-iot.js')
 	script(src='blockly/kidbright/blocks-math.js')
@@ -109,4 +126,6 @@ block scripts
 	script(src='blockly/kidbright/generators-function.js')
 	script(src='plugins.js')
 	script(src='blockly/kidbright/app.js')
+	script(src='blockly/kidbright/kbt-blockly-adapter.js')
+	script(src='/js/kbt-editor.js')
 	srcipt(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/FileSaver.js")

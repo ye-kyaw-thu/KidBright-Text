@@ -1,0 +1,6 @@
+# KBT Core — toggle OUT1 when Switch 1 is pressed.
+forever:
+    if buttons.one.is_pressed():
+        io.output(1).toggle()
+        buttons.one.wait_released()
+    wait_seconds(0.05)

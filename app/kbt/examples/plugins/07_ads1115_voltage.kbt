@@ -1,0 +1,7 @@
+# KBT Plugins — read voltage from ADS1115 input AIN0.
+# Connect ADS1115 at I2C channel 0, address 0x48 (72).
+forever:
+    voltage = plugins.weather_sensors.ads1115.get_volt(channel=0, address=72, ain=0)
+    display.scroll(voltage)
+    display.wait_ready()
+    wait_seconds(1.0)

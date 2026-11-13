@@ -1,3 +1,8 @@
+/*
+ * KBT-MODIFICATION-NOTICE: Modified by Ye Kyaw Thu for KidBright Text v0.4.0 on 2026-11-13. Original upstream notices are retained.
+ * This file adapts upstream KidBright IDE code.
+ * Original upstream copyright and attribution notices are retained.
+ */
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
@@ -86,23 +91,39 @@ module.exports = function (app, Config, Log) {
 	});
 
 	app.get('/home', function (req, res) {
-		// render home
+		// The query locale is authoritative during a language switch. This avoids
+		// falling back to English if a browser does not retain the previous cookie.
+		var supportedLangs = ['en', 'th', 'my', 'km', 'lo', 'vi'];
+		var queryLang = req.query && req.query.lang ? String(req.query.lang) : '';
+		var cookieLang = req.cookies && req.cookies.lang ? String(req.cookies.lang) : '';
+		var requestedLang = queryLang || cookieLang || 'en';
+		if (supportedLangs.indexOf(requestedLang) === -1) requestedLang = 'en';
+		if (queryLang && supportedLangs.indexOf(queryLang) !== -1) {
+			res.cookie('lang', requestedLang, { path: '/', maxAge: 31536000000 });
+		}
+		res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
 		res.render('home', {
 			title: 'Control Panel',
 			//countries: CT,
 			//udata: req.session.user,
-			ulang: req.cookies.lang
+			ulang: requestedLang
 		});
 	});
 
 	app.get('/lang', function (req, res) {
-		if (req.query.set) {
-			res.cookie('lang', req.query.set, {
-				expires: new Date(253402300000000)
-			}).send('ok');
-		} else {
-			res.status(200).send(req.cookies.lang);
+		if (req.query && req.query.set) {
+			var supportedLangs = ['en', 'th', 'my', 'km', 'lo', 'vi'];
+			var requestedLang = String(req.query.set);
+			if (supportedLangs.indexOf(requestedLang) === -1) {
+				return res.status(400).send('Unsupported language');
+			}
+			res.cookie('lang', requestedLang, {
+				path: '/',
+				maxAge: 31536000000
+			});
+			return res.status(200).send('ok');
 		}
+		return res.status(200).send((req.cookies && req.cookies.lang) || 'en');
 	});
 
 	// web page language file
@@ -119,17 +140,28 @@ module.exports = function (app, Config, Log) {
 		});
 	});
 
-	// blockly language file
+	// Blockly language file. The /home route persists the validated selection in a
+	// root-path cookie. Use a static script URL because Jade 1.11 does not reliably
+	// share template locals with the inherited scripts block.
+	// Return executable JavaScript inline, not as a download attachment.
 	app.get('/blockly/lang.js', function (req, res) {
-		var lang_fn = 'en.js';
-		if (req.cookies.lang == 'th') {
-			lang_fn = 'th.js';
-		}
-		lang_fn = server_dir + '/languages/blockly/' + lang_fn;
-		res.download(lang_fn, function (err) {
+		res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+		res.setHeader('Vary', 'Cookie');
+		var supportedLangs = ['en', 'th', 'my', 'km', 'lo', 'vi'];
+		var queryLang = (req.query && req.query.lang) ? String(req.query.lang) : '';
+		var cookieLang = (req.cookies && req.cookies.lang) ? String(req.cookies.lang) : '';
+		var lang = supportedLangs.indexOf(queryLang) >= 0 ? queryLang :
+			(supportedLangs.indexOf(cookieLang) >= 0 ? cookieLang : 'en');
+		var lang_fn = server_dir + '/languages/blockly/' + lang + '.js';
+		if (!fs.existsSync(lang_fn)) lang_fn = server_dir + '/languages/blockly/en.js';
+		fs.readFile(lang_fn, 'utf8', function (err, source) {
 			if (err) {
-				res.status(404).send('Not Found');
+				console.error('Could not read Blockly locale ' + lang + ':', err);
+				return res.status(404).send('Not Found');
 			}
+			res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+			res.setHeader('X-Content-Type-Options', 'nosniff');
+			return res.status(200).send(source);
 		});
 	});
 
@@ -1374,11 +1406,9 @@ module.exports = function (app, Config, Log) {
 	function createPluginsJs(cats, index, req, res, cb) {
 		fs.readdir(ospath(plugins_dir + '/' + cats[index]), (err, drivers) => {	
 			if (!err) {
-				// default language
-				var lang = 'en';
-				if (is_not_null(req.cookies.lang)) {
-					lang = req.cookies.lang;
-				}
+				// Plugin message bundles currently ship English and Thai only.
+				// Keep the Blockly toolbox language independent and fall back to English here.
+				var lang = req.cookies.lang == 'th' ? 'th' : 'en';
 				// collect drivers
 				drivers.forEach(driver => {
 					// ignore documents directory as a plugin
@@ -1387,7 +1417,9 @@ module.exports = function (app, Config, Log) {
 						try {
 							// check directory
 							if (fs.lstatSync(dir).isDirectory(dir)) {
-								res.write(fs.readFileSync(dir + '/msg/' + lang + '.js'));
+								var messagePath = dir + '/msg/' + lang + '.js';
+								if (!fs.existsSync(messagePath)) messagePath = dir + '/msg/en.js';
+								res.write(fs.readFileSync(messagePath));
 								res.write(fs.readFileSync(dir + '/blocks.js'));
 								res.write(fs.readFileSync(dir + '/generators.js'));
 							}
@@ -1423,6 +1455,9 @@ module.exports = function (app, Config, Log) {
 			}
 		});
 	});
+
+	// KidBright Text API routes, before the final 404 handler.
+	require(__dirname + '/kbt-routes.js')(app);
 
 	app.get('*', function (req, res) {
 		res.render('404', {

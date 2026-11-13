@@ -1,3 +1,8 @@
+/*
+ * KBT-MODIFICATION-NOTICE: Modified by Ye Kyaw Thu for KidBright Text v0.4.0 on 2026-11-13. Original upstream notices are retained.
+ * This file adapts upstream KidBright IDE code.
+ * Original upstream copyright and attribution notices are retained.
+ */
 function getCookie(c_name) {
 	if (document.cookie.length > 0) {
 		c_start = document.cookie.indexOf(c_name + '=');
@@ -112,11 +117,201 @@ function renderToolbox(res) {
 	workspace.addChangeListener(handle_function);
 	workspace.addChangeListener(handle_kbnetpie);
 
-	var text = localStorage.getItem('KidBrightLastWorkspace');
-	if (text != null) {
-		var xml = Blockly.Xml.textToDom(text);
-		Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);
-	}
+if (!Blockly.kbide) Blockly.kbide = {};
+// KBT_STAGE54K_SESSION_RESTORE: prefer the verified workspace snapshot written
+// immediately before locale navigation. Fall back to the legacy localStorage key.
+var kbtPendingWorkspaceText = null;
+var kbtWorkspaceRestoreSource = 'localStorage';
+var kbtPageLanguage = 'en';
+var kbtLocaleQuery = /(?:^|[?&])lang=([^&]+)/.exec(window.location.search || '');
+var kbtHasQueryLanguage = false;
+if (kbtLocaleQuery) {
+    try {
+        var kbtQueryLanguage = decodeURIComponent(kbtLocaleQuery[1].replace(/\+/g, ' '));
+        if (['en', 'th', 'my', 'km', 'lo', 'vi'].indexOf(kbtQueryLanguage) !== -1) { kbtPageLanguage = kbtQueryLanguage; kbtHasQueryLanguage = true; }
+    } catch (kbtQueryError) { /* use rendered locale */ }
+}
+if (!kbtHasQueryLanguage) {
+    var kbtCookieMatch = /(?:^|;\s*)lang=([^;]+)/.exec(document.cookie || '');
+    if (kbtCookieMatch) {
+        try {
+            var kbtCookieLanguage = decodeURIComponent(kbtCookieMatch[1]);
+            if (['en', 'th', 'my', 'km', 'lo', 'vi'].indexOf(kbtCookieLanguage) !== -1) {
+                kbtPageLanguage = kbtCookieLanguage;
+                kbtHasQueryLanguage = true;
+            }
+        } catch (kbtCookieError) { /* use server-rendered selector */ }
+    }
+}
+if (!kbtHasQueryLanguage) {
+    var kbtLanguagePicker = document.getElementById('language-select');
+    var kbtRenderedLanguage = kbtLanguagePicker && kbtLanguagePicker.getAttribute('data-selected-language');
+    if (['en', 'th', 'my', 'km', 'lo', 'vi'].indexOf(kbtRenderedLanguage) !== -1) kbtPageLanguage = kbtRenderedLanguage;
+}
+try {
+    var kbtSnapshotText = sessionStorage.getItem('KBT_LANGUAGE_SWITCH_SNAPSHOT_V1');
+    if (kbtSnapshotText) {
+        var kbtSnapshot = JSON.parse(kbtSnapshotText);
+        if (kbtSnapshot && kbtSnapshot.version === 1 &&
+                kbtSnapshot.targetLanguage === kbtPageLanguage &&
+                typeof kbtSnapshot.xml === 'string' && kbtSnapshot.xml.length > 0) {
+            kbtPendingWorkspaceText = kbtSnapshot.xml;
+            kbtWorkspaceRestoreSource = 'session-language-switch';
+            console.info('KBT language-switch snapshot selected for restore.', {
+                sourceLanguage: kbtSnapshot.sourceLanguage,
+                targetLanguage: kbtSnapshot.targetLanguage,
+                liveBlockCount: kbtSnapshot.liveBlockCount,
+                topBlockCount: kbtSnapshot.topBlockCount,
+                xmlLength: kbtSnapshot.xml.length
+            });
+        } else {
+            console.warn('KBT session snapshot did not match the current locale; using legacy workspace storage.');
+        }
+    }
+} catch (kbtSnapshotReadError) {
+    console.warn('Could not read KBT session workspace snapshot; using legacy workspace storage.', kbtSnapshotReadError);
+}
+if (!kbtPendingWorkspaceText) kbtPendingWorkspaceText = localStorage.getItem('KidBrightLastWorkspace');
+Blockly.kbide['KBT_PENDING_WORKSPACE_TEXT'] = kbtPendingWorkspaceText;
+Blockly.kbide['KBT_WORKSPACE_RESTORE_SOURCE'] = kbtWorkspaceRestoreSource;
+Blockly.kbide['KBT_WORKSPACE_RESTORE_STARTED'] = false;
+
+// Stage 5.4h: publish the restore callback on window because the Blockly
+// initializer and document-ready resize callback have different scopes.
+window.kbtRestoreWorkspaceAfterLayout = function () {
+    var appState = Blockly.kbide || {};
+    if (appState['KBT_WORKSPACE_RESTORE_STARTED'] ||
+            appState['KBT_WORKSPACE_RESTORE_SCHEDULED'] ||
+            !appState['KBT_PENDING_WORKSPACE_TEXT']) return;
+    appState['KBT_WORKSPACE_RESTORE_SCHEDULED'] = true;
+    var attempts = 0;
+    var maxAttempts = 200;
+
+    function showVisualProgrammingWorkspace(div) {
+        if (window.jQuery) {
+            var $ = window.jQuery;
+            $(div).closest('table').show();
+            $('#kbt-text-panel').hide();
+            $('#kbt-language-picker').show();
+            $('#kbt-mode-text').removeClass('active');
+            $('#kbt-mode-visual').addClass('active');
+            $('#btn-new, #btn-open, #btn-save, #btn-build').closest('li').show();
+        }
+        if (div && div.parentNode) {
+            var parent = div.parentNode;
+            var width = parent.clientWidth || parent.offsetWidth || 0;
+            var height = parent.clientHeight || parent.offsetHeight || 0;
+            if (width > 2) div.style.width = (width - 2) + 'px';
+            if (height > 2) div.style.height = (height - 2) + 'px';
+        }
+    }
+
+    function retryRestore(reason) {
+        attempts++;
+        if (attempts <= maxAttempts) {
+            window.setTimeout(waitForLayout, 50);
+        } else {
+            appState['KBT_WORKSPACE_RESTORE_SCHEDULED'] = false;
+            console.error('Blockly workspace restore could not become ready; saved XML remains available.', reason);
+        }
+    }
+
+    function waitForLayout() {
+        var div = document.getElementById('blockly');
+        if (!div) return retryRestore('Blockly container was not found.');
+        showVisualProgrammingWorkspace(div);
+        if (div.offsetWidth < 20 || div.offsetHeight < 20) {
+            return retryRestore('Visual Programming container has no usable dimensions.');
+        }
+
+        // The original IDE injects Blockly from the asynchronous /plugins AJAX
+        // callback. Do not mistake a visible DIV for an initialized workspace.
+        var targetWorkspace = (Blockly.kbide && Blockly.kbide['WORKSPACE']) || Blockly.mainWorkspace;
+        if (!targetWorkspace || typeof targetWorkspace.getAllBlocks !== 'function' ||
+                typeof targetWorkspace.getTopBlocks !== 'function') {
+            return retryRestore('Blockly.inject() has not produced a live workspace yet.');
+        }
+
+        var restoreAfterFonts = function () {
+            var raf = window.requestAnimationFrame || function (callback) { return window.setTimeout(callback, 16); };
+            raf(function () {
+                raf(function () {
+                    if (appState['KBT_WORKSPACE_RESTORE_STARTED']) {
+                        appState['KBT_WORKSPACE_RESTORE_SCHEDULED'] = false;
+                        return;
+                    }
+                    var latestWorkspace = (Blockly.kbide && Blockly.kbide['WORKSPACE']) || Blockly.mainWorkspace;
+                    if (!latestWorkspace || typeof latestWorkspace.getAllBlocks !== 'function') {
+                        return retryRestore('Blockly workspace was not ready after layout frames.');
+                    }
+                    try {
+                        showVisualProgrammingWorkspace(div);
+                        if (div.offsetWidth < 20 || div.offsetHeight < 20) {
+                            return retryRestore('Visual Programming container became hidden before XML import.');
+                        }
+                        if (typeof latestWorkspace.setVisible === 'function') latestWorkspace.setVisible(true);
+                        if (typeof Blockly.svgResize === 'function') Blockly.svgResize(latestWorkspace);
+
+                        var loadResult = null;
+                        if (window.KBTBlockly && typeof window.KBTBlockly.loadXml === 'function') {
+                            // Reuse the same importer as KBT-to-Blockly. It also rebuilds
+                            // dynamic function-call dropdowns after declarations are loaded.
+                            loadResult = window.KBTBlockly.loadXml(appState['KBT_PENDING_WORKSPACE_TEXT'], {
+                                clear: false,
+                                workspace: latestWorkspace
+                            });
+                        } else {
+                            var xml = Blockly.Xml.textToDom(appState['KBT_PENDING_WORKSPACE_TEXT']);
+                            Blockly.Xml.domToWorkspace(xml, latestWorkspace);
+                        }
+                        var restoredBlocks = latestWorkspace.getAllBlocks(false);
+                        if (window.KBTBlockly && typeof window.KBTBlockly.refreshWorkspaceLayout === 'function') {
+                            window.KBTBlockly.refreshWorkspaceLayout(latestWorkspace, { cleanUp: true });
+                        } else {
+                            for (var i = 0; i < restoredBlocks.length; i++) {
+                                if (restoredBlocks[i] && typeof restoredBlocks[i].render === 'function') restoredBlocks[i].render();
+                            }
+                            if (typeof latestWorkspace.cleanUp === 'function') latestWorkspace.cleanUp();
+                            if (typeof Blockly.resizeSvgContents === 'function') Blockly.resizeSvgContents(latestWorkspace);
+                            if (typeof Blockly.svgResize === 'function') Blockly.svgResize(latestWorkspace);
+                        }
+
+                        // Only consume the session snapshot after a successful import.
+                        try {
+                            localStorage.setItem('KidBrightLastWorkspace', appState['KBT_PENDING_WORKSPACE_TEXT']);
+                        } catch (legacySaveError) {
+                            console.warn('Restored workspace is live, but legacy localStorage could not be refreshed.', legacySaveError);
+                        }
+                        if (appState['KBT_WORKSPACE_RESTORE_SOURCE'] === 'session-language-switch') {
+                            try { sessionStorage.removeItem('KBT_LANGUAGE_SWITCH_SNAPSHOT_V1'); }
+                            catch (sessionRemoveError) { console.warn('Could not remove consumed session snapshot.', sessionRemoveError); }
+                        }
+                        appState['KBT_WORKSPACE_RESTORE_STARTED'] = true;
+                        appState['KBT_WORKSPACE_RESTORE_SCHEDULED'] = false;
+                        console.info('KidBright Blockly workspace restored.', {
+                            source: appState['KBT_WORKSPACE_RESTORE_SOURCE'],
+                            totalBlocks: restoredBlocks.length,
+                            topBlocks: latestWorkspace.getTopBlocks(false).length,
+                            functionCallsRefreshed: loadResult ? loadResult.functionCallsRefreshed : null
+                        });
+                    } catch (restoreError) {
+                        appState['KBT_WORKSPACE_RESTORE_SCHEDULED'] = false;
+                        console.error('Could not restore KidBright Blockly workspace; saved XML was retained.', restoreError);
+                    }
+                });
+            });
+        };
+        if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function') {
+            document.fonts.ready.then(restoreAfterFonts, restoreAfterFonts);
+        } else {
+            restoreAfterFonts();
+        }
+    }
+    waitForLayout();
+};
+// Handle either script-initialization order: Blockly may initialize before or
+// after jQuery's ready callback depending on the legacy IDE startup path.
+if (window.kbtBlocklyContainerReady) window.kbtRestoreWorkspaceAfterLayout();
 }
 
 $(document).ready(function() {
@@ -130,9 +325,17 @@ $(document).ready(function() {
 		if (div = document.getElementById('blockly')) {
 			div.style.width = (div.parentNode.offsetWidth - 2) + 'px';
 			div.style.height = (div.parentNode.offsetHeight - 2) + 'px';
+                        // Keep Blockly's internal SVG metrics synchronized with the resized container.
+                        var resizeWorkspace = (window.Blockly && Blockly.kbide && Blockly.kbide['WORKSPACE']) || null;
+                        if (resizeWorkspace && typeof Blockly.svgResize === 'function' &&
+                                div.offsetWidth > 0 && div.offsetHeight > 0) {
+                                Blockly.svgResize(resizeWorkspace);
+                        }
 		}
 	}
 	onresize();
+	window.kbtBlocklyContainerReady = true;
+	if (window.kbtRestoreWorkspaceAfterLayout) window.kbtRestoreWorkspaceAfterLayout();
 	window.addEventListener('resize', onresize);
 	window.addEventListener('unload', function() {
 		saveWorkspaceLocal();

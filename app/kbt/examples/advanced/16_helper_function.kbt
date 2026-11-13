@@ -1,0 +1,6 @@
+# KBT Advanced — KBT 0.1 user functions have no parameters or return values.
+def show_temperature():
+    display.scroll(sensors.temperature_c())
+    display.wait_ready()
+
+show_temperature()

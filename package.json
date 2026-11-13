@@ -1,7 +1,8 @@
 {
-  "name": "kidbrightide",
-  "version": "1.8.0",
-  "description": "",
+  "_kbtModificationNotice": "Modified by Ye Kyaw Thu for KidBright Text v0.4.0 on 2026-11-13. Original upstream notices are retained.",
+  "name": "kidbright-text",
+  "version": "0.4.0",
+  "description": "KidBright Text: Python-inspired text programming integrated with the KidBright IDE.",
   "main": "index.js",
   "dependencies": {
     "gulp-download": "0.0.1",
@@ -19,12 +20,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nexpie/kidbrightide.git"
+    "url": "https://github.com/ye-kyaw-thu/KidBright-Text.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ye Kyaw Thu",
+  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/nexpie/kidbrightide/issues"
+    "url": "https://github.com/ye-kyaw-thu/KidBright-Text/issues"
   },
-  "homepage": "https://github.com/nexpie/kidbrightide#readme"
+  "homepage": "https://github.com/ye-kyaw-thu/KidBright-Text#readme",
+  "engines": {
+    "node": "8.17.x",
+    "npm": "6.x"
+  }
 }

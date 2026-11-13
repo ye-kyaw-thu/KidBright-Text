@@ -1,0 +1,12 @@
+# KBT Core — a 16-column by 8-row bitmap.
+# Orientation is specified top-to-bottom; confirm against the real board.
+display.bitmap([
+    "................",
+    "...##......##...",
+    "..#..#....#..#..",
+    "..#..#....#..#..",
+    "...##......##...",
+    "......####......",
+    ".....#....#.....",
+    "................"
+])

@@ -1,0 +1,12 @@
+# Interactive Core — press Switch 1 to increment a counter.
+# Each press is counted once because the program waits for release.
+press_count = 0
+display.scroll("PRESS SW1")
+display.wait_ready()
+forever:
+    if buttons.one.is_pressed():
+        press_count = press_count + 1
+        display.scroll(press_count)
+        display.wait_ready()
+        buttons.one.wait_released()
+    wait_seconds(0.05)

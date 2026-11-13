@@ -1,0 +1,3 @@
+# KBT Core — scroll a greeting across the LED matrix.
+display.scroll("HELLO WORLD")
+display.wait_ready()

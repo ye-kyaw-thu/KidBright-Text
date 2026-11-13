@@ -1,0 +1,16 @@
+# KBT Core — practise comparisons, AND, OR, NOT, and multiple branches.
+score = 82
+attendance = 90
+
+if score >= 80 and attendance >= 80:
+    display.scroll("EXCELLENT")
+    display.wait_ready()
+elif score >= 50 or attendance >= 75:
+    display.scroll("PASS")
+    display.wait_ready()
+else:
+    display.scroll("TRY AGAIN")
+    display.wait_ready()
+
+if not buttons.two.is_pressed():
+    display.show_2chars(score)

@@ -1,0 +1,43 @@
+#kbt-text-panel(style='display:none')
+  .kbt-editor-shell
+    .kbt-toolbar
+      .kbt-toolbar-group
+        label(for='kbt-example') Example
+        select#kbt-example.form-control
+          option(value='') Select an example...
+      .kbt-toolbar-group
+        label(for='kbt-profile') Profile
+        select#kbt-profile.form-control
+          option(value='core' selected) Core
+          option(value='advanced') Advanced
+          option(value='plugins') Plugins / Extensions
+      .kbt-toolbar-actions
+        button#kbt-new.btn.btn-default(type='button' title='New KBT document (Ctrl+Alt+N)') New
+        button#kbt-open.btn.btn-default(type='button' title='Open KBT file (Ctrl+O)') Open .kbt
+        input#kbt-open-file(type='file' accept='.kbt,text/plain' style='display:none')
+        button#kbt-save.btn.btn-default(type='button' title='Save KBT document (Ctrl+S)') Save
+        button#kbt-save-as.btn.btn-default(type='button' title='Save As (Ctrl+Shift+S)') Save As
+        button#kbt-check.btn.btn-primary(type='button' title='Check source (Ctrl+Enter)') Check
+        button#kbt-to-blocks.btn.btn-info(type='button') Convert to Visual Blocks
+        button#kbt-preview-cpp.btn.btn-default(type='button') Preview C++
+        button#kbt-build-upload.btn.btn-warning(type='button') Build & Upload
+    .kbt-workbench
+      .kbt-editor-column
+        .kbt-editor-titlebar
+          span#kbt-filename untitled.kbt
+          span#kbt-dirty.kbt-dirty Saved
+          span#kbt-editor-version KidBright Text Editor
+        .kbt-editor-frame
+          textarea#kbt-source(spellcheck='false' autocapitalize='off' autocomplete='off' autocorrect='off' wrap='off' aria-label='KidBright Text source editor' aria-describedby='kbt-keyboard-help')
+      .kbt-output-column
+        .kbt-output-heading
+          strong Output
+          span#kbt-status.kbt-status Ready
+        pre#kbt-output.kbt-output(role='status' aria-live='polite') Select an example or create a new KBT program, then click Check.
+        .kbt-cpp-heading
+          strong Generated C++ preview
+          span.small Original KidBright Blockly generators
+        pre#kbt-cpp-output.kbt-cpp-output No C++ generated yet.
+    .kbt-footer
+      span#kbt-keyboard-help Ctrl+C/V/X/A · Ctrl+Z/Y · Ctrl+S · Ctrl+Shift+S · Tab/Shift+Tab indent · Enter auto-indent
+      span#kbt-cursor Line 1, column 1

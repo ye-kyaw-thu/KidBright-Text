@@ -1,0 +1,8 @@
+# KBT Core — display 0 through 7 after Switch 1 is pressed.
+buttons.one.wait_pressed()
+count = 0
+
+while count <= 7:
+    display.show_2chars(count)
+    wait_seconds(0.5)
+    count = count + 1

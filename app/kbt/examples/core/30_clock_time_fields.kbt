@@ -1,0 +1,15 @@
+# KBT Core — inspect the hour, minute, and second RTC fields.
+# This example shows a short message when the RTC reaches 12:00:00.
+forever:
+    current_hour = clock.hour
+    current_minute = clock.minute
+    current_second = clock.second
+
+    if current_hour == 12 and current_minute == 0 and current_second == 0:
+        display.scroll("NOON")
+        display.wait_ready()
+        music.play("C5", "quarter")
+        wait_seconds(1.1)
+
+    display.show_2chars(current_second)
+    wait_seconds(0.1)

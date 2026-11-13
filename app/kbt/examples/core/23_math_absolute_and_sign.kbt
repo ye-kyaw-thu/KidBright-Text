@@ -1,0 +1,10 @@
+# KBT Core — absolute value and positive/negative number properties.
+measurement = -12.5
+magnitude = abs(measurement)
+
+if is_positive(magnitude) and is_negative(measurement):
+    display.scroll(magnitude)
+    display.wait_ready()
+else:
+    display.scroll("CHECK VALUE")
+    display.wait_ready()

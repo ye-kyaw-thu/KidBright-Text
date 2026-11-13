@@ -1,0 +1,13 @@
+# KBT Core — inspect and toggle the onboard USB power switch.
+# Use only with a USB-powered peripheral within the board's electrical limits.
+current_state = io.usb_power.read()
+
+if current_state == 0:
+    io.usb_power.write(true)
+else:
+    io.usb_power.toggle()
+
+wait_seconds(0.2)
+current_state = io.usb_power.read()
+display.scroll(current_state)
+display.wait_ready()

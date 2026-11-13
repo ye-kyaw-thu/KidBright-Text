@@ -1,62 +1,172 @@
+/*
+ * KBT-MODIFICATION-NOTICE: Modified by Ye Kyaw Thu for KidBright Text v0.4.0 on 2026-11-13. Original upstream notices are retained.
+ * This file adapts upstream KidBright IDE code.
+ * Original upstream copyright and attribution notices are retained.
+ */
 function saveWorkspaceLocal(){
-	var xml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace));
-	localStorage.setItem('KidBrightLastWorkspace', xml);
+	try {
+		if (!window.Blockly || !Blockly.mainWorkspace || !Blockly.Xml) return false;
+		var xml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace));
+		if (typeof xml !== 'string' || !xml.length) return false;
+		localStorage.setItem('KidBrightLastWorkspace', xml);
+		return localStorage.getItem('KidBrightLastWorkspace') === xml;
+	} catch (saveError) {
+		console.warn('Could not save Blockly workspace before language change:', saveError);
+		return false;
+	}
 }
+// KBT_STAGE54K_LANGUAGE_SNAPSHOT: keep a verified, tab-scoped copy across the
+// full-page locale navigation. The legacy unload handler may write the same
+// localStorage key again; the session snapshot remains authoritative until the
+// new page has completed Blockly XML restoration.
+function KBTSaveLanguageSwitchSnapshot(targetLanguage, sourceLanguage) {
+    try {
+        if (!window.Blockly || !Blockly.Xml) return false;
+        var ws = (Blockly.kbide && Blockly.kbide['WORKSPACE']) || Blockly.mainWorkspace;
+        if (!ws || typeof ws.getAllBlocks !== 'function' || typeof ws.getTopBlocks !== 'function') return false;
+        if (typeof Blockly.Xml.workspaceToDom !== 'function' || typeof Blockly.Xml.domToText !== 'function' ||
+                typeof Blockly.Xml.textToDom !== 'function') return false;
+
+        var liveBlocks = ws.getAllBlocks(false).length;
+        var topBlocks = ws.getTopBlocks(false).length;
+        var xmlDom = Blockly.Xml.workspaceToDom(ws);
+        var xml = Blockly.Xml.domToText(xmlDom);
+        if (typeof xml !== 'string' || !xml.length) return false;
+
+        // Parse the generated XML again and ensure no live blocks were omitted.
+        var checkDom = Blockly.Xml.textToDom(xml);
+        var serializedBlocks = checkDom.getElementsByTagName('block').length + checkDom.getElementsByTagName('shadow').length;
+        if (liveBlocks > serializedBlocks) {
+            throw new Error('Workspace snapshot is incomplete: live blocks=' + liveBlocks + ', serialized blocks=' + serializedBlocks);
+        }
+
+        var payload = {
+            version: 1,
+            sourceLanguage: sourceLanguage,
+            targetLanguage: targetLanguage,
+            savedAt: (new Date()).toISOString(),
+            liveBlockCount: liveBlocks,
+            topBlockCount: topBlocks,
+            xml: xml
+        };
+        var encoded = JSON.stringify(payload);
+        sessionStorage.setItem('KBT_LANGUAGE_SWITCH_SNAPSHOT_V1', encoded);
+        if (sessionStorage.getItem('KBT_LANGUAGE_SWITCH_SNAPSHOT_V1') !== encoded) {
+            throw new Error('Session workspace snapshot verification failed.');
+        }
+        // Keep the legacy key synchronized for backward compatibility.
+        try {
+            localStorage.setItem('KidBrightLastWorkspace', xml);
+        } catch (localSaveError) {
+            console.warn('Legacy localStorage workspace copy could not be updated; session snapshot is safe.', localSaveError);
+        }
+        console.info('KBT language-switch workspace snapshot saved.', {
+            sourceLanguage: sourceLanguage,
+            targetLanguage: targetLanguage,
+            liveBlocks: liveBlocks,
+            topBlocks: topBlocks,
+            xmlLength: xml.length
+        });
+        return true;
+    } catch (snapshotError) {
+        console.error('Could not save a verified Blockly snapshot before language change.', snapshotError);
+        return false;
+    }
+}
+
+/*
+ * Workspace restoration intentionally remains owned by the original
+ * public/blockly/kidbright/app.js. That legacy loader calls Blockly.inject()
+ * first and then imports localStorage.KidBrightLastWorkspace exactly once.
+ * Do not add a second HomeController restore here: clearing/re-importing the
+ * same XML races the original loader and can leave legacy Blockly SVG blocks
+ * collapsed or detached.
+ */
 
 function HomeController() {
 	var that = this;
 	var deletingBoardId = null;
 	var standalone = false;
-	// console.log(localStorage.lang);
-	var state_lang;
-	if(localStorage.lang=="th"){
-		document.getElementById("toggle-lang").setAttribute('checked',"");
-	}
-
-	state_lang = document.getElementById("toggle-lang").checked;
 	var ver = document.getElementsByClassName("lang-container")[0];
-	ver.style.backgroundColor = localStorage.verColor;
+	if (ver && localStorage.verColor) {
+		ver.style.backgroundColor = localStorage.verColor;
+	}
 	// console.log(ver);
 	var files;
 	var filename = "";
 	var workspaceData;
 	var isElecrton = false;
 	var userAgent = navigator.userAgent.toLowerCase();
+	// The selected OPTION is rendered by Jade from the validated /home locale.
+	// Prefer select.value (the browser's actual selected option), then the data
+	// attribute as a compatibility fallback. Never let stale localStorage force
+	// the picker back to English after a successful server-side language switch.
+	var languageSelectElement = document.getElementById('language-select');
+	if (languageSelectElement) {
+		// KBT_STAGE54K_LANGUAGE_SNAPSHOT: the URL is authoritative on locale
+		// navigation; otherwise use the server-rendered locale/cookie before the
+		// native select.value (which may default to its first option, English).
+		var supportedBlocklyLanguages = ['en', 'th', 'my', 'km', 'lo', 'vi'];
+		var renderedLanguage = '';
+		var queryMatch = /(?:^|[?&])lang=([^&]+)/.exec(window.location.search || '');
+		if (queryMatch) {
+			try {
+				var queryLanguage = decodeURIComponent(queryMatch[1].replace(/\+/g, ' '));
+				if (supportedBlocklyLanguages.indexOf(queryLanguage) !== -1) renderedLanguage = queryLanguage;
+			} catch (queryError) { /* use the server/cookie fallback */ }
+		}
+		if (!renderedLanguage) {
+			var cookieMatch = /(?:^|;\s*)lang=([^;]+)/.exec(document.cookie || '');
+			if (cookieMatch) {
+				try {
+					var cookieLanguage = decodeURIComponent(cookieMatch[1]);
+					if (supportedBlocklyLanguages.indexOf(cookieLanguage) !== -1) renderedLanguage = cookieLanguage;
+				} catch (cookieError) { /* use the template fallback */ }
+			}
+		}
+		if (!renderedLanguage) renderedLanguage = languageSelectElement.getAttribute('data-selected-language') || '';
+		if (supportedBlocklyLanguages.indexOf(renderedLanguage) === -1) renderedLanguage = languageSelectElement.value || 'en';
+		if (supportedBlocklyLanguages.indexOf(renderedLanguage) === -1) renderedLanguage = 'en';
+		languageSelectElement.setAttribute('data-selected-language', renderedLanguage);
+		languageSelectElement.value = renderedLanguage;
+		window.KBTSelectedBlocklyLanguage = renderedLanguage;
+		localStorage.lang = renderedLanguage;
+		localStorage.KBTSelectedBlocklyLanguage = renderedLanguage;
+	}
+	// The original KidBright Blockly app.js restores KidBrightLastWorkspace
+	// after Blockly.inject() completes. HomeController only writes the snapshot
+	// before a locale navigation; it must not clear/import it a second time.
 	if (userAgent.indexOf(' electron/') > -1) {
 		console.log("detect electron");
 		isElecrton = true;
 	}
 
-	$('#home-lang-en').click(function() {
-		saveWorkspaceLocal();
-		homeSetLanguage('en');
-	});
-
-	$('#home-lang-th').click(function() {
-		saveWorkspaceLocal();
-		homeSetLanguage('th');
-	});
-	$('#toggle-lang').click(function () {
-
-		state_lang = !state_lang;
-		console.log(state_lang);
-		if(state_lang!=undefined){
-			if(state_lang==true){
-				localStorage.lang = "th";
-				homeSetLanguage('th');
-				localStorage.verColor = "#7F94F8";
-				ver.style.backgroundColor = "#7F94F8";
-			}
-			else{
-				localStorage.lang = "en";
-				 homeSetLanguage('en');
-				 localStorage.verColor="#55C613";
-				 ver.style.backgroundColor="#55C613";
+	$('#language-select').on('change', function () {
+		var language = this.value;
+		if (['en', 'th', 'my', 'km', 'lo', 'vi'].indexOf(language) === -1) {
+			return;
+		}
+		// Selecting the already active locale is a no-op. In particular, do not
+		// reload the page or re-import the workspace for Myanmar -> Myanmar, etc.
+		var currentLanguage = window.KBTSelectedBlocklyLanguage ||
+			(languageSelectElement && languageSelectElement.value) || 'en';
+		if (language === currentLanguage) {
+			if (languageSelectElement) languageSelectElement.value = currentLanguage;
+			return;
+		}
+		if (window.KBTEditor && typeof window.KBTEditor.prepareForLanguageSwitch === 'function') {
+			if (!window.KBTEditor.prepareForLanguageSwitch()) {
+				window.alert('The KBT text draft could not be saved for the language change. Please save your program first.');
+				return;
 			}
 		}
-
-		// console.log("local str "+localStorage.lang);
-
+		if (!KBTSaveLanguageSwitchSnapshot(language, currentLanguage)) {
+			window.alert('Could not preserve the current Blockly workspace. The language was not changed. Please save your program first.');
+			return;
+		}
+		localStorage.lang = language;
+		localStorage.KBTSelectedBlocklyLanguage = language;
+		homeSetLanguage(language);
 	});
 
 	// KidBrightOS, enable build button and set clock button
@@ -877,16 +987,28 @@ HomeController.prototype.onUpdateSuccess = function () {
 }
 
 function homeSetLanguage(lang) {
-	$.ajax({
-		type: 'GET',
-		url: '/lang?set=' + lang,
-		error: function (e) {
-			window.location.href = '/home';
-		},
-		success: function () {
-			window.location.href = '/home';
-		},
-	});
+	var supportedLangs = ['en', 'th', 'my', 'km', 'lo', 'vi'];
+	if (supportedLangs.indexOf(lang) === -1) lang = 'en';
+	// Guard callers other than the select handler too. A same-locale request
+	// must never trigger a full IDE reload or a workspace restore cycle.
+	if (window.KBTSelectedBlocklyLanguage === lang) {
+		localStorage.lang = lang;
+		localStorage.KBTSelectedBlocklyLanguage = lang;
+		var activePicker = document.getElementById('language-select');
+		if (activePicker) activePicker.value = lang;
+		return false;
+	}
+	// Set the root cookie synchronously and carry the same locale in the URL.
+	// The template's bundle loader also passes this locale explicitly to /blockly/lang.js.
+	try {
+		document.cookie = 'lang=' + encodeURIComponent(lang) + '; path=/; max-age=31536000; SameSite=Lax';
+	} catch (cookieError) {
+		console.warn('Could not set Blockly language cookie; the /home query parameter will still select the locale.', cookieError);
+	}
+	localStorage.lang = lang;
+	localStorage.KBTSelectedBlocklyLanguage = lang;
+	window.location.replace('/home?lang=' + encodeURIComponent(lang));
+	return true;
 }
 
 // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings#answer-30106551

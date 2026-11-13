@@ -1,0 +1,16 @@
+# Interactive Core — Switch 1 displays the date; Switch 2 displays the time.
+# The RTC must be set from the KidBright IDE before using this lesson.
+display.scroll("SW1 DATE SW2 TIME")
+display.wait_ready()
+forever:
+    if buttons.one.is_pressed():
+        display.scroll(clock.date())
+        display.wait_ready()
+        buttons.one.wait_released()
+    elif buttons.two.is_pressed():
+        display.scroll(clock.time())
+        display.wait_ready()
+        buttons.two.wait_released()
+    else:
+        display.show_2chars(clock.second)
+    wait_seconds(0.1)

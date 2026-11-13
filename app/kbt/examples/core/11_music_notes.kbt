@@ -1,0 +1,7 @@
+# KBT Core — pitch names and note durations.
+music.set_volume(50)
+music.play("C4", "quarter")
+music.play("D4", "quarter")
+music.play("E4", "quarter")
+music.rest("eighth")
+music.play("C5", "half")

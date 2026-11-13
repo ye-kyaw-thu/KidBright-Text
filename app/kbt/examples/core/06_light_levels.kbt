@@ -1,0 +1,15 @@
+# KBT Core — LDR values are nominally 0 to 100 percent.
+forever:
+    light = sensors.light_percent()
+
+    if light < 33:
+        display.scroll("LOW")
+        display.wait_ready()
+    elif light < 66:
+        display.scroll("MEDIUM")
+        display.wait_ready()
+    else:
+        display.scroll("HIGH")
+        display.wait_ready()
+
+    wait_seconds(1.0)

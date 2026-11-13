@@ -1,13 +1,14 @@
 {
-  "name": "kidbrighide-server",
-  "version": "1.0.0",
-  "description": "",
+  "_kbtModificationNotice": "Modified by Ye Kyaw Thu for KidBright Text v0.4.0 on 2026-11-13. Original upstream notices are retained.",
+  "name": "kidbright-text-server",
+  "version": "0.4.0",
+  "description": "Local HTTP server for the KidBright Text / KidBright IDE application.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ye Kyaw Thu",
+  "license": "Apache-2.0",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",

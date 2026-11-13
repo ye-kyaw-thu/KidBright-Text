@@ -1,0 +1,14 @@
+# KBT Advanced — a zero-argument function and a background task.
+def show_status():
+    display.scroll("KBT READY")
+    display.wait_ready()
+
+show_status()
+
+task seconds_display:
+    forever:
+        display.show_2chars(clock.second)
+        wait_seconds(0.1)
+
+# Do not add a file-scope forever loop to this file: tasks are launched
+# after the file-scope setup sequence in the existing backend.

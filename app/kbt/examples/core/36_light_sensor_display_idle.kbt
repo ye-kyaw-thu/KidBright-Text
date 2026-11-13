@@ -1,0 +1,22 @@
+# KBT Core — show a message when the light level enters a new zone.
+# The state variable prevents the same message from being repeated every loop.
+# Try covering the sensor (DARK) and shining a torch on it (BRIGHT).
+zone = -1
+
+forever:
+    light = sensors.light_percent()
+
+    if light >= 70 and zone != 2:
+        display.scroll("BRIGHT")
+        display.wait_ready()
+        zone = 2
+    elif light <= 30 and zone != 0:
+        display.scroll("DARK")
+        display.wait_ready()
+        zone = 0
+    elif light > 30 and light < 70 and zone != 1:
+        display.scroll("NORMAL")
+        display.wait_ready()
+        zone = 1
+
+    wait_seconds(0.25)

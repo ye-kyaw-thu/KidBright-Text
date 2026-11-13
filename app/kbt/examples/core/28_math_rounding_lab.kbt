@@ -1,0 +1,12 @@
+# KBT Core — compare nearest-integer rounding, ceiling, and floor.
+measurement = 7.68
+nearest = round(measurement)
+upward = ceil(measurement)
+downward = floor(measurement)
+
+display.scroll(nearest)
+display.wait_ready()
+display.scroll(upward)
+display.wait_ready()
+display.scroll(downward)
+display.wait_ready()

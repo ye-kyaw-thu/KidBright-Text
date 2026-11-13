@@ -1,0 +1,6 @@
+# KBT Advanced — use text expressions directly; text variables are not Core 0.1.
+student_number = 24
+display.scroll(text.with_number("STUDENT ", student_number))
+display.wait_ready()
+display.scroll(text.join("WELCOME ", student_number))
+display.wait_ready()

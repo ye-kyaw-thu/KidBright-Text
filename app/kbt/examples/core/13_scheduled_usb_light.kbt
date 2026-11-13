@@ -1,0 +1,16 @@
+# KBT Core — switch a USB-connected light at a selected RTC time.
+# Set the board's RTC using the IDE before uploading this program.
+forever:
+    if clock.hour == 18 and clock.minute == 0 and clock.second == 0:
+        display.scroll("LIGHT ON")
+        display.wait_ready()
+        io.usb_power.write(true)
+        wait_seconds(1.1)
+
+    if clock.hour == 18 and clock.minute == 0 and clock.second == 20:
+        display.scroll("LIGHT OFF")
+        display.wait_ready()
+        io.usb_power.write(false)
+        wait_seconds(1.1)
+
+    wait_seconds(0.1)

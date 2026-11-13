@@ -1,12 +1,31 @@
-# Set the default behavior, in case people don't have core.autocrlf set.
+# KBT-MODIFICATION-NOTICE: Modified by Ye Kyaw Thu for KidBright Text v0.4.0 on 2026-11-13. Original upstream notices are retained.
 * text=auto
 
-# Explicitly declare text files you want to always be normalized and converted
-# to native line endings on checkout.
-*.a text
+# Keep source files stable across platforms.
+*.js text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.csv text eol=lf
+*.kbt text eol=lf
+*.jade text eol=lf
+*.css text eol=lf
+*.sh text eol=lf
 
-# Declare files that will always have CRLF line endings on checkout.
-*.a text eol=crlf
-
-# Denote all files that are truly binary and should not be modified.
+# Binary and generated assets.
 *.a binary
+*.bin binary
+*.exe binary
+*.dll binary
+*.node binary
+*.so binary
+*.dylib binary
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.zip binary
+*.gz binary
+*.tar binary

@@ -1,0 +1,5 @@
+# KBT Core — scroll() starts a request; wait_ready() blocks until done.
+display.scroll("FIRST MESSAGE")
+display.wait_ready()
+display.scroll("SECOND MESSAGE")
+display.wait_ready()

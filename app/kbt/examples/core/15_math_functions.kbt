@@ -1,0 +1,6 @@
+# KBT Core — functions available in the core numeric math registry.
+radius = 5
+area = 3.14159 * pow(radius, 2)
+root = sqrt(area)
+display.scroll(root)
+display.wait_ready()
