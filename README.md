@@ -56,7 +56,7 @@ The regression test suite validates the 60 bundled examples and generated Blockl
 The full IDE requires the matching legacy runtime and the firmware build inputs. Read the platform-specific instructions before installing dependencies:
 
 - [Windows installation and hardware setup](docs/WINDOWS-INSTALLATION.md)
-- [Repository file and distribution manifest](docs/REPOSITORY-FILE-MANIFEST.md)
+- [Repository file and distribution manifest](docs/REPOSITORY-MANIFEST.md)
 - [Developer setup](docs/DEVELOPER-SETUP.md)
 - [Firmware build inputs](docs/MISSING-BUILD-INPUTS.md)
 - [Installer roadmap](docs/INSTALLER-ROADMAP.md)
