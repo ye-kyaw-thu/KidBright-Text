@@ -1,13 +1,13 @@
 # Third-party notices
 
-This repository combines KidBright Text contributions with source and assets from the upstream KidBright IDE and third-party packages.
+KidBright Text combines project-specific contributions with the upstream KidBright IDE, its plugin ecosystem, browser assets, firmware SDK and external build tools. Preserve original copyright notices and license files in every source and binary distribution.
 
 ## Upstream KidBright IDE
 
 - Project: <https://gitlab.com/kidbright/kbide>
-- The supplied source tree contains an Apache License 2.0 `LICENSE` file, which is retained here.
-- Original source headers, author notices and attributions must be preserved.
-- The original upstream README is retained at `docs/upstream/README-kbide-original.md`.
+- The original source tree includes an Apache License 2.0 license file; this repository retains the upstream license and attribution materials.
+- The original upstream README is retained under `docs/upstream/README-kbide-original.md`.
+- The complete `esp32/` SDK/runtime directory is restored from the maintainer's original working KBIDE tree in the source-completion update. Its component-level vendor notices and license provenance must be reviewed before packaging a binary installer.
 
 ## npm dependencies
 
@@ -16,20 +16,23 @@ The legacy IDE uses dependencies declared in:
 - `package.json` / `package-lock.json`
 - `app/package.json` / `app/package-lock.json`
 
-Direct dependencies include Gulp tooling, Express, Jade, body-parser, cookie-parser, md5, Moment, QRCode and `serialport`. The package lockfiles record the resolved dependency tree. Each npm package retains its own license and notice terms; do not treat the repository's root LICENSE as changing those terms.
+Direct dependencies include Gulp tooling, Express, Jade, body-parser, cookie-parser, md5, Moment, QRCode and `serialport`. Each package retains its own license and notice terms. Do not treat the repository's root license as changing the licenses of npm dependencies.
 
 ## Blockly, browser libraries and plugins
 
-The application includes Blockly-related source, browser-side libraries and KidBright plugins. Retain all original license headers and notices in those components. Before making a binary installer, generate and review a complete third-party software bill of materials (SBOM) from the exact packaged runtime.
+The application includes Blockly-related source, browser libraries and KidBright plugins. Retain all original license headers and notices. Generate and review a complete third-party software bill of materials (SBOM) for the exact installer payload before redistribution.
 
-## Firmware and toolchain components
+## ESP32 SDK and hardware tools
 
-The source-review bundle did not include the ESP32 SDK, Xtensa compiler, ULP binutils or esptool binaries. These must be restored or downloaded from their original publishers. Their licenses and redistribution rules must be checked independently before bundling them in installers.
+- The ESP32 SDK/runtime files under `esp32/` are restored from the original working upstream-derived tree. Preserve every included vendor license/notice file.
+- Expanded Xtensa compiler and ESP32 ULP binutils directories are downloaded separately for the host OS and are not committed as ordinary source.
+- `esptool.exe` and platform esptool packages are downloaded separately and are not committed as ordinary source.
+- Verify the license and redistribution terms of each toolchain package and esptool build before bundling them in a public installer.
 
 ## Static libraries and documents
 
-Some upstream plugin directories contain prebuilt static libraries (`.a`) and PDF documentation/schematics. Their provenance should be checked against the upstream project and any vendor notices before redistribution outside the source repository.
+Plugin directories may contain prebuilt static libraries (`.a`), PDFs, schematics, images, fonts and vendor assets. Their individual provenance and licensing must be checked. Do not assume the top-level Apache-2.0 license overrides third-party terms.
 
-## Project contributions
+## KBT contributions
 
-KidBright Text-specific contributions are identified in `NOTICE` and are intended to be distributed under Apache License 2.0, subject to the third-party exceptions described above.
+KidBright Text-specific contributions are identified in `NOTICE`. Preserve `LICENSE`, `NOTICE`, `THIRD_PARTY_NOTICES.md` and all third-party notices in source and binary distributions.
